@@ -195,7 +195,7 @@ export function WhyChooseUsPage() {
                   {/* Primary CTA */}
                   <Link
                     to="/contact-us/"
-                    className="group relative overflow-hidden inline-flex items-center gap-2 bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm"
+                    className="group relative overflow-hidden inline-flex items-center gap-2 bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm"
                   >
                     <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-forest scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                     <span className="relative z-10 transition-colors duration-300 group-hover:text-lime">
@@ -208,7 +208,7 @@ export function WhyChooseUsPage() {
                     href={waLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border border-white/30 text-white font-bold px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors text-sm"
+                    className="inline-flex items-center gap-2 border border-white/30 text-white font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full hover:bg-white/10 transition-colors text-sm"
                   >
                     <MessageCircle size={15} />
                     {t('whyUs.hero.secondaryBtn')}
@@ -428,7 +428,7 @@ export function WhyChooseUsPage() {
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden inline-flex items-center gap-2 bg-forest text-white font-bold px-8 py-4 rounded-full text-base"
+                className="group relative overflow-hidden inline-flex items-center gap-2 bg-forest text-white font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base"
               >
                 <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                 <MessageCircle
@@ -584,7 +584,7 @@ export function WhyChooseUsPage() {
       <section className="py-20">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up" delay={0}>
-            <div className="bg-lime rounded-3xl px-10 py-16 text-center">
+            <div className="bg-lime rounded-3xl px-5 py-10 sm:px-10 sm:py-16 text-center">
               <h2 className="text-3xl md:text-4xl font-extrabold text-forest mb-4">
                 {t('whyUs.cta.h2')}
               </h2>
@@ -597,7 +597,7 @@ export function WhyChooseUsPage() {
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden inline-flex items-center gap-2 bg-forest text-white font-bold px-7 py-3.5 rounded-full text-sm"
+                  className="group relative overflow-hidden inline-flex items-center gap-2 bg-forest text-white font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm"
                 >
                   <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                   <MessageCircle
@@ -612,7 +612,7 @@ export function WhyChooseUsPage() {
                 {/* Secondary – Contact Us */}
                 <Link
                   to="/contact-us/"
-                  className="inline-flex items-center gap-2 border-2 border-forest text-forest font-bold px-7 py-3.5 rounded-full hover:bg-forest hover:text-white transition-colors text-sm"
+                  className="inline-flex items-center gap-2 border-2 border-forest text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full hover:bg-forest hover:text-white transition-colors text-sm"
                 >
                   {t('whyUs.cta.secondary')}
                 </Link>

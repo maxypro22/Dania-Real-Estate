@@ -678,26 +678,26 @@ export function AboutPage() {
       <section className="py-20 bg-surface-low">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal>
-            <div className="bg-lime rounded-3xl px-8 py-14 text-center max-w-3xl mx-auto">
+            <div className="bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-14 text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-extrabold text-forest mb-4">
                 {t('about.cta.h2')}
               </h2>
               <p className="text-forest/75 mb-8 max-w-xl mx-auto leading-relaxed">
                 {t('about.cta.subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center">
                 <a
                   href={`https://wa.me/${company.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-forest text-white px-8 py-4 rounded-full font-bold text-base hover:bg-forest-mid transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-forest text-white px-5 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base hover:bg-forest-mid transition-colors"
                 >
                   <MessageCircle size={18} />
                   {t('about.cta.primary')}
                 </a>
                 <Link
                   to="/contact-us/"
-                  className="inline-flex items-center justify-center gap-2 border-2 border-forest text-forest px-8 py-4 rounded-full font-bold text-base hover:bg-forest hover:text-white transition-colors"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-forest text-forest px-5 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base hover:bg-forest hover:text-white transition-colors"
                 >
                   {t('about.cta.secondary')}
                 </Link>

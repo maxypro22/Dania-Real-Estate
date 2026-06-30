@@ -376,10 +376,10 @@ export function HomePage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.whyUs.h2')}</h2></Reveal>
           <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.whyUs.subtitle')}</p></Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {(isAr ? WHY_CHOOSE_US_AR : whyChooseUs).map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
+                <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -398,9 +398,9 @@ export function HomePage() {
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.rentalSupport.h2')}</h2></Reveal>
           <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-lg mx-auto">{t('home.rentalSupport.subtitle')}</p></Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             <Reveal delay={0}>
-              <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
+              <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
                 <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                   <Home size={18} className="text-forest" />
                 </div>
@@ -410,7 +410,7 @@ export function HomePage() {
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
+              <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
                 <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                   <Briefcase size={18} className="text-forest" />
                 </div>
@@ -420,7 +420,7 @@ export function HomePage() {
             </Reveal>
 
             <Reveal delay={160}>
-              <div className="bg-forest rounded-2xl p-6 hover:shadow-md transition-shadow h-full">
+              <div className="bg-forest rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
                 <div className="w-10 h-10 bg-lime/20 rounded-xl flex items-center justify-center mb-4">
                   <Users size={18} className="text-lime" />
                 </div>
@@ -430,7 +430,7 @@ export function HomePage() {
             </Reveal>
 
             <Reveal delay={240}>
-              <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
+              <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
                 <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                   <ShoppingBag size={18} className="text-forest" />
                 </div>
@@ -565,26 +565,26 @@ export function HomePage() {
       </section>
 
       {/* ── 11. FINAL CTA ── */}
-      <section className="max-w-[1280px] mx-auto px-6 py-20">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-12 sm:py-20">
         <Reveal direction="up" duration={800}>
-          <div className="relative bg-lime rounded-3xl px-8 py-16 text-center overflow-hidden">
+          <div className="relative bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-16 text-center overflow-hidden">
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-lime-dark/30 rounded-full" />
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-lime-dark/30 rounded-full" />
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-forest mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-forest mb-3 sm:mb-4">
                 {t('home.cta.h2')}
               </h2>
-              <p className="text-forest/70 text-lg mb-10 max-w-xl mx-auto">
+              <p className="text-forest/70 text-base sm:text-lg mb-6 sm:mb-10 max-w-xl mx-auto">
                 {t('home.cta.subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center">
                 <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-8 py-4 rounded-full text-base">
+                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base">
                   <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                   <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.cta.primary')}</span>
                 </a>
                 <Link to="/contact-us/"
-                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-white text-ink font-bold px-8 py-4 rounded-full text-base">
+                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-white text-ink font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base">
                   <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-forest scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                   <span className="relative z-10 transition-colors duration-300 group-hover:text-white">{t('home.cta.secondary')}</span>
                 </Link>

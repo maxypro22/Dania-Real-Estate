@@ -76,18 +76,18 @@ export function ShopsPage() {
               </p>
             </Reveal>
             <Reveal direction="up" delay={300}>
-              <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
                 <a
                   href={`https://wa.me/${company.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
+                  className="inline-flex items-center justify-center bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
                 >
                   {t('shops.primaryBtn')}
                 </a>
                 <Link
                   to="/contact-us/"
-                  className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
+                  className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
                 >
                   {t('shops.secondaryBtn')}
                 </Link>
@@ -815,7 +815,7 @@ export function ShopsPage() {
       â•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گâ•گ */}
       <section className="max-w-[1280px] mx-auto px-6 py-16">
         <Reveal direction="up">
-          <div className="relative bg-lime rounded-3xl px-8 py-16 text-center overflow-hidden">
+          <div className="relative bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-16 text-center overflow-hidden">
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-forest/10 rounded-full pointer-events-none" />
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-forest/10 rounded-full pointer-events-none" />
             <div className="relative">
@@ -827,18 +827,18 @@ export function ShopsPage() {
                   ? 'احمِ ظهور علامتك التجارية في السوق وضمان حركة عملاء ثابتة وأمّن مستقبلك التجاري. تجنّب الإعلانات المبوبة القديمة والبحث غير المنسق. تواصل مباشرةً مع متخصصي العقارات التجارية في دانية للعقارات اليوم للحصول على محفظة واجهات موثّقة ومتوافقة مع ميزانيتك ومبنية حول أهداف عملك.'
                   : "Protect your brand's market visibility, ensure consistent customer traffic, and secure your commercial future. Avoid outdated online classifieds and uncoordinated searches. Connect directly with the commercial real estate specialists at Dania Real Estate today to receive a vetted, budget-aligned storefront portfolio built around your business goals."}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center">
                 <a
                   href={`https://wa.me/${company.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-forest text-white font-bold px-8 py-4 rounded-full text-base hover:bg-forest/90 transition-colors"
+                  className="inline-flex items-center justify-center bg-forest text-white font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:bg-forest/90 transition-colors"
                 >
                   {t('shops.ctaPrimary')}
                 </a>
                 <Link
                   to="/contact-us/"
-                  className="inline-flex items-center justify-center bg-white text-ink font-bold px-8 py-4 rounded-full text-base hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center justify-center bg-white text-ink font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:bg-white/90 transition-colors"
                 >
                   {t('shops.ctaSecondary')}
                 </Link>

@@ -257,10 +257,10 @@ export function GalleryPage() {
               </Reveal>
 
               <Reveal direction="up" delay={240}>
-                <div className="flex flex-col sm:flex-row gap-3 mb-10">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-10">
                   <Link
                     to="/apartments-for-rent/"
-                    className="bg-lime text-forest px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center"
+                    className="bg-lime text-forest px-4 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center"
                   >
                     {t('gallery.hero.primaryBtn')}
                   </Link>
@@ -268,7 +268,7 @@ export function GalleryPage() {
                     href={waLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white/10 border border-white/30 text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center justify-center"
+                    className="bg-white/10 border border-white/30 text-white px-4 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold text-sm hover:bg-white/20 transition-colors inline-flex items-center justify-center"
                   >
                     {t('gallery.hero.whatsappBtn')}
                   </a>
@@ -493,7 +493,7 @@ export function GalleryPage() {
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#25D366] text-white px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center"
+              className="bg-[#25D366] text-white px-4 py-2.5 sm:px-8 sm:py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center"
             >
               {t('gallery.showcase.ctaBtn')}
             </a>
@@ -699,18 +699,18 @@ export function GalleryPage() {
               <p className="text-forest/80 mb-8 max-w-2xl mx-auto leading-relaxed">
                 {t('gallery.cta.subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center">
                 <a
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-forest text-white px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity inline-flex items-center justify-center"
+                  className="bg-forest text-white px-5 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity inline-flex items-center justify-center"
                 >
                   {t('gallery.cta.primary')}
                 </a>
                 <Link
                   to="/apartments-for-rent/"
-                  className="bg-white text-forest border border-forest/20 px-8 py-4 rounded-full font-bold text-base hover:bg-forest/5 transition-colors inline-flex items-center justify-center"
+                  className="bg-white text-forest border border-forest/20 px-5 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-base hover:bg-forest/5 transition-colors inline-flex items-center justify-center"
                 >
                   {t('gallery.cta.secondary')}
                 </Link>

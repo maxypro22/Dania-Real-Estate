@@ -194,9 +194,9 @@ export function Header() {
             alt="Dania Real Estate Logo"
             className="h-10 sm:h-11 w-auto object-contain"
           />
-          <div className="hidden sm:block leading-tight">
-            <p className="font-bold text-forest text-base leading-tight">{company.name}</p>
-            <p className="text-sm text-ink-muted">{company.nameAr}</p>
+          <div className="block leading-tight">
+            <p className="font-bold text-forest text-sm sm:text-base leading-tight whitespace-nowrap">{company.name}</p>
+            <p className="text-[11px] sm:text-sm text-ink-muted whitespace-nowrap">{company.nameAr}</p>
           </div>
         </Link>
 

@@ -161,7 +161,7 @@ export function HeroSequence() {
             className="max-w-[1280px] mx-auto px-6 w-full text-white will-change-transform"
           >
             <p className="text-lime text-sm font-semibold tracking-widest uppercase mb-4">{t('home.hero.eyebrow')}</p>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6 max-w-3xl">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 sm:mb-6 max-w-3xl">
               {h1Lead}{' '}
               {h1Brand && (
                 isAr ? (
@@ -184,17 +184,17 @@ export function HeroSequence() {
                 )
               )}
             </h1>
-            <p className="text-white/75 text-lg max-w-2xl mb-8 leading-relaxed">
+            <p className="text-white/75 text-base sm:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed">
               {t('home.hero.subtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+            <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
               <Link to="/apartments-for-rent/"
-                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm">
+                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-xs sm:text-sm">
                 <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.exploreBtn')}</span>
               </Link>
               <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm backdrop-blur-sm">
+                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-xs sm:text-sm backdrop-blur-sm">
                 <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.whatsappBtn')}</span>
               </a>

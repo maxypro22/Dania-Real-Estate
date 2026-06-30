@@ -167,18 +167,18 @@ function StaffAccommodationMain() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={240}>
-                <div className="flex flex-col sm:flex-row gap-3 mb-8">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
                   <a
                     href={`https://wa.me/${company.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
+                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
                   >
                     {t('staff.primaryBtn')}
                   </a>
                   <Link
                     to="/contact-us/"
-                    className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
+                    className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
                   >
                     {t('staff.secondaryBtn')}
                   </Link>
@@ -711,7 +711,7 @@ function StaffAccommodationMain() {
       {/* â"€â"€ SECTION 12: FINAL CTA â"€â"€ */}
       <section className="max-w-[1280px] mx-auto px-6 py-16">
         <Reveal direction="up">
-          <div className="relative bg-lime rounded-3xl px-8 py-16 text-center overflow-hidden">
+          <div className="relative bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-16 text-center overflow-hidden">
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-lime-light/30 rounded-full" />
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-lime-light/30 rounded-full" />
             <div className="relative">
@@ -723,18 +723,18 @@ function StaffAccommodationMain() {
                   ? 'احمِ موثوقية شركتك التشغيلية وكفاءة الخدمات اللوجستية اليومية ومكانتها في الامتثال التنظيمي. تجنب عمليات البحث عن العقارات غير المنسقة وقوائم البوابات الإلكترونية القديمة. تواصل مباشرةً مع متخصصي العقارات التجارية في دانية للعقارات اليوم للحصول على محفظة إسكان مؤسسية موثقة ومتوافقة مع الميزانية.'
                   : "Protect your company's operational reliability, daily logistics efficiency, and regulatory compliance standing. Avoid uncoordinated property searches and outdated online portal listings. Connect directly with the commercial real estate professionals at Dania Real Estate today to receive a vetted, budget-aligned corporate housing portfolio."}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center">
                 <a
                   href={`https://wa.me/${company.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-8 py-4 rounded-full text-base hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:opacity-90 transition-opacity"
                 >
                   {t('staff.ctaPrimary')}
                 </a>
                 <Link
                   to="/contact-us/"
-                  className="inline-flex items-center justify-center bg-white text-ink font-bold px-8 py-4 rounded-full text-base hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center justify-center bg-white text-ink font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:bg-white/90 transition-colors"
                 >
                   {t('staff.ctaSecondary')}
                 </Link>
@@ -791,18 +791,18 @@ function StaffVillasPage() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={240}>
-                <div className="flex flex-col sm:flex-row gap-3 mb-8">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
                   <a
                     href={`https://wa.me/${company.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
+                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
                   >
                     {isAr ? 'اطلب توفر فلل الموظفين' : 'Request Staff Villa Availability'}
                   </a>
                   <Link
                     to="/contact-us/"
-                    className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
+                    className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
                   >
                     {isAr ? 'تواصل مع فريقنا' : 'Contact Our Team'}
                   </Link>
@@ -1297,7 +1297,7 @@ function StaffVillasPage() {
       {/* â"€â"€ SECTION 12: FINAL CTA â"€â"€ */}
       <section className="max-w-[1280px] mx-auto px-6 py-16">
         <Reveal direction="up">
-          <div className="relative bg-lime rounded-3xl px-8 py-16 text-center overflow-hidden">
+          <div className="relative bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-16 text-center overflow-hidden">
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-lime-light/30 rounded-full" />
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-lime-light/30 rounded-full" />
             <div className="relative">
@@ -1309,18 +1309,18 @@ function StaffVillasPage() {
                   ? 'احمِ موثوقية شركتك التشغيلية وكفاءة الخدمات اللوجستية اليومية ومكانتها في الامتثال التنظيمي. تجنب عمليات البحث عن العقارات غير المنسقة وقوائم البوابات الإلكترونية القديمة. تواصل مباشرةً مع متخصصي العقارات التجارية في دانية للعقارات اليوم للحصول على محفظة إسكان فلل مؤسسية موثقة ومتوافقة مع الميزانية.'
                   : "Protect your company's operational reliability, daily logistics efficiency, and regulatory compliance standing. Avoid uncoordinated property searches and outdated online portal listings. Connect directly with the commercial real estate professionals at Dania Real Estate today to receive a vetted, budget-aligned corporate villa housing portfolio."}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center">
                 <a
                   href={`https://wa.me/${company.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-8 py-4 rounded-full text-base hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:opacity-90 transition-opacity"
                 >
                   {isAr ? 'تواصل مع مكتب الشركات الآن' : 'Chat with Our B2B Desk Now'}
                 </a>
                 <Link
                   to="/contact-us/"
-                  className="inline-flex items-center justify-center bg-white text-ink font-bold px-8 py-4 rounded-full text-base hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center justify-center bg-white text-ink font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:bg-white/90 transition-colors"
                 >
                   {isAr ? 'تواصل معنا اليوم' : 'Contact Us Today'}
                 </Link>

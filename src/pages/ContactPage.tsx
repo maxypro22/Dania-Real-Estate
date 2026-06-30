@@ -71,7 +71,7 @@ export function ContactPage() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={300}>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-4">
                   <a
                     href={`tel:${company.phone.replace(/\s/g, '')}`}
                     className="inline-flex items-center justify-center gap-2 bg-lime text-forest font-bold px-6 py-3 rounded-full text-sm hover:bg-white transition-colors"
@@ -378,26 +378,26 @@ export function ContactPage() {
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
-            <div className="bg-lime rounded-3xl px-8 py-12 md:px-14 md:py-16 text-center">
+            <div className="bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-12 md:px-14 md:py-16 text-center">
               <h2 className="text-2xl md:text-3xl font-extrabold text-forest mb-4">
                 {t('contact.cta.h2')}
               </h2>
               <p className="text-forest/80 max-w-2xl mx-auto mb-8 text-sm leading-relaxed">
                 {t('contact.cta.subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-row flex-wrap gap-2 sm:gap-4 justify-center">
                 <a
                   href={`https://wa.me/${company.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-whatsapp text-white font-bold px-7 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center gap-2 bg-whatsapp text-white font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
                 >
                   <MessageCircle size={16} />
                   {t('contact.cta.primary')}
                 </a>
                 <a
                   href={`tel:${company.phone.replace(/\s/g, '')}`}
-                  className="inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-7 py-3.5 rounded-full text-sm hover:bg-forest/90 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-forest text-white font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-forest/90 transition-colors"
                 >
                   <Phone size={16} />
                   {t('contact.cta.secondary')}

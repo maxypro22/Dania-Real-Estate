@@ -55,24 +55,24 @@ function FinalCtaBanner({
   return (
     <section className="max-w-[1280px] mx-auto px-6 py-16">
       <Reveal>
-        <div className="relative bg-lime rounded-3xl px-8 py-16 text-center overflow-hidden">
+        <div className="relative bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-16 text-center overflow-hidden">
           <div className="absolute -top-10 -left-10 w-40 h-40 bg-lime-light/30 rounded-full" />
           <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-lime-light/30 rounded-full" />
           <div className="relative">
             <h2 className="text-3xl md:text-4xl font-extrabold text-forest mb-4">{h2}</h2>
             <p className="text-forest/70 text-lg mb-10 max-w-md mx-auto">{para}</p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-row flex-wrap gap-2 sm:gap-3 justify-center">
               <a
                 href={primaryHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-forest text-white font-bold px-8 py-4 rounded-full text-base hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center bg-forest text-white font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:opacity-90 transition-opacity"
               >
                 {primaryLabel}
               </a>
               <Link
                 to={secondaryHref}
-                className="inline-flex items-center justify-center bg-white text-ink font-bold px-8 py-4 rounded-full text-base hover:bg-white/90 transition-colors"
+                className="inline-flex items-center justify-center bg-white text-ink font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base hover:bg-white/90 transition-colors"
               >
                 {secondaryLabel}
               </Link>
@@ -135,10 +135,10 @@ function AllApartmentsContent() {
                 </p>
               </Reveal>
               <Reveal delay={240}>
-                <div className="flex flex-col sm:flex-row gap-3 mb-8">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
                   <a
                     href="#apartment-types"
-                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
+                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-lime/90 transition-colors"
                   >
                     {t('apartments.all.primaryBtn')}
                   </a>
@@ -146,7 +146,7 @@ function AllApartmentsContent() {
                     href={`https://wa.me/${company.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
+                    className="inline-flex items-center justify-center bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/25 transition-colors backdrop-blur-sm"
                   >
                     {t('apartments.all.whatsappBtn')}
                   </a>
@@ -382,7 +382,7 @@ function AllApartmentsContent() {
                 <Link
                   key={exploreHrefs[i]}
                   to={exploreHrefs[i]}
-                  className="inline-flex items-center justify-center bg-forest text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center bg-forest text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
                 >
                   {label}
                 </Link>
@@ -498,13 +498,13 @@ function OneBedContent() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={240}>
-                <div className="flex flex-col sm:flex-row gap-3 mb-8">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
                   <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
+                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
                     {t('apartments.oneBed.primaryBtn')}
                   </a>
                   <Link to="/contact-us/"
-                    className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors">
+                    className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors">
                     {t('apartments.oneBed.secondaryBtn')}
                   </Link>
                 </div>
@@ -898,13 +898,13 @@ function TwoBedContent() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={240}>
-                <div className="flex flex-col sm:flex-row gap-3 mb-8">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
                   <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
+                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
                     {t('apartments.twoBed.primaryBtn')}
                   </a>
                   <Link to="/contact-us/"
-                    className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors">
+                    className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors">
                     {t('apartments.twoBed.secondaryBtn')}
                   </Link>
                 </div>
@@ -1298,13 +1298,13 @@ function ThreeBedContent() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={240}>
-                <div className="flex flex-col sm:flex-row gap-3 mb-8">
+                <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
                   <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
+                    className="inline-flex items-center justify-center bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
                     {t('apartments.threeBed.primaryBtn')}
                   </a>
                   <Link to="/contact-us/"
-                    className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors">
+                    className="inline-flex items-center justify-center bg-white/10 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors">
                     {t('apartments.threeBed.secondaryBtn')}
                   </Link>
                 </div>

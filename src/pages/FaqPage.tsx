@@ -538,7 +538,7 @@ export function FaqPage() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
                 to="/contact-us/"
-                className="inline-flex items-center gap-2 bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm hover:bg-lime-light transition-colors"
+                className="inline-flex items-center gap-2 bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-lime-light transition-colors"
               >
                 {isAr ? 'تواصل مع خبرائنا الآن' : 'Connect with Our Leasing Experts Now'}
               </Link>
@@ -546,7 +546,7 @@ export function FaqPage() {
                 href={`https://wa.me/${company.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/30 font-bold px-7 py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors"
+                className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/30 font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/20 transition-colors"
               >
                 <MessageCircle size={15} />
                 {isAr ? 'تحدث معنا مباشرة عبر واتساب' : 'Chat Live on WhatsApp'}
