@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-forest:      #2C100A;
+  --color-forest-deep: #180806;
+  --color-forest-mid:  #3D1510;
+  --color-lime:        #C4622D;
+  --color-lime-dark:   #A85226;
+  --color-lime-light:  #F5E8DC;
+
+  /* Surfaces */
+  --color-surface:         #FDFAF7;
+  --color-surface-low:     #F5F0EC;
+  --color-surface-green:   #F0E8E0;
+
+  /* Text */
+  --color-ink:         #1A0808;
+  --color-ink-muted:   #5C3D3A;
+  --color-ink-faint:   #A08880;
+
+  /* UI */
+  --color-border:      #E8DDD5;
+  --color-whatsapp:    #25D366;
+
+  --font-sans: 'Inter', sans-serif;
+
+  --radius-sm:   0.375rem;
+  --radius-md:   0.75rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+  --radius-2xl:  2rem;
+  --radius-full: 9999px;
+}
+
+@keyframes border-spin {
+  to { transform: rotate(360deg); }
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  /* Smooth scroll only for users who haven't requested reduced motion */
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #1A0808;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Remove 300ms tap delay on touch devices */
+    touch-action: manipulation;
+    /* Kill default tap highlight flash on iOS/Android */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #root { min-height: 100vh; }
+
+  /* Respect reduced-motion: cut all transitions + animations to near-zero */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* GPU-layer hint for elements that will animate */
+  .will-animate {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
