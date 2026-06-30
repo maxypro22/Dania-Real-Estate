@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useRef } from 'react'
+import { memo, useState, useEffect, useRef, type MouseEvent } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -46,18 +46,21 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const base = 'flex items-center gap-1 px-2 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap'
+  // Records how the trigger was last activated so a tap (touch/pen) can reveal
+  // the submenu instead of navigating, while a mouse click still navigates.
+  const lastPointer = useRef<string>('mouse')
+  const base = 'flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap'
 
   const clearTimer = () => { if (timer.current) { clearTimeout(timer.current); timer.current = null } }
   const openMenu = () => { clearTimer(); setOpen(true) }
-  // Tiny grace so a diagonal mouse path can't flicker it shut mid-travel.
-  const closeSoon = () => { clearTimer(); timer.current = setTimeout(() => setOpen(false), 140) }
+  // Small grace so a diagonal mouse path can't flicker it shut mid-travel.
+  const closeSoon = () => { clearTimer(); timer.current = setTimeout(() => setOpen(false), 160) }
 
   // Close after navigating to a child link (route changes); clean up timer.
   useEffect(() => { setOpen(false) }, [pathname])
   useEffect(() => () => clearTimer(), [])
 
-  // Close on outside-click / Escape when it is open.
+  // Close on outside-click / Escape while open.
   useEffect(() => {
     if (!open) return
     const onDown = (e: PointerEvent) => {
@@ -81,47 +84,46 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
     )
   }
 
-  // Visibility is driven entirely by the JS `open` state — NOT Tailwind's
-  // `group-hover`, which v4 compiles inside `@media (hover: hover)` and therefore
-  // never fires on touch-capable devices (e.g. Windows touchscreen laptops).
-  // Works for every input: mouse hover (onMouseEnter/Leave), click/tap (chevron
-  // button), and keyboard (focus opens, Escape/outside-click closes). The submenu
-  // sits flush under the trigger (top-full + pt-2 bridge — zero gap).
+  // Visibility is driven entirely by JS `open` state — NOT Tailwind `group-hover`,
+  // which v4 compiles inside `@media (hover: hover)` and never fires on touch
+  // devices. Hover (mouse) opens/closes; tap (touch) opens on first tap then
+  // navigates on the second; keyboard focus opens; Escape / outside-click close.
+  const onTriggerClick = (e: MouseEvent) => {
+    if (lastPointer.current !== 'mouse' && !open) {
+      e.preventDefault()       // first tap: reveal submenu instead of leaving
+      setOpen(true)
+    }
+  }
+
   return (
     <div
       ref={wrapRef}
-      className="relative flex items-center py-4"
-      onMouseEnter={openMenu}
-      onMouseLeave={closeSoon}
+      className="relative flex items-center"
+      onPointerEnter={(e) => { if (e.pointerType === 'mouse') openMenu() }}
+      onPointerLeave={(e) => { if (e.pointerType === 'mouse') closeSoon() }}
     >
       <NavLink
         to={item.to}
+        aria-haspopup="true"
+        aria-expanded={open}
+        onPointerDown={(e) => { lastPointer.current = e.pointerType }}
+        onClick={onTriggerClick}
         onFocus={openMenu}
         className={({ isActive }) => `${base} ${isActive || open ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low'}`}
       >
         {t(item.label)}
+        <ChevronDown size={13} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </NavLink>
-      <button
-        type="button"
-        aria-label={`${t(item.label)} submenu`}
-        aria-expanded={open}
-        onClick={() => setOpen(o => !o)}
-        onFocus={openMenu}
-        className="-ms-1 p-1 rounded-full text-ink hover:bg-surface-low transition-colors"
-      >
-        <ChevronDown size={12} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
-      </button>
+      {/* flush bridge (pt-2.5) keeps hover continuous between trigger and panel */}
       <div
-        onMouseEnter={openMenu}
-        onMouseLeave={closeSoon}
-        className={`absolute top-full start-0 z-50 pt-2 transition-opacity duration-150 ${
-          open ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'
+        className={`absolute top-full start-0 z-50 pt-2.5 transition-all duration-200 ${
+          open ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-1 pointer-events-none'
         }`}
       >
-        <div className="bg-white border border-border rounded-lg shadow-lg min-w-44 py-1">
+        <div className="bg-white border border-border rounded-xl shadow-xl shadow-black/10 min-w-[230px] py-2">
           {item.children.map(child => (
             <NavLink key={child.to} to={child.to} onClick={() => setOpen(false)}
-              className={({ isActive }) => `block px-4 py-3 text-sm transition-colors hover:bg-surface-green rounded-sm ${isActive ? 'text-forest font-semibold' : 'text-ink-muted'}`}>
+              className={({ isActive }) => `block px-5 py-2.5 text-sm transition-colors hover:bg-surface-green ${isActive ? 'text-forest font-semibold bg-surface-green/60' : 'text-ink-muted hover:text-forest'}`}>
               {t(child.label)}
             </NavLink>
           ))}
@@ -189,7 +191,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-white border-t border-border px-5 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+        <div className="xl:hidden bg-white border-t border-border px-5 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
           {navItems.map(item => {
             const isExpanded = expandedMobile === item.to
             return (
