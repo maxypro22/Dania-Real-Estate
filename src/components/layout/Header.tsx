@@ -244,7 +244,7 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="xl:hidden bg-white border-t border-border px-5 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+        <div className="2xl:hidden bg-white border-t border-border px-5 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
           {navItems.map(item => {
             const isExpanded = expandedMobile === item.to
             return (
