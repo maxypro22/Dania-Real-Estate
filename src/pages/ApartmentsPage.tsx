@@ -268,7 +268,7 @@ function AllApartmentsContent() {
               {t('apartments.all.considerSubtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {consider.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${i === 0 ? 'border-l-4 border-l-forest' : ''}`}>
@@ -295,7 +295,7 @@ function AllApartmentsContent() {
               {t('apartments.all.areasSubtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {areaItems.map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
                 <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full flex flex-col">
@@ -322,7 +322,7 @@ function AllApartmentsContent() {
               {t('apartments.all.whySubtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {why.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}>
@@ -585,7 +585,7 @@ function OneBedContent() {
                 : 'Prior to committing to a long-term 1-bedroom lease, evaluating structural details and community integration points helps protect your daily comfort.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'تصميم الوحدة والخصوصية', desc: 'استمتع بغرفة نوم مستقلة تمامًا وصالة معيشة منفصلة ومطبخ خاص يمنحك مزايا مكانية واضحة مقارنةً بصيغ الاستوديو الأساسية.', accent: true },
               { h3: 'الميزانية وتوافق المرافق', desc: 'نوائم معايير بحثك مع مستويات الأسعار الدقيقة في السوق، مع مراعاة ما إذا كانت الوحدات تتضمن برامج مرافق شاملة أو فواتير منفصلة.', accent: false },
@@ -626,7 +626,7 @@ function OneBedContent() {
                 : 'Interior layout finishes, building parking limits, and monthly rental baselines for 1-BHK units differ across municipalities. Dania Real Estate manages active properties across these essential local hubs:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'شقق غرفة نوم واحدة في الدوحة', desc: 'خيارات شقق تنفيذية في قلب الدوحة والممرات السكنية في الدفنة والهلال والمعمورة.', href: '/areas/doha/' },
               { h3: 'شقق غرفة نوم واحدة في السد', desc: 'وحدات BHK-1 حضرية عالية الكثافة في القلب التجاري والترفيهي المركزي للدوحة.', href: '/areas/al-sadd/' },
@@ -675,7 +675,7 @@ function OneBedContent() {
                 : 'Finding a premium 1-bedroom flat requires deep neighborhood insights and fast operational execution.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'تحليلات BHK-1 المستهدفة', desc: 'نتجاوز الفئات العقارية غير ذات الصلة للعثور على مخططات الطابق الدقيقة المكوّنة من غرفة نوم واحدة والمناسبة لأسلوب حياتك.', accent: true },
               { h3: 'إشراف محلي عميق على الأحياء', desc: 'تضمن معرفتنا المحلية إطلاعك على توافر مواقف السيارات وأنماط حركة المرور والخدمات القريبة قبل التوقيع.', accent: false },
@@ -985,7 +985,7 @@ function TwoBedContent() {
                 : 'Evaluating the long-term utility of a 2-bedroom flat layout before entering a lease protects your lifestyle preferences and financial commitments.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'المساحة والمرونة الغرفية', desc: 'عظّم استخدام المنزل بغرف نوم رئيسية منفصلة ومساحات ضيوف مخصصة أو مساحات عمل منزلية مستقلة ضمن مخططات BHK-2 المتوازنة.', accent: true },
               { h3: 'البنية التحتية الملائمة للأسرة', desc: 'نُولي الأولوية للعقارات الواقعة داخل مجمعات سكنية توفر وصولًا سريعًا للمدارس الدولية والعيادات الصحية والمجمعات التجارية الكبرى.', accent: false },
@@ -1026,7 +1026,7 @@ function TwoBedContent() {
                 : 'Architectural finishes, parking space allocations, and baseline lease terms for 2-bedroom units naturally correspond with their municipal sectors. Dania Real Estate provides localized property oversight across these core locations:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'شقق غرفتي نوم في الدوحة', desc: 'تصميمات شقق عائلية متوازنة في قلب الدوحة وخيارات الأبراج في الدفنة والهلال والمعمورة.', href: '/areas/doha/' },
               { h3: 'شقق غرفتي نوم في السد', desc: 'إيجارات BHK-2 حضرية عالية الكثافة ضمن ممرات التجزئة والمطاعم والمكاتب التجارية المركزية الرائدة في الدوحة.', href: '/areas/al-sadd/' },
@@ -1075,7 +1075,7 @@ function TwoBedContent() {
                 : 'Finding a premium 2-bedroom flat requires evaluating space, neighborhood regulations, and real-time inventory availability.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'مطابقة مستهدفة لغرفتي نوم', desc: 'نتجاوز النطاقات العقارية غير ذات الصلة لاستخراج ملامح غرفتي نوم الدقيقة التي توازن مساحتك وميزانيتك.', accent: true },
               { h3: 'مقاييس الأحياء الموثّقة', desc: 'تضمن رؤيتنا المحلية فهمك لقواعد مواقف سيارات المجمع ومعايير أمان المباني ومسارات العقود البلدية بوضوح.', accent: false },
@@ -1385,7 +1385,7 @@ function ThreeBedContent() {
                 : 'Securing a long-term 3-bedroom lease agreement requires checking structural and community variables to ensure healthy lifestyle continuity for your entire household.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'الفخامة المكانية والتصاميم المنزلية', desc: 'وفّر المساحة الهيكلية الجوهرية بأنظمة حمامات متعددة وغرف غسيل مستقلة وأجنحة خادمة اختيارية ضمن نماذج BHK-3 الرائدة.', accent: true },
               { h3: 'مرونة الغرف الداخلية المتعددة', desc: 'حوّل غرف النوم الثانوية والثالثية إلى غرف أطفال وظيفية أو مناطق دراسة مخصصة أو مكاتب منزلية هادئة.', accent: false },
@@ -1426,7 +1426,7 @@ function ThreeBedContent() {
                 : 'Floor plan finishes, basement parking allocations, and baseline lease terms for 3-bedroom units naturally correspond with their municipal sectors. Dania Real Estate provides localized property oversight across these core residential corridors:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'شقق ثلاث غرف نوم في الدوحة', desc: 'خيارات شقق عائلية واسعة في قلب الدوحة ومساحات أبراج متميزة في الدفنة والهلال والمعمورة.', href: '/areas/doha/' },
               { h3: 'شقق ثلاث غرف نوم في السد', desc: 'إيجارات BHK-3 حضرية فسيحة في قطاعات التجزئة والمطاعم والمكاتب التجارية المركزية الرائدة في الدوحة.', href: '/areas/al-sadd/' },
@@ -1475,7 +1475,7 @@ function ThreeBedContent() {
                 : 'Matching a large household with the right 3-bedroom flat requires deep local property data and absolute contract clarity.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               { h3: 'توريد أصول المساحات الكبيرة المتخصص', desc: 'نستبعد التصاميم المتكدسة لعزل تهيئات ثلاث غرف نوم المتميزة التي توفر فائدة مكانية ممتازة وراحة عائلية.', accent: true },
               { h3: 'الشفافية التشغيلية الكاملة', desc: 'نحمي إيجارك بضمان الامتثال الواضح لقواعد بلدية الدوحة وشروط الإيداع وفحوصات أحمال كهرماء.', accent: false },

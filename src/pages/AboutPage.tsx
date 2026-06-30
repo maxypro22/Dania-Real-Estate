@@ -353,7 +353,7 @@ export function AboutPage() {
               {t('about.rentalFocus.subtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {rentalFocusCards.map((card, i) => {
               const Icon = card.icon
               const isAccent = i === 0
@@ -418,7 +418,7 @@ export function AboutPage() {
                 : 'Navigating the real estate companies in Qatar ecosystem requires a partner backed by verifiable field experience, rigorous listing accuracy, and immediate market responsiveness.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {trustCards.map((card, i) => {
               const Icon = card.icon
               const isAccent = i === 1
@@ -468,7 +468,7 @@ export function AboutPage() {
               {t('about.audience.h2')}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {audienceCards.map((card, i) => {
               const Icon = card.icon
               const isAccent = i === 2
@@ -521,7 +521,7 @@ export function AboutPage() {
               {t('about.areas.subtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? areaCardsAr : areaCards).map((card, i) => (
               <Reveal key={card.h3} delay={i * 60}>
                 <div className="bg-white border border-border rounded-2xl p-5 h-full flex flex-col hover:shadow-md transition-shadow">
@@ -590,7 +590,7 @@ export function AboutPage() {
               {t('about.values.h2')}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {coreValues.map((val, i) => {
               const Icon = val.icon
               const isAccent = i === 0

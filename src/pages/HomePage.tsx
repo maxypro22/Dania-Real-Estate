@@ -336,7 +336,7 @@ export function HomePage() {
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.areas.h2')}</h2></Reveal>
           <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.areas.subtitle')}</p></Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {(isAr ? AREAS_AR : AREAS).map((area, i) => (
               <Reveal key={area.slug} delay={i * 60}>
                 <Link
@@ -376,7 +376,7 @@ export function HomePage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.whyUs.h2')}</h2></Reveal>
           <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.whyUs.subtitle')}</p></Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {(isAr ? WHY_CHOOSE_US_AR : whyChooseUs).map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
                 <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
@@ -398,7 +398,7 @@ export function HomePage() {
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.rentalSupport.h2')}</h2></Reveal>
           <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-lg mx-auto">{t('home.rentalSupport.subtitle')}</p></Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <Reveal delay={0}>
               <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
                 <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
@@ -456,7 +456,7 @@ export function HomePage() {
           </Reveal>
 
           {/* ── Mobile / Tablet: 2×2 simple cards ── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 lg:hidden">
             {SHOWCASES.map((sc, i) => (
               <Link
                 key={i}

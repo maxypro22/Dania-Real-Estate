@@ -488,7 +488,7 @@ export function WhyChooseUsPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {cards.map((area, i) => (
               <Reveal key={area.slug} direction="up" delay={i * 60}>
                 <Link

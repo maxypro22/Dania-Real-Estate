@@ -367,7 +367,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'توفر استئجار فيلا للأسر متعددة الأفراد والمديرين التنفيذيين في الشركات مزايا عملية جوهرية تتجاوز بكثير أعداد الغرف الأساسية.' : 'For multi-passenger households and corporate executives, leasing a villa provides essential practical advantages that go far beyond basic room counts.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'عمق مكاني متعدد الأجيال',
@@ -459,7 +459,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'تتفاوت القواعد الشهرية للإيجار ومقاييس مساحة الفناء والأساليب الهيكلية للمنازل الفاخرة عبر مناطق محددة. توجّه دانية للعقارات استفسارات التأجير النشطة عبر هذه المراكز السكنية المحلية الحيوية:' : 'Monthly rental baselines, yard square-footage metrics, and structural styles for luxury homes vary across specific districts. Dania Real Estate directs active leasing inquiries across these vital local residential hubs:'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'فلل في الدوحة',
@@ -568,7 +568,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'يتطلب إيجاد المنزل العائلي المثالي تقييم وظائف التصميم وسجلات إدارة العقارات وتحديثات المخزون في الوقت الفعلي.' : 'Locating the ideal family home requires evaluating layout functionality, property management track records, and real-time inventory updates.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'إشراف متخصص على سوق الفلل',
@@ -747,7 +747,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'تمنح الهياكل السكنية المستقلة المستأجرين تحكمًا كاملًا في مساحة منزلهم والمساحات الخارجية وتفضيلات نمط الحياة اليومية.' : 'Standalone residential structures give tenants total control over their home footprint, exterior spaces, and daily lifestyle preferences.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'خصوصية سكنية مطلقة',
@@ -894,7 +894,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'تتوافق القواعد الشهرية للإيجار ومقاييس مساحة الفناء والتكوينات المعمارية للفلل المستقلة بشكل طبيعي مع مناطقها البلدية. تدير دانية للعقارات الاستفسارات النشطة عبر هذه القطاعات الحيوية:' : 'Monthly rental baselines, yard square-footage metrics, and architectural configurations for standalone villas naturally align with their municipal zones. Dania Real Estate manages active inquiries across these vital sectors:'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'فلل عادية في الدوحة',
@@ -1003,7 +1003,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'يتطلب إيجاد فيلا مستقلة ممتثلة التنقل عبر مقاييس الحمل على المرافق المحلية وحدود المخططات الدقيقة وتسجيلات العقود البلدية المباشرة.' : 'Finding a compliant standalone villa requires navigating localized utility load metrics, accurate plot boundaries, and direct municipal contract registrations.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'خبرة في سوق الفلل المستقلة',
@@ -1182,7 +1182,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'توفر بيئات المجمعات المسوّرة منصة معيشية خالية من القلق حيث تتلاقى راحة نمط الحياة وخيارات اللياقة البدنية المجتمعية والسلامة المتميزة بشكل مثالي.' : 'Gated compound environments deliver a worry-free living platform where lifestyle convenience, communal fitness options, and premium safety intersect perfectly.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'معيشة تمحورت حول المجتمع',
@@ -1329,7 +1329,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'تتوافق معايير الإيجار الشهرية ومساحات مرافق النادي والتصاميم المتاحة لفلل المجمعات بشكل طبيعي مع مناطقها البلدية. توجّه دانية للعقارات استفسارات التأجير النشطة عبر هذه القطاعات الأساسية:' : 'Monthly rental parameters, clubhouse facility footprints, and available layouts for compound villas naturally correspond with their municipal zones. Dania Real Estate directs active leasing inquiries across these core sectors:'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'فلل مجمعات في الدوحة',
@@ -1438,7 +1438,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'يتطلب إيجاد مجمع عائلي ممتثل فهمًا واضحًا لقواعد المجتمع وحالات المرافق الدقيقة وشروط العقود الواضحة.' : 'Finding a compliant family compound requires a clear understanding of community rules, accurate facility conditions, and clear contract terms.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {(isAr ? [
                   {
                     h3: 'معرفة متخصصة بسوق المجمعات',

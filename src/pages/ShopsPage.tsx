@@ -169,7 +169,7 @@ export function ShopsPage() {
               {isAr ? 'يعمل مكتبنا الاستشاري التجاري مباشرةً مع مشغّلي الأعمال المتنوعين لتأمين مواقع ذات ظهور عالٍ تدعم نمو المبيعات النشط.' : 'Our commercial advisory desk works directly with diverse business operators to secure high-visibility locations that support active sales growth.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {(isAr ? [
               {
                 icon: Store,
@@ -314,7 +314,7 @@ export function ShopsPage() {
           </Reveal>
 
           {/* Feature cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               {
                 icon: Eye,
@@ -398,7 +398,7 @@ export function ShopsPage() {
               {isAr ? 'خيارات المحلات التجارية لمختلف احتياجات الأعمال' : 'Commercial Shop Options for Different Business Needs'}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               {
                 icon: Building2,
@@ -487,7 +487,7 @@ export function ShopsPage() {
               {isAr ? 'تتناسب كثافة المشاة ونسب مواقف السيارات وأسعار الإيجار للواجهات التجارية بشكل طبيعي مع أسواقها الفرعية الحضرية. تدير دانية للعقارات خيارات التجزئة التجارية عبر هذه المناطق الاقتصادية الرئيسية:' : 'Pedestrian density, parking ratios, and lease rates for retail storefronts naturally match their urban sub-markets. Dania Real Estate manages commercial retail options across these primary economic zones:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               {
                 h3: 'محلات للإيجار في الدوحة',
@@ -627,7 +627,7 @@ export function ShopsPage() {
               {isAr ? 'نُزيل المخاطر التشغيلية من عملية الحصول على العقارات التجارية من خلال ضمان المطابقة الإنشائية الدقيقة وشروط العقود الواضحة والتحقق من التقسيم الإداري.' : 'We eliminate operational risk from commercial property acquisition by ensuring exact structural matching, clear contract terms, and zoning verification.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? [
               {
                 icon: Briefcase,

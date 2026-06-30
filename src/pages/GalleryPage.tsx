@@ -396,7 +396,7 @@ export function GalleryPage() {
           </Reveal>
 
           {/* Row 1: 3 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
             {CATEGORIES.slice(0, 3).map((cat, i) => (
               <Reveal key={cat.title} direction="up" delay={i * 100}>
                 <Link
@@ -413,7 +413,7 @@ export function GalleryPage() {
           </div>
 
           {/* Row 2: 2 cards centered */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 lg:w-2/3 lg:mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-5 lg:w-2/3 lg:mx-auto">
             {CATEGORIES.slice(3).map((cat, i) => (
               <Reveal key={cat.title} direction="up" delay={(i + 3) * 100}>
                 <Link
@@ -462,7 +462,7 @@ export function GalleryPage() {
         </Reveal>
 
         {/* Image grid — 4 cols desktop, 2 tablet, 1 mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {visibleImages.map((img, i) => (
             <Reveal key={`${img.src}-${img.label}`} direction="up" delay={i * 60}>
               <div className="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-surface-low">
@@ -509,7 +509,7 @@ export function GalleryPage() {
               {t('gallery.howItHelps.h2')}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {HOW_IT_HELPS.map((item, i) => {
               const Icon = item.icon
               return (

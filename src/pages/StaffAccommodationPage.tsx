@@ -266,7 +266,7 @@ function StaffAccommodationMain() {
                 : 'Our commercial leasing desk coordinates directly with key company stakeholders to ensure smooth team placement and operational continuity.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 h3: isAr ? 'مسؤولو المشتريات المؤسسية' : 'Corporate Procurement Leads',
@@ -326,7 +326,7 @@ function StaffAccommodationMain() {
                 : 'Successful corporate housing setups depend on structural safety, ease of transportation, and clear legal paperwork.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 icon: <Shield size={20} />,
@@ -390,7 +390,7 @@ function StaffAccommodationMain() {
                 : 'We tailor our property matches to fit the specific organizational hierarchy and operational needs of your enterprise.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 h3: isAr ? 'مجمعات سكن العمالة' : 'Workforce Accommodation Blocks',
@@ -459,7 +459,7 @@ function StaffAccommodationMain() {
                 : 'Transportation efficiencies, local zone rules, and property configurations for corporate housing naturally match their local industrial and urban sub-markets. Dania Real Estate manages active B2B profiles across these critical sectors:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 h3: isAr ? 'سكن العمال في الدوحة' : 'Staff Accommodation in Doha',
@@ -547,7 +547,7 @@ function StaffAccommodationMain() {
                 : 'We eliminate the complexity from corporate leasing by focusing heavily on legal compliance, proper zone mapping, and clear cost structures.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 h3: isAr ? 'خبرة حقيقية في مجال B2B المؤسسي' : 'True Corporate B2B Domain Expertise',
@@ -901,7 +901,7 @@ function StaffVillasPage() {
                 : 'Centralizing your operational personnel within an independent villa structure improves team performance, ensures regulatory safety, and lowers total corporate housing expenditures.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 icon: <Car size={20} />,
@@ -1041,7 +1041,7 @@ function StaffVillasPage() {
                 : 'Daily transit times, parking capacities, and rental budgets for corporate staff houses are deeply tied to local municipal zones. Dania Real Estate actively manages active B2B listings across these primary logistics routes:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 h3: isAr ? 'فلل الموظفين في الدوحة' : 'Staff Villas in Doha',
@@ -1129,7 +1129,7 @@ function StaffVillasPage() {
                 : 'Finding a compliant staff villa requires deep local market knowledge, strict paperwork verification, and precise logistics mapping.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 icon: <Users size={18} />,

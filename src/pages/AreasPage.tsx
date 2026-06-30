@@ -757,7 +757,7 @@ export function AreasPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {AREA_CARDS.map((card, i) => {
               const delay = (i % 3) * 80
               return (
@@ -811,7 +811,7 @@ export function AreasPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {RIGHT_AREA.cards.map((card, i) => (
               <Reveal key={card.title.en} direction="up" delay={i * 80}>
                 <div className="bg-white rounded-2xl border border-border p-6 h-full">
@@ -839,7 +839,7 @@ export function AreasPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {PROPERTY_TYPES.links.map((link, i) => (
               <Reveal key={link.href} direction="up" delay={(i % 3) * 80}>
                 <Link
@@ -875,7 +875,7 @@ export function AreasPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {WHY.cards.map((card, i) => (
               <Reveal key={card.title.en} direction="up" delay={i * 80}>
                 <div className="bg-white rounded-2xl border border-border p-6 h-full">
@@ -897,7 +897,7 @@ export function AreasPage() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {HOW.steps.map((step, i) => (
               <Reveal key={step.title.en} direction="up" delay={i * 80}>
                 <div className="bg-surface-low rounded-2xl border border-border p-6 h-full">

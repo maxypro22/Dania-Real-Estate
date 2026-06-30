@@ -1117,7 +1117,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             <Reveal direction="up" delay={80}>
               <p className="text-ink-muted mb-8">{(c as ContentAll).categoriesIntro}</p>
             </Reveal>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {(c as ContentAll).categories.map((cat, i) => (
                 <Reveal key={i} direction="up" delay={i * 100}>
                   <div
@@ -1161,7 +1161,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <Reveal direction="up" delay={80}>
             <p className="text-ink-muted mb-8">{c.benefitsIntro}</p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {c.benefits.map((b, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className="bg-white rounded-xl p-6 border border-border h-full">
@@ -1249,7 +1249,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             <p className="text-ink-muted mb-8">{c.areasParagraph}</p>
           </Reveal>
           {/* 8 local geography grid components */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {areas.map((area, i) => (
               <Reveal key={i} direction="up" delay={i * 60}>
                 <Link
@@ -1276,7 +1276,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <Reveal direction="up" delay={80}>
             <p className="text-ink-muted mb-8">{c.whyIntro}</p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {c.whyCards.map((wc, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className="bg-surface-low rounded-xl p-6 border border-border h-full">
@@ -1334,7 +1334,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <Reveal direction="up" delay={80}>
             <p className="text-ink-muted mb-8">{c.bridgeIntro}</p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {c.bridges.slice(0, 3).map((b, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div
@@ -1358,7 +1358,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             ))}
           </div>
           {c.bridges.length > 3 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
               {c.bridges.slice(3).map((b, i) => (
                 <Reveal key={i} direction="up" delay={i * 80}>
                   <div className="bg-white rounded-xl p-6 border border-border flex flex-col gap-4 h-full">

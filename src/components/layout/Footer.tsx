@@ -47,8 +47,8 @@ export function Footer() {
 
   return (
     <footer className="bg-forest text-white mt-0">
-      <div className="max-w-[1280px] mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-        <div className="lg:col-span-1">
+      <div className="max-w-[1280px] mx-auto px-6 py-10 sm:py-14 grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-8 sm:gap-8">
+        <div className="col-span-2 lg:col-span-1">
           <div className="flex items-center gap-2.5 mb-4">
             <img
               src="/Dania_Real_Estate_logo.png"
