@@ -1,5 +1,5 @@
-import { memo, useState, useEffect, useRef } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { memo, useState, useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
@@ -42,22 +42,7 @@ const navItems: NavItem[] = [
 
 const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem }>) {
   const { t } = useTranslation()
-  const { pathname } = useLocation()
-  const [open, setOpen] = useState(false)
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const base = 'flex items-center gap-1 px-2 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap'
-
-  const cancelClose = () => {
-    if (timer.current) { clearTimeout(timer.current); timer.current = null }
-  }
-  const openNow = () => { cancelClose(); setOpen(true) }
-  // Small grace period so moving the cursor from the trigger to the panel never
-  // closes the menu mid-travel.
-  const closeSoon = () => { cancelClose(); timer.current = setTimeout(() => setOpen(false), 280) }
-
-  // Close after navigating (e.g. clicking a child link) and clean up on unmount.
-  useEffect(() => { setOpen(false) }, [pathname])
-  useEffect(() => () => cancelClose(), [])
 
   if (!item.children) {
     return (
@@ -68,34 +53,24 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
     )
   }
 
+  // Pure-CSS hover dropdown (the classic nested-list pattern). The submenu is a
+  // DOM child of the `group` wrapper and sits flush under the trigger
+  // (top-full + pt-2 bridge — zero gap). In CSS, an element is `:hover` whenever
+  // the pointer is over it OR any descendant, so hovering the submenu keeps the
+  // group hovered and the menu open. No JS state or timer can close it mid-move.
   return (
-    <div
-      className="relative flex items-center py-4"
-      onMouseEnter={openNow}
-      onMouseLeave={closeSoon}
-      onFocus={openNow}
-      onBlur={closeSoon}
-    >
+    <div className="group relative flex items-center py-4">
       <NavLink
         to={item.to}
-        className={({ isActive }) => `${base} ${isActive ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low'}`}
+        className={({ isActive }) => `${base} ${isActive ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low group-hover:bg-surface-low'}`}
       >
-        {t(item.label)} <ChevronDown size={12} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+        {t(item.label)}
+        <ChevronDown size={12} className="transition-transform duration-200 group-hover:rotate-180" />
       </NavLink>
-      {/* Panel is flush under the trigger (top-full + pt-2 bridge, no gap). It is a
-          DOM descendant of this wrapper AND carries its own hover handlers, so the
-          pointer can never fall into a dead zone between trigger and menu. Only
-          opacity animates, so the click targets never shift under the cursor. */}
-      <div
-        onMouseEnter={openNow}
-        onMouseLeave={closeSoon}
-        className={`absolute top-full start-0 z-50 pt-2 transition-opacity duration-150 ${
-          open ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
-        }`}
-      >
+      <div className="invisible absolute top-full start-0 z-50 pt-2 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         <div className="bg-white border border-border rounded-lg shadow-lg min-w-44 py-1">
           {item.children.map(child => (
-            <NavLink key={child.to} to={child.to} onClick={() => setOpen(false)}
+            <NavLink key={child.to} to={child.to}
               className={({ isActive }) => `block px-4 py-3 text-sm transition-colors hover:bg-surface-green rounded-sm ${isActive ? 'text-forest font-semibold' : 'text-ink-muted'}`}>
               {t(child.label)}
             </NavLink>
