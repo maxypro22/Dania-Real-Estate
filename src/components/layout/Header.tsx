@@ -45,12 +45,19 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
   const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const base = 'flex items-center gap-1 px-2 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap'
 
-  // Close after navigating to a child link (route changes).
-  useEffect(() => { setOpen(false) }, [pathname])
+  const clearTimer = () => { if (timer.current) { clearTimeout(timer.current); timer.current = null } }
+  const openMenu = () => { clearTimer(); setOpen(true) }
+  // Tiny grace so a diagonal mouse path can't flicker it shut mid-travel.
+  const closeSoon = () => { clearTimer(); timer.current = setTimeout(() => setOpen(false), 140) }
 
-  // When opened by click/tap, close on outside-click or Escape.
+  // Close after navigating to a child link (route changes); clean up timer.
+  useEffect(() => { setOpen(false) }, [pathname])
+  useEffect(() => () => clearTimer(), [])
+
+  // Close on outside-click / Escape when it is open.
   useEffect(() => {
     if (!open) return
     const onDown = (e: PointerEvent) => {
@@ -74,20 +81,23 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
     )
   }
 
-  // Robust for EVERY input method:
-  //  • Mouse hover  → pure-CSS `group-hover` opens the flush submenu (zero-gap
-  //    bridge: the submenu is a DOM child sitting directly under the trigger, so
-  //    in CSS the group stays `:hover` the whole way down — no timer to misfire).
-  //  • Click / tap  → the chevron button toggles `open` (works on touch screens
-  //    where there is no hover), with outside-click + Escape to close.
-  //  • Keyboard     → `group-focus-within` reveals it when a link is focused.
-  // `open` only *forces* it visible; hover still works independently via CSS.
-  const showForced = open ? '!visible !opacity-100' : ''
+  // Visibility is driven entirely by the JS `open` state — NOT Tailwind's
+  // `group-hover`, which v4 compiles inside `@media (hover: hover)` and therefore
+  // never fires on touch-capable devices (e.g. Windows touchscreen laptops).
+  // Works for every input: mouse hover (onMouseEnter/Leave), click/tap (chevron
+  // button), and keyboard (focus opens, Escape/outside-click closes). The submenu
+  // sits flush under the trigger (top-full + pt-2 bridge — zero gap).
   return (
-    <div ref={wrapRef} className="group relative flex items-center py-4">
+    <div
+      ref={wrapRef}
+      className="relative flex items-center py-4"
+      onMouseEnter={openMenu}
+      onMouseLeave={closeSoon}
+    >
       <NavLink
         to={item.to}
-        className={({ isActive }) => `${base} ${isActive ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low group-hover:bg-surface-low'}`}
+        onFocus={openMenu}
+        className={({ isActive }) => `${base} ${isActive || open ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low'}`}
       >
         {t(item.label)}
       </NavLink>
@@ -96,12 +106,17 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
         aria-label={`${t(item.label)} submenu`}
         aria-expanded={open}
         onClick={() => setOpen(o => !o)}
+        onFocus={openMenu}
         className="-ms-1 p-1 rounded-full text-ink hover:bg-surface-low transition-colors"
       >
-        <ChevronDown size={12} className={`transition-transform duration-200 group-hover:rotate-180 ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown size={12} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
       <div
-        className={`invisible absolute top-full start-0 z-50 pt-2 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 ${showForced}`}
+        onMouseEnter={openMenu}
+        onMouseLeave={closeSoon}
+        className={`absolute top-full start-0 z-50 pt-2 transition-opacity duration-150 ${
+          open ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'
+        }`}
       >
         <div className="bg-white border border-border rounded-lg shadow-lg min-w-44 py-1">
           {item.children.map(child => (
