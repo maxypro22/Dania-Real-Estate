@@ -1,5 +1,5 @@
-import { MessageCircle } from 'lucide-react'
 import { company } from '@/data/mockData'
+import { WhatsappIcon } from '@/components/shared/WhatsappIcon'
 
 export function WhatsAppButton() {
   return (
@@ -7,11 +7,13 @@ export function WhatsAppButton() {
       href={`https://wa.me/${company.whatsapp}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group fixed bottom-6 right-6 z-50 overflow-hidden flex items-center gap-2 bg-whatsapp text-white font-semibold px-4 py-3 rounded-full shadow-lg"
+      aria-label="Chat on WhatsApp"
+      className="group fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 inline-flex items-center gap-2 ps-2 pe-2 sm:pe-4 py-2 rounded-full text-white font-semibold bg-gradient-to-br from-[#25D366] to-[#0F8A52] ring-1 ring-white/30 shadow-lg shadow-emerald-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-700/40 hover:brightness-105 active:scale-95"
     >
-      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
-      <MessageCircle size={20} className="relative z-10 transition-colors duration-300 group-hover:text-forest" />
-      <span className="text-sm hidden sm:inline relative z-10 transition-colors duration-300 group-hover:text-forest">Chat on WhatsApp</span>
+      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/15">
+        <WhatsappIcon size={18} className="transition-transform duration-300 group-hover:scale-110" />
+      </span>
+      <span className="text-sm hidden sm:inline pe-1">Chat on WhatsApp</span>
     </a>
   )
 }

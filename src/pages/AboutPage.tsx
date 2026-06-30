@@ -360,7 +360,7 @@ export function AboutPage() {
               return (
                 <Reveal key={card.h3} delay={i * 80}>
                   <div
-                    className={`rounded-2xl border p-6 flex flex-col h-full transition-shadow hover:shadow-md ${
+                    className={`rounded-2xl border p-4 sm:p-6 flex flex-col h-full transition-shadow hover:shadow-md ${
                       isAccent
                         ? 'bg-forest border-forest text-white'
                         : 'bg-white border-border'
@@ -374,7 +374,7 @@ export function AboutPage() {
                       <Icon size={20} className={isAccent ? 'text-lime' : 'text-forest'} />
                     </div>
                     <h3
-                      className={`font-bold text-lg mb-2 ${
+                      className={`font-bold text-base sm:text-lg mb-2 ${
                         isAccent ? 'text-white' : 'text-ink'
                       }`}
                     >
@@ -439,7 +439,7 @@ export function AboutPage() {
                       <Icon size={20} className={isAccent ? 'text-lime' : 'text-forest'} />
                     </div>
                     <h3
-                      className={`font-bold text-lg mb-2 ${
+                      className={`font-bold text-base sm:text-lg mb-2 ${
                         isAccent ? 'text-white' : 'text-ink'
                       }`}
                     >

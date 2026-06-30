@@ -108,6 +108,12 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Long words (e.g. "Accommodations") must wrap inside narrow 2-up phone
+   * cards instead of overflowing past the card edge. */
+  h1, h2, h3, h4, h5, h6, p, a, span, li, button {
+    overflow-wrap: break-word;
+  }
+
   #root { min-height: 100vh; }
 
   /* Respect reduced-motion: cut all transitions + animations to near-zero */
