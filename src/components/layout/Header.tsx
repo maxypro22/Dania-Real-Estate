@@ -1,5 +1,5 @@
 import { memo, useState, useEffect, useRef } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
@@ -42,19 +42,22 @@ const navItems: NavItem[] = [
 
 const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem }>) {
   const { t } = useTranslation()
+  const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const base = 'flex items-center gap-1 px-2 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap'
 
-  const enter = () => {
-    if (timer.current) clearTimeout(timer.current)
-    setOpen(true)
+  const cancelClose = () => {
+    if (timer.current) { clearTimeout(timer.current); timer.current = null }
   }
-  const leave = () => {
-    if (timer.current) clearTimeout(timer.current)
-    timer.current = setTimeout(() => setOpen(false), 450)
-  }
-  useEffect(() => () => { if (timer.current) clearTimeout(timer.current) }, [])
+  const openNow = () => { cancelClose(); setOpen(true) }
+  // Small grace period so moving the cursor from the trigger to the panel never
+  // closes the menu mid-travel.
+  const closeSoon = () => { cancelClose(); timer.current = setTimeout(() => setOpen(false), 280) }
+
+  // Close after navigating (e.g. clicking a child link) and clean up on unmount.
+  useEffect(() => { setOpen(false) }, [pathname])
+  useEffect(() => () => cancelClose(), [])
 
   if (!item.children) {
     return (
@@ -68,9 +71,10 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
   return (
     <div
       className="relative flex items-center py-4"
-      onMouseEnter={enter}
-      onMouseLeave={leave}
-      onTouchStart={() => { setOpen(prev => !prev) }}
+      onMouseEnter={openNow}
+      onMouseLeave={closeSoon}
+      onFocus={openNow}
+      onBlur={closeSoon}
     >
       <NavLink
         to={item.to}
@@ -78,16 +82,20 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
       >
         {t(item.label)} <ChevronDown size={12} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </NavLink>
-      {/* The pt-3 bridge + -mt-1 overlap guarantee the pointer never crosses a
-          dead gap between the trigger and the panel on the way down. */}
+      {/* Panel is flush under the trigger (top-full + pt-2 bridge, no gap). It is a
+          DOM descendant of this wrapper AND carries its own hover handlers, so the
+          pointer can never fall into a dead zone between trigger and menu. Only
+          opacity animates, so the click targets never shift under the cursor. */}
       <div
-        className={`absolute top-full start-0 -mt-1 z-50 pt-3 transition-all duration-150 ${
-          open ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-1 pointer-events-none'
+        onMouseEnter={openNow}
+        onMouseLeave={closeSoon}
+        className={`absolute top-full start-0 z-50 pt-2 transition-opacity duration-150 ${
+          open ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
         }`}
       >
         <div className="bg-white border border-border rounded-lg shadow-lg min-w-44 py-1">
           {item.children.map(child => (
-            <NavLink key={child.to} to={child.to}
+            <NavLink key={child.to} to={child.to} onClick={() => setOpen(false)}
               className={({ isActive }) => `block px-4 py-3 text-sm transition-colors hover:bg-surface-green rounded-sm ${isActive ? 'text-forest font-semibold' : 'text-ink-muted'}`}>
               {t(child.label)}
             </NavLink>
