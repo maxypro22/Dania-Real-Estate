@@ -1,4 +1,4 @@
-﻿import { useState, Fragment, type CSSProperties } from 'react'
+﻿import { useState, Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
@@ -7,8 +7,8 @@ import {
 } from 'lucide-react'
 import { Reveal } from '@/components/shared/Reveal'
 import { LocationIcon } from '@/components/shared/LocationIcon'
+import { HeroSequence } from '@/components/shared/HeroSequence'
 import { company, whyChooseUs } from '@/data/mockData'
-import heroVideo from '@/assets/13761467-uhd_3840_2160_30fps.mp4'
 import imgDoha       from '@/assets/pexels-stephen-leonardi-587681991-34276136.webp'
 import imgAlSadd     from '@/assets/pexels-mr-location-scout-22994825-25525976.webp'
 import imgBinMahmoud from '@/assets/pexels-juan-nino-3824481-9556696.webp'
@@ -54,84 +54,6 @@ const WHY_CHOOSE_US_AR = [
   { title: 'أطر مؤسسية مرنة',           description: 'إجراءات تشغيلية مخصصة لخدمة متطلبات السكن المؤسسي وعقود الإيجار التجاري.' },
   { title: 'تواصل فوري عبر واتساب',     description: 'بدون نماذج معقدة. تواصل مباشرة مع متخصصي الإيجار المحليين عبر قنوات المراسلة السريعة.' },
 ]
-
-/* ─── Section 1: Hero ────────────────────────────────────────────────── */
-function HeroSection() {
-  const { t, i18n } = useTranslation()
-  const isAr = i18n.language === 'ar'
-
-  // The H1 carries the brand after a "|" (e.g. "...in Doha | Dania Real Estate").
-  // Drop the divider and render the brand name as an animated luxury wordmark.
-  const [h1Lead, h1Brand] = t('home.hero.h1').split('|').map(s => s.trim())
-
-  // For Latin script, split into words → letters so a light-sweep can cascade
-  // letter by letter. (Arabic is kept whole so its glyphs stay connected.)
-  let _li = 0
-  const brandWords = (h1Brand ?? '').split(' ').map(word => ({
-    word,
-    letters: [...word].map(ch => ({ ch, i: _li++ })),
-  }))
-
-  return (
-    <section className="relative overflow-hidden text-white py-28 md:py-40 min-h-[600px] flex items-center">
-      <video autoPlay muted loop playsInline preload="none" className="absolute inset-0 w-full h-full object-cover pointer-events-none">
-        <source src={heroVideo} type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-forest/75 pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-forest/60 to-transparent pointer-events-none" />
-
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
-        <p className="text-lime text-sm font-semibold tracking-widest uppercase mb-4">{t('home.hero.eyebrow')}</p>
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6 max-w-3xl">
-          {h1Lead}{' '}
-          {h1Brand && (
-            isAr ? (
-              <span className="brand-wordmark inline-block pb-1 tracking-tight">{h1Brand}</span>
-            ) : (
-              <span className="inline tracking-tight" aria-label={h1Brand}>
-                {brandWords.map(({ letters }, wi) => (
-                  <Fragment key={wi}>
-                    {wi > 0 ? ' ' : null}
-                    <span className="inline-block whitespace-nowrap pb-1" aria-hidden="true">
-                      {letters.map(({ ch, i }) => (
-                        <span key={i} className="brand-letter" style={{ '--i': i } as CSSProperties}>
-                          {ch}
-                        </span>
-                      ))}
-                    </span>
-                  </Fragment>
-                ))}
-              </span>
-            )
-          )}
-        </h1>
-        <p className="text-white/75 text-lg max-w-2xl mb-8 leading-relaxed">
-          {t('home.hero.subtitle')}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 mb-8">
-          <Link to="/apartments-for-rent/"
-            className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-lime text-forest font-bold px-7 py-3.5 rounded-full text-sm">
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.exploreBtn')}</span>
-          </Link>
-          <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-            className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full text-sm backdrop-blur-sm">
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.whatsappBtn')}</span>
-          </a>
-        </div>
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
-          {[t('home.hero.trust0'), t('home.hero.trust1'), t('home.hero.trust2'), t('home.hero.trust3')].map(v => (
-            <span key={v} className="flex items-center gap-2 text-white/60 text-sm">
-              <CheckCircle2 size={14} className="text-lime shrink-0" /> {v}
-            </span>
-          ))}
-        </div>
-        <p className="mt-5 max-w-2xl text-white/55 text-sm leading-relaxed">{t('home.hero.trustLine')}</p>
-      </div>
-    </section>
-  )
-}
 
 /* ─── Section 8: Journey ─────────────────────────────────────────────── */
 function JourneySection() {
@@ -234,7 +156,7 @@ export function HomePage() {
       <meta name="description" content="Looking for premium villas or apartments for rent in Doha? Dania Real Estate offers 0% commission, all-inclusive rentals with 24/7 support. View listings!" />
 
       {/* ── 1. HERO ── */}
-      <HeroSection />
+      <HeroSequence />
 
       {/* ── 3. MAIN RENTAL SERVICES ── */}
       <section className="max-w-[1280px] mx-auto px-6 py-20">
