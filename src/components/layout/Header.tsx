@@ -183,24 +183,25 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border shadow-sm transition-all duration-700 ease-out overflow-x-clip ${
+      className={`sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border shadow-sm transition-all duration-700 ease-out ${
         loaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
     >
-      <div className="max-w-[1280px] mx-auto px-5 h-16 flex items-center justify-between gap-3">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <img
             src="/Dania_Real_Estate_logo.png"
             alt="Dania Real Estate Logo"
-            className="h-11 w-auto object-contain"
+            className="h-10 sm:h-11 w-auto object-contain"
           />
-          <div>
+          <div className="hidden sm:block leading-tight">
             <p className="font-bold text-forest text-base leading-tight">{company.name}</p>
             <p className="text-sm text-ink-muted">{company.nameAr}</p>
           </div>
         </Link>
 
-        <nav ref={navRef} className="hidden xl:flex items-center gap-0.5 flex-nowrap">
+        {/* Full horizontal nav — shown only at ≥1536px where all items genuinely fit */}
+        <nav ref={navRef} className="hidden 2xl:flex items-center gap-0.5 flex-nowrap">
           {navItems.map(item =>
             item.children ? (
               <NavDropdown
@@ -218,27 +219,28 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden xl:flex items-center gap-2 shrink-0">
-          <LanguageSwitcher iconOnly className="ltr:-translate-x-1 rtl:translate-x-1" />
+        {/* Right cluster — always visible so the icons can never be clipped */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <LanguageSwitcher iconOnly />
           <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
             aria-label="WhatsApp"
-            className="group inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 text-white bg-gradient-to-br from-[#25D366] to-[#0F8A52] ring-1 ring-white/30 shadow-md shadow-emerald-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-700/40 hover:brightness-105 ltr:-translate-x-1 rtl:translate-x-1">
+            className="group inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 text-white bg-gradient-to-br from-[#25D366] to-[#0F8A52] ring-1 ring-white/30 shadow-md shadow-emerald-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-700/40 hover:brightness-105">
             <WhatsappIcon size={17} className="transition-transform duration-300 group-hover:scale-110" />
           </a>
           <Link to="/contact-us/"
-            className="group relative overflow-hidden hidden 2xl:flex items-center bg-forest text-white text-sm font-semibold px-4 py-2 rounded-full">
+            className="group relative overflow-hidden hidden 2xl:inline-flex items-center bg-forest text-white text-sm font-semibold px-4 py-2 rounded-full">
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
             <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('header.contactUs')}</span>
           </Link>
+          <button
+            onClick={() => setMobileOpen(o => !o)}
+            aria-label={mobileOpen ? t('header.closeMenu') : t('header.openMenu')}
+            aria-expanded={mobileOpen}
+            className="2xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-ink hover:bg-surface-low active:bg-surface-low transition-colors"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
-
-        <button
-          onClick={() => setMobileOpen(o => !o)}
-          aria-label={mobileOpen ? t('header.closeMenu') : t('header.openMenu')}
-          className="xl:hidden p-3 rounded-xl text-ink hover:bg-surface-low active:bg-surface-low transition-colors"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
       </div>
 
       {mobileOpen && (
