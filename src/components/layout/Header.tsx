@@ -1,6 +1,6 @@
-import { memo, useState, useEffect, useRef, type MouseEvent } from 'react'
+import { memo, useState, useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, ChevronRight, ArrowUpRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher'
@@ -40,91 +40,107 @@ const navItems: NavItem[] = [
   { to: '/faq/', label: 'nav.faq' },
 ]
 
-const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem }>) {
+const triggerBase =
+  'inline-flex items-center gap-1 px-3.5 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap'
+
+/* Childless top-level link */
+const NavItemLink = memo(function NavItemLink({ item }: Readonly<{ item: NavItem }>) {
   const { t } = useTranslation()
-  const { pathname } = useLocation()
-  const [open, setOpen] = useState(false)
-  const wrapRef = useRef<HTMLDivElement>(null)
+  return (
+    <NavLink
+      to={item.to}
+      end={item.to === '/'}
+      className={({ isActive }) =>
+        `${triggerBase} ${isActive ? 'bg-forest text-white shadow-sm' : 'text-ink hover:bg-surface-low'}`}
+    >
+      {t(item.label)}
+    </NavLink>
+  )
+})
+
+interface DropdownProps {
+  item: NavItem
+  isOpen: boolean
+  onOpen: () => void
+  onToggle: () => void
+  onCloseSelf: () => void
+  onCloseAll: () => void
+}
+
+/* Top-level item WITH a submenu.
+ *
+ * Reliability model — the trigger is a <button>, never a link, so a tap/click
+ * only ever TOGGLES the panel; it can never navigate the page away before the
+ * user reaches the sub-items (the failure that plagued every hover/link
+ * version). The same click path works identically on mouse, touch, and pen.
+ * Mouse users additionally get hover-to-open as a convenience. Open state is
+ * owned by the Header so only one panel shows at a time; outside-click, Escape,
+ * and route changes all close it. The section's own page is reachable via the
+ * "Browse the section" row at the top of the panel (keeps the link crawlable). */
+const NavDropdown = memo(function NavDropdown({
+  item, isOpen, onOpen, onToggle, onCloseSelf, onCloseAll,
+}: Readonly<DropdownProps>) {
+  const { t, i18n } = useTranslation()
+  const isAr = i18n.language === 'ar'
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  // Records how the trigger was last activated so a tap (touch/pen) can reveal
-  // the submenu instead of navigating, while a mouse click still navigates.
-  const lastPointer = useRef<string>('mouse')
-  const base = 'flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap'
 
   const clearTimer = () => { if (timer.current) { clearTimeout(timer.current); timer.current = null } }
-  const openMenu = () => { clearTimer(); setOpen(true) }
-  // Small grace so a diagonal mouse path can't flicker it shut mid-travel.
-  const closeSoon = () => { clearTimer(); timer.current = setTimeout(() => setOpen(false), 160) }
-
-  // Close after navigating to a child link (route changes); clean up timer.
-  useEffect(() => { setOpen(false) }, [pathname])
+  // Hover is a mouse-only enhancement; touch/pen drive everything via the click.
+  const hoverOpen = (e: ReactPointerEvent) => { if (e.pointerType === 'mouse') { clearTimer(); onOpen() } }
+  const hoverClose = (e: ReactPointerEvent) => { if (e.pointerType === 'mouse') { clearTimer(); timer.current = setTimeout(onCloseSelf, 170) } }
   useEffect(() => () => clearTimer(), [])
 
-  // Close on outside-click / Escape while open.
-  useEffect(() => {
-    if (!open) return
-    const onDown = (e: PointerEvent) => {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false)
-    }
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
-    document.addEventListener('pointerdown', onDown)
-    document.addEventListener('keydown', onKey)
-    return () => {
-      document.removeEventListener('pointerdown', onDown)
-      document.removeEventListener('keydown', onKey)
-    }
-  }, [open])
-
-  if (!item.children) {
-    return (
-      <NavLink to={item.to} end={item.to === '/'}
-        className={({ isActive }) => `${base} ${isActive ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low'}`}>
-        {t(item.label)}
-      </NavLink>
-    )
-  }
-
-  // Visibility is driven entirely by JS `open` state — NOT Tailwind `group-hover`,
-  // which v4 compiles inside `@media (hover: hover)` and never fires on touch
-  // devices. Hover (mouse) opens/closes; tap (touch) opens on first tap then
-  // navigates on the second; keyboard focus opens; Escape / outside-click close.
-  const onTriggerClick = (e: MouseEvent) => {
-    if (lastPointer.current !== 'mouse' && !open) {
-      e.preventDefault()       // first tap: reveal submenu instead of leaving
-      setOpen(true)
-    }
-  }
-
   return (
-    <div
-      ref={wrapRef}
-      className="relative flex items-center"
-      onPointerEnter={(e) => { if (e.pointerType === 'mouse') openMenu() }}
-      onPointerLeave={(e) => { if (e.pointerType === 'mouse') closeSoon() }}
-    >
-      <NavLink
-        to={item.to}
-        aria-haspopup="true"
-        aria-expanded={open}
-        onPointerDown={(e) => { lastPointer.current = e.pointerType }}
-        onClick={onTriggerClick}
-        onFocus={openMenu}
-        className={({ isActive }) => `${base} ${isActive || open ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low'}`}
+    <div className="relative flex items-center" onPointerEnter={hoverOpen} onPointerLeave={hoverClose}>
+      <button
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        onClick={onToggle}
+        className={`${triggerBase} ${isOpen ? 'bg-forest text-white shadow-sm' : 'text-ink hover:bg-surface-low'}`}
       >
         {t(item.label)}
-        <ChevronDown size={13} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
-      </NavLink>
-      {/* flush bridge (pt-2.5) keeps hover continuous between trigger and panel */}
+        <ChevronDown size={13} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {/* pt-3 = invisible hover bridge so the mouse never crosses a dead gap */}
       <div
-        className={`absolute top-full start-0 z-50 pt-2.5 transition-all duration-200 ${
-          open ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-1 pointer-events-none'
+        className={`absolute top-full start-0 z-50 pt-3 transition-all duration-200 ease-out ${
+          isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-1.5 pointer-events-none'
         }`}
       >
-        <div className="bg-white border border-border rounded-xl shadow-xl shadow-black/10 min-w-[230px] py-2">
-          {item.children.map(child => (
-            <NavLink key={child.to} to={child.to} onClick={() => setOpen(false)}
-              className={({ isActive }) => `block px-5 py-2.5 text-sm transition-colors hover:bg-surface-green ${isActive ? 'text-forest font-semibold bg-surface-green/60' : 'text-ink-muted hover:text-forest'}`}>
+        <div className="min-w-[256px] rounded-2xl border border-border/80 bg-white/98 p-2 shadow-2xl shadow-forest/15 ring-1 ring-black/[0.03] backdrop-blur-sm">
+          {/* section overview */}
+          <NavLink
+            to={item.to}
+            end={item.to === '/'}
+            onClick={onCloseAll}
+            className="group flex items-center justify-between gap-3 rounded-xl bg-surface-green/40 px-4 py-2.5 transition-colors hover:bg-surface-green active:bg-surface-green"
+          >
+            <span className="flex flex-col">
+              <span className="text-sm font-bold text-forest">{t(item.label)}</span>
+              <span className="text-[11px] text-ink-muted">{isAr ? 'استعراض القسم بالكامل' : 'Browse the full section'}</span>
+            </span>
+            <ArrowUpRight size={16} className="text-forest/70 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100" />
+          </NavLink>
+
+          <div className="mx-2 my-1.5 h-px bg-border/70" />
+
+          {/* sub-items */}
+          {item.children!.map(child => (
+            <NavLink
+              key={child.to}
+              to={child.to}
+              onClick={onCloseAll}
+              className={({ isActive }) =>
+                `group flex items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm transition-colors ${
+                  isActive
+                    ? 'bg-forest text-white font-semibold'
+                    : 'text-ink-muted hover:bg-surface-low hover:text-forest active:bg-surface-low'
+                }`}
+            >
               {t(child.label)}
+              <ChevronRight size={14} className="opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-60 group-hover:translate-x-0 rtl:-scale-x-100" />
             </NavLink>
           ))}
         </div>
@@ -135,14 +151,35 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
 
 export function Header() {
   const { t } = useTranslation()
-  const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  const [mobileOpen, setMobileOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null)
+  const [openKey, setOpenKey] = useState<string | null>(null)
+  const navRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setLoaded(true))
     return () => cancelAnimationFrame(id)
   }, [])
+
+  // Close everything whenever the route changes.
+  useEffect(() => { setOpenKey(null); setMobileOpen(false); setExpandedMobile(null) }, [pathname])
+
+  // Outside-click / Escape close the desktop dropdown.
+  useEffect(() => {
+    if (!openKey) return
+    const onDown = (e: PointerEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenKey(null)
+    }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpenKey(null) }
+    document.addEventListener('pointerdown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('pointerdown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [openKey])
 
   return (
     <header
@@ -163,8 +200,22 @@ export function Header() {
           </div>
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-0 flex-nowrap">
-          {navItems.map(item => <NavDropdown key={item.to} item={item} />)}
+        <nav ref={navRef} className="hidden xl:flex items-center gap-0.5 flex-nowrap">
+          {navItems.map(item =>
+            item.children ? (
+              <NavDropdown
+                key={item.to}
+                item={item}
+                isOpen={openKey === item.to}
+                onOpen={() => setOpenKey(item.to)}
+                onToggle={() => setOpenKey(k => (k === item.to ? null : item.to))}
+                onCloseSelf={() => setOpenKey(k => (k === item.to ? null : k))}
+                onCloseAll={() => setOpenKey(null)}
+              />
+            ) : (
+              <NavItemLink key={item.to} item={item} />
+            )
+          )}
         </nav>
 
         <div className="hidden xl:flex items-center gap-2 shrink-0">
@@ -182,15 +233,15 @@ export function Header() {
         </div>
 
         <button
-          onClick={() => setOpen(!open)}
-          aria-label={open ? t('header.closeMenu') : t('header.openMenu')}
+          onClick={() => setMobileOpen(o => !o)}
+          aria-label={mobileOpen ? t('header.closeMenu') : t('header.openMenu')}
           className="xl:hidden p-3 rounded-xl text-ink hover:bg-surface-low active:bg-surface-low transition-colors"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {open && (
+      {mobileOpen && (
         <div className="xl:hidden bg-white border-t border-border px-5 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
           {navItems.map(item => {
             const isExpanded = expandedMobile === item.to
@@ -199,31 +250,32 @@ export function Header() {
                 {item.children ? (
                   <>
                     <div className="flex items-center">
-                      <NavLink to={item.to} end={item.to === '/'} onClick={() => setOpen(false)}
+                      <NavLink to={item.to} end={item.to === '/'} onClick={() => setMobileOpen(false)}
                         className={({ isActive }) => `flex-1 px-4 py-3.5 text-base font-medium transition-colors ${isActive ? 'text-lime' : 'text-ink'}`}>
                         {t(item.label)}
                       </NavLink>
                       <button
                         onClick={() => setExpandedMobile(isExpanded ? null : item.to)}
                         aria-label={isExpanded ? 'Collapse' : 'Expand'}
-                        className="w-10 h-10 flex items-center justify-center text-ink-muted hover:text-ink transition-colors text-xl font-light"
+                        aria-expanded={isExpanded}
+                        className="w-11 h-11 flex items-center justify-center text-ink-muted hover:text-ink transition-colors"
                       >
-                        {isExpanded ? '−' : '+'}
+                        <ChevronDown size={18} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
                       </button>
                     </div>
-                    {isExpanded && (
+                    <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-72' : 'max-h-0'}`}>
                       <div className="pb-2">
                         {item.children.map(child => (
-                          <NavLink key={child.to} to={child.to} onClick={() => { setOpen(false); setExpandedMobile(null) }}
+                          <NavLink key={child.to} to={child.to} onClick={() => setMobileOpen(false)}
                             className={({ isActive }) => `block ps-6 py-2.5 text-sm transition-colors ${isActive ? 'text-lime font-semibold' : 'text-ink-muted'}`}>
                             {t(child.label)}
                           </NavLink>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </>
                 ) : (
-                  <NavLink to={item.to} end={item.to === '/'} onClick={() => setOpen(false)}
+                  <NavLink to={item.to} end={item.to === '/'} onClick={() => setMobileOpen(false)}
                     className={({ isActive }) => `block px-4 py-3.5 text-base font-medium transition-colors ${isActive ? 'text-lime' : 'text-ink'}`}>
                     {t(item.label)}
                   </NavLink>
@@ -238,7 +290,7 @@ export function Header() {
               <WhatsappIcon size={16} />
               <span>{t('header.whatsapp')}</span>
             </a>
-            <Link to="/contact-us/" onClick={() => setOpen(false)}
+            <Link to="/contact-us/" onClick={() => setMobileOpen(false)}
               className="group relative overflow-hidden flex-1 flex items-center justify-center bg-forest text-white text-sm font-semibold px-4 py-2.5 rounded-full">
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
               <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('header.contactUs')}</span>
