@@ -1,12 +1,12 @@
-﻿import { useState, Fragment, useRef, useEffect } from 'react'
+﻿import { useState, Fragment, type CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight, Building2, Home, Store, Users, LayoutGrid,
   CheckCircle2, ChevronDown, Briefcase, ShoppingBag,
 } from 'lucide-react'
-import { SearchBar } from '@/components/shared/SearchBar'
 import { Reveal } from '@/components/shared/Reveal'
+import { LocationIcon } from '@/components/shared/LocationIcon'
 import { company, whyChooseUs } from '@/data/mockData'
 import heroVideo from '@/assets/13761467-uhd_3840_2160_30fps.mp4'
 import imgDoha       from '@/assets/pexels-stephen-leonardi-587681991-34276136.webp'
@@ -59,71 +59,51 @@ const WHY_CHOOSE_US_AR = [
 function HeroSection() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
-  const sectionRef = useRef<HTMLElement>(null)
-  const cursorRef  = useRef<HTMLDivElement>(null)
-  const target     = useRef({ x: -200, y: -200 })
-  const smoothed   = useRef({ x: -200, y: -200 })
-  const HALF = 35
 
-  useEffect(() => {
-    const LERP = 0.14
-    let raf: number
-    const loop = () => {
-      smoothed.current.x += (target.current.x - smoothed.current.x) * LERP
-      smoothed.current.y += (target.current.y - smoothed.current.y) * LERP
-      if (cursorRef.current) {
-        cursorRef.current.style.transform =
-          `translate(${smoothed.current.x - HALF}px, ${smoothed.current.y - HALF}px)`
-      }
-      raf = requestAnimationFrame(loop)
-    }
-    raf = requestAnimationFrame(loop)
-    return () => cancelAnimationFrame(raf)
-  }, [])
+  // The H1 carries the brand after a "|" (e.g. "...in Doha | Dania Real Estate").
+  // Drop the divider and render the brand name as an animated luxury wordmark.
+  const [h1Lead, h1Brand] = t('home.hero.h1').split('|').map(s => s.trim())
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = sectionRef.current?.getBoundingClientRect()
-    if (!rect) return
-    target.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
-  }
-  const handleMouseEnter = () => { if (cursorRef.current) cursorRef.current.style.opacity = '1' }
-  const handleMouseLeave = () => { if (cursorRef.current) cursorRef.current.style.opacity = '0' }
+  // For Latin script, split into words → letters so a light-sweep can cascade
+  // letter by letter. (Arabic is kept whole so its glyphs stay connected.)
+  let _li = 0
+  const brandWords = (h1Brand ?? '').split(' ').map(word => ({
+    word,
+    letters: [...word].map(ch => ({ ch, i: _li++ })),
+  }))
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden text-white py-28 md:py-40 min-h-[600px] flex items-center cursor-none"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <video autoPlay muted loop playsInline preload="none" className="absolute inset-0 w-full h-full object-cover">
+    <section className="relative overflow-hidden text-white py-28 md:py-40 min-h-[600px] flex items-center">
+      <video autoPlay muted loop playsInline preload="none" className="absolute inset-0 w-full h-full object-cover pointer-events-none">
         <source src={heroVideo} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-forest/75" />
-      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-forest/60 to-transparent" />
-
-      <div
-        ref={cursorRef}
-        className="pointer-events-none absolute z-50 left-0 top-0 flex items-center justify-center rounded-full"
-        style={{
-          width: 70, height: 70,
-          background: 'rgba(255,255,255,0.18)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-          border: '1.5px solid rgba(255,255,255,0.30)',
-          opacity: 0,
-          transition: 'opacity 0.2s ease',
-          willChange: 'transform',
-        }}
-      >
-        <span className="text-white font-semibold text-sm tracking-wide select-none">{isAr ? 'عرض' : 'View'}</span>
-      </div>
+      <div className="absolute inset-0 bg-forest/75 pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-forest/60 to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
         <p className="text-lime text-sm font-semibold tracking-widest uppercase mb-4">{t('home.hero.eyebrow')}</p>
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6 max-w-3xl">
-          {t('home.hero.h1')}
+          {h1Lead}{' '}
+          {h1Brand && (
+            isAr ? (
+              <span className="brand-wordmark inline-block pb-1 tracking-tight">{h1Brand}</span>
+            ) : (
+              <span className="inline tracking-tight" aria-label={h1Brand}>
+                {brandWords.map(({ letters }, wi) => (
+                  <Fragment key={wi}>
+                    {wi > 0 ? ' ' : null}
+                    <span className="inline-block whitespace-nowrap pb-1" aria-hidden="true">
+                      {letters.map(({ ch, i }) => (
+                        <span key={i} className="brand-letter" style={{ '--i': i } as CSSProperties}>
+                          {ch}
+                        </span>
+                      ))}
+                    </span>
+                  </Fragment>
+                ))}
+              </span>
+            )
+          )}
         </h1>
         <p className="text-white/75 text-lg max-w-2xl mb-8 leading-relaxed">
           {t('home.hero.subtitle')}
@@ -139,9 +119,6 @@ function HeroSection() {
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
             <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.whatsappBtn')}</span>
           </a>
-        </div>
-        <div className="max-w-3xl mb-8">
-          <SearchBar />
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
           {[t('home.hero.trust0'), t('home.hero.trust1'), t('home.hero.trust2'), t('home.hero.trust3')].map(v => (
@@ -446,6 +423,11 @@ export function HomePage() {
                 >
                   {/* sweep fill — GPU-accelerated translate */}
                   <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+
+                  {/* Luxury location badge */}
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
 
                   {/* text */}
                   <div className="relative z-10 flex flex-col flex-1 gap-1.5">

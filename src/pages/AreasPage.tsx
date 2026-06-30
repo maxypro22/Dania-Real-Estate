@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/shared/Reveal'
+import { LocationIcon } from '@/components/shared/LocationIcon'
 import { company, areas } from '@/data/mockData'
 
 // =====================================================================
@@ -764,6 +765,11 @@ export function AreasPage() {
                   <div className="group relative rounded-2xl border border-border p-6 flex flex-col h-full bg-white overflow-hidden shadow-sm hover:shadow-2xl active:shadow-sm hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300">
                     {/* sweep fill – GPU transform */}
                     <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+
+                    {/* Luxury location badge */}
+                    <div className="relative z-10 mb-4 inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-lg shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                      <LocationIcon size={22} />
+                    </div>
 
                     {/* Name */}
                     <h3 className="relative z-10 text-base font-bold mb-2 text-ink group-hover:text-white group-active:text-white transition-colors duration-300">
