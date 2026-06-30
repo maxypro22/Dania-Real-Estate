@@ -1,5 +1,5 @@
-import { memo, useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { memo, useState, useEffect, useRef } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
@@ -42,7 +42,28 @@ const navItems: NavItem[] = [
 
 const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem }>) {
   const { t } = useTranslation()
+  const { pathname } = useLocation()
+  const [open, setOpen] = useState(false)
+  const wrapRef = useRef<HTMLDivElement>(null)
   const base = 'flex items-center gap-1 px-2 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap'
+
+  // Close after navigating to a child link (route changes).
+  useEffect(() => { setOpen(false) }, [pathname])
+
+  // When opened by click/tap, close on outside-click or Escape.
+  useEffect(() => {
+    if (!open) return
+    const onDown = (e: PointerEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false)
+    }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    document.addEventListener('pointerdown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('pointerdown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
 
   if (!item.children) {
     return (
@@ -53,24 +74,38 @@ const NavDropdown = memo(function NavDropdown({ item }: Readonly<{ item: NavItem
     )
   }
 
-  // Pure-CSS hover dropdown (the classic nested-list pattern). The submenu is a
-  // DOM child of the `group` wrapper and sits flush under the trigger
-  // (top-full + pt-2 bridge — zero gap). In CSS, an element is `:hover` whenever
-  // the pointer is over it OR any descendant, so hovering the submenu keeps the
-  // group hovered and the menu open. No JS state or timer can close it mid-move.
+  // Robust for EVERY input method:
+  //  • Mouse hover  → pure-CSS `group-hover` opens the flush submenu (zero-gap
+  //    bridge: the submenu is a DOM child sitting directly under the trigger, so
+  //    in CSS the group stays `:hover` the whole way down — no timer to misfire).
+  //  • Click / tap  → the chevron button toggles `open` (works on touch screens
+  //    where there is no hover), with outside-click + Escape to close.
+  //  • Keyboard     → `group-focus-within` reveals it when a link is focused.
+  // `open` only *forces* it visible; hover still works independently via CSS.
+  const showForced = open ? '!visible !opacity-100' : ''
   return (
-    <div className="group relative flex items-center py-4">
+    <div ref={wrapRef} className="group relative flex items-center py-4">
       <NavLink
         to={item.to}
         className={({ isActive }) => `${base} ${isActive ? 'bg-forest text-white' : 'text-ink hover:bg-surface-low group-hover:bg-surface-low'}`}
       >
         {t(item.label)}
-        <ChevronDown size={12} className="transition-transform duration-200 group-hover:rotate-180" />
       </NavLink>
-      <div className="invisible absolute top-full start-0 z-50 pt-2 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <button
+        type="button"
+        aria-label={`${t(item.label)} submenu`}
+        aria-expanded={open}
+        onClick={() => setOpen(o => !o)}
+        className="-ms-1 p-1 rounded-full text-ink hover:bg-surface-low transition-colors"
+      >
+        <ChevronDown size={12} className={`transition-transform duration-200 group-hover:rotate-180 ${open ? 'rotate-180' : ''}`} />
+      </button>
+      <div
+        className={`invisible absolute top-full start-0 z-50 pt-2 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 ${showForced}`}
+      >
         <div className="bg-white border border-border rounded-lg shadow-lg min-w-44 py-1">
           {item.children.map(child => (
-            <NavLink key={child.to} to={child.to}
+            <NavLink key={child.to} to={child.to} onClick={() => setOpen(false)}
               className={({ isActive }) => `block px-4 py-3 text-sm transition-colors hover:bg-surface-green rounded-sm ${isActive ? 'text-forest font-semibold' : 'text-ink-muted'}`}>
               {t(child.label)}
             </NavLink>
