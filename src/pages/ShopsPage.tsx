@@ -235,7 +235,7 @@ export function ShopsPage() {
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80} direction="up">
                 <div
-                  className={`rounded-2xl p-6 h-full border transition-shadow hover:shadow-md ${
+                  className={`rounded-2xl p-6 h-full border linear-card ${
                     card.accent
                       ? 'bg-forest border-forest text-white'
                       : 'bg-white border-border'
@@ -368,7 +368,7 @@ export function ShopsPage() {
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80} direction="up">
                 <div
-                  className={`rounded-2xl p-6 h-full border transition-shadow hover:shadow-md ${
+                  className={`rounded-2xl p-6 h-full border linear-card ${
                     card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
                   }`}
                 >
@@ -452,7 +452,7 @@ export function ShopsPage() {
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80} direction="up">
                 <div
-                  className={`rounded-2xl p-7 h-full border transition-shadow hover:shadow-md ${
+                  className={`rounded-2xl p-7 h-full border linear-card ${
                     card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
                   }`}
                 >
@@ -589,7 +589,7 @@ export function ShopsPage() {
             ]).map((area, i) => (
               <Reveal key={area.h3} delay={i * 60} direction="up">
                 <div
-                  className={`rounded-2xl p-6 h-full border transition-shadow hover:shadow-md flex flex-col ${
+                  className={`rounded-2xl p-6 h-full border linear-card flex flex-col ${
                     area.accent ? 'bg-forest border-forest' : 'bg-white border-border'
                   }`}
                 >
@@ -681,7 +681,7 @@ export function ShopsPage() {
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80} direction="up">
                 <div
-                  className={`rounded-2xl p-6 h-full border transition-shadow hover:shadow-md ${
+                  className={`rounded-2xl p-6 h-full border linear-card ${
                     card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
                   }`}
                 >

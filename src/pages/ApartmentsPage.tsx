@@ -241,7 +241,7 @@ function AllApartmentsContent() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {categories.map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
-                <div className="bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow flex flex-col h-full">
+                <div className="bg-white border border-border rounded-2xl p-7 linear-card flex flex-col h-full">
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
                   <p className="text-ink-muted text-sm leading-relaxed mb-6 flex-1">{card.desc}</p>
                   <Link
@@ -271,7 +271,7 @@ function AllApartmentsContent() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {consider.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${i === 0 ? 'border-l-4 border-l-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${i === 0 ? 'border-l-4 border-l-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -298,7 +298,7 @@ function AllApartmentsContent() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {areaItems.map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full flex flex-col">
+                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
                   <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                   <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
                   <Link to={areaHrefs[i]} className="text-forest font-semibold text-xs hover:underline">
@@ -325,7 +325,7 @@ function AllApartmentsContent() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {why.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -355,7 +355,7 @@ function AllApartmentsContent() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {needs.map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
-                <div className={`bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow h-full ${i === 0 ? 'border-l-4 border-l-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${i === 0 ? 'border-l-4 border-l-forest' : ''}`}>
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
                   <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
                 </div>
@@ -598,7 +598,7 @@ function OneBedContent() {
               { h3: 'Furnishing Matrix Selections', desc: 'Choose between turnkey fully furnished 1-bedroom setups for rapid move-ins or unfurnished shells optimized for personal furniture configurations.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -647,7 +647,7 @@ function OneBedContent() {
               { h3: '1 Bedroom Rentals in Al Kharaitiyat', desc: 'Quiet, low-traffic residential flat structures catering to individuals prioritizing a serene suburban lifestyle.', href: '/areas/al-kharaitiyat/' },
             ]).map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full flex flex-col">
+                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
                   <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                   <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
                   <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -688,7 +688,7 @@ function OneBedContent() {
               { h3: 'Guided Viewing Coordination', desc: 'Walk through your chosen units alongside a dedicated property professional who can answer all legal and structural questions on-site.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -738,7 +738,7 @@ function OneBedContent() {
               { h3: 'Budget-Conscious Residential Selections', desc: 'Cost-efficient apartment selections engineered to deliver independent privacy while remaining aligned with specific personal savings targets.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
-                <div className={`bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
                   <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
                 </div>
@@ -777,7 +777,7 @@ function OneBedContent() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`flex-1 rounded-2xl p-6 border border-border bg-white hover:shadow-md transition-shadow ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}
+                  className={`flex-1 rounded-2xl p-6 border border-border bg-white linear-card ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}
                 >
                   <p className="font-bold text-forest text-sm mb-1">{link.label}</p>
                   <p className="text-ink-muted text-xs leading-relaxed">{link.sub}</p>
@@ -998,7 +998,7 @@ function TwoBedContent() {
               { h3: 'Furnishing & Interior Layouts', desc: 'Identify closed-kitchen variations, multi-bathroom profiles, and fully furnished versus semi-furnished configurations that align with your lifestyle.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -1047,7 +1047,7 @@ function TwoBedContent() {
               { h3: '2 Bedroom Rentals in Al Kharaitiyat', desc: 'Peaceful, low-density suburban apartment selections tailored for individuals seeking a quiet community setup.', href: '/areas/al-kharaitiyat/' },
             ]).map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full flex flex-col">
+                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
                   <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                   <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
                   <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -1088,7 +1088,7 @@ function TwoBedContent() {
               { h3: 'Accompanied Property Walkthroughs', desc: 'Tour your target spaces alongside a dedicated leasing professional who answers all structural and legal questions on-site.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -1138,7 +1138,7 @@ function TwoBedContent() {
               { h3: 'Budget-Optimized Family Selections', desc: 'Cost-efficient 2-bedroom flat options configured to deliver excellent municipal connectivity while protecting family savings targets.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
-                <div className={`bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
                   <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
                 </div>
@@ -1177,7 +1177,7 @@ function TwoBedContent() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`flex-1 rounded-2xl p-6 border border-border bg-white hover:shadow-md transition-shadow ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}
+                  className={`flex-1 rounded-2xl p-6 border border-border bg-white linear-card ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}
                 >
                   <p className="font-bold text-forest text-sm mb-1">{link.label}</p>
                   <p className="text-ink-muted text-xs leading-relaxed">{link.sub}</p>
@@ -1398,7 +1398,7 @@ function ThreeBedContent() {
               { h3: 'Long-Term Stability & Comfort', desc: 'Establish your household inside verified, well-managed residential developments optimized for stable, multi-year tenancies in Qatar.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -1447,7 +1447,7 @@ function ThreeBedContent() {
               { h3: '3 Bedroom Rentals in Al Kharaitiyat', desc: 'Low-density, family-centric suburban apartment blocks tailored for tenants seeking maximum space away from inner-city traffic.', href: '/areas/al-kharaitiyat/' },
             ]).map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full flex flex-col">
+                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
                   <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                   <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
                   <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -1488,7 +1488,7 @@ function ThreeBedContent() {
               { h3: 'Rapid Direct Mobile Updates', desc: 'Skip slow, frustrating property listing portals. Connect directly via WhatsApp to receive unedited interior media of vacant units instantly.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
-                <div className={`bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -1538,7 +1538,7 @@ function ThreeBedContent() {
               { h3: 'Multi-Functional Spaces for Modern Lifestyles', desc: '3-BHK layouts offering the structural capacity to support integrated home work environments, nurseries, or large storage needs.', accent: false },
             ]).map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
-                <div className={`bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
+                <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
                   <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
                 </div>
@@ -1577,7 +1577,7 @@ function ThreeBedContent() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`flex-1 rounded-2xl p-6 border border-border bg-white hover:shadow-md transition-shadow ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}
+                  className={`flex-1 rounded-2xl p-6 border border-border bg-white linear-card ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}
                 >
                   <p className="font-bold text-forest text-sm mb-1">{link.label}</p>
                   <p className="text-ink-muted text-xs leading-relaxed">{link.sub}</p>

@@ -401,7 +401,7 @@ export function GalleryPage() {
               <Reveal key={cat.title} direction="up" delay={i * 100}>
                 <Link
                   to={cat.href}
-                  className="block bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow group h-full"
+                  className="block bg-white rounded-2xl border border-border p-6 linear-card group h-full"
                 >
                   <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors">
                     {cat.title}
@@ -418,7 +418,7 @@ export function GalleryPage() {
               <Reveal key={cat.title} direction="up" delay={(i + 3) * 100}>
                 <Link
                   to={cat.href}
-                  className="block bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow group h-full"
+                  className="block bg-white rounded-2xl border border-border p-6 linear-card group h-full"
                 >
                   <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors">
                     {cat.title}
@@ -514,7 +514,7 @@ export function GalleryPage() {
               const Icon = item.icon
               return (
                 <Reveal key={item.title} direction="up" delay={i * 100}>
-                  <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
+                  <div className="bg-white rounded-2xl border border-border p-6 linear-card h-full">
                     <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                       <Icon size={20} className="text-forest" />
                     </div>

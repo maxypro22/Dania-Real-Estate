@@ -124,7 +124,7 @@ export function ContactPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {contactCards.map((card, i) => (
               <Reveal key={card.label} direction="up" delay={i * 80}>
-                <div className="bg-white rounded-2xl border border-border p-6 h-full flex flex-col gap-4">
+                <div className="bg-white rounded-2xl border border-border p-6 h-full flex flex-col gap-4 linear-card">
                   <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center text-forest shrink-0">
                     {card.icon}
                   </div>
@@ -290,7 +290,7 @@ export function ContactPage() {
             {segments.map((seg, i) => (
               <Reveal key={seg.title} direction="up" delay={i * 80}>
                 {seg.href ? (
-                  <Link to={seg.href} className="group bg-white rounded-2xl border border-border p-6 flex flex-col gap-3 h-full hover:border-lime transition-colors block">
+                  <Link to={seg.href} className="group bg-white rounded-2xl border border-border p-6 flex flex-col gap-3 h-full block linear-card">
                     <div className="w-10 h-10 bg-lime rounded-xl flex items-center justify-center text-forest shrink-0">
                       <Building2 size={18} />
                     </div>
@@ -304,7 +304,7 @@ export function ContactPage() {
                     )}
                   </Link>
                 ) : (
-                  <div className="bg-white rounded-2xl border border-border p-6 flex flex-col gap-3 h-full">
+                  <div className="bg-white rounded-2xl border border-border p-6 flex flex-col gap-3 h-full linear-card">
                     <div className="w-10 h-10 bg-lime rounded-xl flex items-center justify-center text-forest shrink-0">
                       <Building2 size={18} />
                     </div>

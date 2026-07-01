@@ -298,7 +298,7 @@ function StaffAccommodationMain() {
               },
             ].map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className={`rounded-2xl p-6 h-full hover:shadow-md transition-shadow ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
+                <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime'}`}>
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -362,7 +362,7 @@ function StaffAccommodationMain() {
               },
             ].map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className={`rounded-2xl p-6 h-full hover:shadow-md transition-shadow ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
+                <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime'}`}>
                     <span className="text-forest">{card.icon}</span>
                   </div>
@@ -426,7 +426,7 @@ function StaffAccommodationMain() {
               },
             ].map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className={`rounded-2xl p-6 h-full hover:shadow-md transition-shadow flex flex-col ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
+                <div className={`rounded-2xl p-6 h-full linear-card flex flex-col ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>{card.h3}</h3>
                   <p className={`text-xs leading-relaxed flex-1 ${card.accent ? 'text-white/70' : 'text-ink-muted'}`}>{card.desc}</p>
                   {card.href && (
@@ -519,7 +519,7 @@ function StaffAccommodationMain() {
               },
             ].map((area, i) => (
               <Reveal key={i} direction="up" delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full flex flex-col">
+                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
                   <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                   <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
                   <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -579,7 +579,7 @@ function StaffAccommodationMain() {
               },
             ].map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className={`rounded-2xl p-6 h-full hover:shadow-md transition-shadow ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
+                <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -937,7 +937,7 @@ function StaffVillasPage() {
               },
             ].map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className={`rounded-2xl p-6 h-full hover:shadow-md transition-shadow ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
+                <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-lime`}>
                     <span className="text-forest">{card.icon}</span>
                   </div>
@@ -1101,7 +1101,7 @@ function StaffVillasPage() {
               },
             ].map((area, i) => (
               <Reveal key={i} direction="up" delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 hover:shadow-md transition-shadow h-full flex flex-col">
+                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
                   <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                   <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
                   <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -1165,7 +1165,7 @@ function StaffVillasPage() {
               },
             ].map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className={`rounded-2xl p-6 h-full hover:shadow-md transition-shadow ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
+                <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <span className="text-forest">{card.icon}</span>
                   </div>

@@ -199,7 +199,7 @@ export function HomePage() {
         {/* Row 1: 3 cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <Reveal delay={0}>
-            <div className="bg-white rounded-2xl border border-border p-7 hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="bg-white rounded-2xl border border-border p-7 linear-card h-full flex flex-col">
               <Building2 size={28} className="text-ink mb-4" />
               <h3 className="font-bold text-xl text-ink mb-2">{t('home.services.apartments.title')}</h3>
               <p className="text-ink-muted text-sm leading-relaxed mb-6 flex-1">{t('home.services.apartments.desc')}</p>
@@ -210,7 +210,7 @@ export function HomePage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="bg-white rounded-2xl border border-border p-7 hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="bg-white rounded-2xl border border-border p-7 linear-card h-full flex flex-col">
               <Home size={28} className="text-ink mb-4" />
               <h3 className="font-bold text-xl text-ink mb-2">{t('home.services.villas.title')}</h3>
               <p className="text-ink-muted text-sm leading-relaxed mb-6 flex-1">{t('home.services.villas.desc')}</p>
@@ -221,7 +221,7 @@ export function HomePage() {
           </Reveal>
 
           <Reveal delay={240}>
-            <div className="bg-forest rounded-2xl p-7 hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="bg-forest rounded-2xl p-7 linear-card h-full flex flex-col">
               <Users size={28} className="text-lime mb-4" />
               <h3 className="font-bold text-xl text-lime mb-2">{t('home.services.staff.title')}</h3>
               <p className="text-white/70 text-sm leading-relaxed mb-6 flex-1">{t('home.services.staff.desc')}</p>
@@ -251,7 +251,7 @@ export function HomePage() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="bg-lime-light rounded-2xl border border-lime/30 p-7 hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="bg-lime-light rounded-2xl border border-lime/30 p-7 linear-card h-full flex flex-col">
               <LayoutGrid size={28} className="text-forest mb-4" />
               <h3 className="font-bold text-xl text-ink mb-2">{t('home.services.studios.title')}</h3>
               <p className="text-forest text-sm leading-relaxed mb-6 flex-1">{t('home.services.studios.desc')}</p>
@@ -429,7 +429,7 @@ export function HomePage() {
           <div className="hidden lg:grid grid-cols-3 gap-4">
             {(isAr ? WHY_CHOOSE_US_AR : whyChooseUs).map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
+                <div className="bg-white rounded-2xl border border-border p-6 linear-card h-full">
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>

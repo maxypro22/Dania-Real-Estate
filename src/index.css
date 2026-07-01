@@ -57,6 +57,39 @@
   .stacked-progress { animation: none; transform: scaleX(1); }
 }
 
+/* Linear-style card: soft lime glow + gentle lift on hover, applied site-wide
+   by adding `linear-card` to a card shell. The glow is an ::before layer that
+   sits between the card background and its content (isolation + z-index:-1),
+   so no markup change or overflow clipping is needed. Hover effects only on
+   hover-capable devices; motion is dropped for reduced-motion users. */
+.linear-card {
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.linear-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(60% 45% at 50% 0%, rgba(196, 98, 45, 0.22), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .linear-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px -12px rgba(44, 16, 10, 0.28);
+  }
+  .linear-card:hover::before { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .linear-card { transition: none; }
+  .linear-card:hover { transform: none; }
+}
+
 /* ── Luxury brand wordmark: polished gold/copper letters ─────────────── */
 /* Slow gradient drift (the metallic "sheen" that travels across the fill) */
 @keyframes brand-shimmer {

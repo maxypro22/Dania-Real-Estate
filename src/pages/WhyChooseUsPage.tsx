@@ -522,7 +522,7 @@ export function WhyChooseUsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {blocks.map((block, i) => (
               <Reveal key={block.title} direction="up" delay={i * 100}>
-                <div className="bg-white rounded-2xl border border-border p-8 hover:shadow-md transition-shadow h-full">
+                <div className="bg-white rounded-2xl border border-border p-8 linear-card h-full">
                   <div className="w-10 h-10 bg-lime rounded-xl flex items-center justify-center mb-5">
                     <CheckCircle2 size={19} className="text-forest" />
                   </div>

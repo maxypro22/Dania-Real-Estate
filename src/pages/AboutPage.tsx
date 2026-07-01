@@ -524,7 +524,7 @@ export function AboutPage() {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(isAr ? areaCardsAr : areaCards).map((card, i) => (
               <Reveal key={card.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-5 h-full flex flex-col hover:shadow-md transition-shadow">
+                <div className="bg-white border border-border rounded-2xl p-5 h-full flex flex-col linear-card">
                   <h3 className="font-bold text-ink text-base mb-2">{card.h3}</h3>
                   <p className="text-sm text-ink-muted leading-relaxed flex-1 mb-4">{card.text}</p>
                   <Link

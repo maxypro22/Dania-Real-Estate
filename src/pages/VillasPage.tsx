@@ -340,7 +340,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 100}>
-                    <div className="bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow flex flex-col h-full">
+                    <div className="bg-white border border-border rounded-2xl p-7 linear-card flex flex-col h-full">
                       <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
                       <p className="text-ink-muted text-sm leading-relaxed mb-6 flex-1">{card.desc}</p>
                       <Link
@@ -404,7 +404,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                         <CheckCircle2 size={16} className="text-forest" />
                       </div>
@@ -544,7 +544,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((area, i) => (
                   <Reveal key={area.h3} direction="up" delay={160 + i * 60}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                       <p className="text-ink-muted text-xs leading-relaxed mb-4">{area.desc}</p>
                       <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -605,7 +605,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                         <CheckCircle2 size={16} className="text-forest" />
                       </div>
@@ -672,7 +672,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((link, i) => (
                   <Reveal key={link.href} direction="up" delay={160 + i * 100}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <h3 className="font-bold text-ink mb-2 text-sm">{link.label}</h3>
                       <p className="text-ink-muted text-xs leading-relaxed mb-4">{link.desc}</p>
                       <Link to={link.href} className="text-forest font-semibold text-xs hover:underline">
@@ -784,7 +784,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                         <CheckCircle2 size={16} className="text-forest" />
                       </div>
@@ -979,7 +979,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((area, i) => (
                   <Reveal key={area.h3} direction="up" delay={160 + i * 60}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                       <p className="text-ink-muted text-xs leading-relaxed mb-4">{area.desc}</p>
                       <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -1040,7 +1040,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                         <CheckCircle2 size={16} className="text-forest" />
                       </div>
@@ -1107,7 +1107,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((link, i) => (
                   <Reveal key={link.href} direction="up" delay={160 + i * 100}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <h3 className="font-bold text-ink mb-2 text-sm">{link.label}</h3>
                       <p className="text-ink-muted text-xs leading-relaxed mb-4">{link.desc}</p>
                       <Link to={link.href} className="text-forest font-semibold text-xs hover:underline">
@@ -1219,7 +1219,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                         <CheckCircle2 size={16} className="text-forest" />
                       </div>
@@ -1414,7 +1414,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((area, i) => (
                   <Reveal key={area.h3} direction="up" delay={160 + i * 60}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
                       <p className="text-ink-muted text-xs leading-relaxed mb-4">{area.desc}</p>
                       <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
@@ -1475,7 +1475,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
                         <CheckCircle2 size={16} className="text-forest" />
                       </div>
@@ -1542,7 +1542,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   },
                 ]).map((link, i) => (
                   <Reveal key={link.href} direction="up" delay={160 + i * 100}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <h3 className="font-bold text-ink mb-2 text-sm">{link.label}</h3>
                       <p className="text-ink-muted text-xs leading-relaxed mb-4">{link.desc}</p>
                       <Link to={link.href} className="text-forest font-semibold text-xs hover:underline">

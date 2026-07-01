@@ -1164,7 +1164,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {c.benefits.map((b, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className="bg-white rounded-xl p-6 border border-border h-full">
+                <div className="bg-white rounded-2xl p-6 border border-border h-full linear-card">
                   <div className="mb-3">{benefitIcons[i % benefitIcons.length]}</div>
                   <h3 className="font-bold text-ink mb-2">{b.h3}</h3>
                   <p className="text-ink-muted text-sm">{b.text}</p>
@@ -1254,7 +1254,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
               <Reveal key={i} direction="up" delay={i * 60}>
                 <Link
                   to={area.link}
-                  className="bg-white rounded-xl p-5 border border-border hover:border-forest transition-colors group block h-full"
+                  className="bg-white rounded-2xl p-5 border border-border group block h-full linear-card"
                 >
                   <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors text-sm">
                     {area.h3}
@@ -1279,7 +1279,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {c.whyCards.map((wc, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
-                <div className="bg-surface-low rounded-xl p-6 border border-border h-full">
+                <div className="bg-surface-low rounded-2xl p-6 border border-border h-full linear-card">
                   <div className="mb-3">{whyIcons[i % whyIcons.length]}</div>
                   <h3 className="font-bold text-ink mb-2">{wc.h3}</h3>
                   <p className="text-ink-muted text-sm">{wc.text}</p>
@@ -1361,7 +1361,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
               {c.bridges.slice(3).map((b, i) => (
                 <Reveal key={i} direction="up" delay={i * 80}>
-                  <div className="bg-white rounded-xl p-6 border border-border flex flex-col gap-4 h-full">
+                  <div className="bg-white rounded-2xl p-6 border border-border flex flex-col gap-4 h-full linear-card">
                     <h3 className="font-bold text-ink">{b.h3}</h3>
                     <p className="text-ink-muted text-sm flex-1">{b.text}</p>
                     <Link
