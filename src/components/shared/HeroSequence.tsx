@@ -30,9 +30,13 @@ export function HeroSequence() {
     letters: [...word].map(ch => ({ ch, i: _li++ })),
   }))
 
+  // Subtitle split into words for the scroll-scrubbed "written on scroll" reveal
+  const subtitleWords = t('home.hero.subtitle').split(' ')
+
   const sectionRef = useRef<HTMLElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const subtitleRef = useRef<HTMLParagraphElement>(null)
   const cueRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef(0)
   const currentRef = useRef(-1)
@@ -98,6 +102,21 @@ export function HeroSequence() {
         const fade = p < 0.55 ? 1 : Math.max(0, 1 - (p - 0.55) / 0.33)
         content.style.opacity = String(fade)
         content.style.transform = `translate3d(0, ${(-p * 64).toFixed(1)}px, 0)`
+      }
+      // Pitch-style: subtitle words brighten one after another as you scroll,
+      // and dim back when you scroll up — the same text, "written" on scroll.
+      const sub = subtitleRef.current
+      if (sub) {
+        const words = sub.querySelectorAll<HTMLElement>('[data-w]')
+        if (prefersReduced) {
+          words.forEach(el => { el.style.opacity = '1' })
+        } else {
+          const reveal = Math.min(Math.max(p / 0.42, 0), 1) * words.length
+          words.forEach((el, i) => {
+            const wp = Math.min(Math.max(reveal - i, 0), 1)
+            el.style.opacity = String(0.32 + 0.68 * wp)
+          })
+        }
       }
       const cue = cueRef.current
       if (cue) cue.style.opacity = String(Math.max(0, 1 - p / 0.12))
@@ -184,8 +203,12 @@ export function HeroSequence() {
                 )
               )}
             </h1>
-            <p className="text-white/75 text-base sm:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed">
-              {t('home.hero.subtitle')}
+            <p ref={subtitleRef} className="text-white text-base sm:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed">
+              {subtitleWords.map((w, i) => (
+                <span key={i} data-w className="transition-opacity duration-150 ease-out" style={{ opacity: 0.32 }}>
+                  {w}{i < subtitleWords.length - 1 ? ' ' : ''}
+                </span>
+              ))}
             </p>
             <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
               <Link to="/apartments-for-rent/"

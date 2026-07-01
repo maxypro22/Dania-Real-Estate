@@ -8,6 +8,8 @@ import {
 import { Reveal } from '@/components/shared/Reveal'
 import { LocationIcon } from '@/components/shared/LocationIcon'
 import { HeroSequence } from '@/components/shared/HeroSequence'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
 import { company, whyChooseUs } from '@/data/mockData'
 import imgDoha       from '@/assets/pexels-stephen-leonardi-587681991-34276136.webp'
 import imgAlSadd     from '@/assets/pexels-mr-location-scout-22994825-25525976.webp'
@@ -163,6 +165,37 @@ export function HomePage() {
         <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.services.h2')}</h2></Reveal>
         <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.services.subtitle')}</p></Reveal>
 
+        {/* Mobile: Pitch-style auto-advancing stacked deck */}
+        <div className="lg:hidden max-w-md mx-auto">
+          <StackedCards
+            items={[
+              { icon: Building2, title: t('home.services.apartments.title'), desc: t('home.services.apartments.desc'), cta: t('home.services.apartments.cta'), to: '/apartments-for-rent/', tone: 'light' },
+              { icon: Home,      title: t('home.services.villas.title'),     desc: t('home.services.villas.desc'),     cta: t('home.services.villas.cta'),     to: '/villas-for-rent/',          tone: 'light' },
+              { icon: Users,     title: t('home.services.staff.title'),      desc: t('home.services.staff.desc'),      cta: t('home.services.staff.cta'),      to: '/staff-accommodation/',      tone: 'forest' },
+              { icon: Store,     title: t('home.services.shops.title'),      desc: t('home.services.shops.desc'),      cta: t('home.services.shops.cta'),      to: '/shops-for-rent/',           tone: 'lime' },
+              { icon: LayoutGrid, title: t('home.services.studios.title'),   desc: t('home.services.studios.desc'),    cta: t('home.services.studios.cta'),    to: '/studio-partition-rentals/', tone: 'lime' },
+            ].map((c, i) => {
+              const Icon = c.icon
+              const forest = c.tone === 'forest'
+              const lime = c.tone === 'lime'
+              return (
+                <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : lime ? 'bg-lime-light border-lime/30' : 'bg-white border-border'}`}>
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                    <Icon size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                  </div>
+                  <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{c.title}</h3>
+                  <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{c.desc}</p>
+                  <Link to={c.to} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                    {c.cta} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                  </Link>
+                </div>
+              )
+            })}
+          />
+        </div>
+
+        {/* Desktop: full grid */}
+        <div className="hidden lg:block">
         {/* Row 1: 3 cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <Reveal delay={0}>
@@ -227,6 +260,7 @@ export function HomePage() {
               </Link>
             </div>
           </Reveal>
+        </div>
         </div>
       </section>
 
@@ -376,10 +410,26 @@ export function HomePage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.whyUs.h2')}</h2></Reveal>
           <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.whyUs.subtitle')}</p></Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          {/* Mobile: Apple-style carousel with dots + arrows */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={(isAr ? WHY_CHOOSE_US_AR : whyChooseUs).map((item, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{item.title}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            />
+          </div>
+
+          {/* Desktop: full grid */}
+          <div className="hidden lg:grid grid-cols-3 gap-4">
             {(isAr ? WHY_CHOOSE_US_AR : whyChooseUs).map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
+                <div className="bg-white rounded-2xl border border-border p-6 hover:shadow-md transition-shadow h-full">
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
                     <CheckCircle2 size={16} className="text-forest" />
                   </div>
@@ -398,46 +448,29 @@ export function HomePage() {
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.rentalSupport.h2')}</h2></Reveal>
           <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-lg mx-auto">{t('home.rentalSupport.subtitle')}</p></Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-            <Reveal delay={0}>
-              <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
-                <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
-                  <Home size={18} className="text-forest" />
-                </div>
-                <h3 className="font-bold text-ink mb-2">{isAr ? 'الإسكان العائلي السكني' : 'Residential Family Housing'}</h3>
-                <p className="text-ink-muted text-sm leading-relaxed">{isAr ? 'مجمعات ومساكن متعددة الغرف قريبة من المدارس والمراكز التجارية والمستشفيات.' : 'Dedicated compounds and multi-bedroom apartments situated near schools, supermarkets, and primary medical hubs.'}</p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
-                <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
-                  <Briefcase size={18} className="text-forest" />
-                </div>
-                <h3 className="font-bold text-ink mb-2">{isAr ? 'المهنيون العاملون' : 'Working Professionals'}</h3>
-                <p className="text-ink-muted text-sm leading-relaxed">{isAr ? 'استوديوهات حديثة وغرف فردية ووحدات أقسام متميزة قريبة من مراكز الأعمال ومحطات المترو.' : 'Modern, compact studios, single rooms, and premium partition units located near major business complexes and metro link stations.'}</p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <div className="bg-forest rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
-                <div className="w-10 h-10 bg-lime/20 rounded-xl flex items-center justify-center mb-4">
-                  <Users size={18} className="text-lime" />
-                </div>
-                <h3 className="font-bold text-lime mb-2">{isAr ? 'إسكان القوى العاملة المؤسسية' : 'Corporate Workforce Accommodations'}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{isAr ? 'إدارة شاملة لفلل الموظفين الكبيرة ومنشآت متكاملة وفق معايير الامتثال المؤسسي.' : 'Comprehensive management of large staff villas and fully equipped facilities built to strict enterprise compliance guidelines.'}</p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={240}>
-              <div className="bg-white rounded-2xl border border-border p-4 sm:p-6 hover:shadow-md transition-shadow h-full">
-                <div className="w-10 h-10 bg-lime-light rounded-xl flex items-center justify-center mb-4">
-                  <ShoppingBag size={18} className="text-forest" />
-                </div>
-                <h3 className="font-bold text-ink mb-2">{isAr ? 'أصحاب الأعمال التجارية' : 'Commercial Business Operators'}</h3>
-                <p className="text-ink-muted text-sm leading-relaxed">{isAr ? 'واجهات ومحلات تجارية للإيجار في الدوحة مصممة لضمان حركة مرور منتظمة للعملاء.' : 'Retail storefronts and commercial shops for rent in Doha tailored to secure steady customer traffic.'}</p>
-              </div>
-            </Reveal>
+          {/* Linear-style cards: larger format, soft glow, staggered scroll reveal */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {[
+              { icon: Home,        tone: 'light',  title: isAr ? 'الإسكان العائلي السكني' : 'Residential Family Housing',        desc: isAr ? 'مجمعات ومساكن متعددة الغرف قريبة من المدارس والمراكز التجارية والمستشفيات.' : 'Dedicated compounds and multi-bedroom apartments situated near schools, supermarkets, and primary medical hubs.' },
+              { icon: Briefcase,   tone: 'light',  title: isAr ? 'المهنيون العاملون' : 'Working Professionals',                   desc: isAr ? 'استوديوهات حديثة وغرف فردية ووحدات أقسام متميزة قريبة من مراكز الأعمال ومحطات المترو.' : 'Modern, compact studios, single rooms, and premium partition units located near major business complexes and metro link stations.' },
+              { icon: Users,       tone: 'forest', title: isAr ? 'إسكان القوى العاملة المؤسسية' : 'Corporate Workforce Accommodations', desc: isAr ? 'إدارة شاملة لفلل الموظفين الكبيرة ومنشآت متكاملة وفق معايير الامتثال المؤسسي.' : 'Comprehensive management of large staff villas and fully equipped facilities built to strict enterprise compliance guidelines.' },
+              { icon: ShoppingBag, tone: 'light',  title: isAr ? 'أصحاب الأعمال التجارية' : 'Commercial Business Operators',      desc: isAr ? 'واجهات ومحلات تجارية للإيجار في الدوحة مصممة لضمان حركة مرور منتظمة للعملاء.' : 'Retail storefronts and commercial shops for rent in Doha tailored to secure steady customer traffic.' },
+            ].map((c, i) => {
+              const Icon = c.icon
+              const forest = c.tone === 'forest'
+              return (
+                <Reveal key={i} delay={i * 90}>
+                  <div className={`group relative overflow-hidden rounded-2xl p-6 sm:p-7 min-h-[220px] h-full flex flex-col transition-all duration-300 hover:-translate-y-1 ${forest ? 'bg-forest' : 'bg-white border border-border hover:shadow-lg hover:shadow-forest/10'}`}>
+                    <div className={`pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${forest ? 'bg-lime/40' : 'bg-lime/20'}`} aria-hidden="true" />
+                    <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${forest ? 'bg-lime/20' : 'bg-lime-light'}`}>
+                      <Icon size={20} className={forest ? 'text-lime' : 'text-forest'} />
+                    </div>
+                    <h3 className={`relative font-bold mb-2 text-lg ${forest ? 'text-lime' : 'text-ink'}`}>{c.title}</h3>
+                    <p className={`relative text-sm leading-relaxed ${forest ? 'text-white/70' : 'text-ink-muted'}`}>{c.desc}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>

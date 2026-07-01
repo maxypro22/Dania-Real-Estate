@@ -38,6 +38,25 @@
   to { transform: rotate(360deg); }
 }
 
+/* Pitch-style stacked deck: front card pops up + fades in on each advance */
+@keyframes stacked-pop {
+  0%   { opacity: 0; transform: translateY(22px) scale(0.94); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.stacked-pop { animation: stacked-pop 560ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Segmented progress fill for the active deck card */
+@keyframes stacked-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.stacked-progress { animation: stacked-progress linear both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stacked-pop { animation: none; }
+  .stacked-progress { animation: none; transform: scaleX(1); }
+}
+
 /* ── Luxury brand wordmark: polished gold/copper letters ─────────────── */
 /* Slow gradient drift (the metallic "sheen" that travels across the fill) */
 @keyframes brand-shimmer {
