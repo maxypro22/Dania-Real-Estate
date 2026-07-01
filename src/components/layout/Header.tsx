@@ -1,10 +1,12 @@
 import { memo, useState, useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown, ChevronRight, ArrowUpRight } from 'lucide-react'
+import { Menu, X, ChevronDown, ChevronRight, ArrowUpRight, Mail, Phone, Clock } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher'
 import { WhatsappIcon } from '@/components/shared/WhatsappIcon'
+import { InstagramIcon } from '@/components/shared/InstagramIcon'
+import { FacebookIcon } from '@/components/shared/FacebookIcon'
 
 interface NavItem {
   to: string
@@ -150,7 +152,8 @@ const NavDropdown = memo(function NavDropdown({
 })
 
 export function Header() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isAr = i18n.language === 'ar'
   const { pathname } = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
@@ -187,6 +190,44 @@ export function Header() {
         loaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
     >
+      {/* Top utility bar — contact details + socials, same dark colour as the site background */}
+      <div className="bg-forest text-white/80 border-b border-white/10">
+        <div className="max-w-[1720px] mx-auto px-4 sm:px-6 h-9 flex items-center justify-between gap-3 text-xs">
+          {/* Contact details */}
+          <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+            <a href={`mailto:${company.email}`}
+              className="hidden sm:inline-flex items-center gap-1.5 min-w-0 hover:text-lime transition-colors">
+              <Mail size={13} className="text-lime shrink-0" />
+              <span className="truncate">{company.email}</span>
+            </a>
+            <span className="hidden lg:inline-flex items-center gap-1.5">
+              <Clock size={13} className="text-lime shrink-0" />
+              <span>{isAr ? 'الأحد–الخميس · ٨ص–٥م' : 'Sun–Thu · 8AM–5PM'}</span>
+            </span>
+            <a href={`tel:${company.phone.replace(/\s/g, '')}`}
+              className="inline-flex items-center gap-1.5 hover:text-lime transition-colors">
+              <Phone size={13} className="text-lime shrink-0" />
+              <span dir="ltr">{company.phone}</span>
+            </a>
+          </div>
+          {/* Social links */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <a href={company.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+              className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white/90 hover:bg-lime hover:text-forest transition-colors">
+              <InstagramIcon size={13} />
+            </a>
+            <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+              className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white/90 hover:bg-lime hover:text-forest transition-colors">
+              <WhatsappIcon size={13} />
+            </a>
+            <a href={company.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+              className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white/90 hover:bg-lime hover:text-forest transition-colors">
+              <FacebookIcon size={13} />
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-[1720px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <img

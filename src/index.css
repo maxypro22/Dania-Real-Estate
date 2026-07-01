@@ -102,14 +102,15 @@
   60%  { opacity: 1; }
   100% { opacity: 1; transform: translateY(0)     rotateX(0);     filter: blur(0); }
 }
-/* Shared polished-gold fill, with a near-white hotspot that reads as the
-   travelling specular highlight when the gradient position animates. */
+/* Warm lime -> brown brand fill. A soft light-lime lead keeps the letters
+   legible on the dark hero; the darker brown tail only ever drifts through
+   transiently (the ramp loops back to lime) so no letter sits dark-on-dark. */
 .brand-wordmark,
 .brand-letter {
   background-image: linear-gradient(
     100deg,
-    #B85420 0%, #C4622D 12%, #E89A52 26%, #FBE6C4 40%,
-    #FFFFFF 50%, #FBE6C4 60%, #E89A52 74%, #C4622D 88%, #B85420 100%
+    #F3D9BE 0%, #E89A52 20%, #C4622D 42%,
+    #A85226 60%, #7A3A1B 78%, #C4622D 100%
   );
   background-size: 220% auto;
   -webkit-background-clip: text;
