@@ -17,6 +17,9 @@ import {
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
+import { LocationIcon } from '@/components/shared/LocationIcon'
 import { usePageSchema } from '@/components/shared/Seo'
 import { faqPageSchema } from '@/lib/seo'
 
@@ -866,6 +869,11 @@ const categoryIcons = [
   <Home className="w-7 h-7 text-forest" />,
 ]
 
+// Icon components (for mobile deck/carousel treatments, where colour adapts)
+const categoryIconComps = [Building2, Layers, Home]
+const benefitIconComps = [Banknote, Home, MapPin, Wifi]
+const whyIconComps = [Star, ShieldCheck, MapPin, MessageCircle]
+
 // â"€â"€â"€ FAQ Accordion â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 
 function FAQAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
@@ -1117,7 +1125,28 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             <Reveal direction="up" delay={80}>
               <p className="text-ink-muted mb-8">{(c as ContentAll).categoriesIntro}</p>
             </Reveal>
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Mobile: Pitch-style stacked deck */}
+            <div className="lg:hidden max-w-md mx-auto">
+              <StackedCards
+                items={(c as ContentAll).categories.map((cat, i) => {
+                  const Icon = categoryIconComps[i]
+                  const forest = i === 0
+                  return (
+                    <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                        <Icon size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                      </div>
+                      <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{cat.h3}</h3>
+                      <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{cat.text}</p>
+                      <Link to={cat.to} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                        {cat.cta} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                      </Link>
+                    </div>
+                  )
+                })}
+              />
+            </div>
+            <div className="hidden lg:grid lg:grid-cols-3 gap-6">
               {(c as ContentAll).categories.map((cat, i) => (
                 <Reveal key={i} direction="up" delay={i * 100}>
                   <div
@@ -1161,7 +1190,24 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <Reveal direction="up" delay={80}>
             <p className="text-ink-muted mb-8">{c.benefitsIntro}</p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={c.benefits.map((b, i) => {
+                const Icon = benefitIconComps[i % benefitIconComps.length]
+                return (
+                  <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                    <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                      <Icon size={18} className="text-forest" />
+                    </div>
+                    <h3 className="font-bold text-ink mb-2 text-lg">{b.h3}</h3>
+                    <p className="text-ink-muted text-sm leading-relaxed">{b.text}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid lg:grid-cols-4 gap-5">
             {c.benefits.map((b, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className="bg-white rounded-2xl p-6 border border-border h-full linear-card">
@@ -1249,17 +1295,21 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             <p className="text-ink-muted mb-8">{c.areasParagraph}</p>
           </Reveal>
           {/* 8 local geography grid components */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {areas.map((area, i) => (
               <Reveal key={i} direction="up" delay={i * 60}>
-                <Link
-                  to={area.link}
-                  className="bg-white rounded-2xl p-5 border border-border group block h-full linear-card"
-                >
-                  <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors text-sm">
-                    {area.h3}
-                  </h3>
-                  <p className="text-ink-muted text-sm">{area.text}</p>
+                <Link to={area.link} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.text}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {isAr ? 'استكشف المنطقة' : 'Explore Area'} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}
@@ -1276,7 +1326,24 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <Reveal direction="up" delay={80}>
             <p className="text-ink-muted mb-8">{c.whyIntro}</p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={c.whyCards.map((wc, i) => {
+                const Icon = whyIconComps[i % whyIconComps.length]
+                return (
+                  <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                    <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                      <Icon size={18} className="text-forest" />
+                    </div>
+                    <h3 className="font-bold text-ink mb-2 text-lg">{wc.h3}</h3>
+                    <p className="text-ink-muted text-sm leading-relaxed">{wc.text}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid lg:grid-cols-4 gap-5">
             {c.whyCards.map((wc, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className="bg-surface-low rounded-2xl p-6 border border-border h-full linear-card">
@@ -1334,7 +1401,24 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           <Reveal direction="up" delay={80}>
             <p className="text-ink-muted mb-8">{c.bridgeIntro}</p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={c.bridges.map((b, i) => {
+                const forest = i === 0
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{b.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{b.text}</p>
+                    <Link to={b.to} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                      {b.cta} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                    </Link>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid lg:grid-cols-3 gap-5">
             {c.bridges.slice(0, 3).map((b, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div
@@ -1358,7 +1442,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             ))}
           </div>
           {c.bridges.length > 3 && (
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+            <div className="hidden lg:grid lg:grid-cols-3 gap-5 mt-5">
               {c.bridges.slice(3).map((b, i) => (
                 <Reveal key={i} direction="up" delay={i * 80}>
                   <div className="bg-white rounded-2xl p-6 border border-border flex flex-col gap-4 h-full linear-card">

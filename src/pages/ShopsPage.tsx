@@ -2,8 +2,11 @@
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
+import { LocationIcon } from '@/components/shared/LocationIcon'
 import { Link } from 'react-router-dom'
-import { CheckCircle2, ChevronDown, Store, Briefcase, Wrench, TrendingUp, Users, Eye, Truck, LayoutGrid, FileText, ShieldCheck, Wifi, Zap, Star, Building2 } from 'lucide-react'
+import { CheckCircle2, ChevronDown, Store, Briefcase, Wrench, TrendingUp, Users, Eye, Truck, LayoutGrid, FileText, ShieldCheck, Wifi, Zap, Star, Building2, ArrowRight } from 'lucide-react'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { usePageSchema } from '@/components/shared/Seo'
 import { faqPageSchema } from '@/lib/seo'
@@ -169,7 +172,7 @@ export function ShopsPage() {
               {isAr ? 'يعمل مكتبنا الاستشاري التجاري مباشرةً مع مشغّلي الأعمال المتنوعين لتأمين مواقع ذات ظهور عالٍ تدعم نمو المبيعات النشط.' : 'Our commercial advisory desk works directly with diverse business operators to secure high-visibility locations that support active sales growth.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
             {(isAr ? [
               {
                 icon: Store,
@@ -232,31 +235,22 @@ export function ShopsPage() {
                 desc: 'For localized startups and trade business owners looking for budget-conscious, highly practical shop units with low operational overhead.',
                 accent: false,
               },
-            ]).map((card, i) => (
-              <Reveal key={card.h3} delay={i * 80} direction="up">
-                <div
-                  className={`rounded-2xl p-6 h-full border linear-card ${
-                    card.accent
-                      ? 'bg-forest border-forest text-white'
-                      : 'bg-white border-border'
-                  }`}
-                >
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
-                      card.accent ? 'bg-lime' : 'bg-lime-light'
-                    }`}
-                  >
-                    <card.icon size={18} className={card.accent ? 'text-forest' : 'text-forest'} />
+            ]).map((card, i) => {
+              const Icon = card.icon
+              const forest = card.accent
+              return (
+                <Reveal key={card.h3} delay={i * 90}>
+                  <div className={`group relative overflow-hidden rounded-2xl p-6 sm:p-7 min-h-[220px] h-full flex flex-col transition-all duration-300 hover:-translate-y-1 ${forest ? 'bg-forest' : 'bg-white border border-border hover:shadow-lg hover:shadow-forest/10'}`}>
+                    <div className={`pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${forest ? 'bg-lime/40' : 'bg-lime/20'}`} aria-hidden="true" />
+                    <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${forest ? 'bg-lime/20' : 'bg-lime-light'}`}>
+                      <Icon size={20} className={forest ? 'text-lime' : 'text-forest'} />
+                    </div>
+                    <h3 className={`relative font-bold mb-2 text-lg ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`relative text-sm leading-relaxed ${forest ? 'text-white/70' : 'text-ink-muted'}`}>{card.desc}</p>
                   </div>
-                  <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>
-                    {card.h3}
-                  </h3>
-                  <p className={`text-xs leading-relaxed ${card.accent ? 'text-white/75' : 'text-ink-muted'}`}>
-                    {card.desc}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -314,8 +308,8 @@ export function ShopsPage() {
           </Reveal>
 
           {/* Feature cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
+          {(() => {
+            const cards = isAr ? [
               {
                 icon: Eye,
                 h3: 'ظهور عالٍ وواجهة على الطريق',
@@ -365,26 +359,53 @@ export function ShopsPage() {
                 desc: 'Navigate corporate contract terms confidently with clear guidance on fit-out grace periods, lease renewal security, and utility setups.',
                 accent: false,
               },
-            ]).map((card, i) => (
-              <Reveal key={card.h3} delay={i * 80} direction="up">
-                <div
-                  className={`rounded-2xl p-6 h-full border linear-card ${
-                    card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
-                  }`}
-                >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime-light'}`}>
-                    <card.icon size={18} className="text-forest" />
-                  </div>
-                  <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>
-                    {card.h3}
-                  </h3>
-                  <p className={`text-xs leading-relaxed ${card.accent ? 'text-white/75' : 'text-ink-muted'}`}>
-                    {card.desc}
-                  </p>
+            ]
+            return (
+              <>
+                {/* Mobile: Pitch-style stacked deck */}
+                <div className="lg:hidden max-w-md mx-auto">
+                  <StackedCards
+                    items={cards.map((card, i) => {
+                      const Icon = card.icon
+                      const forest = card.accent
+                      return (
+                        <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                          <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                            <Icon size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                          </div>
+                          <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                          <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                        </div>
+                      )
+                    })}
+                  />
                 </div>
-              </Reveal>
-            ))}
-          </div>
+
+                {/* Desktop grid */}
+                <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                  {cards.map((card, i) => (
+                    <Reveal key={card.h3} delay={i * 80} direction="up">
+                      <div
+                        className={`rounded-2xl p-6 h-full border linear-card ${
+                          card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
+                        }`}
+                      >
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime-light'}`}>
+                          <card.icon size={18} className="text-forest" />
+                        </div>
+                        <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>
+                          {card.h3}
+                        </h3>
+                        <p className={`text-xs leading-relaxed ${card.accent ? 'text-white/75' : 'text-ink-muted'}`}>
+                          {card.desc}
+                        </p>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )
+          })()}
         </div>
       </section>
 
@@ -398,8 +419,8 @@ export function ShopsPage() {
               {isAr ? 'خيارات المحلات التجارية لمختلف احتياجات الأعمال' : 'Commercial Shop Options for Different Business Needs'}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
+          {(() => {
+            const cards = isAr ? [
               {
                 icon: Building2,
                 h3: 'واجهات تجزئة على الشارع الرئيسي',
@@ -449,26 +470,53 @@ export function ShopsPage() {
                 desc: 'Large-scale commercial retail spaces featuring soaring ceilings, extensive display areas, and premium placement for high-end brands.',
                 accent: false,
               },
-            ]).map((card, i) => (
-              <Reveal key={card.h3} delay={i * 80} direction="up">
-                <div
-                  className={`rounded-2xl p-7 h-full border linear-card ${
-                    card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
-                  }`}
-                >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 ${card.accent ? 'bg-lime' : 'bg-lime-light'}`}>
-                    <card.icon size={18} className="text-forest" />
-                  </div>
-                  <h3 className={`font-bold text-lg mb-3 ${card.accent ? 'text-white' : 'text-ink'}`}>
-                    {card.h3}
-                  </h3>
-                  <p className={`text-sm leading-relaxed ${card.accent ? 'text-white/75' : 'text-ink-muted'}`}>
-                    {card.desc}
-                  </p>
+            ]
+            return (
+              <>
+                {/* Mobile: Pitch-style stacked deck */}
+                <div className="lg:hidden max-w-md mx-auto">
+                  <StackedCards
+                    items={cards.map((card, i) => {
+                      const Icon = card.icon
+                      const forest = card.accent
+                      return (
+                        <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                          <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                            <Icon size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                          </div>
+                          <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                          <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                        </div>
+                      )
+                    })}
+                  />
                 </div>
-              </Reveal>
-            ))}
-          </div>
+
+                {/* Desktop grid */}
+                <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                  {cards.map((card, i) => (
+                    <Reveal key={card.h3} delay={i * 80} direction="up">
+                      <div
+                        className={`rounded-2xl p-7 h-full border linear-card ${
+                          card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
+                        }`}
+                      >
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 ${card.accent ? 'bg-lime' : 'bg-lime-light'}`}>
+                          <card.icon size={18} className="text-forest" />
+                        </div>
+                        <h3 className={`font-bold text-lg mb-3 ${card.accent ? 'text-white' : 'text-ink'}`}>
+                          {card.h3}
+                        </h3>
+                        <p className={`text-sm leading-relaxed ${card.accent ? 'text-white/75' : 'text-ink-muted'}`}>
+                          {card.desc}
+                        </p>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )
+          })()}
         </div>
       </section>
 
@@ -487,7 +535,7 @@ export function ShopsPage() {
               {isAr ? 'تتناسب كثافة المشاة ونسب مواقف السيارات وأسعار الإيجار للواجهات التجارية بشكل طبيعي مع أسواقها الفرعية الحضرية. تدير دانية للعقارات خيارات التجزئة التجارية عبر هذه المناطق الاقتصادية الرئيسية:' : 'Pedestrian density, parking ratios, and lease rates for retail storefronts naturally match their urban sub-markets. Dania Real Estate manages commercial retail options across these primary economic zones:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {(isAr ? [
               {
                 h3: 'محلات للإيجار في الدوحة',
@@ -587,25 +635,20 @@ export function ShopsPage() {
                 accent: false,
               },
             ]).map((area, i) => (
-              <Reveal key={area.h3} delay={i * 60} direction="up">
-                <div
-                  className={`rounded-2xl p-6 h-full border linear-card flex flex-col ${
-                    area.accent ? 'bg-forest border-forest' : 'bg-white border-border'
-                  }`}
-                >
-                  <h3 className={`font-bold mb-2 text-sm ${area.accent ? 'text-white' : 'text-ink'}`}>
-                    {area.h3}
-                  </h3>
-                  <p className={`text-xs leading-relaxed mb-4 flex-1 ${area.accent ? 'text-white/75' : 'text-ink-muted'}`}>
-                    {area.desc}
-                  </p>
-                  <Link
-                    to={area.href}
-                    className={`text-xs font-semibold hover:underline ${area.accent ? 'text-lime' : 'text-forest'}`}
-                  >
-                    {isAr ? 'عرض العقارات ←' : 'View Properties →'}
-                  </Link>
-                </div>
+              <Reveal key={area.h3} delay={i * 60}>
+                <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {isAr ? 'عرض العقارات' : 'View Properties'} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -627,8 +670,8 @@ export function ShopsPage() {
               {isAr ? 'نُزيل المخاطر التشغيلية من عملية الحصول على العقارات التجارية من خلال ضمان المطابقة الإنشائية الدقيقة وشروط العقود الواضحة والتحقق من التقسيم الإداري.' : 'We eliminate operational risk from commercial property acquisition by ensuring exact structural matching, clear contract terms, and zoning verification.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
+          {(() => {
+            const cards = isAr ? [
               {
                 icon: Briefcase,
                 h3: 'فهم عميق للسوق التجاري',
@@ -678,26 +721,52 @@ export function ShopsPage() {
                 desc: 'Skip outdated online property portal listings. Connect directly via WhatsApp to receive unedited storefront media and space dimensions instantly.',
                 accent: false,
               },
-            ]).map((card, i) => (
-              <Reveal key={card.h3} delay={i * 80} direction="up">
-                <div
-                  className={`rounded-2xl p-6 h-full border linear-card ${
-                    card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
-                  }`}
-                >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime-light'}`}>
-                    <card.icon size={18} className="text-forest" />
-                  </div>
-                  <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>
-                    {card.h3}
-                  </h3>
-                  <p className={`text-xs leading-relaxed ${card.accent ? 'text-white/75' : 'text-ink-muted'}`}>
-                    {card.desc}
-                  </p>
+            ]
+            return (
+              <>
+                {/* Mobile: Apple-style carousel */}
+                <div className="lg:hidden">
+                  <CardCarousel
+                    items={cards.map((card, i) => {
+                      const Icon = card.icon
+                      return (
+                        <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                          <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                            <Icon size={18} className="text-forest" />
+                          </div>
+                          <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                          <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                        </div>
+                      )
+                    })}
+                  />
                 </div>
-              </Reveal>
-            ))}
-          </div>
+
+                {/* Desktop grid */}
+                <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                  {cards.map((card, i) => (
+                    <Reveal key={card.h3} delay={i * 80} direction="up">
+                      <div
+                        className={`rounded-2xl p-6 h-full border linear-card ${
+                          card.accent ? 'bg-forest border-forest' : 'bg-white border-border'
+                        }`}
+                      >
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime-light'}`}>
+                          <card.icon size={18} className="text-forest" />
+                        </div>
+                        <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>
+                          {card.h3}
+                        </h3>
+                        <p className={`text-xs leading-relaxed ${card.accent ? 'text-white/75' : 'text-ink-muted'}`}>
+                          {card.desc}
+                        </p>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )
+          })()}
         </div>
       </section>
 

@@ -18,6 +18,7 @@ import {
   Building2,
 } from 'lucide-react'
 import { Reveal } from '@/components/shared/Reveal'
+import { CardCarousel } from '@/components/shared/CardCarousel'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { company } from '@/data/mockData'
 
@@ -307,7 +308,25 @@ export function WhyChooseUsPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={trustCards.map((card, i) => {
+                const Icon = TRUST_ICONS[i]
+                return (
+                  <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                    <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                      <Icon size={18} className="text-forest" />
+                    </div>
+                    <h3 className="font-bold text-ink mb-2 text-lg">{card.title}</h3>
+                    <p className="text-ink-muted text-sm leading-relaxed">{card.text}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {trustCards.map((card, i) => {
               const Icon = TRUST_ICONS[i]
               const isAccent = i === 0
@@ -367,40 +386,19 @@ export function WhyChooseUsPage() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5">
             {clientCards.map((card, i) => {
               const Icon = CLIENT_ICONS[i]
-              const isAccent = CLIENT_ACCENTS[i]
+              const forest = CLIENT_ACCENTS[i]
               return (
-                <Reveal key={card.title} direction="up" delay={i * 80}>
-                  <div
-                    className={`rounded-2xl border p-8 hover:shadow-lg transition-shadow h-full ${
-                      isAccent
-                        ? 'bg-forest border-forest text-white'
-                        : 'bg-white border-border'
-                    }`}
-                  >
-                    <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 ${
-                        isAccent ? 'bg-lime/20' : 'bg-lime'
-                      }`}
-                    >
-                      <Icon size={20} className={isAccent ? 'text-lime' : 'text-forest'} />
+                <Reveal key={card.title} delay={i * 90}>
+                  <div className={`group relative overflow-hidden rounded-2xl p-6 sm:p-7 min-h-[220px] h-full flex flex-col transition-all duration-300 hover:-translate-y-1 ${forest ? 'bg-forest' : 'bg-white border border-border hover:shadow-lg hover:shadow-forest/10'}`}>
+                    <div className={`pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${forest ? 'bg-lime/40' : 'bg-lime/20'}`} aria-hidden="true" />
+                    <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${forest ? 'bg-lime/20' : 'bg-lime-light'}`}>
+                      <Icon size={20} className={forest ? 'text-lime' : 'text-forest'} />
                     </div>
-                    <h3
-                      className={`font-bold text-xl mb-3 ${
-                        isAccent ? 'text-white' : 'text-ink'
-                      }`}
-                    >
-                      {card.title}
-                    </h3>
-                    <p
-                      className={`leading-relaxed ${
-                        isAccent ? 'text-white/70' : 'text-ink-muted'
-                      }`}
-                    >
-                      {card.text}
-                    </p>
+                    <h3 className={`relative font-bold mb-2 text-lg ${forest ? 'text-lime' : 'text-ink'}`}>{card.title}</h3>
+                    <p className={`relative text-sm leading-relaxed ${forest ? 'text-white/70' : 'text-ink-muted'}`}>{card.text}</p>
                   </div>
                 </Reveal>
               )
@@ -519,7 +517,22 @@ export function WhyChooseUsPage() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={blocks.map((block, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{block.title}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{block.text}</p>
+                </div>
+              ))}
+            />
+          </div>
+
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 gap-5">
             {blocks.map((block, i) => (
               <Reveal key={block.title} direction="up" delay={i * 100}>
                 <div className="bg-white rounded-2xl border border-border p-8 linear-card h-full">

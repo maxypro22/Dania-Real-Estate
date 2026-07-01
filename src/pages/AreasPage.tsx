@@ -9,6 +9,8 @@ import {
 import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/shared/Reveal'
 import { LocationIcon } from '@/components/shared/LocationIcon'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
 import { company, areas } from '@/data/mockData'
 
 // =====================================================================
@@ -757,41 +759,24 @@ export function AreasPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {AREA_CARDS.map((card, i) => {
-              const delay = (i % 3) * 80
-              return (
-                <Reveal key={card.slug} direction="up" delay={delay}>
-                  <div className="group relative rounded-2xl border border-border p-6 flex flex-col h-full bg-white overflow-hidden shadow-sm hover:shadow-2xl active:shadow-sm hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300">
-                    {/* sweep fill – GPU transform */}
-                    <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
-
-                    {/* Luxury location badge */}
-                    <div className="relative z-10 mb-4 inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-lg shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
-                      <LocationIcon size={22} />
-                    </div>
-
-                    {/* Name */}
-                    <h3 className="relative z-10 text-base font-bold mb-2 text-ink group-hover:text-white group-active:text-white transition-colors duration-300">
-                      {L(card.name)}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="relative z-10 text-sm leading-relaxed mb-4 flex-1 text-ink-muted group-hover:text-white/70 group-active:text-white/70 transition-colors duration-300">
-                      {L(card.text)}
-                    </p>
-
-                    {/* View button */}
-                    <Link
-                      to={`/areas/${card.slug}/`}
-                      className="relative z-10 mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-forest group-hover:text-lime transition-colors duration-300"
-                    >
-                      {L(card.button)} <ArrowRight size={14} />
-                    </Link>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {AREA_CARDS.map((card, i) => (
+              <Reveal key={card.slug} delay={i * 60}>
+                <Link to={`/areas/${card.slug}/`} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
                   </div>
-                </Reveal>
-              )
-            })}
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{L(card.name)}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{L(card.text)}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {L(card.button)} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -811,7 +796,19 @@ export function AreasPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={RIGHT_AREA.cards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <h3 className="font-bold text-ink mb-2 text-lg">{L(card.title)}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{L(card.body)}</p>
+                </div>
+              ))}
+            />
+          </div>
+
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {RIGHT_AREA.cards.map((card, i) => (
               <Reveal key={card.title.en} direction="up" delay={i * 80}>
                 <div className="bg-white rounded-2xl border border-border p-6 h-full">
@@ -875,7 +872,19 @@ export function AreasPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={WHY.cards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <h3 className="font-bold text-ink mb-2 text-lg">{L(card.title)}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{L(card.body)}</p>
+                </div>
+              ))}
+            />
+          </div>
+
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {WHY.cards.map((card, i) => (
               <Reveal key={card.title.en} direction="up" delay={i * 80}>
                 <div className="bg-white rounded-2xl border border-border p-6 h-full">
@@ -897,7 +906,25 @@ export function AreasPage() {
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={HOW.steps.map((step, i) => {
+                const forest = i === 0
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 font-black ${forest ? 'bg-lime/20 text-lime' : 'bg-lime text-forest'}`}>
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{L(step.title)}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{L(step.body)}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {HOW.steps.map((step, i) => (
               <Reveal key={step.title.en} direction="up" delay={i * 80}>
                 <div className="bg-surface-low rounded-2xl border border-border p-6 h-full">

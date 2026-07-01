@@ -13,10 +13,14 @@ import {
   Users,
   Building2,
   DollarSign,
+  ArrowRight,
 } from 'lucide-react'
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
+import { LocationIcon } from '@/components/shared/LocationIcon'
 
 // â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 // STAFF ACCOMMODATION (main) data
@@ -144,6 +148,107 @@ function StaffAccommodationMain() {
   const mainFaqs = t('staff.mainFaqs', { returnObjects: true }) as Array<{q: string, a: string}>
   usePageSchema([faqPageSchema(mainFaqs)])
 
+  const priorityCards = [
+    {
+      icon: <Shield size={20} />,
+      h3: isAr ? 'الامتثال التنظيمي الموثق' : 'Verified Regulatory Compliance',
+      desc: isAr
+        ? 'نُعطي الأولوية للمساحات السكنية التي تحمل شهادات الدفاع المدني السارية وتمتثل تماماً لأحدث إرشادات كثافة وزارة العمل القطرية.'
+        : 'We prioritize residential spaces that hold active Civil Defense certificates and fully comply with the latest Qatar Ministry of Labor density guidelines.',
+      accent: false,
+    },
+    {
+      icon: <Car size={20} />,
+      h3: isAr ? 'سهولة الوصول بالمركبات' : 'Fleet Transport Accessibility',
+      desc: isAr
+        ? 'نحدد العقارات القريبة من مناطق انتظار الحافلات الواضحة ومسارات الطرق السريعة الرئيسية وحلقات الخدمة الصناعية المخصصة.'
+        : 'We isolate properties located near clear bus loading bays, major highway arterial paths, and dedicated industrial service loops.',
+      accent: false,
+    },
+    {
+      icon: <DollarSign size={20} />,
+      h3: isAr ? 'الاستقرار طويل الأمد بتكلفة فعالة' : 'Cost-Efficient Long-Term Stability',
+      desc: isAr
+        ? 'أبرم عقود إيجار مؤسسية متعددة السنوات واضحة وقابلة للتنبؤ تحمي شركتك من ارتفاعات الإيجار المفاجئة أو تكاليف الانتقال غير المتوقعة.'
+        : 'Secure clear, predictable multi-year corporate leases that protect your company from sudden rent spikes or unexpected relocation costs.',
+      accent: true,
+    },
+    {
+      icon: <FileText size={20} />,
+      h3: isAr ? 'شفافية العمليات المؤسسية' : 'Transparent Corporate Operations',
+      desc: isAr
+        ? 'احصل على اتصالات واضحة مع الملاك وشهادات بلدية الإيجار الرسمية وشروط صريحة لتخصيص المرافق منذ اليوم الأول.'
+        : 'Access clear landlord communications, official Baladiya tenancy attestations, and explicit terms on utility allocations from day one.',
+      accent: false,
+    },
+  ]
+
+  const housingOptions = [
+    {
+      h3: isAr ? 'مجمعات سكن العمالة' : 'Workforce Accommodation Blocks',
+      desc: isAr
+        ? 'أنظمة إسكان متعددة الوحدات قابلة للتوسع وعالية الكفاءة مُصممة لمتطلبات الفرق عالية الكثافة ولوجستيات المواقع المباشرة.'
+        : 'Scalable, highly efficient multi-unit housing systems tailored for high-density team requirements and direct site logistics.',
+      href: null,
+      accent: false,
+    },
+    {
+      h3: isAr ? 'فلل الموظفين' : 'Staff Villas',
+      desc: isAr
+        ? 'خيارات عقارية مستقلة أكبر مُصممة للفرق التقنية أو الكوادر الطبية أو المشرفين من المستوى المتوسط الذين يفضلون تخطيط المنزل المشترك.'
+        : 'Larger, independent property options designed for technical teams, medical staff, or mid-level supervisors who thrive in a shared house layout.',
+      href: '/staff-accommodation/staff-villas/',
+      accent: true,
+    },
+    {
+      h3: isAr ? 'شقق الموظفين التنفيذية' : 'Executive Staff Apartments',
+      desc: isAr
+        ? 'وحدات سكنية متميزة تقع في مواقع مركزية مُصممة للمديرين التنفيذيين والمديرين والمهنيين المؤسسيين المكتبيين.'
+        : 'Premium, centrally located residential units engineered for senior executives, managers, and office-based corporate professionals.',
+      href: null,
+      accent: false,
+    },
+    {
+      h3: isAr ? 'إسكان المشاريع طويلة الأمد' : 'Long-Term Project Housing',
+      desc: isAr
+        ? 'حلول عقارية مستقرة متعددة السنوات مبنية لتتوافق تماماً مع عقود البنية التحتية طويلة الأمد وعمليات المؤسسة.'
+        : 'Stable, multi-year property solutions built to align perfectly with long-term infrastructure contracts and enterprise operations.',
+      href: null,
+      accent: false,
+    },
+  ]
+
+  const whyCards = [
+    {
+      h3: isAr ? 'خبرة حقيقية في مجال B2B المؤسسي' : 'True Corporate B2B Domain Expertise',
+      desc: isAr
+        ? 'نتجاوز قوائم العائلات غير ذات الصلة لنربط فريق المشتريات لديك مباشرةً بشبكات الملاك المؤسسيين الموثقين والأصول التجارية.'
+        : 'We bypass irrelevant family listings to connect your procurement team directly with verified corporate landlord networks and commercial assets.',
+      accent: false,
+    },
+    {
+      h3: isAr ? 'رسم خرائط الخدمات اللوجستية ومسارات العبور' : 'Logistical and Transit Route Mapping',
+      desc: isAr
+        ? 'يُقيّم مستشارونا كل خيار عقاري مقابل أنماط سفر فريقك اليومية وسلامة تحميل الحافلات وخطوط الاتصال بالموقع.'
+        : 'Our consultants evaluate every property choice against your daily team travel patterns, bus loading safety, and site connection lines.',
+      accent: false,
+    },
+    {
+      h3: isAr ? 'مراجعات عقود تنظيمية شاملة' : 'Complete Regulatory Contract Reviews',
+      desc: isAr
+        ? 'نضمن أن جميع تطابقات العقارات تحمل شهادات الدفاع المدني السارية ويمكنها إتمام شهادات إيجار الشركة البلدية الرسمية بسلاسة.'
+        : 'We ensure all property matches hold valid Civil Defense certificates and can complete official Baladiya company lease attestations smoothly.',
+      accent: true,
+    },
+    {
+      h3: isAr ? 'قناة المشتريات المباشرة عبر واتساب' : 'Direct WhatsApp Procurement Channel',
+      desc: isAr
+        ? 'تجاوز حلقات الاستفسار البطيئة والآلية. تواصل مباشرةً مع مدير حساب مؤسسي مخصص عبر واتساب لتلقي جداول الشواغر الفورية على الفور.'
+        : 'Skip slow, automated inquiry loops. Connect directly with a dedicated corporate account manager via WhatsApp to receive real-time vacancy spreadsheets instantly.',
+      accent: false,
+    },
+  ]
+
   return (
     <>
       {/* â"€â"€ SECTION 1: HERO â"€â"€ */}
@@ -266,7 +371,7 @@ function StaffAccommodationMain() {
                 : 'Our commercial leasing desk coordinates directly with key company stakeholders to ensure smooth team placement and operational continuity.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {[
               {
                 h3: isAr ? 'مسؤولو المشتريات المؤسسية' : 'Corporate Procurement Leads',
@@ -296,17 +401,21 @@ function StaffAccommodationMain() {
                   : 'For regional operation leads requiring predictable, compliant employee housing networks to back up retail, hospitality, or security services.',
                 accent: false,
               },
-            ].map((card, i) => (
-              <Reveal key={i} direction="up" delay={i * 80}>
-                <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime'}`}>
-                    <CheckCircle2 size={16} className="text-forest" />
+            ].map((card, i) => {
+              const forest = card.accent
+              return (
+              <Reveal key={i} delay={i * 90}>
+                <div className={`group relative overflow-hidden rounded-2xl p-6 sm:p-7 min-h-[220px] h-full flex flex-col transition-all duration-300 hover:-translate-y-1 ${forest ? 'bg-forest' : 'bg-white border border-border hover:shadow-lg hover:shadow-forest/10'}`}>
+                  <div className={`pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${forest ? 'bg-lime/40' : 'bg-lime/20'}`} aria-hidden="true" />
+                  <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${forest ? 'bg-lime/20' : 'bg-lime-light'}`}>
+                    <CheckCircle2 size={20} className={forest ? 'text-lime' : 'text-forest'} />
                   </div>
-                  <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>{card.h3}</h3>
-                  <p className={`text-xs leading-relaxed ${card.accent ? 'text-white/70' : 'text-ink-muted'}`}>{card.desc}</p>
+                  <h3 className={`relative font-bold mb-2 text-lg ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                  <p className={`relative text-sm leading-relaxed ${forest ? 'text-white/70' : 'text-ink-muted'}`}>{card.desc}</p>
                 </div>
               </Reveal>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -326,41 +435,25 @@ function StaffAccommodationMain() {
                 : 'Successful corporate housing setups depend on structural safety, ease of transportation, and clear legal paperwork.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              {
-                icon: <Shield size={20} />,
-                h3: isAr ? 'الامتثال التنظيمي الموثق' : 'Verified Regulatory Compliance',
-                desc: isAr
-                  ? 'نُعطي الأولوية للمساحات السكنية التي تحمل شهادات الدفاع المدني السارية وتمتثل تماماً لأحدث إرشادات كثافة وزارة العمل القطرية.'
-                  : 'We prioritize residential spaces that hold active Civil Defense certificates and fully comply with the latest Qatar Ministry of Labor density guidelines.',
-                accent: false,
-              },
-              {
-                icon: <Car size={20} />,
-                h3: isAr ? 'سهولة الوصول بالمركبات' : 'Fleet Transport Accessibility',
-                desc: isAr
-                  ? 'نحدد العقارات القريبة من مناطق انتظار الحافلات الواضحة ومسارات الطرق السريعة الرئيسية وحلقات الخدمة الصناعية المخصصة.'
-                  : 'We isolate properties located near clear bus loading bays, major highway arterial paths, and dedicated industrial service loops.',
-                accent: false,
-              },
-              {
-                icon: <DollarSign size={20} />,
-                h3: isAr ? 'الاستقرار طويل الأمد بتكلفة فعالة' : 'Cost-Efficient Long-Term Stability',
-                desc: isAr
-                  ? 'أبرم عقود إيجار مؤسسية متعددة السنوات واضحة وقابلة للتنبؤ تحمي شركتك من ارتفاعات الإيجار المفاجئة أو تكاليف الانتقال غير المتوقعة.'
-                  : 'Secure clear, predictable multi-year corporate leases that protect your company from sudden rent spikes or unexpected relocation costs.',
-                accent: true,
-              },
-              {
-                icon: <FileText size={20} />,
-                h3: isAr ? 'شفافية العمليات المؤسسية' : 'Transparent Corporate Operations',
-                desc: isAr
-                  ? 'احصل على اتصالات واضحة مع الملاك وشهادات بلدية الإيجار الرسمية وشروط صريحة لتخصيص المرافق منذ اليوم الأول.'
-                  : 'Access clear landlord communications, official Baladiya tenancy attestations, and explicit terms on utility allocations from day one.',
-                accent: false,
-              },
-            ].map((card, i) => (
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={priorityCards.map((card, i) => {
+                const forest = card.accent
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                      <span className={forest ? 'text-lime' : 'text-forest'}>{card.icon}</span>
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {priorityCards.map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${card.accent ? 'bg-lime' : 'bg-lime'}`}>
@@ -390,41 +483,27 @@ function StaffAccommodationMain() {
                 : 'We tailor our property matches to fit the specific organizational hierarchy and operational needs of your enterprise.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              {
-                h3: isAr ? 'مجمعات سكن العمالة' : 'Workforce Accommodation Blocks',
-                desc: isAr
-                  ? 'أنظمة إسكان متعددة الوحدات قابلة للتوسع وعالية الكفاءة مُصممة لمتطلبات الفرق عالية الكثافة ولوجستيات المواقع المباشرة.'
-                  : 'Scalable, highly efficient multi-unit housing systems tailored for high-density team requirements and direct site logistics.',
-                href: null,
-                accent: false,
-              },
-              {
-                h3: isAr ? 'فلل الموظفين' : 'Staff Villas',
-                desc: isAr
-                  ? 'خيارات عقارية مستقلة أكبر مُصممة للفرق التقنية أو الكوادر الطبية أو المشرفين من المستوى المتوسط الذين يفضلون تخطيط المنزل المشترك.'
-                  : 'Larger, independent property options designed for technical teams, medical staff, or mid-level supervisors who thrive in a shared house layout.',
-                href: '/staff-accommodation/staff-villas/',
-                accent: true,
-              },
-              {
-                h3: isAr ? 'شقق الموظفين التنفيذية' : 'Executive Staff Apartments',
-                desc: isAr
-                  ? 'وحدات سكنية متميزة تقع في مواقع مركزية مُصممة للمديرين التنفيذيين والمديرين والمهنيين المؤسسيين المكتبيين.'
-                  : 'Premium, centrally located residential units engineered for senior executives, managers, and office-based corporate professionals.',
-                href: null,
-                accent: false,
-              },
-              {
-                h3: isAr ? 'إسكان المشاريع طويلة الأمد' : 'Long-Term Project Housing',
-                desc: isAr
-                  ? 'حلول عقارية مستقرة متعددة السنوات مبنية لتتوافق تماماً مع عقود البنية التحتية طويلة الأمد وعمليات المؤسسة.'
-                  : 'Stable, multi-year property solutions built to align perfectly with long-term infrastructure contracts and enterprise operations.',
-                href: null,
-                accent: false,
-              },
-            ].map((card, i) => (
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={housingOptions.map((card, i) => {
+                const forest = card.accent
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${card.href ? 'mb-5' : ''} ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                    {card.href && (
+                      <Link to={card.href} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                        {isAr ? 'عرض فلل الموظفين' : 'View Staff Villas'} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                      </Link>
+                    )}
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {housingOptions.map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className={`rounded-2xl p-6 h-full linear-card flex flex-col ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <h3 className={`font-bold mb-2 text-sm ${card.accent ? 'text-white' : 'text-ink'}`}>{card.h3}</h3>
@@ -459,7 +538,7 @@ function StaffAccommodationMain() {
                 : 'Transportation efficiencies, local zone rules, and property configurations for corporate housing naturally match their local industrial and urban sub-markets. Dania Real Estate manages active B2B profiles across these critical sectors:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 h3: isAr ? 'سكن العمال في الدوحة' : 'Staff Accommodation in Doha',
@@ -518,14 +597,20 @@ function StaffAccommodationMain() {
                 href: '/areas/al-kharaitiyat/',
               },
             ].map((area, i) => (
-              <Reveal key={i} direction="up" delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
-                  <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                  <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
-                  <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
-                    {isAr ? 'عرض العقارات ←' : 'View Properties →'}
-                  </Link>
-                </div>
+              <Reveal key={i} delay={i * 60}>
+                <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {isAr ? 'عرض العقارات' : 'View Properties'} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -547,37 +632,22 @@ function StaffAccommodationMain() {
                 : 'We eliminate the complexity from corporate leasing by focusing heavily on legal compliance, proper zone mapping, and clear cost structures.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              {
-                h3: isAr ? 'خبرة حقيقية في مجال B2B المؤسسي' : 'True Corporate B2B Domain Expertise',
-                desc: isAr
-                  ? 'نتجاوز قوائم العائلات غير ذات الصلة لنربط فريق المشتريات لديك مباشرةً بشبكات الملاك المؤسسيين الموثقين والأصول التجارية.'
-                  : 'We bypass irrelevant family listings to connect your procurement team directly with verified corporate landlord networks and commercial assets.',
-                accent: false,
-              },
-              {
-                h3: isAr ? 'رسم خرائط الخدمات اللوجستية ومسارات العبور' : 'Logistical and Transit Route Mapping',
-                desc: isAr
-                  ? 'يُقيّم مستشارونا كل خيار عقاري مقابل أنماط سفر فريقك اليومية وسلامة تحميل الحافلات وخطوط الاتصال بالموقع.'
-                  : 'Our consultants evaluate every property choice against your daily team travel patterns, bus loading safety, and site connection lines.',
-                accent: false,
-              },
-              {
-                h3: isAr ? 'مراجعات عقود تنظيمية شاملة' : 'Complete Regulatory Contract Reviews',
-                desc: isAr
-                  ? 'نضمن أن جميع تطابقات العقارات تحمل شهادات الدفاع المدني السارية ويمكنها إتمام شهادات إيجار الشركة البلدية الرسمية بسلاسة.'
-                  : 'We ensure all property matches hold valid Civil Defense certificates and can complete official Baladiya company lease attestations smoothly.',
-                accent: true,
-              },
-              {
-                h3: isAr ? 'قناة المشتريات المباشرة عبر واتساب' : 'Direct WhatsApp Procurement Channel',
-                desc: isAr
-                  ? 'تجاوز حلقات الاستفسار البطيئة والآلية. تواصل مباشرةً مع مدير حساب مؤسسي مخصص عبر واتساب لتلقي جداول الشواغر الفورية على الفور.'
-                  : 'Skip slow, automated inquiry loops. Connect directly with a dedicated corporate account manager via WhatsApp to receive real-time vacancy spreadsheets instantly.',
-                accent: false,
-              },
-            ].map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={whyCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {whyCards.map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">

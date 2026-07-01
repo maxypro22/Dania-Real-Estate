@@ -4,9 +4,12 @@ import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { Link } from 'react-router-dom'
-import { CheckCircle2, ChevronDown, Sofa, Zap, Car, ShieldCheck, Utensils, Wifi } from 'lucide-react'
+import { CheckCircle2, ChevronDown, Sofa, Zap, Car, ShieldCheck, Utensils, Wifi, ArrowRight } from 'lucide-react'
 import { usePageSchema } from '@/components/shared/Seo'
 import { faqPageSchema } from '@/lib/seo'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
+import { LocationIcon } from '@/components/shared/LocationIcon'
 
 interface Props { filter: 'all' | '1-bedroom' | '2-bedroom' | '3-bedroom' }
 
@@ -238,7 +241,24 @@ function AllApartmentsContent() {
               {t('apartments.all.categoriesSubtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={categories.map((card, i) => {
+                const forest = i === 0
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                    <Link to={categoryHrefs[i]} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                      {card.btn} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                    </Link>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 gap-6">
             {categories.map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
                 <div className="bg-white border border-border rounded-2xl p-7 linear-card flex flex-col h-full">
@@ -268,7 +288,21 @@ function AllApartmentsContent() {
               {t('apartments.all.considerSubtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={consider.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {consider.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${i === 0 ? 'border-l-4 border-l-forest' : ''}`}>
@@ -295,16 +329,22 @@ function AllApartmentsContent() {
               {t('apartments.all.areasSubtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {areaItems.map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
-                  <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                  <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
-                  <Link to={areaHrefs[i]} className="text-forest font-semibold text-xs hover:underline">
-                    {t('common.viewProperties')}
-                  </Link>
-                </div>
+                <Link to={areaHrefs[i]} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {t('common.viewProperties')} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -322,7 +362,21 @@ function AllApartmentsContent() {
               {t('apartments.all.whySubtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={why.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {why.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${i === 0 ? 'border-t-4 border-t-forest' : ''}`}>
@@ -352,7 +406,21 @@ function AllApartmentsContent() {
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-10">{t('apartments.all.needsH2')}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={needs.map((card, i) => {
+                const forest = i === 0
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 gap-6">
             {needs.map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
                 <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${i === 0 ? 'border-l-4 border-l-forest' : ''}`}>

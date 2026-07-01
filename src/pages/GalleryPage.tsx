@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { CheckCircle2, ChevronDown, ChevronUp, Eye, Camera, LayoutGrid, ArrowRight } from 'lucide-react'
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
+import { StackedCards } from '@/components/shared/StackedCards'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -395,38 +396,59 @@ export function GalleryPage() {
             </p>
           </Reveal>
 
-          {/* Row 1: 3 cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
-            {CATEGORIES.slice(0, 3).map((cat, i) => (
-              <Reveal key={cat.title} direction="up" delay={i * 100}>
-                <Link
-                  to={cat.href}
-                  className="block bg-white rounded-2xl border border-border p-6 linear-card group h-full"
-                >
-                  <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="text-sm text-ink-muted leading-relaxed">{cat.description}</p>
-                </Link>
-              </Reveal>
-            ))}
+          {/* Mobile: Pitch-style stacked deck (all 5 categories) */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={CATEGORIES.map((cat, i) => {
+                const forest = i === 0
+                return (
+                  <div key={cat.title} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{cat.title}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{cat.description}</p>
+                    <Link to={cat.href} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                      {isAr ? 'استكشف' : 'Explore'} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                    </Link>
+                  </div>
+                )
+              })}
+            />
           </div>
 
-          {/* Row 2: 2 cards centered */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-5 lg:w-2/3 lg:mx-auto">
-            {CATEGORIES.slice(3).map((cat, i) => (
-              <Reveal key={cat.title} direction="up" delay={(i + 3) * 100}>
-                <Link
-                  to={cat.href}
-                  className="block bg-white rounded-2xl border border-border p-6 linear-card group h-full"
-                >
-                  <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="text-sm text-ink-muted leading-relaxed">{cat.description}</p>
-                </Link>
-              </Reveal>
-            ))}
+          {/* Desktop: two-row grid (unchanged, lg only) */}
+          <div className="hidden lg:block">
+            {/* Row 1: 3 cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+              {CATEGORIES.slice(0, 3).map((cat, i) => (
+                <Reveal key={cat.title} direction="up" delay={i * 100}>
+                  <Link
+                    to={cat.href}
+                    className="block bg-white rounded-2xl border border-border p-6 linear-card group h-full"
+                  >
+                    <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors">
+                      {cat.title}
+                    </h3>
+                    <p className="text-sm text-ink-muted leading-relaxed">{cat.description}</p>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Row 2: 2 cards centered */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-5 lg:w-2/3 lg:mx-auto">
+              {CATEGORIES.slice(3).map((cat, i) => (
+                <Reveal key={cat.title} direction="up" delay={(i + 3) * 100}>
+                  <Link
+                    to={cat.href}
+                    className="block bg-white rounded-2xl border border-border p-6 linear-card group h-full"
+                  >
+                    <h3 className="font-bold text-ink mb-2 group-hover:text-forest transition-colors">
+                      {cat.title}
+                    </h3>
+                    <p className="text-sm text-ink-muted leading-relaxed">{cat.description}</p>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -509,7 +531,27 @@ export function GalleryPage() {
               {t('gallery.howItHelps.h2')}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={HOW_IT_HELPS.map((item, i) => {
+                const Icon = item.icon
+                const forest = i === 0
+                return (
+                  <div key={item.title} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                      <Icon size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{item.title}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{item.description}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          {/* Desktop: grid (unchanged, lg only) */}
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {HOW_IT_HELPS.map((item, i) => {
               const Icon = item.icon
               return (

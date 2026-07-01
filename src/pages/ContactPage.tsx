@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Building2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Reveal } from '@/components/shared/Reveal'
+import { StackedCards } from '@/components/shared/StackedCards'
 import { company } from '@/data/mockData'
 import { usePageSchema } from '@/components/shared/Seo'
 import { contactPageSchema } from '@/lib/seo'
@@ -286,7 +287,30 @@ export function ContactPage() {
           <Reveal direction="up">
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-2">{t('contact.segments.h2')}</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto mt-8">
+            <StackedCards
+              items={segments.map((seg, i) => {
+                const forest = i === 0
+                return (
+                  <div key={seg.title} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                      <Building2 size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{seg.title}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${seg.href ? 'mb-5 ' : ''}${forest ? 'text-white/75' : 'text-ink-muted'}`}>{seg.desc}</p>
+                    {seg.href && (
+                      <Link to={seg.href} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                        {seg.action} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                      </Link>
+                    )}
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          <div className="hidden lg:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             {segments.map((seg, i) => (
               <Reveal key={seg.title} direction="up" delay={i * 80}>
                 {seg.href ? (
