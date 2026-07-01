@@ -22,6 +22,9 @@ import {
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
+import { LocationIcon } from '@/components/shared/LocationIcon'
 
 // ─── S3 Rental Focus cards ───────────────────────────────────────────────────
 const rentalFocusCards = [
@@ -353,48 +356,42 @@ export function AboutPage() {
               {t('about.rentalFocus.subtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Mobile: Pitch-style stacked deck (matches home Full-Service section) */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={rentalFocusCards.map((card, i) => {
+                const Icon = card.icon
+                const forest = i === 0
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                      <Icon size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{rentalFocusTexts[i]?.title ?? card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{rentalFocusTexts[i]?.text ?? card.text}</p>
+                    <Link to={card.link} className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                      {isAr ? 'عرض العقارات' : 'View listings'} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                    </Link>
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          {/* Desktop: grid */}
+          <div className="hidden lg:grid grid-cols-3 gap-5">
             {rentalFocusCards.map((card, i) => {
               const Icon = card.icon
               const isAccent = i === 0
               return (
                 <Reveal key={card.h3} delay={i * 80}>
-                  <div
-                    className={`rounded-2xl border p-4 sm:p-6 flex flex-col h-full transition-shadow hover:shadow-md ${
-                      isAccent
-                        ? 'bg-forest border-forest text-white'
-                        : 'bg-white border-border'
-                    }`}
-                  >
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
-                        isAccent ? 'bg-lime/20' : 'bg-lime'
-                      }`}
-                    >
+                  <div className={`rounded-2xl border p-6 flex flex-col h-full linear-card ${isAccent ? 'bg-forest border-forest text-white' : 'bg-white border-border'}`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${isAccent ? 'bg-lime/20' : 'bg-lime'}`}>
                       <Icon size={20} className={isAccent ? 'text-lime' : 'text-forest'} />
                     </div>
-                    <h3
-                      className={`font-bold text-base sm:text-lg mb-2 ${
-                        isAccent ? 'text-white' : 'text-ink'
-                      }`}
-                    >
-                      {rentalFocusTexts[i]?.title ?? card.h3}
-                    </h3>
-                    <p
-                      className={`text-sm leading-relaxed flex-1 mb-4 ${
-                        isAccent ? 'text-white/75' : 'text-ink-muted'
-                      }`}
-                    >
-                      {rentalFocusTexts[i]?.text ?? card.text}
-                    </p>
-                    <Link
-                      to={card.link}
-                      className={`inline-flex items-center gap-1.5 text-sm font-semibold ${
-                        isAccent
-                          ? 'text-lime hover:text-lime-light'
-                          : 'text-forest hover:text-forest-mid'
-                      } transition-colors`}
-                    >
+                    <h3 className={`font-bold text-base sm:text-lg mb-2 ${isAccent ? 'text-white' : 'text-ink'}`}>{rentalFocusTexts[i]?.title ?? card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 mb-4 ${isAccent ? 'text-white/75' : 'text-ink-muted'}`}>{rentalFocusTexts[i]?.text ?? card.text}</p>
+                    <Link to={card.link} className={`inline-flex items-center gap-1.5 text-sm font-semibold ${isAccent ? 'text-lime hover:text-lime-light' : 'text-forest hover:text-forest-mid'} transition-colors`}>
                       {isAr ? 'عرض العقارات' : 'View listings'} <ArrowRight size={14} />
                     </Link>
                   </div>
@@ -418,40 +415,37 @@ export function AboutPage() {
                 : 'Navigating the real estate companies in Qatar ecosystem requires a partner backed by verifiable field experience, rigorous listing accuracy, and immediate market responsiveness.'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Mobile: Apple-style carousel (matches home Preferred-Agency section) */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={trustCards.map((card, i) => {
+                const Icon = card.icon
+                return (
+                  <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                    <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                      <Icon size={18} className="text-forest" />
+                    </div>
+                    <h3 className="font-bold text-ink mb-2 text-lg">{trustTexts[i]?.title ?? card.h3}</h3>
+                    <p className="text-ink-muted text-sm leading-relaxed">{trustTexts[i]?.text ?? card.text}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          {/* Desktop: grid */}
+          <div className="hidden lg:grid grid-cols-3 gap-5">
             {trustCards.map((card, i) => {
               const Icon = card.icon
               const isAccent = i === 1
               return (
                 <Reveal key={card.h3} delay={i * 80}>
-                  <div
-                    className={`rounded-2xl border p-6 h-full transition-shadow hover:shadow-md ${
-                      isAccent
-                        ? 'bg-forest border-forest text-white'
-                        : 'bg-white border-border'
-                    }`}
-                  >
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
-                        isAccent ? 'bg-lime/20' : 'bg-lime'
-                      }`}
-                    >
+                  <div className={`rounded-2xl border p-6 h-full linear-card ${isAccent ? 'bg-forest border-forest text-white' : 'bg-white border-border'}`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${isAccent ? 'bg-lime/20' : 'bg-lime'}`}>
                       <Icon size={20} className={isAccent ? 'text-lime' : 'text-forest'} />
                     </div>
-                    <h3
-                      className={`font-bold text-base sm:text-lg mb-2 ${
-                        isAccent ? 'text-white' : 'text-ink'
-                      }`}
-                    >
-                      {trustTexts[i]?.title ?? card.h3}
-                    </h3>
-                    <p
-                      className={`text-sm leading-relaxed ${
-                        isAccent ? 'text-white/75' : 'text-ink-muted'
-                      }`}
-                    >
-                      {trustTexts[i]?.text ?? card.text}
-                    </p>
+                    <h3 className={`font-bold text-base sm:text-lg mb-2 ${isAccent ? 'text-white' : 'text-ink'}`}>{trustTexts[i]?.title ?? card.h3}</h3>
+                    <p className={`text-sm leading-relaxed ${isAccent ? 'text-white/75' : 'text-ink-muted'}`}>{trustTexts[i]?.text ?? card.text}</p>
                   </div>
                 </Reveal>
               )
@@ -468,40 +462,20 @@ export function AboutPage() {
               {t('about.audience.h2')}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Linear-style cards sized to match home Customized-Management section */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {audienceCards.map((card, i) => {
               const Icon = card.icon
-              const isAccent = i === 2
+              const forest = i === 2
               return (
-                <Reveal key={card.h3} delay={i * 80}>
-                  <div
-                    className={`rounded-2xl border p-6 h-full transition-shadow hover:shadow-md ${
-                      isAccent
-                        ? 'bg-forest border-forest'
-                        : 'bg-white border-border'
-                    }`}
-                  >
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
-                        isAccent ? 'bg-lime/20' : 'bg-lime'
-                      }`}
-                    >
-                      <Icon size={20} className={isAccent ? 'text-lime' : 'text-forest'} />
+                <Reveal key={card.h3} delay={i * 90}>
+                  <div className={`group relative overflow-hidden rounded-2xl p-6 sm:p-7 min-h-[220px] h-full flex flex-col transition-all duration-300 hover:-translate-y-1 ${forest ? 'bg-forest' : 'bg-white border border-border hover:shadow-lg hover:shadow-forest/10'}`}>
+                    <div className={`pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${forest ? 'bg-lime/40' : 'bg-lime/20'}`} aria-hidden="true" />
+                    <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${forest ? 'bg-lime/20' : 'bg-lime-light'}`}>
+                      <Icon size={20} className={forest ? 'text-lime' : 'text-forest'} />
                     </div>
-                    <h3
-                      className={`font-bold text-base mb-2 ${
-                        isAccent ? 'text-white' : 'text-ink'
-                      }`}
-                    >
-                      {audienceTexts[i]?.title ?? card.h3}
-                    </h3>
-                    <p
-                      className={`text-sm leading-relaxed ${
-                        isAccent ? 'text-white/75' : 'text-ink-muted'
-                      }`}
-                    >
-                      {audienceTexts[i]?.text ?? card.text}
-                    </p>
+                    <h3 className={`relative font-bold mb-2 text-lg ${forest ? 'text-lime' : 'text-ink'}`}>{audienceTexts[i]?.title ?? card.h3}</h3>
+                    <p className={`relative text-sm leading-relaxed ${forest ? 'text-white/70' : 'text-ink-muted'}`}>{audienceTexts[i]?.text ?? card.text}</p>
                   </div>
                 </Reveal>
               )
@@ -521,19 +495,36 @@ export function AboutPage() {
               {t('about.areas.subtitle')}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Cards sized/styled to match home "Properties for Rent…Localities" section */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {(isAr ? areaCardsAr : areaCards).map((card, i) => (
               <Reveal key={card.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-5 h-full flex flex-col linear-card">
-                  <h3 className="font-bold text-ink text-base mb-2">{card.h3}</h3>
-                  <p className="text-sm text-ink-muted leading-relaxed flex-1 mb-4">{card.text}</p>
-                  <Link
-                    to={card.link}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-forest hover:text-forest-mid transition-colors bg-lime/20 hover:bg-lime/30 px-3 py-1.5 rounded-full w-fit"
-                  >
-                    {isAr ? 'عرض المنطقة' : 'View area'} <ArrowRight size={12} />
-                  </Link>
-                </div>
+                <Link
+                  to={card.link}
+                  className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]"
+                >
+                  {/* sweep fill — GPU-accelerated translate */}
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+
+                  {/* location badge */}
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+
+                  {/* text */}
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">
+                      {card.h3}
+                    </h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">
+                      {card.text}
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {isAr ? 'عرض المنطقة' : 'View area'}
+                      <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -590,40 +581,38 @@ export function AboutPage() {
               {t('about.values.h2')}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Mobile: Pitch-style stacked deck (matches home Full-Service section) */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={coreValues.map((val, i) => {
+                const Icon = val.icon
+                const forest = i === 0
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[240px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                      <Icon size={22} className={forest ? 'text-lime' : 'text-forest'} />
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{coreValueTexts[i]?.title ?? val.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{coreValueTexts[i]?.text ?? val.text}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          {/* Desktop: grid */}
+          <div className="hidden lg:grid grid-cols-4 gap-5">
             {coreValues.map((val, i) => {
               const Icon = val.icon
               const isAccent = i === 0
               return (
                 <Reveal key={val.h3} delay={i * 80}>
-                  <div
-                    className={`rounded-2xl border p-6 h-full transition-shadow hover:shadow-md ${
-                      isAccent
-                        ? 'bg-forest border-forest'
-                        : 'bg-white border-border'
-                    }`}
-                  >
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${
-                        isAccent ? 'bg-lime/20' : 'bg-lime'
-                      }`}
-                    >
+                  <div className={`rounded-2xl border p-6 h-full linear-card ${isAccent ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${isAccent ? 'bg-lime/20' : 'bg-lime'}`}>
                       <Icon size={20} className={isAccent ? 'text-lime' : 'text-forest'} />
                     </div>
-                    <h3
-                      className={`font-bold text-base mb-2 ${
-                        isAccent ? 'text-white' : 'text-ink'
-                      }`}
-                    >
-                      {coreValueTexts[i]?.title ?? val.h3}
-                    </h3>
-                    <p
-                      className={`text-sm leading-relaxed ${
-                        isAccent ? 'text-white/75' : 'text-ink-muted'
-                      }`}
-                    >
-                      {coreValueTexts[i]?.text ?? val.text}
-                    </p>
+                    <h3 className={`font-bold text-base mb-2 ${isAccent ? 'text-white' : 'text-ink'}`}>{coreValueTexts[i]?.title ?? val.h3}</h3>
+                    <p className={`text-sm leading-relaxed ${isAccent ? 'text-white/75' : 'text-ink-muted'}`}>{coreValueTexts[i]?.text ?? val.text}</p>
                   </div>
                 </Reveal>
               )
