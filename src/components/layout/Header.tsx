@@ -158,7 +158,17 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null)
   const [openKey, setOpenKey] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
+
+  // Once the page scrolls, the top utility bar slides away and only the navbar
+  // stays pinned — elevate it with a softer shadow for a polished lift.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 4)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Close everything whenever the route changes.
   useEffect(() => { setOpenKey(null); setMobileOpen(false); setExpandedMobile(null) }, [pathname])
@@ -179,8 +189,9 @@ export function Header() {
   }, [openKey])
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border shadow-sm">
+    <header className="relative z-40">
       {/* Top utility bar — contact details + socials, same dark colour as the site background.
+          It scrolls away with the page (not pinned); only the navbar below stays fixed.
           Phone view stacks into 3 rows: email / (hours + phone) / socials. Desktop is one line. */}
       <div className="bg-forest text-white/80 border-b border-white/10 text-xs">
         <div className="max-w-[1720px] mx-auto px-4 sm:px-6 py-2 lg:py-0 lg:h-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 lg:gap-3">
@@ -223,6 +234,13 @@ export function Header() {
         </div>
       </div>
 
+      {/* Pinned navbar — stays at the top on scroll while the bar above slides off.
+          Shadow eases in once scrolling starts for a smooth, elevated feel. */}
+      <div
+        className={`sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border transition-shadow duration-300 ease-out ${
+          scrolled ? 'shadow-lg shadow-forest/10' : 'shadow-sm'
+        }`}
+      >
       <div className="max-w-[1720px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <img
@@ -337,6 +355,7 @@ export function Header() {
           </div>
         </div>
       )}
+      </div>
     </header>
   )
 }
