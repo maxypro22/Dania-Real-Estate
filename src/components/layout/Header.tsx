@@ -190,28 +190,33 @@ export function Header() {
         loaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
     >
-      {/* Top utility bar — contact details + socials, same dark colour as the site background */}
-      <div className="bg-forest text-white/80 border-b border-white/10">
-        <div className="max-w-[1720px] mx-auto px-4 sm:px-6 h-9 flex items-center justify-between gap-3 text-xs">
+      {/* Top utility bar — contact details + socials, same dark colour as the site background.
+          Phone view stacks into 3 rows: email / (hours + phone) / socials. Desktop is one line. */}
+      <div className="bg-forest text-white/80 border-b border-white/10 text-xs">
+        <div className="max-w-[1720px] mx-auto px-4 sm:px-6 py-2 lg:py-0 lg:h-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 lg:gap-3">
           {/* Contact details */}
-          <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-1.5 lg:gap-5 min-w-0">
+            {/* Row 1: email */}
             <a href={`mailto:${company.email}`}
-              className="hidden sm:inline-flex items-center gap-1.5 min-w-0 hover:text-lime transition-colors">
+              className="inline-flex items-center gap-1.5 min-w-0 hover:text-lime transition-colors">
               <Mail size={13} className="text-lime shrink-0" />
               <span className="truncate">{company.email}</span>
             </a>
-            <span className="hidden lg:inline-flex items-center gap-1.5">
-              <Clock size={13} className="text-lime shrink-0" />
-              <span>{isAr ? 'الأحد–الخميس · ٨ص–٥م' : 'Sun–Thu · 8AM–5PM'}</span>
-            </span>
-            <a href={`tel:${company.phone.replace(/\s/g, '')}`}
-              className="inline-flex items-center gap-1.5 hover:text-lime transition-colors">
-              <Phone size={13} className="text-lime shrink-0" />
-              <span dir="ltr">{company.phone}</span>
-            </a>
+            {/* Row 2: working days & hours + phone */}
+            <div className="flex items-center gap-4 lg:gap-5">
+              <span className="inline-flex items-center gap-1.5">
+                <Clock size={13} className="text-lime shrink-0" />
+                <span>{isAr ? 'الأحد–الخميس · ٨ص–٥م' : 'Sun–Thu · 8AM–5PM'}</span>
+              </span>
+              <a href={`tel:${company.phone.replace(/\s/g, '')}`}
+                className="inline-flex items-center gap-1.5 hover:text-lime transition-colors">
+                <Phone size={13} className="text-lime shrink-0" />
+                <span dir="ltr">{company.phone}</span>
+              </a>
+            </div>
           </div>
-          {/* Social links */}
-          <div className="flex items-center gap-1.5 shrink-0">
+          {/* Row 3: social links */}
+          <div className="flex items-center justify-center lg:justify-end gap-1.5 shrink-0">
             <a href={company.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
               className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white/90 hover:bg-lime hover:text-forest transition-colors">
               <InstagramIcon size={13} />
@@ -263,9 +268,10 @@ export function Header() {
         {/* Right cluster — always visible so the icons can never be clipped */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <LanguageSwitcher iconOnly />
+          {/* Hidden on phone — the floating WhatsApp button covers mobile */}
           <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
             aria-label="WhatsApp"
-            className="group inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 text-white bg-gradient-to-br from-[#25D366] to-[#0F8A52] ring-1 ring-white/30 shadow-md shadow-emerald-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-700/40 hover:brightness-105">
+            className="group hidden md:inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 text-white bg-gradient-to-br from-[#25D366] to-[#0F8A52] ring-1 ring-white/30 shadow-md shadow-emerald-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-700/40 hover:brightness-105">
             <WhatsappIcon size={17} className="transition-transform duration-300 group-hover:scale-110" />
           </a>
           <Link to="/contact-us/"

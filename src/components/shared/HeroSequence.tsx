@@ -217,7 +217,7 @@ export function HeroSequence() {
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.exploreBtn')}</span>
               </Link>
               <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-xs sm:text-sm backdrop-blur-sm">
+                className="group relative overflow-hidden hidden md:inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-xs sm:text-sm backdrop-blur-sm">
                 <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.whatsappBtn')}</span>
               </a>
