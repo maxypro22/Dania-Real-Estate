@@ -195,7 +195,7 @@ export function Header() {
       <div className="bg-forest text-white/80 border-b border-white/10 text-xs">
         <div className="max-w-[1720px] mx-auto px-4 sm:px-6 py-2 lg:py-0 lg:h-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 lg:gap-3">
           {/* Contact details */}
-          <div className="flex flex-col lg:flex-row lg:items-center gap-1.5 lg:gap-5 min-w-0">
+          <div className="flex flex-col items-center lg:flex-row lg:items-center gap-1.5 lg:gap-5 min-w-0">
             {/* Row 1: email */}
             <a href={`mailto:${company.email}`}
               className="inline-flex items-center gap-1.5 min-w-0 hover:text-lime transition-colors">
