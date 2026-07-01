@@ -877,7 +877,7 @@
         { "label": "Instant WhatsApp Desk", "desc": "Chat directly with our leasing team" },
         { "label": "Corporate Email Gateway", "desc": "Send us an email inquiry" },
         { "label": "HQ Office Address", "desc": "Al Rayyan Road, Doha, Qatar" },
-        { "label": "Operational Working Hours", "desc": "Sunday–Thursday: 8:00 AM – 5:00 PM (QST) | Friday & Saturday: WhatsApp Monitored" }
+        { "label": "Operational Working Hours", "desc": "Saturday–Thursday: 8:00 AM – 5:00 PM (QST) | Friday: WhatsApp Monitored" }
       ]
     },
     "segments": {

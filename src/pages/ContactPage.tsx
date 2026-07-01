@@ -27,7 +27,7 @@ export function ContactPage() {
     { icon: <MessageCircle size={20} />, label: cardMeta[1]?.label ?? '', desc: cardMeta[1]?.desc ?? '', value: company.whatsappDisplay, href: `https://wa.me/${company.whatsapp}` },
     { icon: <Mail size={20} />, label: cardMeta[2]?.label ?? '', desc: cardMeta[2]?.desc ?? '', value: company.email, href: `mailto:${company.email}` },
     { icon: <MapPin size={20} />, label: cardMeta[3]?.label ?? '', desc: cardMeta[3]?.desc ?? '', value: company.address, href: 'https://maps.google.com/?q=Al+Muftah+Plaza+Building,+Al+Rayyan+Road,+Doha,+Qatar' },
-    { icon: <Clock size={20} />, label: cardMeta[4]?.label ?? '', desc: cardMeta[4]?.desc ?? '', value: isAr ? 'الأحد–الخميس: 8:00 ص – 5:00 م (توقيت قطر)\nالجمعة والسبت: مغلق — مراقبة واتساب لمتطلبات الشركات العاجلة' : 'Sun–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)\nFri & Sat: Closed — Active WhatsApp Monitoring for urgent corporate requirements', href: undefined as string | undefined },
+    { icon: <Clock size={20} />, label: cardMeta[4]?.label ?? '', desc: cardMeta[4]?.desc ?? '', value: isAr ? 'السبت–الخميس: 8:00 ص – 5:00 م (توقيت قطر)\nالجمعة: مغلق — مراقبة واتساب لمتطلبات الشركات العاجلة' : 'Sat–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)\nFri: Closed — Active WhatsApp Monitoring for urgent corporate requirements', href: undefined as string | undefined },
   ]
 
   const [form, setForm] = useState({

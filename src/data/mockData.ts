@@ -84,7 +84,7 @@ export const company = {
   whatsapp: '97433260393',
   whatsappDisplay: '+974 3326 0393',
   email: 'info@dania-realestate.com',
-  hours: 'Sun–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)',
+  hours: 'Sat–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)',
   footerHours: '24/7 Professional Rental Assistance',
   facebook: 'https://www.facebook.com/DaniaRealEstate.qa/',
   instagram: 'https://www.instagram.com/daniarealestate',

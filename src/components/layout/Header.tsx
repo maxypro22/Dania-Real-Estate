@@ -156,15 +156,9 @@ export function Header() {
   const isAr = i18n.language === 'ar'
   const { pathname } = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [loaded, setLoaded] = useState(false)
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null)
   const [openKey, setOpenKey] = useState<string | null>(null)
   const navRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setLoaded(true))
-    return () => cancelAnimationFrame(id)
-  }, [])
 
   // Close everything whenever the route changes.
   useEffect(() => { setOpenKey(null); setMobileOpen(false); setExpandedMobile(null) }, [pathname])
@@ -185,11 +179,7 @@ export function Header() {
   }, [openKey])
 
   return (
-    <header
-      className={`sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border shadow-sm transition-all duration-700 ease-out ${
-        loaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      }`}
-    >
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border shadow-sm">
       {/* Top utility bar — contact details + socials, same dark colour as the site background.
           Phone view stacks into 3 rows: email / (hours + phone) / socials. Desktop is one line. */}
       <div className="bg-forest text-white/80 border-b border-white/10 text-xs">
@@ -206,12 +196,12 @@ export function Header() {
             <div className="flex items-center gap-4 lg:gap-5">
               <span className="inline-flex items-center gap-1.5">
                 <Clock size={13} className="text-lime shrink-0" />
-                <span>{isAr ? 'الأحد–الخميس · ٨ص–٥م' : 'Sun–Thu · 8AM–5PM'}</span>
+                <span>{isAr ? 'السبت–الخميس · ٨ص–٥م' : 'Sat–Thu · 8AM–5PM'}</span>
               </span>
-              <a href={`tel:${company.phone.replace(/\s/g, '')}`}
+              <a href="tel:+97444440085"
                 className="inline-flex items-center gap-1.5 hover:text-lime transition-colors">
                 <Phone size={13} className="text-lime shrink-0" />
-                <span dir="ltr">{company.phone}</span>
+                <span dir="ltr">+974 4444 0085</span>
               </a>
             </div>
           </div>
