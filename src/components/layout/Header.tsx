@@ -159,12 +159,27 @@ export function Header() {
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null)
   const [openKey, setOpenKey] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const [topBarH, setTopBarH] = useState(0)
   const navRef = useRef<HTMLDivElement>(null)
+  const topBarRef = useRef<HTMLDivElement>(null)
 
-  // Once the page scrolls, the top utility bar slides away and only the navbar
-  // stays pinned — elevate it with a softer shadow for a polished lift.
+  // Measure the top utility bar's height. The whole header is sticky with a
+  // negative `top` of exactly this height, so as you scroll the top bar slides
+  // off-screen and the navbar comes to rest flush at the top of the viewport.
+  // Re-measured on resize because the bar is taller on phones (3 stacked rows).
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 4)
+    const el = topBarRef.current
+    if (!el) return
+    const measure = () => setTopBarH(el.offsetHeight)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  // Elevate the navbar with a softer shadow once the top bar has scrolled away.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > (topBarRef.current?.offsetHeight ?? 0) - 4)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -189,11 +204,12 @@ export function Header() {
   }, [openKey])
 
   return (
-    <header className="relative z-40">
+    <header className="sticky z-40" style={{ top: -topBarH }}>
       {/* Top utility bar — contact details + socials, same dark colour as the site background.
-          It scrolls away with the page (not pinned); only the navbar below stays fixed.
+          The header is sticky with top:-topBarH, so this bar scrolls off-screen while the
+          navbar below settles at the top of the viewport (only the navbar follows on scroll).
           Phone view stacks into 3 rows: email / (hours + phone) / socials. Desktop is one line. */}
-      <div className="bg-forest text-white/80 border-b border-white/10 text-xs">
+      <div ref={topBarRef} className="bg-forest text-white/80 border-b border-white/10 text-xs">
         <div className="max-w-[1720px] mx-auto px-4 sm:px-6 py-2 lg:py-0 lg:h-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 lg:gap-3">
           {/* Contact details */}
           <div className="flex flex-col items-center lg:flex-row lg:items-center gap-1.5 lg:gap-5 min-w-0">
@@ -234,10 +250,10 @@ export function Header() {
         </div>
       </div>
 
-      {/* Pinned navbar — stays at the top on scroll while the bar above slides off.
-          Shadow eases in once scrolling starts for a smooth, elevated feel. */}
+      {/* Navbar — the header's negative sticky top leaves this resting at the very
+          top of the viewport once the bar above scrolls off. Shadow eases in then. */}
       <div
-        className={`sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border transition-shadow duration-300 ease-out ${
+        className={`bg-white/95 backdrop-blur-sm border-b border-border transition-shadow duration-300 ease-out ${
           scrolled ? 'shadow-lg shadow-forest/10' : 'shadow-sm'
         }`}
       >
