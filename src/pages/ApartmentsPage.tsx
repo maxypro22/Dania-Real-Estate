@@ -10,6 +10,7 @@ import { faqPageSchema } from '@/lib/seo'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 
 interface Props { filter: 'all' | '1-bedroom' | '2-bedroom' | '3-bedroom' }
 
@@ -133,9 +134,7 @@ function AllApartmentsContent() {
                 </p>
               </Reveal>
               <Reveal delay={160}>
-                <p className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed">
-                  {t('apartments.all.p')}
-                </p>
+                <ScrollRevealText className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed" text={t('apartments.all.p')} />
               </Reveal>
               <Reveal delay={240}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -237,9 +236,7 @@ function AllApartmentsContent() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-4">{t('apartments.all.categoriesH2')}</h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {t('apartments.all.categoriesSubtitle')}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={t('apartments.all.categoriesSubtitle')} />
           </Reveal>
           {/* Mobile: Pitch-style stacked deck */}
           <div className="lg:hidden max-w-md mx-auto">
@@ -284,9 +281,7 @@ function AllApartmentsContent() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-4">{t('apartments.all.considerH2')}</h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {t('apartments.all.considerSubtitle')}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={t('apartments.all.considerSubtitle')} />
           </Reveal>
           {/* Mobile: Apple-style carousel */}
           <div className="lg:hidden">
@@ -325,9 +320,7 @@ function AllApartmentsContent() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-4">{t('apartments.all.areasH2')}</h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-3xl">
-              {t('apartments.all.areasSubtitle')}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-3xl" text={t('apartments.all.areasSubtitle')} />
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {areaItems.map((area, i) => (
@@ -358,9 +351,7 @@ function AllApartmentsContent() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-4">{t('apartments.all.whyH2')}</h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {t('apartments.all.whySubtitle')}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={t('apartments.all.whySubtitle')} />
           </Reveal>
           {/* Mobile: Apple-style carousel */}
           <div className="lg:hidden">
@@ -538,6 +529,40 @@ function OneBedContent() {
   ]
   usePageSchema([faqPageSchema(faqs)])
 
+  const considerCards = isAr ? [
+    { h3: 'تصميم الوحدة والخصوصية', desc: 'استمتع بغرفة نوم مستقلة تمامًا وصالة معيشة منفصلة ومطبخ خاص يمنحك مزايا مكانية واضحة مقارنةً بصيغ الاستوديو الأساسية.', accent: true },
+    { h3: 'الميزانية وتوافق المرافق', desc: 'نوائم معايير بحثك مع مستويات الأسعار الدقيقة في السوق، مع مراعاة ما إذا كانت الوحدات تتضمن برامج مرافق شاملة أو فواتير منفصلة.', accent: false },
+    { h3: 'كفاءة التنقل من المنطقة', desc: 'تبرز محفظتنا خيارات BHK-1 القريبة من خطوط المترو الرئيسية ومراكز الأعمال والمجمعات التجارية والطرق السريعة الكبرى.', accent: false },
+    { h3: 'خيارات التأثيث', desc: 'اختر بين وحدات غرفة نوم واحدة مفروشة بالكامل للانتقال الفوري، أو وحدات غير مفروشة مهيأة لإضافة أثاثك الشخصي.', accent: false },
+  ] : [
+    { h3: 'Structural Layout & Privacy', desc: 'Enjoy completely separate bedroom, standalone living room, and private kitchen configurations that offer distinct spatial advantages over basic studio formats.', accent: true },
+    { h3: 'Budget & Utility Alignment', desc: 'We align your search parameters with market-accurate pricing tiers, factoring in whether units feature all-inclusive utility programs or standard billing.', accent: false },
+    { h3: 'District Commute Efficiency', desc: 'Our portfolio highlights 1-BHK options positioned close to key metro lines, central business offices, supermarkets, and major highways.', accent: false },
+    { h3: 'Furnishing Matrix Selections', desc: 'Choose between turnkey fully furnished 1-bedroom setups for rapid move-ins or unfurnished shells optimized for personal furniture configurations.', accent: false },
+  ]
+
+  const whyCards = isAr ? [
+    { h3: 'تحليلات BHK-1 المستهدفة', desc: 'نتجاوز الفئات العقارية غير ذات الصلة للعثور على مخططات الطابق الدقيقة المكوّنة من غرفة نوم واحدة والمناسبة لأسلوب حياتك.', accent: true },
+    { h3: 'إشراف محلي عميق على الأحياء', desc: 'تضمن معرفتنا المحلية إطلاعك على توافر مواقف السيارات وأنماط حركة المرور والخدمات القريبة قبل التوقيع.', accent: false },
+    { h3: 'التحقق الفوري من المخزون', desc: 'تجنّب قوائم السوق المسدودة. تواصل مباشرةً عبر واتساب لمشاهدة الوحدات الشاغرة مع تأكيدات حالة فورية.', accent: false },
+    { h3: 'تنسيق جولات المشاهدة', desc: 'تفقّد الوحدات التي اخترتها بصحبة متخصص عقاري مخصص يجيب على جميع الأسئلة القانونية والهيكلية في الموقع.', accent: false },
+  ] : [
+    { h3: 'Targeted 1-BHK Analytics', desc: 'We bypass irrelevant property categories to isolate exact one-bedroom floor plans that fit your exact living profile.', accent: true },
+    { h3: 'Deep Neighborhood Oversight', desc: 'Our localized knowledge ensures you understand community parking availability, traffic patterns, and nearby services before signing.', accent: false },
+    { h3: 'Real-Time Inventory Checks', desc: 'Avoid dead-end marketplace listings. Connect directly via WhatsApp to view active, vacant units with real-time status confirmations.', accent: false },
+    { h3: 'Guided Viewing Coordination', desc: 'Walk through your chosen units alongside a dedicated property professional who can answer all legal and structural questions on-site.', accent: false },
+  ]
+
+  const needCards = isAr ? [
+    { h3: 'تصاميم BHK-1 للمهنيين في الشركات', desc: 'مساحات سكنية حديثة وسهلة الصيانة مُحسَّنة للأفراد العاملين في أبراج المكاتب التجارية الرئيسية بالدوحة.', accent: true },
+    { h3: 'شقق غرفة نوم واحدة آمنة للأزواج', desc: 'تصاميم سكنية مريحة توفر مناطق طعام وطهي ونوم منفصلة مناسبة للأسر الصغيرة.', accent: false },
+    { h3: 'خيارات سكنية موفّرة للتكاليف', desc: 'اختيارات شقق موفرة للتكاليف تمنح خصوصية مستقلة مع الحفاظ على أهدافك المالية الشخصية.', accent: false },
+  ] : [
+    { h3: '1-BHK Layouts for Corporate Professionals', desc: "Modern, low-maintenance residential spaces optimized for individuals working inside Doha's primary commercial office towers.", accent: true },
+    { h3: 'Secure 1 Bedroom Spaces for Couples', desc: 'Comfortable residential designs offering separate dining, cooking, and sleeping zones suitable for small households.', accent: false },
+    { h3: 'Budget-Conscious Residential Selections', desc: 'Cost-efficient apartment selections engineered to deliver independent privacy while remaining aligned with specific personal savings targets.', accent: false },
+  ]
+
   return (
     <>
       {/* S1 — Hero */}
@@ -559,11 +584,9 @@ function OneBedContent() {
                 </h3>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/70 text-base mb-8 leading-relaxed">
-                  {isAr
-                    ? 'يتطلب إيجاد شقة غرفة نوم واحدة موثوقة في الدوحة تصفية الإعلانات القديمة وفهم خصائص المرافق في كل حي. تحتفظ دانية للعقارات بمخزون فعّال من الوحدات السكنية ذات غرفة نوم واحدة عبر قطاعات الأعمال والمناطق السكنية الرئيسية في قطر، متوافقةً مع ميزانيتك الدقيقة وموعد الانتقال.'
-                    : 'Locating a verified 1 bedroom apartment for rent in Doha requires filtering out outdated listings and understanding specific district utility setups. Dania Real Estate maintains an active inventory of functional one-bedroom residential layouts across Qatar\'s premier business and residential sectors. Our property management experts cross-reference your specific target location, monthly rental budget, and furnishing preferences directly against vacant units, ensuring a fast and secure transition into your new space.'}
-                </p>
+                <ScrollRevealText className="text-white/70 text-base mb-8 leading-relaxed" text={isAr
+                  ? 'يتطلب إيجاد شقة غرفة نوم واحدة موثوقة في الدوحة تصفية الإعلانات القديمة وفهم خصائص المرافق في كل حي. تحتفظ دانية للعقارات بمخزون فعّال من الوحدات السكنية ذات غرفة نوم واحدة عبر قطاعات الأعمال والمناطق السكنية الرئيسية في قطر، متوافقةً مع ميزانيتك الدقيقة وموعد الانتقال.'
+                  : 'Locating a verified 1 bedroom apartment for rent in Doha requires filtering out outdated listings and understanding specific district utility setups. Dania Real Estate maintains an active inventory of functional one-bedroom residential layouts across Qatar\'s premier business and residential sectors. Our property management experts cross-reference your specific target location, monthly rental budget, and furnishing preferences directly against vacant units, ensuring a fast and secure transition into your new space.'} />
               </Reveal>
               <Reveal direction="up" delay={240}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -647,24 +670,26 @@ function OneBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
-                ? 'قبل الالتزام بعقد إيجار طويل الأمد لغرفة نوم واحدة، يساعدك تقييم التفاصيل الهيكلية ونقاط الاندماج المجتمعي على حماية راحتك اليومية.'
-                : 'Prior to committing to a long-term 1-bedroom lease, evaluating structural details and community integration points helps protect your daily comfort.'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr
+              ? 'قبل الالتزام بعقد إيجار طويل الأمد لغرفة نوم واحدة، يساعدك تقييم التفاصيل الهيكلية ونقاط الاندماج المجتمعي على حماية راحتك اليومية.'
+              : 'Prior to committing to a long-term 1-bedroom lease, evaluating structural details and community integration points helps protect your daily comfort.'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
-              { h3: 'تصميم الوحدة والخصوصية', desc: 'استمتع بغرفة نوم مستقلة تمامًا وصالة معيشة منفصلة ومطبخ خاص يمنحك مزايا مكانية واضحة مقارنةً بصيغ الاستوديو الأساسية.', accent: true },
-              { h3: 'الميزانية وتوافق المرافق', desc: 'نوائم معايير بحثك مع مستويات الأسعار الدقيقة في السوق، مع مراعاة ما إذا كانت الوحدات تتضمن برامج مرافق شاملة أو فواتير منفصلة.', accent: false },
-              { h3: 'كفاءة التنقل من المنطقة', desc: 'تبرز محفظتنا خيارات BHK-1 القريبة من خطوط المترو الرئيسية ومراكز الأعمال والمجمعات التجارية والطرق السريعة الكبرى.', accent: false },
-              { h3: 'خيارات التأثيث', desc: 'اختر بين وحدات غرفة نوم واحدة مفروشة بالكامل للانتقال الفوري، أو وحدات غير مفروشة مهيأة لإضافة أثاثك الشخصي.', accent: false },
-            ] : [
-              { h3: 'Structural Layout & Privacy', desc: 'Enjoy completely separate bedroom, standalone living room, and private kitchen configurations that offer distinct spatial advantages over basic studio formats.', accent: true },
-              { h3: 'Budget & Utility Alignment', desc: 'We align your search parameters with market-accurate pricing tiers, factoring in whether units feature all-inclusive utility programs or standard billing.', accent: false },
-              { h3: 'District Commute Efficiency', desc: 'Our portfolio highlights 1-BHK options positioned close to key metro lines, central business offices, supermarkets, and major highways.', accent: false },
-              { h3: 'Furnishing Matrix Selections', desc: 'Choose between turnkey fully furnished 1-bedroom setups for rapid move-ins or unfurnished shells optimized for personal furniture configurations.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={considerCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {considerCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
@@ -688,13 +713,11 @@ function OneBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-3xl">
-              {isAr
-                ? 'تختلف تشطيبات التصميم الداخلي وحدود مواقف السيارات والأسعار الشهرية الأساسية لوحدات BHK-1 باختلاف المناطق. تدير دانية للعقارات عقارات فعّالة في هذه المناطق الرئيسية:'
-                : 'Interior layout finishes, building parking limits, and monthly rental baselines for 1-BHK units differ across municipalities. Dania Real Estate manages active properties across these essential local hubs:'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-3xl" text={isAr
+              ? 'تختلف تشطيبات التصميم الداخلي وحدود مواقف السيارات والأسعار الشهرية الأساسية لوحدات BHK-1 باختلاف المناطق. تدير دانية للعقارات عقارات فعّالة في هذه المناطق الرئيسية:'
+              : 'Interior layout finishes, building parking limits, and monthly rental baselines for 1-BHK units differ across municipalities. Dania Real Estate manages active properties across these essential local hubs:'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {(isAr ? [
               { h3: 'شقق غرفة نوم واحدة في الدوحة', desc: 'خيارات شقق تنفيذية في قلب الدوحة والممرات السكنية في الدفنة والهلال والمعمورة.', href: '/areas/doha/' },
               { h3: 'شقق غرفة نوم واحدة في السد', desc: 'وحدات BHK-1 حضرية عالية الكثافة في القلب التجاري والترفيهي المركزي للدوحة.', href: '/areas/al-sadd/' },
@@ -715,13 +738,19 @@ function OneBedContent() {
               { h3: '1 Bedroom Rentals in Al Kharaitiyat', desc: 'Quiet, low-traffic residential flat structures catering to individuals prioritizing a serene suburban lifestyle.', href: '/areas/al-kharaitiyat/' },
             ]).map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
-                  <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                  <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
-                  <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
-                    {t('common.viewProperties')}
-                  </Link>
-                </div>
+                <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {t('common.viewProperties')} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -737,24 +766,26 @@ function OneBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
-                ? 'يتطلب إيجاد شقة غرفة نوم واحدة متميزة معرفة عميقة بالأحياء وتنفيذًا عمليًا سريعًا.'
-                : 'Finding a premium 1-bedroom flat requires deep neighborhood insights and fast operational execution.'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr
+              ? 'يتطلب إيجاد شقة غرفة نوم واحدة متميزة معرفة عميقة بالأحياء وتنفيذًا عمليًا سريعًا.'
+              : 'Finding a premium 1-bedroom flat requires deep neighborhood insights and fast operational execution.'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
-              { h3: 'تحليلات BHK-1 المستهدفة', desc: 'نتجاوز الفئات العقارية غير ذات الصلة للعثور على مخططات الطابق الدقيقة المكوّنة من غرفة نوم واحدة والمناسبة لأسلوب حياتك.', accent: true },
-              { h3: 'إشراف محلي عميق على الأحياء', desc: 'تضمن معرفتنا المحلية إطلاعك على توافر مواقف السيارات وأنماط حركة المرور والخدمات القريبة قبل التوقيع.', accent: false },
-              { h3: 'التحقق الفوري من المخزون', desc: 'تجنّب قوائم السوق المسدودة. تواصل مباشرةً عبر واتساب لمشاهدة الوحدات الشاغرة مع تأكيدات حالة فورية.', accent: false },
-              { h3: 'تنسيق جولات المشاهدة', desc: 'تفقّد الوحدات التي اخترتها بصحبة متخصص عقاري مخصص يجيب على جميع الأسئلة القانونية والهيكلية في الموقع.', accent: false },
-            ] : [
-              { h3: 'Targeted 1-BHK Analytics', desc: 'We bypass irrelevant property categories to isolate exact one-bedroom floor plans that fit your exact living profile.', accent: true },
-              { h3: 'Deep Neighborhood Oversight', desc: 'Our localized knowledge ensures you understand community parking availability, traffic patterns, and nearby services before signing.', accent: false },
-              { h3: 'Real-Time Inventory Checks', desc: 'Avoid dead-end marketplace listings. Connect directly via WhatsApp to view active, vacant units with real-time status confirmations.', accent: false },
-              { h3: 'Guided Viewing Coordination', desc: 'Walk through your chosen units alongside a dedicated property professional who can answer all legal and structural questions on-site.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={whyCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {whyCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
@@ -795,16 +826,22 @@ function OneBedContent() {
               {isAr ? 'الاحتياجات الشائعة لاستئجار شقق بغرفة نوم واحدة' : 'Common 1 Bedroom Apartment Needs We Support'}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(isAr ? [
-              { h3: 'تصاميم BHK-1 للمهنيين في الشركات', desc: 'مساحات سكنية حديثة وسهلة الصيانة مُحسَّنة للأفراد العاملين في أبراج المكاتب التجارية الرئيسية بالدوحة.', accent: true },
-              { h3: 'شقق غرفة نوم واحدة آمنة للأزواج', desc: 'تصاميم سكنية مريحة توفر مناطق طعام وطهي ونوم منفصلة مناسبة للأسر الصغيرة.', accent: false },
-              { h3: 'خيارات سكنية موفّرة للتكاليف', desc: 'اختيارات شقق موفرة للتكاليف تمنح خصوصية مستقلة مع الحفاظ على أهدافك المالية الشخصية.', accent: false },
-            ] : [
-              { h3: '1-BHK Layouts for Corporate Professionals', desc: "Modern, low-maintenance residential spaces optimized for individuals working inside Doha's primary commercial office towers.", accent: true },
-              { h3: 'Secure 1 Bedroom Spaces for Couples', desc: 'Comfortable residential designs offering separate dining, cooking, and sleeping zones suitable for small households.', accent: false },
-              { h3: 'Budget-Conscious Residential Selections', desc: 'Cost-efficient apartment selections engineered to deliver independent privacy while remaining aligned with specific personal savings targets.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={needCards.map((card, i) => {
+                const forest = card.accent
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 gap-6">
+            {needCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
                 <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
@@ -938,6 +975,40 @@ function TwoBedContent() {
   ]
   usePageSchema([faqPageSchema(faqs)])
 
+  const considerCards = isAr ? [
+    { h3: 'المساحة والمرونة الغرفية', desc: 'عظّم استخدام المنزل بغرف نوم رئيسية منفصلة ومساحات ضيوف مخصصة أو مساحات عمل منزلية مستقلة ضمن مخططات BHK-2 المتوازنة.', accent: true },
+    { h3: 'البنية التحتية الملائمة للأسرة', desc: 'نُولي الأولوية للعقارات الواقعة داخل مجمعات سكنية توفر وصولًا سريعًا للمدارس الدولية والعيادات الصحية والمجمعات التجارية الكبرى.', accent: false },
+    { h3: 'الرياضيات الإيجارية وتوافق الميزانية', desc: 'طابق حدود إنفاقك المستهدفة مع منحنيات التسعير الدقيقة للمنطقة للعثور على التوازن المثالي لأسرتك.', accent: false },
+    { h3: 'التأثيث والتصاميم الداخلية', desc: 'حدد تصميمات المطبخ المغلق والملامح متعددة الحمامات والتهيئات المفروشة وشبه المفروشة المناسبة لأسلوب حياتك.', accent: false },
+  ] : [
+    { h3: 'Spatial Sizing & Room Flexibility', desc: 'Maximize household utility with separate master bedrooms, dedicated guest quarters, or independent home-office spaces configured within balanced 2-BHK frames.', accent: true },
+    { h3: 'Family-Friendly Infrastructure', desc: 'We prioritize properties situated inside residential complexes offering rapid access to international schools, health clinics, and essential supermarkets.', accent: false },
+    { h3: 'Rental Math & Budget Alignment', desc: 'Match your target spending thresholds directly against district-accurate pricing curves to find your ideal household balance.', accent: false },
+    { h3: 'Furnishing & Interior Layouts', desc: 'Identify closed-kitchen variations, multi-bathroom profiles, and fully furnished versus semi-furnished configurations that align with your lifestyle.', accent: false },
+  ]
+
+  const whyCards = isAr ? [
+    { h3: 'مطابقة مستهدفة لغرفتي نوم', desc: 'نتجاوز النطاقات العقارية غير ذات الصلة لاستخراج ملامح غرفتي نوم الدقيقة التي توازن مساحتك وميزانيتك.', accent: true },
+    { h3: 'مقاييس الأحياء الموثّقة', desc: 'تضمن رؤيتنا المحلية فهمك لقواعد مواقف سيارات المجمع ومعايير أمان المباني ومسارات العقود البلدية بوضوح.', accent: false },
+    { h3: 'إدارة الشواغر الفعّالة', desc: 'تجنب القوائم المكررة أو الوهمية. تواصل مباشرةً عبر واتساب للحصول على ملفات وسائط غير معدّلة للوحدات الشاغرة فورًا.', accent: false },
+    { h3: 'جولات مصحوبة للعقارات', desc: 'جوّل مساحاتك المستهدفة بصحبة متخصص إيجار متفرغ يجيب على جميع الأسئلة الهيكلية والقانونية في الموقع.', accent: false },
+  ] : [
+    { h3: 'Targeted 2-Bedroom Matching', desc: 'We bypass irrelevant property scales to pull exact two-bedroom profiles that balance your space and budget preferences perfectly.', accent: true },
+    { h3: 'Verified Neighborhood Metrics', desc: 'Our localized insights ensure you understand specific complex parking rules, building safety metrics, and municipal contract paths clearly.', accent: false },
+    { h3: 'Active Vacancy Management', desc: 'Eliminate duplicate or phantom listings. Connect directly via WhatsApp to receive unedited media files of vacant units instantly.', accent: false },
+    { h3: 'Accompanied Property Walkthroughs', desc: 'Tour your target spaces alongside a dedicated leasing professional who answers all structural and legal questions on-site.', accent: false },
+  ]
+
+  const needCards = isAr ? [
+    { h3: 'تصاميم BHK-2 للعائلات المتنامية', desc: 'بيئات سكنية آمنة وملائمة للأطفال توفر قربًا من المساحات الخضراء والحدائق والمراكز التعليمية الكبرى.', accent: true },
+    { h3: 'مساحات مشتركة للشركاء المهنيين', desc: 'تصاميم شقق متناسبة مع مساحات نوم متوازنة لتوفير خصوصية مثالية للمستأجرين المشتركين.', accent: false },
+    { h3: 'اختيارات عائلية محسّنة للميزانية', desc: 'خيارات شقق غرفتي نوم فعّالة من حيث التكلفة مُهيأة لتوفير اتصالية بلدية ممتازة مع حماية أهداف مدخرات الأسرة.', accent: false },
+  ] : [
+    { h3: '2-BHK Layouts for Growing Families', desc: 'Secure, child-friendly residential environments offering close proximity to green spaces, parks, and major educational hubs.', accent: true },
+    { h3: 'Shared Spaces for Professional Partners', desc: 'Well-proportioned apartment layouts designed with balanced bedroom spaces to provide optimal privacy for co-tenants.', accent: false },
+    { h3: 'Budget-Optimized Family Selections', desc: 'Cost-efficient 2-bedroom flat options configured to deliver excellent municipal connectivity while protecting family savings targets.', accent: false },
+  ]
+
   return (
     <>
       {/* S1 — Hero */}
@@ -959,11 +1030,9 @@ function TwoBedContent() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/70 text-base mb-8 leading-relaxed">
-                  {isAr
-                    ? 'يستلزم الحصول على شقة غرفتي نوم موثوقة للإيجار في الدوحة تحديد متطلبات المساحة ومقارنتها بمرافق الأحياء ومستويات الأسعار. تدير دانية للعقارات مخزونًا فعّالًا من تصاميم BHK-2 السكنية العملية — سواء احتجت إلى شقة عائلية بمطبخ مغلق أو تصميم مزدوج رئيسي للسكن المشترك، يطابق خبراؤنا ميزانيتك مباشرةً مع الشواغر الفعلية.'
-                    : 'Sourcing a verified 2 bedroom apartment for rent in Doha involves mapping floor space requirements against specific neighborhood amenities and pricing tiers. Dania Real Estate manages an active inventory of practical 2-BHK residential layouts tailored to bridge the gap between compact flats and large independent homes. Whether you require a closed-kitchen configuration for family privacy or a dual-master layout for shared professional residency, our property management experts match your budget directly against active inventory to secure a smooth transition.'}
-                </p>
+                <ScrollRevealText className="text-white/70 text-base mb-8 leading-relaxed" text={isAr
+                  ? 'يستلزم الحصول على شقة غرفتي نوم موثوقة للإيجار في الدوحة تحديد متطلبات المساحة ومقارنتها بمرافق الأحياء ومستويات الأسعار. تدير دانية للعقارات مخزونًا فعّالًا من تصاميم BHK-2 السكنية العملية — سواء احتجت إلى شقة عائلية بمطبخ مغلق أو تصميم مزدوج رئيسي للسكن المشترك، يطابق خبراؤنا ميزانيتك مباشرةً مع الشواغر الفعلية.'
+                  : 'Sourcing a verified 2 bedroom apartment for rent in Doha involves mapping floor space requirements against specific neighborhood amenities and pricing tiers. Dania Real Estate manages an active inventory of practical 2-BHK residential layouts tailored to bridge the gap between compact flats and large independent homes. Whether you require a closed-kitchen configuration for family privacy or a dual-master layout for shared professional residency, our property management experts match your budget directly against active inventory to secure a smooth transition.'} />
               </Reveal>
               <Reveal direction="up" delay={240}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -1047,24 +1116,26 @@ function TwoBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
-                ? 'تقييم الفائدة طويلة الأمد لتصميم شقة غرفتي نوم قبل إبرام عقد الإيجار يحمي تفضيلات أسلوب حياتك والتزاماتك المالية.'
-                : 'Evaluating the long-term utility of a 2-bedroom flat layout before entering a lease protects your lifestyle preferences and financial commitments.'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr
+              ? 'تقييم الفائدة طويلة الأمد لتصميم شقة غرفتي نوم قبل إبرام عقد الإيجار يحمي تفضيلات أسلوب حياتك والتزاماتك المالية.'
+              : 'Evaluating the long-term utility of a 2-bedroom flat layout before entering a lease protects your lifestyle preferences and financial commitments.'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
-              { h3: 'المساحة والمرونة الغرفية', desc: 'عظّم استخدام المنزل بغرف نوم رئيسية منفصلة ومساحات ضيوف مخصصة أو مساحات عمل منزلية مستقلة ضمن مخططات BHK-2 المتوازنة.', accent: true },
-              { h3: 'البنية التحتية الملائمة للأسرة', desc: 'نُولي الأولوية للعقارات الواقعة داخل مجمعات سكنية توفر وصولًا سريعًا للمدارس الدولية والعيادات الصحية والمجمعات التجارية الكبرى.', accent: false },
-              { h3: 'الرياضيات الإيجارية وتوافق الميزانية', desc: 'طابق حدود إنفاقك المستهدفة مع منحنيات التسعير الدقيقة للمنطقة للعثور على التوازن المثالي لأسرتك.', accent: false },
-              { h3: 'التأثيث والتصاميم الداخلية', desc: 'حدد تصميمات المطبخ المغلق والملامح متعددة الحمامات والتهيئات المفروشة وشبه المفروشة المناسبة لأسلوب حياتك.', accent: false },
-            ] : [
-              { h3: 'Spatial Sizing & Room Flexibility', desc: 'Maximize household utility with separate master bedrooms, dedicated guest quarters, or independent home-office spaces configured within balanced 2-BHK frames.', accent: true },
-              { h3: 'Family-Friendly Infrastructure', desc: 'We prioritize properties situated inside residential complexes offering rapid access to international schools, health clinics, and essential supermarkets.', accent: false },
-              { h3: 'Rental Math & Budget Alignment', desc: 'Match your target spending thresholds directly against district-accurate pricing curves to find your ideal household balance.', accent: false },
-              { h3: 'Furnishing & Interior Layouts', desc: 'Identify closed-kitchen variations, multi-bathroom profiles, and fully furnished versus semi-furnished configurations that align with your lifestyle.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={considerCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {considerCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
@@ -1088,13 +1159,11 @@ function TwoBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-3xl">
-              {isAr
-                ? 'تتباين التشطيبات المعمارية وتخصيصات مواقف السيارات وشروط الإيجار الأساسية لوحدات غرفتي نوم بحسب قطاعاتها البلدية. تقدم دانية للعقارات إشرافًا عقاريًا محليًا في هذه المواقع الرئيسية:'
-                : 'Architectural finishes, parking space allocations, and baseline lease terms for 2-bedroom units naturally correspond with their municipal sectors. Dania Real Estate provides localized property oversight across these core locations:'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-3xl" text={isAr
+              ? 'تتباين التشطيبات المعمارية وتخصيصات مواقف السيارات وشروط الإيجار الأساسية لوحدات غرفتي نوم بحسب قطاعاتها البلدية. تقدم دانية للعقارات إشرافًا عقاريًا محليًا في هذه المواقع الرئيسية:'
+              : 'Architectural finishes, parking space allocations, and baseline lease terms for 2-bedroom units naturally correspond with their municipal sectors. Dania Real Estate provides localized property oversight across these core locations:'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {(isAr ? [
               { h3: 'شقق غرفتي نوم في الدوحة', desc: 'تصميمات شقق عائلية متوازنة في قلب الدوحة وخيارات الأبراج في الدفنة والهلال والمعمورة.', href: '/areas/doha/' },
               { h3: 'شقق غرفتي نوم في السد', desc: 'إيجارات BHK-2 حضرية عالية الكثافة ضمن ممرات التجزئة والمطاعم والمكاتب التجارية المركزية الرائدة في الدوحة.', href: '/areas/al-sadd/' },
@@ -1115,13 +1184,19 @@ function TwoBedContent() {
               { h3: '2 Bedroom Rentals in Al Kharaitiyat', desc: 'Peaceful, low-density suburban apartment selections tailored for individuals seeking a quiet community setup.', href: '/areas/al-kharaitiyat/' },
             ]).map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
-                  <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                  <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
-                  <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
-                    {t('common.viewProperties')}
-                  </Link>
-                </div>
+                <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {t('common.viewProperties')} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -1137,24 +1212,26 @@ function TwoBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
-                ? 'يستلزم إيجاد شقة غرفتي نوم متميزة تقييم المساحة ولوائح الحي وتوافر المخزون الفعلي.'
-                : 'Finding a premium 2-bedroom flat requires evaluating space, neighborhood regulations, and real-time inventory availability.'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr
+              ? 'يستلزم إيجاد شقة غرفتي نوم متميزة تقييم المساحة ولوائح الحي وتوافر المخزون الفعلي.'
+              : 'Finding a premium 2-bedroom flat requires evaluating space, neighborhood regulations, and real-time inventory availability.'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
-              { h3: 'مطابقة مستهدفة لغرفتي نوم', desc: 'نتجاوز النطاقات العقارية غير ذات الصلة لاستخراج ملامح غرفتي نوم الدقيقة التي توازن مساحتك وميزانيتك.', accent: true },
-              { h3: 'مقاييس الأحياء الموثّقة', desc: 'تضمن رؤيتنا المحلية فهمك لقواعد مواقف سيارات المجمع ومعايير أمان المباني ومسارات العقود البلدية بوضوح.', accent: false },
-              { h3: 'إدارة الشواغر الفعّالة', desc: 'تجنب القوائم المكررة أو الوهمية. تواصل مباشرةً عبر واتساب للحصول على ملفات وسائط غير معدّلة للوحدات الشاغرة فورًا.', accent: false },
-              { h3: 'جولات مصحوبة للعقارات', desc: 'جوّل مساحاتك المستهدفة بصحبة متخصص إيجار متفرغ يجيب على جميع الأسئلة الهيكلية والقانونية في الموقع.', accent: false },
-            ] : [
-              { h3: 'Targeted 2-Bedroom Matching', desc: 'We bypass irrelevant property scales to pull exact two-bedroom profiles that balance your space and budget preferences perfectly.', accent: true },
-              { h3: 'Verified Neighborhood Metrics', desc: 'Our localized insights ensure you understand specific complex parking rules, building safety metrics, and municipal contract paths clearly.', accent: false },
-              { h3: 'Active Vacancy Management', desc: 'Eliminate duplicate or phantom listings. Connect directly via WhatsApp to receive unedited media files of vacant units instantly.', accent: false },
-              { h3: 'Accompanied Property Walkthroughs', desc: 'Tour your target spaces alongside a dedicated leasing professional who answers all structural and legal questions on-site.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={whyCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {whyCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
@@ -1195,16 +1272,22 @@ function TwoBedContent() {
               {isAr ? 'الاحتياجات الشائعة لاستئجار شقق بغرفتي نوم' : 'Common 2 Bedroom Apartment Needs We Support'}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(isAr ? [
-              { h3: 'تصاميم BHK-2 للعائلات المتنامية', desc: 'بيئات سكنية آمنة وملائمة للأطفال توفر قربًا من المساحات الخضراء والحدائق والمراكز التعليمية الكبرى.', accent: true },
-              { h3: 'مساحات مشتركة للشركاء المهنيين', desc: 'تصاميم شقق متناسبة مع مساحات نوم متوازنة لتوفير خصوصية مثالية للمستأجرين المشتركين.', accent: false },
-              { h3: 'اختيارات عائلية محسّنة للميزانية', desc: 'خيارات شقق غرفتي نوم فعّالة من حيث التكلفة مُهيأة لتوفير اتصالية بلدية ممتازة مع حماية أهداف مدخرات الأسرة.', accent: false },
-            ] : [
-              { h3: '2-BHK Layouts for Growing Families', desc: 'Secure, child-friendly residential environments offering close proximity to green spaces, parks, and major educational hubs.', accent: true },
-              { h3: 'Shared Spaces for Professional Partners', desc: 'Well-proportioned apartment layouts designed with balanced bedroom spaces to provide optimal privacy for co-tenants.', accent: false },
-              { h3: 'Budget-Optimized Family Selections', desc: 'Cost-efficient 2-bedroom flat options configured to deliver excellent municipal connectivity while protecting family savings targets.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={needCards.map((card, i) => {
+                const forest = card.accent
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 gap-6">
+            {needCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
                 <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>
@@ -1338,6 +1421,40 @@ function ThreeBedContent() {
   ]
   usePageSchema([faqPageSchema(faqs)])
 
+  const considerCards = isAr ? [
+    { h3: 'الفخامة المكانية والتصاميم المنزلية', desc: 'وفّر المساحة الهيكلية الجوهرية بأنظمة حمامات متعددة وغرف غسيل مستقلة وأجنحة خادمة اختيارية ضمن نماذج BHK-3 الرائدة.', accent: true },
+    { h3: 'مرونة الغرف الداخلية المتعددة', desc: 'حوّل غرف النوم الثانوية والثالثية إلى غرف أطفال وظيفية أو مناطق دراسة مخصصة أو مكاتب منزلية هادئة.', accent: false },
+    { h3: 'الأحياء الملائمة للأسرة', desc: 'نُولي الأولوية للعقارات الكبيرة القريبة من شبكات المدارس الدولية الرائدة والحدائق المجتمعية الخضراء والعيادات الطبية ومراكز البقالة.', accent: false },
+    { h3: 'الاستقرار والراحة طويلة الأمد', desc: 'استقر بأسرتك داخل تطويرات سكنية موثوقة وجيدة الإدارة مُحسَّنة للإيجارات المستقرة متعددة السنوات في قطر.', accent: false },
+  ] : [
+    { h3: 'Spatial Luxury & Domestic Layouts', desc: "Secure essential structural space featuring multi-bathroom setups, independent laundry rooms, and optional maid's quarters configured within prime 3-BHK models.", accent: true },
+    { h3: 'Multi-Room Interior Flexibility', desc: 'Adapt your secondary and tertiary bedrooms into functional children\'s rooms, dedicated study zones, or quiet home office layouts.', accent: false },
+    { h3: 'Family-Focused Neighborhoods', desc: 'We prioritize large properties situated near leading international school networks, green community parks, medical clinics, and grocery centers.', accent: false },
+    { h3: 'Long-Term Stability & Comfort', desc: 'Establish your household inside verified, well-managed residential developments optimized for stable, multi-year tenancies in Qatar.', accent: false },
+  ]
+
+  const whyCards = isAr ? [
+    { h3: 'توريد أصول المساحات الكبيرة المتخصص', desc: 'نستبعد التصاميم المتكدسة لعزل تهيئات ثلاث غرف نوم المتميزة التي توفر فائدة مكانية ممتازة وراحة عائلية.', accent: true },
+    { h3: 'الشفافية التشغيلية الكاملة', desc: 'نحمي إيجارك بضمان الامتثال الواضح لقواعد بلدية الدوحة وشروط الإيداع وفحوصات أحمال كهرماء.', accent: false },
+    { h3: 'دعم انتقال الأسرة المتخصص', desc: 'يمتلك مستشارونا خبرة عميقة في إدارة ملامح أسرية متعددة الأفراد وانتقالات المديرين التنفيذيين والانتقالات العائلية المعقدة.', accent: false },
+    { h3: 'تحديثات مباشرة سريعة عبر الجوال', desc: 'تخطَّ بوابات قوائم العقارات البطيئة والمحبطة. تواصل مباشرةً عبر واتساب لاستلام وسائط داخلية غير معدّلة للوحدات الشاغرة فورًا.', accent: false },
+  ] : [
+    { h3: 'Specialized Large-Space Asset Sourcing', desc: 'We screen out cramped layouts to isolate premium 3-bedroom configurations that deliver excellent spatial utility and family comfort.', accent: true },
+    { h3: 'Total Operational Transparency', desc: 'We protect your tenancy by ensuring clear compliance with Doha Municipality attestation rules, deposit terms, and Kahramaa load checks.', accent: false },
+    { h3: 'Dedicated Family Relocation Support', desc: 'Our consultants possess deep experience managing multi-passenger domestic profiles, corporate executive relocations, and complex family transitions.', accent: false },
+    { h3: 'Rapid Direct Mobile Updates', desc: 'Skip slow, frustrating property listing portals. Connect directly via WhatsApp to receive unedited interior media of vacant units instantly.', accent: false },
+  ]
+
+  const needCards = isAr ? [
+    { h3: 'تصاميم عالية الطاقة الاستيعابية للعائلات متعددة الأطفال', desc: 'بيئات سكنية آمنة وفسيحة قريبة من المدارس والمراكز الترفيهية والحدائق الملائمة للأطفال.', accent: true },
+    { h3: 'حلول إيجار ممتدة للاستقرار', desc: 'مبانٍ سكنية جيدة الإدارة مدعومة بمديرين عقاريين موثوقين لتوفير راحة بال لإشغالات الأسرة متعددة السنوات.', accent: false },
+    { h3: 'مساحات متعددة الوظائف لأنماط الحياة الحديثة', desc: 'تصاميم BHK-3 توفر القدرة الهيكلية لدعم بيئات العمل المنزلي المتكاملة ودور الحضانة أو احتياجات التخزين الكبيرة.', accent: false },
+  ] : [
+    { h3: 'High-Capacity Layouts for Multi-Child Families', desc: 'Secure, spacious residential environments located near top-tier schools, recreational centers, and child-friendly parks.', accent: true },
+    { h3: 'Extended Tenancy Solutions for Stability', desc: 'Well-managed apartment blocks backed by stable property managers, ensuring peace of mind for multi-year family occupancies.', accent: false },
+    { h3: 'Multi-Functional Spaces for Modern Lifestyles', desc: '3-BHK layouts offering the structural capacity to support integrated home work environments, nurseries, or large storage needs.', accent: false },
+  ]
+
   return (
     <>
       {/* S1 — Hero */}
@@ -1359,11 +1476,9 @@ function ThreeBedContent() {
                 </p>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/70 text-base mb-8 leading-relaxed">
-                  {isAr
-                    ? 'يستلزم العثور على شقة واسعة بثلاث غرف نوم للإيجار في الدوحة توازنًا دقيقًا بين المقياس الهيكلي وسلامة المجتمع وروابط النقل المباشرة إلى المدارس الدولية. يتجاوز مستشارو العقارات لدينا الإعلانات القديمة لمطابقة بصمة أسرتك وتفضيلات غرفة الخادمة وميزانيتك الشهرية مع المجمعات العائلية الشاغرة فعليًا.'
-                    : "Locating a spacious 3 bedroom apartment for rent in Doha demands a careful balance between structural scale, community safety, and direct transport links to international schools. Dania Real Estate maintains a thoroughly inspected inventory of high-capacity 3-BHK flats across Qatar's premier neighborhood sectors. Our dedicated property consultants bypass outdated marketplace classifieds to match your specific household footprint, maid's room preferences, and monthly budget directly against actively vacant family complexes."}
-                </p>
+                <ScrollRevealText className="text-white/70 text-base mb-8 leading-relaxed" text={isAr
+                  ? 'يستلزم العثور على شقة واسعة بثلاث غرف نوم للإيجار في الدوحة توازنًا دقيقًا بين المقياس الهيكلي وسلامة المجتمع وروابط النقل المباشرة إلى المدارس الدولية. يتجاوز مستشارو العقارات لدينا الإعلانات القديمة لمطابقة بصمة أسرتك وتفضيلات غرفة الخادمة وميزانيتك الشهرية مع المجمعات العائلية الشاغرة فعليًا.'
+                  : "Locating a spacious 3 bedroom apartment for rent in Doha demands a careful balance between structural scale, community safety, and direct transport links to international schools. Dania Real Estate maintains a thoroughly inspected inventory of high-capacity 3-BHK flats across Qatar's premier neighborhood sectors. Our dedicated property consultants bypass outdated marketplace classifieds to match your specific household footprint, maid's room preferences, and monthly budget directly against actively vacant family complexes."} />
               </Reveal>
               <Reveal direction="up" delay={240}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -1447,24 +1562,26 @@ function ThreeBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
-                ? 'يستلزم تأمين عقد إيجار ثلاث غرف نوم طويل الأمد التحقق من المتغيرات الهيكلية والمجتمعية لضمان استمرارية نمط حياة صحي لجميع أفراد الأسرة.'
-                : 'Securing a long-term 3-bedroom lease agreement requires checking structural and community variables to ensure healthy lifestyle continuity for your entire household.'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr
+              ? 'يستلزم تأمين عقد إيجار ثلاث غرف نوم طويل الأمد التحقق من المتغيرات الهيكلية والمجتمعية لضمان استمرارية نمط حياة صحي لجميع أفراد الأسرة.'
+              : 'Securing a long-term 3-bedroom lease agreement requires checking structural and community variables to ensure healthy lifestyle continuity for your entire household.'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
-              { h3: 'الفخامة المكانية والتصاميم المنزلية', desc: 'وفّر المساحة الهيكلية الجوهرية بأنظمة حمامات متعددة وغرف غسيل مستقلة وأجنحة خادمة اختيارية ضمن نماذج BHK-3 الرائدة.', accent: true },
-              { h3: 'مرونة الغرف الداخلية المتعددة', desc: 'حوّل غرف النوم الثانوية والثالثية إلى غرف أطفال وظيفية أو مناطق دراسة مخصصة أو مكاتب منزلية هادئة.', accent: false },
-              { h3: 'الأحياء الملائمة للأسرة', desc: 'نُولي الأولوية للعقارات الكبيرة القريبة من شبكات المدارس الدولية الرائدة والحدائق المجتمعية الخضراء والعيادات الطبية ومراكز البقالة.', accent: false },
-              { h3: 'الاستقرار والراحة طويلة الأمد', desc: 'استقر بأسرتك داخل تطويرات سكنية موثوقة وجيدة الإدارة مُحسَّنة للإيجارات المستقرة متعددة السنوات في قطر.', accent: false },
-            ] : [
-              { h3: 'Spatial Luxury & Domestic Layouts', desc: "Secure essential structural space featuring multi-bathroom setups, independent laundry rooms, and optional maid's quarters configured within prime 3-BHK models.", accent: true },
-              { h3: 'Multi-Room Interior Flexibility', desc: 'Adapt your secondary and tertiary bedrooms into functional children\'s rooms, dedicated study zones, or quiet home office layouts.', accent: false },
-              { h3: 'Family-Focused Neighborhoods', desc: 'We prioritize large properties situated near leading international school networks, green community parks, medical clinics, and grocery centers.', accent: false },
-              { h3: 'Long-Term Stability & Comfort', desc: 'Establish your household inside verified, well-managed residential developments optimized for stable, multi-year tenancies in Qatar.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={considerCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {considerCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
@@ -1488,13 +1605,11 @@ function ThreeBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-3xl">
-              {isAr
-                ? 'تتوافق تشطيبات المخطط ومخصصات مواقف السيارات الداخلية وشروط الإيجار الأساسية لوحدات ثلاث غرف نوم مع قطاعاتها البلدية. تقدم دانية للعقارات إشرافًا عقاريًا محليًا عبر هذه الممرات السكنية الرئيسية:'
-                : 'Floor plan finishes, basement parking allocations, and baseline lease terms for 3-bedroom units naturally correspond with their municipal sectors. Dania Real Estate provides localized property oversight across these core residential corridors:'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-3xl" text={isAr
+              ? 'تتوافق تشطيبات المخطط ومخصصات مواقف السيارات الداخلية وشروط الإيجار الأساسية لوحدات ثلاث غرف نوم مع قطاعاتها البلدية. تقدم دانية للعقارات إشرافًا عقاريًا محليًا عبر هذه الممرات السكنية الرئيسية:'
+              : 'Floor plan finishes, basement parking allocations, and baseline lease terms for 3-bedroom units naturally correspond with their municipal sectors. Dania Real Estate provides localized property oversight across these core residential corridors:'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {(isAr ? [
               { h3: 'شقق ثلاث غرف نوم في الدوحة', desc: 'خيارات شقق عائلية واسعة في قلب الدوحة ومساحات أبراج متميزة في الدفنة والهلال والمعمورة.', href: '/areas/doha/' },
               { h3: 'شقق ثلاث غرف نوم في السد', desc: 'إيجارات BHK-3 حضرية فسيحة في قطاعات التجزئة والمطاعم والمكاتب التجارية المركزية الرائدة في الدوحة.', href: '/areas/al-sadd/' },
@@ -1515,13 +1630,19 @@ function ThreeBedContent() {
               { h3: '3 Bedroom Rentals in Al Kharaitiyat', desc: 'Low-density, family-centric suburban apartment blocks tailored for tenants seeking maximum space away from inner-city traffic.', href: '/areas/al-kharaitiyat/' },
             ]).map((area, i) => (
               <Reveal key={area.h3} delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
-                  <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                  <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
-                  <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
-                    {t('common.viewProperties')}
-                  </Link>
-                </div>
+                <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {t('common.viewProperties')} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -1537,24 +1658,26 @@ function ThreeBedContent() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
-                ? 'مطابقة أسرة كبيرة مع شقة ثلاث غرف نوم المناسبة تتطلب بيانات عقارية محلية عميقة ووضوحًا تامًا في التعاقد.'
-                : 'Matching a large household with the right 3-bedroom flat requires deep local property data and absolute contract clarity.'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr
+              ? 'مطابقة أسرة كبيرة مع شقة ثلاث غرف نوم المناسبة تتطلب بيانات عقارية محلية عميقة ووضوحًا تامًا في التعاقد.'
+              : 'Matching a large household with the right 3-bedroom flat requires deep local property data and absolute contract clarity.'} />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(isAr ? [
-              { h3: 'توريد أصول المساحات الكبيرة المتخصص', desc: 'نستبعد التصاميم المتكدسة لعزل تهيئات ثلاث غرف نوم المتميزة التي توفر فائدة مكانية ممتازة وراحة عائلية.', accent: true },
-              { h3: 'الشفافية التشغيلية الكاملة', desc: 'نحمي إيجارك بضمان الامتثال الواضح لقواعد بلدية الدوحة وشروط الإيداع وفحوصات أحمال كهرماء.', accent: false },
-              { h3: 'دعم انتقال الأسرة المتخصص', desc: 'يمتلك مستشارونا خبرة عميقة في إدارة ملامح أسرية متعددة الأفراد وانتقالات المديرين التنفيذيين والانتقالات العائلية المعقدة.', accent: false },
-              { h3: 'تحديثات مباشرة سريعة عبر الجوال', desc: 'تخطَّ بوابات قوائم العقارات البطيئة والمحبطة. تواصل مباشرةً عبر واتساب لاستلام وسائط داخلية غير معدّلة للوحدات الشاغرة فورًا.', accent: false },
-            ] : [
-              { h3: 'Specialized Large-Space Asset Sourcing', desc: 'We screen out cramped layouts to isolate premium 3-bedroom configurations that deliver excellent spatial utility and family comfort.', accent: true },
-              { h3: 'Total Operational Transparency', desc: 'We protect your tenancy by ensuring clear compliance with Doha Municipality attestation rules, deposit terms, and Kahramaa load checks.', accent: false },
-              { h3: 'Dedicated Family Relocation Support', desc: 'Our consultants possess deep experience managing multi-passenger domestic profiles, corporate executive relocations, and complex family transitions.', accent: false },
-              { h3: 'Rapid Direct Mobile Updates', desc: 'Skip slow, frustrating property listing portals. Connect directly via WhatsApp to receive unedited interior media of vacant units instantly.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={whyCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {whyCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 80}>
                 <div className={`bg-white border border-border rounded-2xl p-6 linear-card h-full ${card.accent ? 'border-t-4 border-t-forest' : ''}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
@@ -1595,16 +1718,22 @@ function ThreeBedContent() {
               {isAr ? 'الاحتياجات الشائعة لاستئجار شقق بثلاث غرف نوم' : 'Common 3 Bedroom Apartment Needs We Support'}
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(isAr ? [
-              { h3: 'تصاميم عالية الطاقة الاستيعابية للعائلات متعددة الأطفال', desc: 'بيئات سكنية آمنة وفسيحة قريبة من المدارس والمراكز الترفيهية والحدائق الملائمة للأطفال.', accent: true },
-              { h3: 'حلول إيجار ممتدة للاستقرار', desc: 'مبانٍ سكنية جيدة الإدارة مدعومة بمديرين عقاريين موثوقين لتوفير راحة بال لإشغالات الأسرة متعددة السنوات.', accent: false },
-              { h3: 'مساحات متعددة الوظائف لأنماط الحياة الحديثة', desc: 'تصاميم BHK-3 توفر القدرة الهيكلية لدعم بيئات العمل المنزلي المتكاملة ودور الحضانة أو احتياجات التخزين الكبيرة.', accent: false },
-            ] : [
-              { h3: 'High-Capacity Layouts for Multi-Child Families', desc: 'Secure, spacious residential environments located near top-tier schools, recreational centers, and child-friendly parks.', accent: true },
-              { h3: 'Extended Tenancy Solutions for Stability', desc: 'Well-managed apartment blocks backed by stable property managers, ensuring peace of mind for multi-year family occupancies.', accent: false },
-              { h3: 'Multi-Functional Spaces for Modern Lifestyles', desc: '3-BHK layouts offering the structural capacity to support integrated home work environments, nurseries, or large storage needs.', accent: false },
-            ]).map((card, i) => (
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={needCards.map((card, i) => {
+                const forest = card.accent
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-3 gap-6">
+            {needCards.map((card, i) => (
               <Reveal key={card.h3} delay={i * 100}>
                 <div className={`bg-white border border-border rounded-2xl p-7 linear-card h-full ${card.accent ? 'border-l-4 border-l-forest' : ''}`}>
                   <h3 className="font-bold text-xl text-ink mb-3">{card.h3}</h3>

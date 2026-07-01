@@ -11,6 +11,7 @@ import { Reveal } from '@/components/shared/Reveal'
 import { LocationIcon } from '@/components/shared/LocationIcon'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { company, areas } from '@/data/mockData'
 
 // =====================================================================
@@ -679,9 +680,7 @@ export function AreasPage() {
               </Reveal>
 
               <Reveal direction="up" delay={160}>
-                <p className="text-white/75 max-w-2xl leading-relaxed mb-8">
-                  {L(HERO.p)}
-                </p>
+                <ScrollRevealText className="text-white/75 max-w-2xl leading-relaxed mb-8" text={L(HERO.p)} />
               </Reveal>
 
               <Reveal direction="up" delay={240}>
@@ -736,9 +735,7 @@ export function AreasPage() {
 
           {OVERVIEW.paragraphs.map((para, i) => (
             <Reveal key={i} direction="up" delay={80 + i * 80}>
-              <p className="text-ink-muted leading-relaxed max-w-3xl mb-4 last:mb-0">
-                {L(para)}
-              </p>
+              <ScrollRevealText className="text-ink-muted leading-relaxed max-w-3xl mb-4 last:mb-0" text={L(para)} />
             </Reveal>
           ))}
         </div>
@@ -754,9 +751,7 @@ export function AreasPage() {
           </Reveal>
 
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted mb-10 max-w-3xl">
-              {L(GRID.intro)}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-3xl" text={L(GRID.intro)} />
           </Reveal>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -791,9 +786,7 @@ export function AreasPage() {
           </Reveal>
 
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted leading-relaxed max-w-3xl mb-10">
-              {L(RIGHT_AREA.intro)}
-            </p>
+            <ScrollRevealText className="text-ink-muted leading-relaxed max-w-3xl mb-10" text={L(RIGHT_AREA.intro)} />
           </Reveal>
 
           {/* Mobile: Apple-style carousel */}
@@ -831,12 +824,28 @@ export function AreasPage() {
           </Reveal>
 
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted leading-relaxed max-w-3xl mb-10">
-              {L(PROPERTY_TYPES.lead)}
-            </p>
+            <ScrollRevealText className="text-ink-muted leading-relaxed max-w-3xl mb-10" text={L(PROPERTY_TYPES.lead)} />
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={PROPERTY_TYPES.links.map((link, i) => {
+                const forest = i === 0
+                return (
+                  <Link key={i} to={link.href} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{L(link.name)}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{L(link.desc)}</p>
+                    <span className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}>
+                      {isAr ? 'عرض القوائم' : 'View Listings'} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                    </span>
+                  </Link>
+                )
+              })}
+            />
+          </div>
+
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {PROPERTY_TYPES.links.map((link, i) => (
               <Reveal key={link.href} direction="up" delay={(i % 3) * 80}>
                 <Link
@@ -867,9 +876,7 @@ export function AreasPage() {
           </Reveal>
 
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted leading-relaxed max-w-3xl mb-10">
-              {L(WHY.intro)}
-            </p>
+            <ScrollRevealText className="text-ink-muted leading-relaxed max-w-3xl mb-10" text={L(WHY.intro)} />
           </Reveal>
 
           {/* Mobile: Apple-style carousel */}

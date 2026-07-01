@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Building2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Reveal } from '@/components/shared/Reveal'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { company } from '@/data/mockData'
 import { usePageSchema } from '@/components/shared/Seo'
@@ -60,16 +61,15 @@ export function ContactPage() {
                 </h1>
               </Reveal>
               <Reveal direction="up" delay={100}>
-                <p className="text-lime text-lg font-semibold mb-4">
-                  {t('contact.hero.subtitle')}
-                </p>
+                <ScrollRevealText className="text-lime text-lg font-semibold mb-4" text={t('contact.hero.subtitle')} />
               </Reveal>
               <Reveal direction="up" delay={200}>
-                <p className="text-white/70 text-sm leading-relaxed mb-8">
-                  {isAr
+                <ScrollRevealText
+                  className="text-white/70 text-sm leading-relaxed mb-8"
+                  text={isAr
                     ? 'هل أنت مستعد لتسهيل بحثك عن العقار؟ سواء كنت تبحث عن شقة حديثة أو فيلا فاخرة أو سكن للعمال أو محل تجاري، فريقنا هنا لمساعدتك.'
                     : 'Ready to streamline your property search? Whether you are looking for a modern low-rise apartment in downtown Doha, a spacious family compound villa, a certified workforce staff accommodation layout, or a high-footfall commercial shop location, our leasing desk is fully active and ready to help. At Dania Real Estate, we strip away the guesswork from the local market. Connect with our certified area specialists right now to receive unedited interior walk-through videos, verified floor plan drawings, and transparent municipality lease conditions structured exactly around your target monthly budget and preferred move-in window.'}
-                </p>
+                />
               </Reveal>
               <Reveal direction="up" delay={300}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-4">
@@ -116,11 +116,12 @@ export function ContactPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-2">{t('contact.cards.h2')}</h2>
           </Reveal>
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted text-sm mb-10 max-w-2xl">
-              {isAr
+            <ScrollRevealText
+              className="text-ink-muted text-sm mb-10 max-w-2xl"
+              text={isAr
                 ? 'تواصل مع مقرنا المؤسسي مباشرة عبر أي من قنوات التواصل الآمنة المُدارة لدينا:'
                 : 'Connect with our corporate headquarters directly through any of our managed secure communication access points:'}
-            </p>
+            />
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {contactCards.map((card, i) => (
@@ -356,11 +357,12 @@ export function ContactPage() {
                 <h2 className="text-2xl font-bold text-ink mb-3">{isAr ? 'زيارة دانية للعقارات في الدوحة' : 'Visit Dania Real Estate in Doha'}</h2>
               </Reveal>
               <Reveal direction="up" delay={80}>
-                <p className="text-ink-muted text-sm mb-5 max-w-2xl">
-                  {isAr
+                <ScrollRevealText
+                  className="text-ink-muted text-sm mb-5 max-w-2xl"
+                  text={isAr
                     ? 'إذا كنت تفضل إجراء استشارة وجهاً لوجه بشأن استراتيجية نقل القوى العاملة أو خطط التوسع التجاري أو اتفاقيات الإيجار العائلي طويل الأمد، يسعدنا استقبالك في مقرنا الرئيسي بالدوحة.'
                     : 'If you prefer to conduct a face-to-face consultation regarding your corporate workforce relocation strategy, commercial expansion plans, or long-term family leasing agreements, you are welcome to visit our primary Doha headquarters.'}
-                </p>
+                />
               </Reveal>
               <Reveal direction="up" delay={160}>
                 <div className="bg-surface-low rounded-xl p-5 mb-6 space-y-2">
@@ -406,9 +408,8 @@ export function ContactPage() {
               <h2 className="text-2xl md:text-3xl font-extrabold text-forest mb-4">
                 {t('contact.cta.h2')}
               </h2>
-              <p className="text-forest/80 max-w-2xl mx-auto mb-8 text-sm leading-relaxed">
-                {t('contact.cta.subtitle')}
-              </p>
+              <ScrollRevealText className="text-forest/80 max-w-2xl mx-auto mb-8 text-sm leading-relaxed" text={t('contact.cta.subtitle')} />
+
               <div className="flex flex-row flex-wrap gap-2 sm:gap-4 justify-center">
                 <a
                   href={`https://wa.me/${company.whatsapp}`}

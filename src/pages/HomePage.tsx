@@ -10,6 +10,7 @@ import { LocationIcon } from '@/components/shared/LocationIcon'
 import { HeroSequence } from '@/components/shared/HeroSequence'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { company, whyChooseUs } from '@/data/mockData'
 import imgDoha       from '@/assets/pexels-stephen-leonardi-587681991-34276136.webp'
 import imgAlSadd     from '@/assets/pexels-mr-location-scout-22994825-25525976.webp'
@@ -163,7 +164,7 @@ export function HomePage() {
       {/* ── 3. MAIN RENTAL SERVICES ── */}
       <section className="max-w-[1280px] mx-auto px-6 py-20">
         <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.services.h2')}</h2></Reveal>
-        <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.services.subtitle')}</p></Reveal>
+        <Reveal delay={100}><ScrollRevealText className="text-ink-muted text-center mb-12 max-w-xl mx-auto" text={t('home.services.subtitle')} /></Reveal>
 
         {/* Mobile: Pitch-style auto-advancing stacked deck */}
         <div className="lg:hidden max-w-md mx-auto">
@@ -268,7 +269,7 @@ export function HomePage() {
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{isAr ? 'تصفية أنواع العقارات المتاحة للإيجار في قطر' : 'Filter Practical Property Rent in Qatar'}</h2></Reveal>
-          <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{isAr ? 'اختر النوع المناسب من العقارات بما يتناسب مع احتياجاتك. استعرض صفحات الإيجار المتخصصة مباشرة.' : 'Match your lifestyle and operational business demands with curated property formats. Access optimized landing pages directly through our core real estate index.'}</p></Reveal>
+          <Reveal delay={100}><ScrollRevealText className="text-ink-muted text-center mb-12 max-w-xl mx-auto" text={isAr ? 'اختر النوع المناسب من العقارات بما يتناسب مع احتياجاتك. استعرض صفحات الإيجار المتخصصة مباشرة.' : 'Match your lifestyle and operational business demands with curated property formats. Access optimized landing pages directly through our core real estate index.'} /></Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Column 1: Apartments */}
@@ -368,7 +369,7 @@ export function HomePage() {
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.areas.h2')}</h2></Reveal>
-          <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.areas.subtitle')}</p></Reveal>
+          <Reveal delay={100}><ScrollRevealText className="text-ink-muted text-center mb-12 max-w-xl mx-auto" text={t('home.areas.subtitle')} /></Reveal>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {(isAr ? AREAS_AR : AREAS).map((area, i) => (
@@ -409,7 +410,7 @@ export function HomePage() {
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.whyUs.h2')}</h2></Reveal>
-          <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-xl mx-auto">{t('home.whyUs.subtitle')}</p></Reveal>
+          <Reveal delay={100}><ScrollRevealText className="text-ink-muted text-center mb-12 max-w-xl mx-auto" text={t('home.whyUs.subtitle')} /></Reveal>
           {/* Mobile: Apple-style carousel with dots + arrows */}
           <div className="lg:hidden">
             <CardCarousel
@@ -446,7 +447,7 @@ export function HomePage() {
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal><h2 className="text-3xl md:text-4xl font-extrabold text-ink text-center mb-2">{t('home.rentalSupport.h2')}</h2></Reveal>
-          <Reveal delay={100}><p className="text-ink-muted text-center mb-12 max-w-lg mx-auto">{t('home.rentalSupport.subtitle')}</p></Reveal>
+          <Reveal delay={100}><ScrollRevealText className="text-ink-muted text-center mb-12 max-w-lg mx-auto" text={t('home.rentalSupport.subtitle')} /></Reveal>
 
           {/* Linear-style cards: larger format, soft glow, staggered scroll reveal */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
@@ -484,7 +485,7 @@ export function HomePage() {
           <Reveal>
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-3">{t('home.showcases.h2')}</h2>
-              <p className="text-ink-muted max-w-xl mx-auto">{isAr ? 'استعرض بعض عقاراتنا المطلوبة للإيجار في قطر. تواصل معنا فوراً عبر واتساب للتحقق من الأسعار وجدولة الزيارات.' : 'Take a look at some of our highly requested properties for rent in Qatar. Connect with us instantly via WhatsApp to cross-check real-time pricing and schedule a viewing today.'}</p>
+              <ScrollRevealText className="text-ink-muted max-w-xl mx-auto" text={isAr ? 'استعرض بعض عقاراتنا المطلوبة للإيجار في قطر. تواصل معنا فوراً عبر واتساب للتحقق من الأسعار وجدولة الزيارات.' : 'Take a look at some of our highly requested properties for rent in Qatar. Connect with us instantly via WhatsApp to cross-check real-time pricing and schedule a viewing today.'} />
             </div>
           </Reveal>
 

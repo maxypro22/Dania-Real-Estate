@@ -4,6 +4,7 @@ import { ChevronDown, MessageCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { usePageSchema } from '@/components/shared/Seo'
 import { faqPageSchema } from '@/lib/seo'
 
@@ -439,9 +440,7 @@ export function FaqPage() {
                 </h1>
               </Reveal>
               <Reveal delay={120} direction="up">
-                <p className="text-white/80 text-base md:text-lg leading-relaxed mb-8">
-                  {t('faq.hero.p')}
-                </p>
+                <ScrollRevealText className="text-white/80 text-base md:text-lg leading-relaxed mb-8" text={t('faq.hero.p')} />
               </Reveal>
               <Reveal delay={200} direction="up">
                 <div className="flex gap-4 flex-wrap">
@@ -528,11 +527,12 @@ export function FaqPage() {
             </h2>
           </Reveal>
           <Reveal delay={100} direction="up">
-            <p className="text-white/75 text-sm md:text-base leading-relaxed max-w-3xl mx-auto mb-8">
-              {isAr
+            <ScrollRevealText
+              className="text-white/75 text-sm md:text-base leading-relaxed max-w-3xl mx-auto mb-8"
+              text={isAr
                 ? 'إيجاد العقار المثالي في قطر لا يجب أن يكون مرهقاً. سواء كنت تبحث عن فيلا مجمعية عائلية قريبة من المدارس الدولية، أو شقة منخفضة الارتفاع في وسط الدوحة، أو سكن عمال مؤسسي متوافق مع اللوائح، أو محل تجاري لتنمية علامتك التجارية، دانية للعقارات هنا لجعل رحلتك سريعة وواضحة وآمنة تماماً.'
                 : "Finding the ideal rental property in Qatar shouldn't involve stressful guesswork or endless phone calls to unresponsive numbers. Whether you are searching for a spacious family compound villa close to international schools, a modern low-rise apartment in the center of Doha, a compliant corporate staff housing layout near major industrial expressways, or a high-exposure commercial shop to grow your business brand, Dania Real Estate is here to make your journey fast, clear, and fully secure. Let our team handle the legal administrative tasks, landlord negotiations, and official Baladiya attestation processes on your behalf. Contact our active customer care desk today by phone or send your exact space preferences, target monthly budget, and preferred move-in date straight to our responsive WhatsApp leasing desk for an instantly curated portfolio of verified, active listings."}
-            </p>
+            />
           </Reveal>
           <Reveal delay={180} direction="up">
             <div className="flex gap-4 justify-center flex-wrap">

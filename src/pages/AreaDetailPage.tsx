@@ -14,6 +14,10 @@ import {
 import { useTranslation } from 'react-i18next'
 import { areas, company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
+import { StackedCards } from '@/components/shared/StackedCards'
+import { CardCarousel } from '@/components/shared/CardCarousel'
+import { LocationIcon } from '@/components/shared/LocationIcon'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { usePageSchema } from '@/components/shared/Seo'
 import { faqPageSchema } from '@/lib/seo'
 
@@ -2069,9 +2073,7 @@ export function AreaDetailPage() {
               </Reveal>
 
               <Reveal direction="up" delay={180}>
-                <p className="text-white/60 mb-8 leading-relaxed">
-                  {detail.hero.paragraph}
-                </p>
+                <ScrollRevealText className="text-white/60 mb-8 leading-relaxed" text={detail.hero.paragraph} />
               </Reveal>
 
               <Reveal direction="up" delay={240}>
@@ -2133,7 +2135,7 @@ export function AreaDetailPage() {
           </Reveal>
           {detail.overview.paragraphs.map((p, i) => (
             <Reveal key={i} direction="up" delay={80 + i * 80}>
-              <p className="text-ink-muted leading-relaxed mb-5 last:mb-0">{p}</p>
+              <ScrollRevealText className="text-ink-muted leading-relaxed mb-5 last:mb-0" text={p} />
             </Reveal>
           ))}
         </div>
@@ -2151,7 +2153,34 @@ export function AreaDetailPage() {
             <p className="text-ink-muted leading-relaxed mb-10 max-w-3xl">{detail.categories.intro}</p>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={detail.categories.cards.map((card, i) => {
+                const forest = i === 0
+                return (
+                  <div
+                    key={card.h3}
+                    className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}
+                  >
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20 text-lime' : 'bg-lime text-forest'}`}>
+                      {CATEGORY_ICONS[i]}
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 mb-5 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.text}</p>
+                    <Link
+                      to={CATEGORY_HREFS[i]}
+                      className={`inline-flex items-center gap-1.5 font-semibold text-sm mt-auto ${forest ? 'text-lime' : 'text-forest'}`}
+                    >
+                      {card.button} <ArrowRight size={15} className="rtl:-scale-x-100" />
+                    </Link>
+                  </div>
+                )
+              })}
+            />
+          </div>
+
+          <div className="hidden lg:grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {detail.categories.cards.map((card, i) => (
               <Reveal key={card.h3} direction="up" delay={i * 80}>
                 <Link
@@ -2206,12 +2235,18 @@ export function AreaDetailPage() {
             <p className="text-ink-muted leading-relaxed mb-10 max-w-3xl">{detail.subAreaFocus.intro}</p>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {detail.subAreaFocus.items.map((item, i) => (
-              <Reveal key={item.h3} direction="up" delay={i * 80}>
-                <div className="flex flex-col gap-3 rounded-2xl border border-border bg-white p-7 h-full">
-                  <h3 className="font-bold text-ink">{item.h3}</h3>
-                  <p className="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+              <Reveal key={item.h3} direction="up" delay={i * 60}>
+                <div className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{item.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{item.text}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -2231,7 +2266,22 @@ export function AreaDetailPage() {
             <p className="text-ink-muted leading-relaxed mb-10 max-w-3xl">{detail.whyRent.intro}</p>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={detail.whyRent.cards.map((card) => (
+                <div key={card.h3} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <CheckCircle2 size={18} className="text-forest" />
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.text}</p>
+                </div>
+              ))}
+            />
+          </div>
+
+          <div className="hidden lg:grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {detail.whyRent.cards.map((card, i) => (
               <Reveal key={card.h3} direction="up" delay={i * 80}>
                 <div
@@ -2266,15 +2316,21 @@ export function AreaDetailPage() {
             <h2 className="text-3xl font-extrabold text-ink mb-10">{detail.whoFor.h2}</h2>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-4 max-w-4xl">
-            {detail.whoFor.items.map((item, i) => (
-              <Reveal key={i} direction="up" delay={i * 60}>
-                <div className="flex items-start gap-3 rounded-2xl border border-border bg-white p-5">
-                  <CheckCircle2 size={20} className="text-forest shrink-0 mt-0.5" />
-                  <p className="text-sm text-ink-muted leading-relaxed">{item}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5 max-w-4xl">
+            {detail.whoFor.items.map((item, i) => {
+              const forest = i === 2
+              return (
+                <Reveal key={i} delay={i * 90}>
+                  <div className={`group relative overflow-hidden rounded-2xl p-6 sm:p-7 min-h-[220px] h-full flex flex-col transition-all duration-300 hover:-translate-y-1 ${forest ? 'bg-forest' : 'bg-white border border-border hover:shadow-lg hover:shadow-forest/10'}`}>
+                    <div className={`pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${forest ? 'bg-lime/40' : 'bg-lime/20'}`} aria-hidden="true" />
+                    <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${forest ? 'bg-lime/20' : 'bg-lime-light'}`}>
+                      <CheckCircle2 size={20} className={forest ? 'text-lime' : 'text-forest'} />
+                    </div>
+                    <p className={`relative text-sm leading-relaxed ${forest ? 'text-white/70' : 'text-ink-muted'}`}>{item}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
           </div>
         </section>
       )}
@@ -2293,7 +2349,7 @@ export function AreaDetailPage() {
               <div className="lg:col-span-2 max-w-3xl">
                 {detail.localGuidance.paragraphs.map((p, i) => (
                   <Reveal key={i} direction="up" delay={60 + i * 80}>
-                    <p className="text-ink-muted leading-relaxed mb-5 last:mb-0">{p}</p>
+                    <ScrollRevealText className="text-ink-muted leading-relaxed mb-5 last:mb-0" text={p} />
                   </Reveal>
                 ))}
               </div>
@@ -2334,7 +2390,22 @@ export function AreaDetailPage() {
           <p className="text-ink-muted leading-relaxed mb-10 max-w-3xl">{detail.whyChooseDania.intro}</p>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Mobile: Apple-style carousel */}
+        <div className="lg:hidden">
+          <CardCarousel
+            items={detail.whyChooseDania.cards.map((card, i) => (
+              <div key={card.h3} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5 font-bold text-forest">
+                  {i + 1}
+                </div>
+                <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                <p className="text-ink-muted text-sm leading-relaxed">{card.text}</p>
+              </div>
+            ))}
+          />
+        </div>
+
+        <div className="hidden lg:grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {detail.whyChooseDania.cards.map((card, i) => (
             <Reveal key={card.h3} direction="up" delay={i * 80}>
               <div className="flex flex-col gap-3 rounded-2xl border border-border bg-white p-7 h-full">
@@ -2385,21 +2456,27 @@ export function AreaDetailPage() {
             <p className="text-ink-muted leading-relaxed mb-10 max-w-3xl">{detail.nearby.intro}</p>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {detail.nearby.links.map((link, i) => (
-              <Reveal key={link.slug} direction="up" delay={i * 80}>
+              <Reveal key={link.slug} direction="up" delay={i * 60}>
                 <Link
                   to={`/areas/${link.slug}/`}
-                  className="group flex flex-col gap-3 rounded-2xl border border-border bg-white p-7 h-full transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:border-forest/20"
+                  className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]"
                 >
-                  <h3 className="font-bold text-ink group-hover:text-forest transition-colors">
-                    {link.h3}
-                  </h3>
-                  <p className="text-sm text-ink-muted leading-relaxed">{link.text}</p>
-                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
-                    View {AREA_SHORT_NAME[link.slug] ?? link.h3} Directory
-                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-                  </span>
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">
+                      {link.h3}
+                    </h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{link.text}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      View {AREA_SHORT_NAME[link.slug] ?? link.h3} Directory
+                      <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}

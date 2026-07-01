@@ -25,6 +25,7 @@ import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 
 // ─── S3 Rental Focus cards ───────────────────────────────────────────────────
 const rentalFocusCards = [
@@ -252,12 +253,14 @@ export function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
               {t('about.hero.h1')}
             </h1>
-            <p className="text-white/80 text-lg mb-3 max-w-lg">
-              {t('about.hero.subtitle')}
-            </p>
-            <p className="text-white/65 text-base mb-8 max-w-lg">
-              {t('about.hero.p')}
-            </p>
+            <ScrollRevealText
+              className="text-white/80 text-lg mb-3 max-w-lg"
+              text={t('about.hero.subtitle')}
+            />
+            <ScrollRevealText
+              className="text-white/65 text-base mb-8 max-w-lg"
+              text={t('about.hero.p')}
+            />
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 mb-10">
               <Link
@@ -328,18 +331,20 @@ export function AboutPage() {
               </p>
             </Reveal>
             <Reveal delay={200}>
-              <p className="text-ink-muted leading-relaxed text-base">
-                {isAr
+              <ScrollRevealText
+                className="text-ink-muted leading-relaxed text-base"
+                text={isAr
                   ? 'تجاوز تركيزنا المتخصص الطبقات المرهقة من التعقيدات المرتبطة بسوق الإيجارات في قطر. من خلال تقديم مصفوفات التوافر في الوقت الفعلي ورؤى جولات التفتيش الموثقة وتسعير غير مضخوم تماماً، نجسر الفجوة بين عرض الأصول الإيجارية عالية الجودة والطلب الاستهلاكي المتطور.'
                   : 'Our specialized focus bypasses the stressful layers of traditional real estate browsing. By presenting real-time availability matrices, verified walk-through insights, and completely uninflated pricing indexation, we bridge the gap between quality rental asset supply and evolving consumer demand.'}
-              </p>
+              />
             </Reveal>
             <Reveal delay={300}>
-              <p className="text-ink-muted leading-relaxed text-base">
-                {isAr
+              <ScrollRevealText
+                className="text-ink-muted leading-relaxed text-base"
+                text={isAr
                   ? 'ننطلق من مكاتبنا المؤسسية في شارع الريان، لنقدم دعماً مباشراً يتجاوز الوساطة العقارية التقليدية. تمتد محفظتنا عبر مراكز سكنية حضرية عالية الكثافة ومجمعات عائلية خاصة فاخرة وإسكانات عمالية ملتزمة بالمواصفات ومناطق تجارية عالية الحركة.'
                   : 'Operating from our corporate offices on Al Rayyan Road, our localized property management portfolio spans across high-density urban residential hubs, premium private family compounds, compliant logistical staff accommodations, and high-footfall commercial zones.'}
-              </p>
+              />
             </Reveal>
           </div>
         </div>

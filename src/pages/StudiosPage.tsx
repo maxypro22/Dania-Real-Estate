@@ -20,6 +20,7 @@ import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { usePageSchema } from '@/components/shared/Seo'
 import { faqPageSchema } from '@/lib/seo'
 
@@ -974,7 +975,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
                 <p className="text-lime text-xl font-semibold mb-4">{tH3}</p>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/85 text-base max-w-3xl mb-6 leading-relaxed">{c.heroParagraph}</p>
+                <ScrollRevealText className="text-white/85 text-base max-w-3xl mb-6 leading-relaxed" text={c.heroParagraph} />
               </Reveal>
               <Reveal direction="up" delay={240}>
                 <div className="flex flex-wrap gap-3 mb-6">
@@ -1058,9 +1059,9 @@ export function StudiosPage({ filter }: Readonly<Props>) {
                   <h2 className="text-3xl font-bold text-ink mb-6">{c.overviewH2}</h2>
                 </Reveal>
                 <div className="space-y-4 text-ink-muted leading-relaxed">
-                  <Reveal direction="up" delay={80}><p>{c.overviewP1}</p></Reveal>
-                  <Reveal direction="up" delay={160}><p>{c.overviewP2}</p></Reveal>
-                  <Reveal direction="up" delay={240}><p>{c.overviewP3}</p></Reveal>
+                  <Reveal direction="up" delay={80}><ScrollRevealText text={c.overviewP1} /></Reveal>
+                  <Reveal direction="up" delay={160}><ScrollRevealText text={c.overviewP2} /></Reveal>
+                  <Reveal direction="up" delay={240}><ScrollRevealText text={c.overviewP3} /></Reveal>
                 </div>
                 <Reveal direction="up" delay={320}>
                   <div className="mt-5">
@@ -1092,9 +1093,9 @@ export function StudiosPage({ filter }: Readonly<Props>) {
                 <h2 className="text-3xl font-bold text-ink mb-6 text-center">{c.overviewH2}</h2>
               </Reveal>
               <div className="space-y-4 text-ink-muted leading-relaxed">
-                <Reveal direction="up" delay={80}><p>{c.overviewP1}</p></Reveal>
-                <Reveal direction="up" delay={160}><p>{c.overviewP2}</p></Reveal>
-                <Reveal direction="up" delay={240}><p>{c.overviewP3}</p></Reveal>
+                <Reveal direction="up" delay={80}><ScrollRevealText text={c.overviewP1} /></Reveal>
+                <Reveal direction="up" delay={160}><ScrollRevealText text={c.overviewP2} /></Reveal>
+                <Reveal direction="up" delay={240}><ScrollRevealText text={c.overviewP3} /></Reveal>
               </div>
               <Reveal direction="up" delay={320}>
                 <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -1292,7 +1293,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             <h2 className="text-3xl font-bold text-ink mb-3">{c.areasH2}</h2>
           </Reveal>
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted mb-8">{c.areasParagraph}</p>
+            <ScrollRevealText className="text-ink-muted mb-8" text={c.areasParagraph} />
           </Reveal>
           {/* 8 local geography grid components */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -1324,7 +1325,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
             <h2 className="text-3xl font-bold text-ink mb-3">{c.whyH2}</h2>
           </Reveal>
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted mb-8">{c.whyIntro}</p>
+            <ScrollRevealText className="text-ink-muted mb-8" text={c.whyIntro} />
           </Reveal>
           {/* Mobile: Apple-style carousel */}
           <div className="lg:hidden">
@@ -1377,10 +1378,10 @@ export function StudiosPage({ filter }: Readonly<Props>) {
           </Reveal>
           <div className="max-w-3xl space-y-4 text-ink-muted leading-relaxed mb-8">
             <Reveal direction="up" delay={80}>
-              <p>{c.suitabilityP1}</p>
+              <ScrollRevealText text={c.suitabilityP1} />
             </Reveal>
             <Reveal direction="up" delay={160}>
-              <p>{c.suitabilityP2}</p>
+              <ScrollRevealText text={c.suitabilityP2} />
             </Reveal>
           </div>
           <Reveal direction="up" delay={240}>

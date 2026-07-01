@@ -21,6 +21,7 @@ import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 
 // â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 // STAFF ACCOMMODATION (main) data
@@ -267,9 +268,7 @@ function StaffAccommodationMain() {
                 </h3>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed">
-                  {t('staff.p')}
-                </p>
+                <ScrollRevealText className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed" text={t('staff.p')} />
               </Reveal>
               <Reveal direction="up" delay={240}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -710,11 +709,12 @@ function StaffAccommodationMain() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Reveal direction="up" delay={80}>
               <div>
-                <p className="text-ink-muted leading-relaxed text-sm mb-4">
-                  {isAr
+                <ScrollRevealText
+                  className="text-ink-muted leading-relaxed text-sm mb-4"
+                  text={isAr
                     ? 'يُعدّ اختيار الإسكان المؤسسي المتوافق أساساً جوهرياً لموثوقيتك التشغيلية اليومية ورفاهية الموظفين. توفير بيئات معيشية جيدة التهوية وسهلة الوصول ومُدارة بشكل صحيح لقوى العمل يُحسّن مباشرةً الاحتفاظ بالفريق ويُقلّل تأخيرات العبور اليومية ويحمي مؤسستك من التعرض للغرامات البلدية.'
                     : "Selecting compliant corporate housing is a core foundation for your daily operational reliability and employee well-being. Providing your workforce with well-ventilated, accessible, and properly managed living environments directly improves team retention, reduces daily transit delays, and protects your enterprise from municipal fine exposures."}
-                </p>
+                />
                 <p className="text-ink-muted leading-relaxed text-sm">
                   {isAr
                     ? 'تدعم دانية للعقارات صحة مؤسستك بضمان أن كل تخطيط إيجار يتطابق مع التسلسل الهرمي الداخلي المحدد لديك - مما يضمن عمليات سلسة وسليمة قانوناً من تسجيل الوصول الأولي وحتى تجديدات العقد طويلة الأمد.'
@@ -834,6 +834,76 @@ function StaffVillasPage() {
   const isAr = i18n.language === 'ar'
   usePageSchema([faqPageSchema(isAr ? staffVillasFaqsAr : staffVillasFaqs)])
 
+  const whyVillaCards = [
+    {
+      icon: <Car size={20} />,
+      h3: isAr ? 'لوجستيات الأسطول المركزية' : 'Centralized Fleet Logistics',
+      desc: isAr
+        ? 'بسّط عملياتك اليومية من خلال إيصال وانتقاء فرق المشروع بالكامل من وجهة عقار واحدة يسهل الوصول إليها.'
+        : 'Streamline your daily operations by dropping off and picking up entire project teams from a single, highly accessible property destination.',
+      accent: false,
+    },
+    {
+      icon: <Building2 size={20} />,
+      h3: isAr ? 'تخطيطات متعددة الغرف قابلة للتوسع' : 'Scalable Multi-Room Layouts',
+      desc: isAr
+        ? 'استفد من المخططات الواسعة التي تتميز بغرف نوم متعددة وملاحق منفصلة ومساحات مجتمعية كبيرة مُصممة لراحة معيشة القوى العاملة.'
+        : 'Utilize extensive floor plans featuring multiple bedrooms, separate outhouses, and large communal spaces tailored for workforce living comfort.',
+      accent: true,
+    },
+    {
+      icon: <FileText size={20} />,
+      h3: isAr ? 'أمان العقود طويلة الأمد' : 'Long-Term Contract Security',
+      desc: isAr
+        ? 'أبرم اتفاقيات إيجار تجارية متعددة السنوات قابلة للتنبؤ تتوافق تماماً مع عقود البناء الجارية أو خدمات شركتك.'
+        : 'Secure predictable, multi-year commercial lease agreements that align perfectly with your ongoing construction or corporate service contracts.',
+      accent: false,
+    },
+    {
+      icon: <DollarSign size={20} />,
+      h3: isAr ? 'تكلفة محسّنة لكل موظف' : 'Optimized Cost per Employee',
+      desc: isAr
+        ? 'خفّض إجمالي نفقاتك التشغيلية العامة باستخدام تخصيصات الفيلا عالية الطاقة مقارنةً بتأجير عدة شقق حضرية منفصلة.'
+        : 'Lower your total operational overhead by utilizing high-capacity villa allocations compared to leasing multiple separate urban apartments.',
+      accent: false,
+    },
+  ]
+
+  const chooseVillaCards = [
+    {
+      icon: <Users size={18} />,
+      h3: isAr ? 'تركيز مؤسسي B2B خالص' : 'Pure Corporate B2B Focus',
+      desc: isAr
+        ? 'نتجاوز القوائم السكنية المعتادة للتركيز تماماً على العقارات المستقلة المخلصة والمعتمدة لاستخدام الإسكان المؤسسي للموظفين.'
+        : 'We bypass standard residential listings to focus your search entirely on independent properties cleared and approved for corporate staff housing use.',
+      accent: false,
+    },
+    {
+      icon: <Car size={18} />,
+      h3: isAr ? 'تحليل العبور والأسطول' : 'Transit and Fleet Analysis',
+      desc: isAr
+        ? 'يُقيّم مستشارونا كل عقار مقابل أنماط سفر فريقك اليومية وعروض الشوارع للحافلات واتصالات الطرق الرئيسية.'
+        : 'Our consultants evaluate every property against your daily team travel patterns, street widths for buses, and main road connections.',
+      accent: true,
+    },
+    {
+      icon: <Shield size={18} />,
+      h3: isAr ? 'الفحص المسبق التنظيمي الصارم' : 'Strict Regulatory Pre-Screening',
+      desc: isAr
+        ? 'نتحقق من جميع خيارات العقارات مسبقاً للتأكد من قدرتها على إتمام شهادات إيجار البلدية الرسمية تحت سجل شركتك.'
+        : 'We check all property options beforehand to confirm they can complete official municipality lease attestations under your company registration.',
+      accent: false,
+    },
+    {
+      icon: <Wifi size={18} />,
+      h3: isAr ? 'بث وسائط مباشر في الوقت الفعلي' : 'Real-Time Direct Media Streams',
+      desc: isAr
+        ? 'تجاوز بوابات الإعلانات المبوبة غير الموثقة عبر الإنترنت. تواصل مباشرةً مع مكتب B2B عبر واتساب لتلقي مقاطع الفيديو الداخلية غير المعدلة وصحف التخطيط على الفور.'
+        : 'Skip unverified online classified portals. Connect directly with our B2B desk via WhatsApp to receive unedited interior videos and layout sheets instantly.',
+      accent: false,
+    },
+  ]
+
   return (
     <>
       {/* â"€â"€ SECTION 1: HERO â"€â"€ */}
@@ -854,11 +924,12 @@ function StaffVillasPage() {
                 </h3>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed">
-                  {isAr
+                <ScrollRevealText
+                  className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed"
+                  text={isAr
                     ? 'يتطلب الحصول على فيلا موظفين متوافقة للإيجار في الدوحة الموازنة بين متطلبات حجم الفريق واللوائح الصارمة لبلدية البلدية وإعدادات الصرف الصحي عالية الطاقة وممرات الوصول لنقل الأسطول الثقيل. تدير دانية للعقارات مخزوناً نشطاً وموثقاً بعمق من المنازل المستقلة والمجمعات متعددة الفلل المخصصة تحديداً للإسكان الوظيفي عبر الممرات الصناعية الرئيسية في قطر. سواء كانت مؤسستك بحاجة إلى إسكان فريق هندسي بالقرب من مشروع بنية تحتية كبير أو تحديد موقع مركزي لمشرفي الضيافة أو تأمين عقارات متعددة الغرف للعمليات طويلة الأمد، تُطابق قسمنا التجاري للتأجير لوجستياتك مباشرةً مع القوائم الموثقة والمتاحة.'
                     : "Sourcing a compliant staff villa for rent in Doha requires balancing team size requirements with strict Baladiya municipality regulations, high-capacity sanitary setups, and heavy fleet transport access lanes. Dania Real Estate manages an active, deeply vetted inventory of independent standalone houses and multi-villa clusters specifically cleared for corporate workforce housing across Qatar's major industrial corridors. Whether your organization must house an engineering team close to a major infrastructure project, locate central housing for hospitality supervisors, or secure multi-room properties for long-term operations, our commercial leasing division matches your logistics directly against verified, available listings."}
-                </p>
+                />
               </Reveal>
               <Reveal direction="up" delay={240}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -924,11 +995,12 @@ function StaffVillasPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <Reveal direction="up" delay={80}>
-              <p className="text-ink-muted leading-relaxed text-sm">
-                {isAr
+              <ScrollRevealText
+                className="text-ink-muted leading-relaxed text-sm"
+                text={isAr
                   ? 'يوفر اختيار فيلا موظفين في سوق الإيجار القطري للشركات بديلاً عالي الكفاءة ومركزياً عن استئجار وحدات شقق متفرقة. يتيح تكوين الفيلا المستقل لمؤسستك إيواء فرق تقنية كاملة أو مشرفين ميدانيين أو موظفين تشغيليين تحت سقف واحد. يُبسّط هذا التخطيط المركزي بشكل كبير لوجستيات الفريق اليومية ويُقلّل النفقات العامة للنقل المؤسسي ويُبسّط عمليات إدارة الممتلكات.'
                   : 'Selecting a staff villa within the Qatari rental market provides companies with a highly efficient and centralized alternative to renting scattered apartment units. An independent villa configuration allows your organization to house entire technical teams, site supervisors, or operational staff under one roof. This centralized layout greatly simplifies daily team logistics, reduces corporate transportation overhead, and streamlines property management operations.'}
-              </p>
+              />
             </Reveal>
             <Reveal direction="up" delay={160}>
               <p className="text-ink-muted leading-relaxed text-sm">
@@ -965,47 +1037,32 @@ function StaffVillasPage() {
             </h2>
           </Reveal>
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
+            <ScrollRevealText
+              className="text-ink-muted mb-10 max-w-2xl"
+              text={isAr
                 ? 'مركزة موظفيك التشغيليين داخل هيكل فيلا مستقل تُحسّن أداء الفريق وتضمن السلامة التنظيمية وتُخفض إجمالي نفقات الإسكان المؤسسي.'
                 : 'Centralizing your operational personnel within an independent villa structure improves team performance, ensures regulatory safety, and lowers total corporate housing expenditures.'}
-            </p>
+            />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              {
-                icon: <Car size={20} />,
-                h3: isAr ? 'لوجستيات الأسطول المركزية' : 'Centralized Fleet Logistics',
-                desc: isAr
-                  ? 'بسّط عملياتك اليومية من خلال إيصال وانتقاء فرق المشروع بالكامل من وجهة عقار واحدة يسهل الوصول إليها.'
-                  : 'Streamline your daily operations by dropping off and picking up entire project teams from a single, highly accessible property destination.',
-                accent: false,
-              },
-              {
-                icon: <Building2 size={20} />,
-                h3: isAr ? 'تخطيطات متعددة الغرف قابلة للتوسع' : 'Scalable Multi-Room Layouts',
-                desc: isAr
-                  ? 'استفد من المخططات الواسعة التي تتميز بغرف نوم متعددة وملاحق منفصلة ومساحات مجتمعية كبيرة مُصممة لراحة معيشة القوى العاملة.'
-                  : 'Utilize extensive floor plans featuring multiple bedrooms, separate outhouses, and large communal spaces tailored for workforce living comfort.',
-                accent: true,
-              },
-              {
-                icon: <FileText size={20} />,
-                h3: isAr ? 'أمان العقود طويلة الأمد' : 'Long-Term Contract Security',
-                desc: isAr
-                  ? 'أبرم اتفاقيات إيجار تجارية متعددة السنوات قابلة للتنبؤ تتوافق تماماً مع عقود البناء الجارية أو خدمات شركتك.'
-                  : 'Secure predictable, multi-year commercial lease agreements that align perfectly with your ongoing construction or corporate service contracts.',
-                accent: false,
-              },
-              {
-                icon: <DollarSign size={20} />,
-                h3: isAr ? 'تكلفة محسّنة لكل موظف' : 'Optimized Cost per Employee',
-                desc: isAr
-                  ? 'خفّض إجمالي نفقاتك التشغيلية العامة باستخدام تخصيصات الفيلا عالية الطاقة مقارنةً بتأجير عدة شقق حضرية منفصلة.'
-                  : 'Lower your total operational overhead by utilizing high-capacity villa allocations compared to leasing multiple separate urban apartments.',
-                accent: false,
-              },
-            ].map((card, i) => (
+          {/* Mobile: Pitch-style stacked deck */}
+          <div className="lg:hidden max-w-md mx-auto">
+            <StackedCards
+              items={whyVillaCards.map((card, i) => {
+                const forest = card.accent
+                return (
+                  <div key={i} className={`rounded-3xl border p-6 min-h-[248px] flex flex-col shadow-xl shadow-forest/10 ${forest ? 'bg-forest border-forest' : 'bg-white border-border'}`}>
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${forest ? 'bg-lime/20' : 'bg-lime'}`}>
+                      <span className={forest ? 'text-lime' : 'text-forest'}>{card.icon}</span>
+                    </div>
+                    <h3 className={`font-bold text-xl mb-2 ${forest ? 'text-lime' : 'text-ink'}`}>{card.h3}</h3>
+                    <p className={`text-sm leading-relaxed flex-1 ${forest ? 'text-white/75' : 'text-ink-muted'}`}>{card.desc}</p>
+                  </div>
+                )
+              })}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {whyVillaCards.map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-lime`}>
@@ -1111,7 +1168,7 @@ function StaffVillasPage() {
                 : 'Daily transit times, parking capacities, and rental budgets for corporate staff houses are deeply tied to local municipal zones. Dania Real Estate actively manages active B2B listings across these primary logistics routes:'}
             </p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 h3: isAr ? 'فلل الموظفين في الدوحة' : 'Staff Villas in Doha',
@@ -1170,14 +1227,20 @@ function StaffVillasPage() {
                 href: '/areas/al-kharaitiyat/',
               },
             ].map((area, i) => (
-              <Reveal key={i} direction="up" delay={i * 60}>
-                <div className="bg-white border border-border rounded-2xl p-6 linear-card h-full flex flex-col">
-                  <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                  <p className="text-ink-muted text-xs leading-relaxed mb-4 flex-1">{area.desc}</p>
-                  <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
-                    {isAr ? 'عرض العقارات ←' : 'View Properties →'}
-                  </Link>
-                </div>
+              <Reveal key={i} delay={i * 60}>
+                <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {isAr ? 'عرض العقارات' : 'View Properties'} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -1193,47 +1256,29 @@ function StaffVillasPage() {
             </h2>
           </Reveal>
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr
+            <ScrollRevealText
+              className="text-ink-muted mb-10 max-w-2xl"
+              text={isAr
                 ? 'يتطلب العثور على فيلا موظفين متوافقة معرفةً عميقة بالسوق المحلي والتحقق الصارم من الأوراق ورسم خرائط لوجستية دقيقة.'
                 : 'Finding a compliant staff villa requires deep local market knowledge, strict paperwork verification, and precise logistics mapping.'}
-            </p>
+            />
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              {
-                icon: <Users size={18} />,
-                h3: isAr ? 'تركيز مؤسسي B2B خالص' : 'Pure Corporate B2B Focus',
-                desc: isAr
-                  ? 'نتجاوز القوائم السكنية المعتادة للتركيز تماماً على العقارات المستقلة المخلصة والمعتمدة لاستخدام الإسكان المؤسسي للموظفين.'
-                  : 'We bypass standard residential listings to focus your search entirely on independent properties cleared and approved for corporate staff housing use.',
-                accent: false,
-              },
-              {
-                icon: <Car size={18} />,
-                h3: isAr ? 'تحليل العبور والأسطول' : 'Transit and Fleet Analysis',
-                desc: isAr
-                  ? 'يُقيّم مستشارونا كل عقار مقابل أنماط سفر فريقك اليومية وعروض الشوارع للحافلات واتصالات الطرق الرئيسية.'
-                  : 'Our consultants evaluate every property against your daily team travel patterns, street widths for buses, and main road connections.',
-                accent: true,
-              },
-              {
-                icon: <Shield size={18} />,
-                h3: isAr ? 'الفحص المسبق التنظيمي الصارم' : 'Strict Regulatory Pre-Screening',
-                desc: isAr
-                  ? 'نتحقق من جميع خيارات العقارات مسبقاً للتأكد من قدرتها على إتمام شهادات إيجار البلدية الرسمية تحت سجل شركتك.'
-                  : 'We check all property options beforehand to confirm they can complete official municipality lease attestations under your company registration.',
-                accent: false,
-              },
-              {
-                icon: <Wifi size={18} />,
-                h3: isAr ? 'بث وسائط مباشر في الوقت الفعلي' : 'Real-Time Direct Media Streams',
-                desc: isAr
-                  ? 'تجاوز بوابات الإعلانات المبوبة غير الموثقة عبر الإنترنت. تواصل مباشرةً مع مكتب B2B عبر واتساب لتلقي مقاطع الفيديو الداخلية غير المعدلة وصحف التخطيط على الفور.'
-                  : 'Skip unverified online classified portals. Connect directly with our B2B desk via WhatsApp to receive unedited interior videos and layout sheets instantly.',
-                accent: false,
-              },
-            ].map((card, i) => (
+          {/* Mobile: Apple-style carousel */}
+          <div className="lg:hidden">
+            <CardCarousel
+              items={chooseVillaCards.map((card, i) => (
+                <div key={i} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                  <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                    <span className="text-forest">{card.icon}</span>
+                  </div>
+                  <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                  <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            />
+          </div>
+          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {chooseVillaCards.map((card, i) => (
               <Reveal key={i} direction="up" delay={i * 80}>
                 <div className={`rounded-2xl p-6 h-full linear-card ${card.accent ? 'bg-forest text-white' : 'bg-white border border-border'}`}>
                   <div className="w-9 h-9 bg-lime rounded-xl flex items-center justify-center mb-4">
@@ -1296,11 +1341,12 @@ function StaffVillasPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Reveal direction="up" delay={80}>
               <div>
-                <p className="text-ink-muted leading-relaxed text-sm mb-4">
-                  {isAr
+                <ScrollRevealText
+                  className="text-ink-muted leading-relaxed text-sm mb-4"
+                  text={isAr
                     ? 'يُعدّ اختيار فيلا موظفين متوافقة أساساً جوهرياً لموثوقية مؤسستك التشغيلية اليومية وسلامتها التنظيمية. توفير إسكان موثق جيد التهوية وحسن الموقع وموثق قانونياً لفرقك التقنية والإشرافية يحمي مؤسستك مباشرةً من مخاطر العقوبات البلدية ويُحسّن مخرجات المشروع اليومية.'
                     : "Selecting a compliant staff villa is a core foundation for your organization's daily operational reliability and regulatory safety. Providing your technical and supervisor teams with properly ventilated, well-located, and legally verified housing directly protects your enterprise from municipal penalty risks and improves daily project output."}
-                </p>
+                />
                 <p className="text-ink-muted leading-relaxed text-sm">
                   {isAr
                     ? 'تساعد دانية للعقارات عملك على التنقل عبر نقاط التحقق من الامتثال هذه بضمان أن جميع نسب الحمامات وأحجام المطابخ ومناطق مواقف السيارات تتطابق مع حدود الإشغال الدقيقة المُعلنة في عقد إيجارك الرسمي.'

@@ -10,6 +10,7 @@ import { faqPageSchema } from '@/lib/seo'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 
 interface Props { filter: 'all' | 'standard' | 'compound' }
 
@@ -270,6 +271,154 @@ export function VillasPage({ filter }: Readonly<Props>) {
     },
   ]
 
+  // ── Standard villa benefit cards (standard section 3) — drives mobile carousel + desktop grid ──
+  const standardBenefits = isAr ? [
+    {
+      h3: 'خصوصية سكنية مطلقة',
+      desc: 'استمتع ببوابات سكنية منفصلة تمامًا وجدران حدودية معزولة وتصاميم مستقلة بدون نقاط هيكلية مشتركة أو ممرات مشتركة.',
+    },
+    {
+      h3: 'تصاميم متعددة الأجنحة الواسعة',
+      desc: 'احصل على مساقط داخلية ضخمة تضم صالات عائلية كبيرة وغرف مجالس ضيوف منفصلة وأجنحة خاصة للخدم في الموقع.',
+    },
+    {
+      h3: 'أفنية خاصة ومواقف مسوّرة',
+      desc: 'احصل على ملكية حصرية لفنائك الأمامي الخارجي ومناطق السطح المفتوح ومنافذ مواقف السيارات المتعددة المسوّرة الآمنة.',
+    },
+    {
+      h3: 'تحكم ذاتي كامل',
+      desc: 'أدر جداول الصيانة الخاصة بك وإعدادات التصميم الداخلي وملفات المرافق طويلة الأمد دون إشراف إداري من المجمع.',
+    },
+  ] : [
+    {
+      h3: 'Absolute Residential Privacy',
+      desc: 'Enjoy completely separate residential gates, isolated boundary walls, and standalone layouts with zero shared structural points or shared common corridors.',
+    },
+    {
+      h3: 'Expansive Multi-Suite Layouts',
+      desc: 'Access massive interior footprints featuring large family lounges, separate guest majlis rooms, and detached on-site domestic quarters.',
+    },
+    {
+      h3: 'Private Yards & Gated Parking',
+      desc: 'Secure exclusive ownership of your outdoor front courtyard, open rooftop zones, and secure gated multi-car garage ports.',
+    },
+    {
+      h3: 'Total Autonomous Control',
+      desc: 'Manage your own maintenance timelines, interior styling setups, and long-term utility profiles without compound administrative oversight.',
+    },
+  ]
+
+  // ── "Why choose Dania" cards (standard section 7) — drives mobile carousel + desktop grid ──
+  const standardChoose = isAr ? [
+    {
+      h3: 'خبرة في سوق الفلل المستقلة',
+      desc: 'نتجاوز مجموعات المجمعات الشائعة للتركيز على الفلل المستقلة الأصيلة التي تتوافق مع تفضيلات الخصوصية الدقيقة لديك.',
+    },
+    {
+      h3: 'تتبع دقيق للحدود',
+      desc: 'يضمن مستشارو العقارات لدينا التحقق الواضح من جميع المباني الخارجية وغرف السائقين وخطوط المرافق قبل توقيع العقد.',
+    },
+    {
+      h3: 'مطابقة عائلية منظمة',
+      desc: 'نوائم بحثك في العقار المستقل مع المتغيرات اليومية الحرجة مثل أنماط تنقل العائلة ومناطق المدارس والوصول إلى محلات البقالة.',
+    },
+    {
+      h3: 'تحديثات واتساب عند الطلب',
+      desc: 'تجنب الإعلانات المبوبة غير الموثوقة والمتكررة. تواصل مباشرةً مع وكلائنا الميدانيين عبر واتساب للحصول على وسائط داخلية غير مُعدّلة فورًا.',
+    },
+  ] : [
+    {
+      h3: 'Standalone Market Expertise',
+      desc: 'We bypass common compound clusters to focus on authentic independent villas that match your precise privacy preferences.',
+    },
+    {
+      h3: 'Accurate Boundary Tracking',
+      desc: 'Our expert property consultants ensure all external outbuildings, driver rooms, and utility lines are clearly verified before contract signing.',
+    },
+    {
+      h3: 'Structured Family Matching',
+      desc: 'We align your standalone property search with critical daily variables like family transit patterns, school zones, and grocery access.',
+    },
+    {
+      h3: 'On-Demand WhatsApp Updates',
+      desc: 'Skip unverified, repetitive classified ads. Connect directly with our on-ground agents via WhatsApp to receive unedited interior media instantly.',
+    },
+  ]
+
+  // ── Compound villa benefit cards (compound section 3) — drives mobile carousel + desktop grid ──
+  const compoundBenefits = isAr ? [
+    {
+      h3: 'معيشة تمحورت حول المجتمع',
+      desc: 'استمتع ببيئة ترحيبية على طراز الجوار تجعل من السهل على أفراد الأسرة التواصل والبقاء نشطين والشعور بالراحة خلال فترات الإيجار الطويلة.',
+    },
+    {
+      h3: 'سلامة وأمن مسوّر',
+      desc: 'احمِ عائلتك داخل محيطات مُدارة تضم نقاط تفتيش أمنية ذات طاقم وبوابات تحكم في الوصول وممرات مرور داخلية آمنة للأطفال.',
+    },
+    {
+      h3: 'مرافق مشتركة شاملة',
+      desc: 'احصل على وصول فوري لنوادي مجتمعية متميزة ومسابح سباحة ومراكز لياقة بدنية وملاعب تنس وملاعب أطفال آمنة.',
+    },
+    {
+      h3: 'دعم صيانة خالٍ من الإجهاد',
+      desc: 'وفّر وقتًا ثمينًا مع فرق صيانة المرافق الميدانية المخصصة المسؤولة عن معالجة التدفئة والتبريد والسباكة والصيانة الهيكلية.',
+    },
+  ] : [
+    {
+      h3: 'Community-Centric Living',
+      desc: 'Enjoy a welcoming neighborhood-style environment that makes it easy for family members to connect, stay active, and feel at home during long-term tenancies.',
+    },
+    {
+      h3: 'Gated Safety and Security',
+      desc: 'Protect your family inside managed perimeters featuring staffed security checkpoints, access control gates, and slow, child-safe interior traffic lanes.',
+    },
+    {
+      h3: 'Comprehensive Shared Facilities',
+      desc: "Gain immediate access to premium community clubhouses, swimming pools, fitness centers, tennis courts, and secure children's playgrounds.",
+    },
+    {
+      h3: 'Stress-Free Maintenance Support',
+      desc: 'Save valuable time with dedicated, on-site facility maintenance teams responsible for handling your heating, cooling, plumbing, and structural upkeep.',
+    },
+  ]
+
+  // ── "Why choose Dania" cards (compound section 7) — drives mobile carousel + desktop grid ──
+  const compoundChoose = isAr ? [
+    {
+      h3: 'معرفة متخصصة بسوق المجمعات',
+      desc: 'نستبعد القوائم المستقلة المعزولة للتركيز حصريًا على المجمعات المسوّرة الموثقة التي تتوافق مع معايير نمط حياة عائلتك.',
+    },
+    {
+      h3: 'التحقق من المرافق والمنشآت',
+      desc: 'يفحص مستشارونا بدقة المناطق المجتمعية المشتركة وسياسات الوصول للنوادي وسلامة الملاعب قبل ترتيب الجولات.',
+    },
+    {
+      h3: 'مواءمة نمط الحياة العائلية',
+      desc: 'نطابق بحثك في المجمع مع المتغيرات اليومية الحرجة مثل مسارات توجيه حافلات المدارس والسوبرماركت وأوقات التنقل.',
+    },
+    {
+      h3: 'تحديثات جوال مباشرة سريعة',
+      desc: 'تجنب منصات قوائم العقارات القديمة. تواصل مباشرةً عبر واتساب للحصول على مقاطع فيديو داخلية غير مُعدّلة لوحدات المجمع الشاغرة فورًا.',
+    },
+  ] : [
+    {
+      h3: 'Dedicated Compound Market Knowledge',
+      desc: "We screen out isolated standalone listings to focus exclusively on vetted gated compounds that match your family's lifestyle criteria.",
+    },
+    {
+      h3: 'Amenity and Facility Verification',
+      desc: 'Our consultants thoroughly inspect shared community zones, clubhouse access policies, and playground safety before arranging tours.',
+    },
+    {
+      h3: 'Family Lifestyle Alignment',
+      desc: 'We match your compound search with critical daily variables like school bus routing paths, supermarkets, and commute times.',
+    },
+    {
+      h3: 'Rapid Direct Mobile Updates',
+      desc: 'Skip outdated property listing platforms. Connect directly via WhatsApp to receive unedited interior videos of vacant compound units instantly.',
+    },
+  ]
+
   return (
     <>
       <title>{villasSeo.title}</title>
@@ -286,7 +435,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                 <p className="text-lime text-lg max-w-2xl mb-4">{hero.sub}</p>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed">{hero.para}</p>
+                <ScrollRevealText className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed" text={hero.para} />
               </Reveal>
               <Reveal direction="up" delay={240}>
                 <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -779,14 +928,10 @@ export function VillasPage({ filter }: Readonly<Props>) {
               </Reveal>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Reveal direction="up" delay={100}>
-                  <p className="text-ink-muted leading-relaxed text-sm">
-                    {isAr ? 'يُعدّ اختيار فيلا عادية في سوق الإيجار القطري المسار المثالي للأسر التي تُعطي الأولوية للخصوصية المطلقة للمحيط والتحكم الفردي في تصميمها المنزلي. على عكس عقارات المجمعات التي تعمل ضمن تصميم حي جماعي، تقف الفيلا العادية المستقلة كوحدة سكنية مستقلة تمامًا. يمنح هذا التنسيق عائلتك وصولًا حصريًا لجميع الهياكل الخارجية ومناطق الفناء الخاصة والأسطح دون أي جدران مجتمعية مشتركة.' : 'Choosing a standard villa within the Qatari rental market is the ideal path for households prioritizing absolute perimeter privacy and individual control over their domestic layout. Unlike compound properties that function within a collective neighborhood layout, a standard standalone villa stands as an entirely independent residential unit. This format gives your family exclusive access to all outdoor structures, private courtyard zones, and rooftop spaces without any shared community walls.'}
-                  </p>
+                  <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr ? 'يُعدّ اختيار فيلا عادية في سوق الإيجار القطري المسار المثالي للأسر التي تُعطي الأولوية للخصوصية المطلقة للمحيط والتحكم الفردي في تصميمها المنزلي. على عكس عقارات المجمعات التي تعمل ضمن تصميم حي جماعي، تقف الفيلا العادية المستقلة كوحدة سكنية مستقلة تمامًا. يمنح هذا التنسيق عائلتك وصولًا حصريًا لجميع الهياكل الخارجية ومناطق الفناء الخاصة والأسطح دون أي جدران مجتمعية مشتركة.' : 'Choosing a standard villa within the Qatari rental market is the ideal path for households prioritizing absolute perimeter privacy and individual control over their domestic layout. Unlike compound properties that function within a collective neighborhood layout, a standard standalone villa stands as an entirely independent residential unit. This format gives your family exclusive access to all outdoor structures, private courtyard zones, and rooftop spaces without any shared community walls.'} />
                 </Reveal>
                 <Reveal direction="up" delay={180}>
-                  <p className="text-ink-muted leading-relaxed text-sm">
-                    {isAr ? 'توفر الفلل العادية للمغتربين على المدى الطويل والعائلات المحلية البارزة مرونة هيكلية لا مثيل لها. تقدم هذه العقارات بانتظام تكوينات داخلية واسعة، وأجنحة سائقين خارجية منفصلة، وملاحق منفصلة، وبوابات مواقف سيارات خاصة كبيرة مبنية لاستيعاب مركبات متعددة بأمان.' : 'For long-term expatriates and prominent local families, standard villas deliver unmatched structural flexibility. These properties regularly offer expansive indoor configurations, detached exterior driver blocks, separate outhouses, and large private parking gates built to hold multiple vehicles safely.'}
-                  </p>
+                  <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr ? 'توفر الفلل العادية للمغتربين على المدى الطويل والعائلات المحلية البارزة مرونة هيكلية لا مثيل لها. تقدم هذه العقارات بانتظام تكوينات داخلية واسعة، وأجنحة سائقين خارجية منفصلة، وملاحق منفصلة، وبوابات مواقف سيارات خاصة كبيرة مبنية لاستيعاب مركبات متعددة بأمان.' : 'For long-term expatriates and prominent local families, standard villas deliver unmatched structural flexibility. These properties regularly offer expansive indoor configurations, detached exterior driver blocks, separate outhouses, and large private parking gates built to hold multiple vehicles safely.'} />
                 </Reveal>
                 <Reveal direction="up" delay={260}>
                   <div>
@@ -812,46 +957,26 @@ export function VillasPage({ filter }: Readonly<Props>) {
                 <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-4">{isAr ? 'لماذا تُعدّ الفلل العادية خياراً عملياً للإيجار' : 'Why Standard Villas Are a Practical Rental Choice'}</h2>
               </Reveal>
               <Reveal direction="up" delay={80}>
-                <p className="text-ink-muted mb-10 max-w-2xl">
-                  {isAr ? 'تمنح الهياكل السكنية المستقلة المستأجرين تحكمًا كاملًا في مساحة منزلهم والمساحات الخارجية وتفضيلات نمط الحياة اليومية.' : 'Standalone residential structures give tenants total control over their home footprint, exterior spaces, and daily lifestyle preferences.'}
-                </p>
+                <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr ? 'تمنح الهياكل السكنية المستقلة المستأجرين تحكمًا كاملًا في مساحة منزلهم والمساحات الخارجية وتفضيلات نمط الحياة اليومية.' : 'Standalone residential structures give tenants total control over their home footprint, exterior spaces, and daily lifestyle preferences.'} />
               </Reveal>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {(isAr ? [
-                  {
-                    h3: 'خصوصية سكنية مطلقة',
-                    desc: 'استمتع ببوابات سكنية منفصلة تمامًا وجدران حدودية معزولة وتصاميم مستقلة بدون نقاط هيكلية مشتركة أو ممرات مشتركة.',
-                  },
-                  {
-                    h3: 'تصاميم متعددة الأجنحة الواسعة',
-                    desc: 'احصل على مساقط داخلية ضخمة تضم صالات عائلية كبيرة وغرف مجالس ضيوف منفصلة وأجنحة خاصة للخدم في الموقع.',
-                  },
-                  {
-                    h3: 'أفنية خاصة ومواقف مسوّرة',
-                    desc: 'احصل على ملكية حصرية لفنائك الأمامي الخارجي ومناطق السطح المفتوح ومنافذ مواقف السيارات المتعددة المسوّرة الآمنة.',
-                  },
-                  {
-                    h3: 'تحكم ذاتي كامل',
-                    desc: 'أدر جداول الصيانة الخاصة بك وإعدادات التصميم الداخلي وملفات المرافق طويلة الأمد دون إشراف إداري من المجمع.',
-                  },
-                ] : [
-                  {
-                    h3: 'Absolute Residential Privacy',
-                    desc: 'Enjoy completely separate residential gates, isolated boundary walls, and standalone layouts with zero shared structural points or shared common corridors.',
-                  },
-                  {
-                    h3: 'Expansive Multi-Suite Layouts',
-                    desc: 'Access massive interior footprints featuring large family lounges, separate guest majlis rooms, and detached on-site domestic quarters.',
-                  },
-                  {
-                    h3: 'Private Yards & Gated Parking',
-                    desc: 'Secure exclusive ownership of your outdoor front courtyard, open rooftop zones, and secure gated multi-car garage ports.',
-                  },
-                  {
-                    h3: 'Total Autonomous Control',
-                    desc: 'Manage your own maintenance timelines, interior styling setups, and long-term utility profiles without compound administrative oversight.',
-                  },
-                ]).map((card, i) => (
+              {/* Mobile: Apple-style carousel */}
+              <div className="lg:hidden">
+                <CardCarousel
+                  items={standardBenefits.map((card) => (
+                    <div key={card.h3} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                      <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                        <CheckCircle2 size={18} className="text-forest" />
+                      </div>
+                      <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                      <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                    </div>
+                  ))}
+                />
+              </div>
+
+              {/* Desktop: original grid */}
+              <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {standardBenefits.map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
                     <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
@@ -963,7 +1088,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'تتوافق القواعد الشهرية للإيجار ومقاييس مساحة الفناء والتكوينات المعمارية للفلل المستقلة بشكل طبيعي مع مناطقها البلدية. تدير دانية للعقارات الاستفسارات النشطة عبر هذه القطاعات الحيوية:' : 'Monthly rental baselines, yard square-footage metrics, and architectural configurations for standalone villas naturally align with their municipal zones. Dania Real Estate manages active inquiries across these vital sectors:'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {(isAr ? [
                   {
                     h3: 'فلل عادية في الدوحة',
@@ -1047,14 +1172,20 @@ export function VillasPage({ filter }: Readonly<Props>) {
                     href: '/areas/al-kharaitiyat/',
                   },
                 ]).map((area, i) => (
-                  <Reveal key={area.h3} direction="up" delay={160 + i * 60}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
-                      <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                      <p className="text-ink-muted text-xs leading-relaxed mb-4">{area.desc}</p>
-                      <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
-                        {isAr ? 'عرض العقارات ←' : 'View Properties →'}
-                      </Link>
-                    </div>
+                  <Reveal key={area.h3} delay={i * 60}>
+                    <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                      <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                      <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                        <LocationIcon size={19} />
+                      </div>
+                      <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                        <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                        <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                        <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                          {isAr ? 'عرض العقارات' : 'View Properties'} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                        </span>
+                      </div>
+                    </Link>
                   </Reveal>
                 ))}
               </div>
@@ -1072,42 +1203,24 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'يتطلب إيجاد فيلا مستقلة ممتثلة التنقل عبر مقاييس الحمل على المرافق المحلية وحدود المخططات الدقيقة وتسجيلات العقود البلدية المباشرة.' : 'Finding a compliant standalone villa requires navigating localized utility load metrics, accurate plot boundaries, and direct municipal contract registrations.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {(isAr ? [
-                  {
-                    h3: 'خبرة في سوق الفلل المستقلة',
-                    desc: 'نتجاوز مجموعات المجمعات الشائعة للتركيز على الفلل المستقلة الأصيلة التي تتوافق مع تفضيلات الخصوصية الدقيقة لديك.',
-                  },
-                  {
-                    h3: 'تتبع دقيق للحدود',
-                    desc: 'يضمن مستشارو العقارات لدينا التحقق الواضح من جميع المباني الخارجية وغرف السائقين وخطوط المرافق قبل توقيع العقد.',
-                  },
-                  {
-                    h3: 'مطابقة عائلية منظمة',
-                    desc: 'نوائم بحثك في العقار المستقل مع المتغيرات اليومية الحرجة مثل أنماط تنقل العائلة ومناطق المدارس والوصول إلى محلات البقالة.',
-                  },
-                  {
-                    h3: 'تحديثات واتساب عند الطلب',
-                    desc: 'تجنب الإعلانات المبوبة غير الموثوقة والمتكررة. تواصل مباشرةً مع وكلائنا الميدانيين عبر واتساب للحصول على وسائط داخلية غير مُعدّلة فورًا.',
-                  },
-                ] : [
-                  {
-                    h3: 'Standalone Market Expertise',
-                    desc: 'We bypass common compound clusters to focus on authentic independent villas that match your precise privacy preferences.',
-                  },
-                  {
-                    h3: 'Accurate Boundary Tracking',
-                    desc: 'Our expert property consultants ensure all external outbuildings, driver rooms, and utility lines are clearly verified before contract signing.',
-                  },
-                  {
-                    h3: 'Structured Family Matching',
-                    desc: 'We align your standalone property search with critical daily variables like family transit patterns, school zones, and grocery access.',
-                  },
-                  {
-                    h3: 'On-Demand WhatsApp Updates',
-                    desc: 'Skip unverified, repetitive classified ads. Connect directly with our on-ground agents via WhatsApp to receive unedited interior media instantly.',
-                  },
-                ]).map((card, i) => (
+              {/* Mobile: Apple-style carousel */}
+              <div className="lg:hidden">
+                <CardCarousel
+                  items={standardChoose.map((card) => (
+                    <div key={card.h3} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                      <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                        <CheckCircle2 size={18} className="text-forest" />
+                      </div>
+                      <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                      <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                    </div>
+                  ))}
+                />
+              </div>
+
+              {/* Desktop: original grid */}
+              <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {standardChoose.map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
                     <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
@@ -1214,14 +1327,10 @@ export function VillasPage({ filter }: Readonly<Props>) {
               </Reveal>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Reveal direction="up" delay={100}>
-                  <p className="text-ink-muted leading-relaxed text-sm">
-                    {isAr ? 'يُعدّ اختيار فيلا مجمع في سوق الإيجار القطري الخيار المفضل للعائلات التي تريد الموازنة بين التصميم الواسع للمنزل التقليدي ومرافق مجتمع سكني مُدار منظم. على عكس العقارات المستقلة التي تقف في عزلة خلف جدران خاصة، تقع فيلا المجمع داخل مشروع سكني آمن مخطط رئيسي. يوفر هذا النظام البيئي لعائلتك وصولًا مشتركًا إلى مرافق اجتماعية متميزة ومناطق ترفيهية ودعم صيانة احترافي، كل ذلك ضمن إعداد حي مكتفٍ ذاتيًا.' : 'Selecting a compound villa within the Qatari rental market is the preferred choice for families who want to balance the spacious layout of a traditional house with the structured amenities of a managed residential community. Unlike standalone properties that stand in isolation behind private walls, a compound villa sits inside a secure, master-planned residential development. This ecosystem offers your family shared access to premium social facilities, recreational zones, and professional maintenance support, all within a self-contained neighborhood setting.'}
-                  </p>
+                  <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr ? 'يُعدّ اختيار فيلا مجمع في سوق الإيجار القطري الخيار المفضل للعائلات التي تريد الموازنة بين التصميم الواسع للمنزل التقليدي ومرافق مجتمع سكني مُدار منظم. على عكس العقارات المستقلة التي تقف في عزلة خلف جدران خاصة، تقع فيلا المجمع داخل مشروع سكني آمن مخطط رئيسي. يوفر هذا النظام البيئي لعائلتك وصولًا مشتركًا إلى مرافق اجتماعية متميزة ومناطق ترفيهية ودعم صيانة احترافي، كل ذلك ضمن إعداد حي مكتفٍ ذاتيًا.' : 'Selecting a compound villa within the Qatari rental market is the preferred choice for families who want to balance the spacious layout of a traditional house with the structured amenities of a managed residential community. Unlike standalone properties that stand in isolation behind private walls, a compound villa sits inside a secure, master-planned residential development. This ecosystem offers your family shared access to premium social facilities, recreational zones, and professional maintenance support, all within a self-contained neighborhood setting.'} />
                 </Reveal>
                 <Reveal direction="up" delay={180}>
-                  <p className="text-ink-muted leading-relaxed text-sm">
-                    {isAr ? 'توفر الحياة في المجمع للمغتربين على المدى الطويل والحسابات المؤسسية راحة البال والمعيشة اليومية السهلة. تُزيل هذه العقارات ضغط إدارة الصيانة المستقلة للعقار، مما يمنح أسرتك وصولًا فوريًا إلى شعور آمن بالجوار حيث يمكن للأطفال اللعب بحرية ويتولى فرق ميدانية مخصصة معالجة طلبات الصيانة.' : 'For long-term expatriates and corporate accounts, compound living provides peace of mind and effortless daily living. These properties remove the stress of managing independent property upkeep, giving your household immediate access to a safe neighborhood feel where children can play freely and maintenance requests are handled by dedicated on-site teams.'}
-                  </p>
+                  <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr ? 'توفر الحياة في المجمع للمغتربين على المدى الطويل والحسابات المؤسسية راحة البال والمعيشة اليومية السهلة. تُزيل هذه العقارات ضغط إدارة الصيانة المستقلة للعقار، مما يمنح أسرتك وصولًا فوريًا إلى شعور آمن بالجوار حيث يمكن للأطفال اللعب بحرية ويتولى فرق ميدانية مخصصة معالجة طلبات الصيانة.' : 'For long-term expatriates and corporate accounts, compound living provides peace of mind and effortless daily living. These properties remove the stress of managing independent property upkeep, giving your household immediate access to a safe neighborhood feel where children can play freely and maintenance requests are handled by dedicated on-site teams.'} />
                 </Reveal>
                 <Reveal direction="up" delay={260}>
                   <div>
@@ -1247,46 +1356,26 @@ export function VillasPage({ filter }: Readonly<Props>) {
                 <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-4">{isAr ? 'لماذا تُعدّ فلل المجمعات خياراً عملياً للإيجار' : 'Why Compound Villas Are a Practical Rental Choice'}</h2>
               </Reveal>
               <Reveal direction="up" delay={80}>
-                <p className="text-ink-muted mb-10 max-w-2xl">
-                  {isAr ? 'توفر بيئات المجمعات المسوّرة منصة معيشية خالية من القلق حيث تتلاقى راحة نمط الحياة وخيارات اللياقة البدنية المجتمعية والسلامة المتميزة بشكل مثالي.' : 'Gated compound environments deliver a worry-free living platform where lifestyle convenience, communal fitness options, and premium safety intersect perfectly.'}
-                </p>
+                <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr ? 'توفر بيئات المجمعات المسوّرة منصة معيشية خالية من القلق حيث تتلاقى راحة نمط الحياة وخيارات اللياقة البدنية المجتمعية والسلامة المتميزة بشكل مثالي.' : 'Gated compound environments deliver a worry-free living platform where lifestyle convenience, communal fitness options, and premium safety intersect perfectly.'} />
               </Reveal>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {(isAr ? [
-                  {
-                    h3: 'معيشة تمحورت حول المجتمع',
-                    desc: 'استمتع ببيئة ترحيبية على طراز الجوار تجعل من السهل على أفراد الأسرة التواصل والبقاء نشطين والشعور بالراحة خلال فترات الإيجار الطويلة.',
-                  },
-                  {
-                    h3: 'سلامة وأمن مسوّر',
-                    desc: 'احمِ عائلتك داخل محيطات مُدارة تضم نقاط تفتيش أمنية ذات طاقم وبوابات تحكم في الوصول وممرات مرور داخلية آمنة للأطفال.',
-                  },
-                  {
-                    h3: 'مرافق مشتركة شاملة',
-                    desc: 'احصل على وصول فوري لنوادي مجتمعية متميزة ومسابح سباحة ومراكز لياقة بدنية وملاعب تنس وملاعب أطفال آمنة.',
-                  },
-                  {
-                    h3: 'دعم صيانة خالٍ من الإجهاد',
-                    desc: 'وفّر وقتًا ثمينًا مع فرق صيانة المرافق الميدانية المخصصة المسؤولة عن معالجة التدفئة والتبريد والسباكة والصيانة الهيكلية.',
-                  },
-                ] : [
-                  {
-                    h3: 'Community-Centric Living',
-                    desc: 'Enjoy a welcoming neighborhood-style environment that makes it easy for family members to connect, stay active, and feel at home during long-term tenancies.',
-                  },
-                  {
-                    h3: 'Gated Safety and Security',
-                    desc: 'Protect your family inside managed perimeters featuring staffed security checkpoints, access control gates, and slow, child-safe interior traffic lanes.',
-                  },
-                  {
-                    h3: 'Comprehensive Shared Facilities',
-                    desc: "Gain immediate access to premium community clubhouses, swimming pools, fitness centers, tennis courts, and secure children's playgrounds.",
-                  },
-                  {
-                    h3: 'Stress-Free Maintenance Support',
-                    desc: 'Save valuable time with dedicated, on-site facility maintenance teams responsible for handling your heating, cooling, plumbing, and structural upkeep.',
-                  },
-                ]).map((card, i) => (
+              {/* Mobile: Apple-style carousel */}
+              <div className="lg:hidden">
+                <CardCarousel
+                  items={compoundBenefits.map((card) => (
+                    <div key={card.h3} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                      <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                        <CheckCircle2 size={18} className="text-forest" />
+                      </div>
+                      <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                      <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                    </div>
+                  ))}
+                />
+              </div>
+
+              {/* Desktop: original grid */}
+              <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {compoundBenefits.map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
                     <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">
@@ -1398,7 +1487,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'تتوافق معايير الإيجار الشهرية ومساحات مرافق النادي والتصاميم المتاحة لفلل المجمعات بشكل طبيعي مع مناطقها البلدية. توجّه دانية للعقارات استفسارات التأجير النشطة عبر هذه القطاعات الأساسية:' : 'Monthly rental parameters, clubhouse facility footprints, and available layouts for compound villas naturally correspond with their municipal zones. Dania Real Estate directs active leasing inquiries across these core sectors:'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {(isAr ? [
                   {
                     h3: 'فلل مجمعات في الدوحة',
@@ -1482,14 +1571,20 @@ export function VillasPage({ filter }: Readonly<Props>) {
                     href: '/areas/al-kharaitiyat/',
                   },
                 ]).map((area, i) => (
-                  <Reveal key={area.h3} direction="up" delay={160 + i * 60}>
-                    <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
-                      <h3 className="font-bold text-ink mb-2 text-sm">{area.h3}</h3>
-                      <p className="text-ink-muted text-xs leading-relaxed mb-4">{area.desc}</p>
-                      <Link to={area.href} className="text-forest font-semibold text-xs hover:underline">
-                        {isAr ? 'عرض العقارات ←' : 'View Properties →'}
-                      </Link>
-                    </div>
+                  <Reveal key={area.h3} delay={i * 60}>
+                    <Link to={area.href} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                      <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                      <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                        <LocationIcon size={19} />
+                      </div>
+                      <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                        <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.h3}</h3>
+                        <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.desc}</p>
+                        <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                          {isAr ? 'عرض العقارات' : 'View Properties'} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                        </span>
+                      </div>
+                    </Link>
                   </Reveal>
                 ))}
               </div>
@@ -1507,42 +1602,24 @@ export function VillasPage({ filter }: Readonly<Props>) {
                   {isAr ? 'يتطلب إيجاد مجمع عائلي ممتثل فهمًا واضحًا لقواعد المجتمع وحالات المرافق الدقيقة وشروط العقود الواضحة.' : 'Finding a compliant family compound requires a clear understanding of community rules, accurate facility conditions, and clear contract terms.'}
                 </p>
               </Reveal>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {(isAr ? [
-                  {
-                    h3: 'معرفة متخصصة بسوق المجمعات',
-                    desc: 'نستبعد القوائم المستقلة المعزولة للتركيز حصريًا على المجمعات المسوّرة الموثقة التي تتوافق مع معايير نمط حياة عائلتك.',
-                  },
-                  {
-                    h3: 'التحقق من المرافق والمنشآت',
-                    desc: 'يفحص مستشارونا بدقة المناطق المجتمعية المشتركة وسياسات الوصول للنوادي وسلامة الملاعب قبل ترتيب الجولات.',
-                  },
-                  {
-                    h3: 'مواءمة نمط الحياة العائلية',
-                    desc: 'نطابق بحثك في المجمع مع المتغيرات اليومية الحرجة مثل مسارات توجيه حافلات المدارس والسوبرماركت وأوقات التنقل.',
-                  },
-                  {
-                    h3: 'تحديثات جوال مباشرة سريعة',
-                    desc: 'تجنب منصات قوائم العقارات القديمة. تواصل مباشرةً عبر واتساب للحصول على مقاطع فيديو داخلية غير مُعدّلة لوحدات المجمع الشاغرة فورًا.',
-                  },
-                ] : [
-                  {
-                    h3: 'Dedicated Compound Market Knowledge',
-                    desc: "We screen out isolated standalone listings to focus exclusively on vetted gated compounds that match your family's lifestyle criteria.",
-                  },
-                  {
-                    h3: 'Amenity and Facility Verification',
-                    desc: 'Our consultants thoroughly inspect shared community zones, clubhouse access policies, and playground safety before arranging tours.',
-                  },
-                  {
-                    h3: 'Family Lifestyle Alignment',
-                    desc: 'We match your compound search with critical daily variables like school bus routing paths, supermarkets, and commute times.',
-                  },
-                  {
-                    h3: 'Rapid Direct Mobile Updates',
-                    desc: 'Skip outdated property listing platforms. Connect directly via WhatsApp to receive unedited interior videos of vacant compound units instantly.',
-                  },
-                ]).map((card, i) => (
+              {/* Mobile: Apple-style carousel */}
+              <div className="lg:hidden">
+                <CardCarousel
+                  items={compoundChoose.map((card) => (
+                    <div key={card.h3} className="bg-white rounded-3xl border border-border p-7 h-full min-h-[224px] shadow-lg shadow-forest/5">
+                      <div className="w-11 h-11 bg-lime rounded-xl flex items-center justify-center mb-5">
+                        <CheckCircle2 size={18} className="text-forest" />
+                      </div>
+                      <h3 className="font-bold text-ink mb-2 text-lg">{card.h3}</h3>
+                      <p className="text-ink-muted text-sm leading-relaxed">{card.desc}</p>
+                    </div>
+                  ))}
+                />
+              </div>
+
+              {/* Desktop: original grid */}
+              <div className="hidden lg:grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {compoundChoose.map((card, i) => (
                   <Reveal key={card.h3} direction="up" delay={160 + i * 80}>
                     <div className="bg-white border border-border rounded-2xl p-4 sm:p-6 linear-card h-full">
                       <div className="w-9 h-9 bg-lime-light rounded-xl flex items-center justify-center mb-4">

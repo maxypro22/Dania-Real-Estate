@@ -5,6 +5,7 @@ import { CheckCircle2, ChevronDown, ChevronUp, Eye, Camera, LayoutGrid, ArrowRig
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
 import { StackedCards } from '@/components/shared/StackedCards'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -249,12 +250,8 @@ export function GalleryPage() {
                 </h1>
               </Reveal>
               <Reveal direction="up" delay={160}>
-                <p className="text-white/80 text-xl mb-5 leading-snug">
-                  {t('gallery.hero.subtitle')}
-                </p>
-                <p className="text-white/65 text-base mb-10 leading-relaxed">
-                  {t('gallery.hero.p')}
-                </p>
+                <ScrollRevealText className="text-white/80 text-xl mb-5 leading-snug" text={t('gallery.hero.subtitle')} />
+                <ScrollRevealText className="text-white/65 text-base mb-10 leading-relaxed" text={t('gallery.hero.p')} />
               </Reveal>
 
               <Reveal direction="up" delay={240}>
@@ -373,14 +370,10 @@ export function GalleryPage() {
           </h2>
         </Reveal>
         <Reveal direction="up" delay={100}>
-          <p className="text-ink-muted leading-relaxed mb-4">
-            {t('gallery.overview.p1')}
-          </p>
+          <ScrollRevealText className="text-ink-muted leading-relaxed mb-4" text={t('gallery.overview.p1')} />
         </Reveal>
         <Reveal direction="up" delay={200}>
-          <p className="text-ink-muted leading-relaxed">
-            {t('gallery.overview.p2')}
-          </p>
+          <ScrollRevealText className="text-ink-muted leading-relaxed" text={t('gallery.overview.p2')} />
         </Reveal>
       </section>
 
@@ -391,9 +384,7 @@ export function GalleryPage() {
             <h2 className="text-3xl font-extrabold text-ink mb-3">
               {t('gallery.categories.h2')}
             </h2>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {t('gallery.categories.subtitle')}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={t('gallery.categories.subtitle')} />
           </Reveal>
 
           {/* Mobile: Pitch-style stacked deck (all 5 categories) */}
@@ -459,9 +450,7 @@ export function GalleryPage() {
           <h2 className="text-3xl font-extrabold text-ink mb-3">
             {t('gallery.showcase.h2')}
           </h2>
-          <p className="text-ink-muted mb-8 max-w-2xl">
-            {t('gallery.showcase.subtitle')}
-          </p>
+          <ScrollRevealText className="text-ink-muted mb-8 max-w-2xl" text={t('gallery.showcase.subtitle')} />
         </Reveal>
 
         {/* Filter tabs */}
@@ -629,9 +618,7 @@ export function GalleryPage() {
             <h2 className="text-3xl font-extrabold text-ink mb-4 text-center">
               {t('gallery.photoRequest.h2')}
             </h2>
-            <p className="text-ink-muted mb-8 max-w-2xl mx-auto leading-relaxed text-center">
-              {t('gallery.photoRequest.subtitle')}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-8 max-w-2xl mx-auto leading-relaxed text-center" text={t('gallery.photoRequest.subtitle')} />
             <form onSubmit={handlePhotoRequest} className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-ink mb-1.5">{isAr ? 'الاسم الكامل' : 'Full Name'}</label>

@@ -19,6 +19,8 @@ import {
 } from 'lucide-react'
 import { Reveal } from '@/components/shared/Reveal'
 import { CardCarousel } from '@/components/shared/CardCarousel'
+import { LocationIcon } from '@/components/shared/LocationIcon'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { company } from '@/data/mockData'
 
@@ -186,9 +188,7 @@ export function WhyChooseUsPage() {
               </Reveal>
 
               <Reveal direction="up" delay={160}>
-                <p className="text-white/70 text-lg leading-relaxed mb-8">
-                  {t('whyUs.hero.p')}
-                </p>
+                <ScrollRevealText className="text-white/70 text-lg leading-relaxed mb-8" text={t('whyUs.hero.p')} />
               </Reveal>
 
               <Reveal direction="up" delay={240}>
@@ -218,9 +218,7 @@ export function WhyChooseUsPage() {
               </Reveal>
 
               <Reveal direction="up" delay={320}>
-                <p className="text-white/45 text-sm">
-                  {t('whyUs.hero.subtitle')}
-                </p>
+                <ScrollRevealText className="text-white/45 text-sm" text={t('whyUs.hero.subtitle')} />
               </Reveal>
             </div>
 
@@ -258,19 +256,21 @@ export function WhyChooseUsPage() {
               </Reveal>
 
               <Reveal direction="up" delay={80}>
-                <p className="text-ink-muted leading-relaxed mb-4">
-                  {isAr
+                <ScrollRevealText
+                  className="text-ink-muted leading-relaxed mb-4"
+                  text={isAr
                     ? 'نظام البحث التقليدي عن الإيجار غالباً ما يكون مزدحماً بإعلانات مضللة وقوائم قديمة وبنى رسوم غير شفافة تُعيق المستأجرين في كل خطوة.'
                     : 'The traditional rental search ecosystem is often cluttered with bait-and-switch advertisements, outdated pricing indices, and non-responsive agents. At Dania Real Estate, we intentionally operate on a model of absolute transparency, mapping client budget boundaries directly against live, legally compliant landlord properties.'}
-                </p>
+                />
               </Reveal>
 
               <Reveal direction="up" delay={160}>
-                <p className="text-ink-muted leading-relaxed mb-8">
-                  {isAr
+                <ScrollRevealText
+                  className="text-ink-muted leading-relaxed mb-8"
+                  text={isAr
                     ? 'من خلال دمج شبكة خدمة رقمية منظمة مع قنوات تواصل مباشرة فورية، تُزيل دانية للعقارات هذا الاحتكاك وتُبسّط رحلة الإيجار.'
                     : 'By integrating an organized digital service grid with immediate direct communication pipelines, we remove the stressful, time-consuming administrative hurdles. This hybrid operational approach gives our tenants the distinct advantage of viewing and locking down properties before they exit the competitive Qatar market.'}
-                </p>
+                />
               </Reveal>
             </div>
 
@@ -301,11 +301,12 @@ export function WhyChooseUsPage() {
           </Reveal>
 
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted text-center max-w-2xl mx-auto mb-12">
-              {isAr
+            <ScrollRevealText
+              className="text-ink-muted text-center max-w-2xl mx-auto mb-12"
+              text={isAr
                 ? 'تأمين عقد إيجار تجاري طويل الأمد أو منزل عائلي آمن يتطلب شريكاً يتمتع بمعرفة محلية عميقة وشبكة علاقات موثوقة مع الملاك.'
                 : 'Securing a long-term commercial lease or a secure family home requires a property management ally that values accurate data, legal compliance, and rapid action.'}
-            </p>
+            />
           </Reveal>
 
           {/* Mobile: Apple-style carousel */}
@@ -453,19 +454,21 @@ export function WhyChooseUsPage() {
             </Reveal>
 
             <Reveal direction="up" delay={80}>
-              <p className="text-ink-muted leading-relaxed mb-5 text-lg">
-                {isAr
+              <ScrollRevealText
+                className="text-ink-muted leading-relaxed mb-5 text-lg"
+                text={isAr
                   ? 'المخزون الإيجاري المرتفع الطلب في المواقع المتميزة بالدوحة يُشغَل بسرعة كبيرة. التأخر في التواصل أو إنجاز المعاملات كثيراً ما يُفضي إلى ضياع الفرص.'
                   : 'High-demand rental inventory in prime Doha localities—such as budget studio partition rooms, modern family flats, and enterprise staff complexes—frequently changes hands within days. Relying on classic email threads or delayed listing platforms often means missing out on top-tier assets.'}
-              </p>
+              />
             </Reveal>
 
             <Reveal direction="up" delay={160}>
-              <p className="text-ink-muted leading-relaxed text-lg">
-                {isAr
+              <ScrollRevealText
+                className="text-ink-muted leading-relaxed text-lg"
+                text={isAr
                   ? 'تُعالج دانية للعقارات هذه المشكلة بنشاط من خلال الجمع بين الاكتشاف الرقمي المنظم والتواصل الفوري عبر واتساب.'
                   : 'Dania Real Estate actively resolves this issue by combining structured web discovery with direct instant communication channels. Our web architecture educates you on locations and property categories, while our integrated phone and WhatsApp desks provide real-time updates on active spaces.'}
-              </p>
+              />
             </Reveal>
           </div>
         </div>
@@ -481,26 +484,24 @@ export function WhyChooseUsPage() {
           </Reveal>
 
           <Reveal direction="up" delay={80}>
-            <p className="text-ink-muted text-center max-w-2xl mx-auto mb-12">
-              {t('whyUs.areas.subtitle')}
-            </p>
+            <ScrollRevealText className="text-ink-muted text-center max-w-2xl mx-auto mb-12" text={t('whyUs.areas.subtitle')} />
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {cards.map((area, i) => (
               <Reveal key={area.slug} direction="up" delay={i * 60}>
-                <Link
-                  to={`/areas/${area.slug}/`}
-                  className="bg-white rounded-2xl border border-border p-6 hover:shadow-md hover:border-forest/30 transition-all group flex flex-col h-full"
-                >
-                  <h3 className="font-bold text-ink text-base mb-2 group-hover:text-forest transition-colors">
-                    {area.name}
-                  </h3>
-                  <p className="text-sm text-ink-muted leading-relaxed flex-1 mb-4">{area.text}</p>
-                  {/* Pill-style link badge */}
-                  <span className="inline-flex items-center gap-1.5 self-start bg-lime/20 text-forest text-xs font-bold px-3 py-1.5 rounded-full group-hover:bg-lime transition-colors">
-                    {isAr ? 'استكشف' : 'Explore'} <ArrowRight size={11} />
-                  </span>
+                <Link to={`/areas/${area.slug}/`} className="group relative flex flex-col gap-3 bg-white border border-border rounded-2xl p-5 overflow-hidden shadow-sm hover:shadow-2xl active:shadow-md hover:-translate-y-1.5 active:translate-y-0 transition-all duration-300 min-h-[190px] sm:min-h-[210px] lg:min-h-[220px]">
+                  <div className="absolute inset-0 bg-forest translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out will-animate" />
+                  <div className="relative z-10 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-gradient-to-br from-lime to-lime-dark text-white shadow-md shadow-lime/30 ring-1 ring-white/30 group-hover:scale-110 group-hover:-rotate-6 group-active:scale-110 transition-transform duration-300 ease-out">
+                    <LocationIcon size={19} />
+                  </div>
+                  <div className="relative z-10 flex flex-col flex-1 gap-1.5">
+                    <h3 className="font-bold text-ink group-hover:text-white group-active:text-white text-sm leading-tight transition-colors duration-300">{area.name}</h3>
+                    <p className="text-ink-muted group-hover:text-white/70 group-active:text-white/70 text-xs leading-relaxed flex-1 transition-colors duration-300 line-clamp-3">{area.text}</p>
+                    <span className="inline-flex items-center gap-1 text-forest group-hover:text-lime group-active:text-lime font-semibold text-xs transition-colors duration-300">
+                      {isAr ? 'استكشف' : 'Explore'} <ArrowRight size={11} className="group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300 rtl:-scale-x-100" />
+                    </span>
+                  </div>
                 </Link>
               </Reveal>
             ))}

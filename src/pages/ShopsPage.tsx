@@ -8,6 +8,7 @@ import { LocationIcon } from '@/components/shared/LocationIcon'
 import { Link } from 'react-router-dom'
 import { CheckCircle2, ChevronDown, Store, Briefcase, Wrench, TrendingUp, Users, Eye, Truck, LayoutGrid, FileText, ShieldCheck, Wifi, Zap, Star, Building2, ArrowRight } from 'lucide-react'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
+import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { usePageSchema } from '@/components/shared/Seo'
 import { faqPageSchema } from '@/lib/seo'
 
@@ -74,9 +75,7 @@ export function ShopsPage() {
               </h3>
             </Reveal>
             <Reveal direction="up" delay={200}>
-              <p className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed">
-                {t('shops.p')}
-              </p>
+              <ScrollRevealText className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed" text={t('shops.p')} />
             </Reveal>
             <Reveal direction="up" delay={300}>
               <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
@@ -133,25 +132,19 @@ export function ShopsPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Reveal direction="up" delay={0}>
-              <p className="text-ink-muted leading-relaxed text-sm">
-                {isAr
+              <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr
                   ? 'يُعدّ البحث عن محل تجاري قراراً استراتيجياً بالغ الأهمية، إذ تؤثر متغيرات كعرض الواجهة وكثافة المشاة وسهولة وصول المركبات وطبيعة المستأجرين المجاورين تأثيراً مباشراً على إيراداتك اليومية. وعلى خلاف الإيجار السكني التقليدي، يجب أن تكون المساحة التجارية أداةً تسويقية فعّالة لعلامتك التجارية، مع الامتثال لمعايير السلامة الصارمة وإرشادات الدفاع المدني.'
-                  : 'Sourcing a commercial shop is a highly strategic business decision where variables like facade width, pedestrian flow, vehicle accessibility, and neighboring tenant profiles directly impact your daily revenue generation. Unlike standard residential leasing, a retail space must serve as a functional marketing asset for your brand while complying with strict corporate safety standards and Civil Defense design guidelines.'}
-              </p>
+                  : 'Sourcing a commercial shop is a highly strategic business decision where variables like facade width, pedestrian flow, vehicle accessibility, and neighboring tenant profiles directly impact your daily revenue generation. Unlike standard residential leasing, a retail space must serve as a functional marketing asset for your brand while complying with strict corporate safety standards and Civil Defense design guidelines.'} />
             </Reveal>
             <Reveal direction="up" delay={100}>
-              <p className="text-ink-muted leading-relaxed text-sm">
-                {isAr
+              <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr
                   ? 'تُزيل دانية للعقارات عنصر التخمين من عملية الحصول على العقارات التجارية. نرشد مجموعات التجزئة المؤسسية ورجال الأعمال المحليين ومشغّلي الخدمات خلال عملية تقييم الخيارات استناداً إلى التركيبة السكانية المستهدفة وتوافر مواقف السيارات والمتطلبات التقنية (كالأحمال الكهربائية لعمليات المطاعم والمقاهي) وإمكانيات التخطيط الإنشائي.'
-                  : 'Dania Real Estate eliminates guesswork from commercial property procurement. We guide corporate retail groups, local entrepreneurs, and service operators through the process of evaluating options based on targeted demographics, parking availability, technical requirements (such as electrical loads for F&B operations), and structural layout potential.'}
-              </p>
+                  : 'Dania Real Estate eliminates guesswork from commercial property procurement. We guide corporate retail groups, local entrepreneurs, and service operators through the process of evaluating options based on targeted demographics, parking availability, technical requirements (such as electrical loads for F&B operations), and structural layout potential.'} />
             </Reveal>
             <Reveal direction="up" delay={200}>
-              <p className="text-ink-muted leading-relaxed text-sm">
-                {isAr
+              <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr
                   ? 'يختص هذا الدليل المباشر حصراً بالواجهات التجارية على مستوى الشارع وصالات العرض ووحدات المجمعات التجارية. وتُدار العقارات السكنية والمكاتب المؤسسية والمساحات الصناعية المتخصصة للقوى العاملة ضمن أدلة مستقلة ومخصصة.'
-                  : 'This live directory focuses exclusively on street-level storefronts, showrooms, and shopping strip units. Residential properties, corporate offices, and specialized industrial workforce spaces are managed within separate dedicated directories to avoid keyword cross-contamination.'}
-              </p>
+                  : 'This live directory focuses exclusively on street-level storefronts, showrooms, and shopping strip units. Residential properties, corporate offices, and specialized industrial workforce spaces are managed within separate dedicated directories to avoid keyword cross-contamination.'} />
             </Reveal>
           </div>
         </div>
@@ -168,9 +161,7 @@ export function ShopsPage() {
             </h2>
           </Reveal>
           <Reveal direction="up" delay={100}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr ? 'يعمل مكتبنا الاستشاري التجاري مباشرةً مع مشغّلي الأعمال المتنوعين لتأمين مواقع ذات ظهور عالٍ تدعم نمو المبيعات النشط.' : 'Our commercial advisory desk works directly with diverse business operators to secure high-visibility locations that support active sales growth.'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr ? 'يعمل مكتبنا الاستشاري التجاري مباشرةً مع مشغّلي الأعمال المتنوعين لتأمين مواقع ذات ظهور عالٍ تدعم نمو المبيعات النشط.' : 'Our commercial advisory desk works directly with diverse business operators to secure high-visibility locations that support active sales growth.'} />
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
             {(isAr ? [
@@ -266,9 +257,7 @@ export function ShopsPage() {
             </h2>
           </Reveal>
           <Reveal direction="up" delay={100}>
-            <p className="text-ink-muted mb-10 max-w-2xl">
-              {isAr ? 'يجب أن يتكامل الموقع التجاري الناجح مع سير عملياتك اليومية ويرحّب لوجستياً بقاعدة عملائك المستهدفة. راجع هذه النماذج الأساسية لتخطيط التجزئة قبل تأمين مساحتك:' : 'A successful retail placement must complement your daily operational workflows and logistically welcome your target customer base. Review these core retail layout models before securing your space:'}
-            </p>
+            <ScrollRevealText className="text-ink-muted mb-10 max-w-2xl" text={isAr ? 'يجب أن يتكامل الموقع التجاري الناجح مع سير عملياتك اليومية ويرحّب لوجستياً بقاعدة عملائك المستهدفة. راجع هذه النماذج الأساسية لتخطيط التجزئة قبل تأمين مساحتك:' : 'A successful retail placement must complement your daily operational workflows and logistically welcome your target customer base. Review these core retail layout models before securing your space:'} />
           </Reveal>
 
           {/* Comparison table */}
@@ -835,18 +824,14 @@ export function ShopsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div>
               <Reveal direction="up" delay={0}>
-                <p className="text-ink-muted leading-relaxed text-sm mb-5">
-                  {isAr
+                <ScrollRevealText className="text-ink-muted leading-relaxed text-sm mb-5" text={isAr
                     ? 'نادراً ما تكون مساحة التجزئة الأكثر نجاحاً هي الأغلى أو الأكبر في السوق. تتحقق الكفاءة الحقيقية للتجزئة عندما يتطابق موقع واجهتك مع قاعدة عملائك الأساسية ويوفر مواقف مريحة للزوار ويمنح عملك الإعداد الدقيق للمرافق اللازم لسير العمل اليومي بسلاسة.'
-                    : 'The most successful retail space is rarely just the most expensive or largest option on the market. True retail efficiency is achieved when your storefront position matches your core customer base, offers comfortable parking for visitors, and gives your business the exact utility setup required for seamless daily workflows.'}
-                </p>
+                    : 'The most successful retail space is rarely just the most expensive or largest option on the market. True retail efficiency is achieved when your storefront position matches your core customer base, offers comfortable parking for visitors, and gives your business the exact utility setup required for seamless daily workflows.'} />
               </Reveal>
               <Reveal direction="up" delay={100}>
-                <p className="text-ink-muted leading-relaxed text-sm">
-                  {isAr
+                <ScrollRevealText className="text-ink-muted leading-relaxed text-sm" text={isAr
                     ? 'تحمي دانية للعقارات التدفق النقدي لشركتك من خلال مساعدة فريق المشتريات أو الإدارة لديك في مطابقة المساحات مع نموذج عملك، مما يضمن أن التكاليف الثابتة للإيجار تُترجَم مباشرةً إلى أقصى تعرض للعلامة التجارية وتحويل عالٍ للعملاء.'
-                    : 'Dania Real Estate protects your corporate cash flow by assisting your procurement or management team in matching spaces with your operational model—ensuring your fixed lease overhead translates directly into maximum brand exposure and high customer conversion.'}
-                </p>
+                    : 'Dania Real Estate protects your corporate cash flow by assisting your procurement or management team in matching spaces with your operational model—ensuring your fixed lease overhead translates directly into maximum brand exposure and high customer conversion.'} />
               </Reveal>
             </div>
             <Reveal direction="left" delay={150}>
