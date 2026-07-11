@@ -163,4 +163,24 @@ Safety point: branch `audit/remediation`, baseline commit `3c9d806` (no VCS exis
 **Deliberate compromises:** dynamic-src cards (gallery/listing/property/showcase) use a representative 4:3/3:2 ratio rather than the true per-image dimensions (unknowable at build time for remote/variable sources); CLS is still controlled by their sized containers and `object-cover` ignores the intrinsic ratio there.
 **Noticed, left alone:** the `/public` hero webps are ~2000px (appropriate for full-width retina heroes) — not oversized for their render box, so no resize needed here.
 
-**Commit:** `perf: add width/height to all images to prevent layout shift`
+**Commit:** `perf: add width/height to all images to prevent layout shift` (`4838603`)
+
+---
+
+## Batch 7 — Content-Security-Policy (report-only)  [security]  ✅ (enforcement deferred)
+
+**Goal:** Add a CSP without breaking rendering. (Fixes F-004)
+
+**Files changed (one-line reason each):**
+- `vercel.json` — added a `Content-Security-Policy-Report-Only` header: `default-src 'self'`; `img-src 'self' data: images.unsplash.com images.pexels.com` (the app's current hotlinks); `script-src 'self'`; `style-src 'self' 'unsafe-inline'` (React inline styles + Tailwind); `font-src 'self' data:`; `connect-src 'self'`; `object-src 'none'`; `base-uri 'self'`; `frame-ancestors 'self'`; `form-action 'self'`.
+- `src/__tests__/csp-header.test.ts` (new) — parses `vercel.json` and asserts the CSP is present, allows the in-use image CDNs, keeps inline styles, and locks down `object-src`/`base-uri`.
+
+**Checks (real output):** `vercel.json` valid JSON (parsed). `npx vitest run` → **11 passed** (was 8; +3 CSP guards). `npm run build` → exit 0.
+
+**Acceptance:** ✅ CSP present. ⚠ "No console CSP violations on a live route" — **not verified this pass** (see compromise).
+
+**Definition of Done:** Secure ✅ (defense-in-depth added; `object-src 'none'`, `base-uri 'self'`) · Documented ✅ (tested) · Consistent ✅ (matches the existing header block) · No new lint ✅.
+
+**Deliberate compromises (declared):** shipped as **`Report-Only`, not enforcing**. Enforcing requires observing real violation reports on the deployed site (Vercel applies `vercel.json` headers; `vite preview` does not, so it can't be verified locally). Report-Only cannot break rendering, so this is safe to ship now; **promotion to an enforcing `Content-Security-Policy` is the pending live step** (watch the browser console / a report endpoint on the deployed site, then flip the header name). No `report-uri`/`report-to` endpoint exists (no backend), so violations surface in the console only.
+
+**Commit:** `security: add Content-Security-Policy (report-only) header`
