@@ -301,6 +301,8 @@ export function AboutPage() {
               <img
                 src="/about-dania-real-estate-qatar.webp"
                 alt="About Dania Real Estate property management company corporate headquarters at Al Muftah Plaza on Al Rayyan Road Doha Qatar."
+                width={1334}
+                height={2000}
                 className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center"
                 loading="eager"
               />

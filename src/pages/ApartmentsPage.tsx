@@ -173,6 +173,8 @@ function AllApartmentsContent() {
                   <img
                     src="/apartments-for-rent-doha-qatar-dania-real-estate.webp"
                     alt="Verified residential apartments for rent in Doha Qatar managed by Dania Real Estate."
+                    width={2000}
+                    height={1668}
                     className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center"
                     loading="eager"
                   />
@@ -619,6 +621,8 @@ function OneBedContent() {
                   <img
                     src="/1-bedroom-apartments-for-rent-doha-qatar.webp"
                     alt="Verified 1 bedroom apartments for rent in Doha Qatar managed by Dania Real Estate."
+                    width={2000}
+                    height={1335}
                     className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center"
                     loading="eager"
                   />
@@ -1065,6 +1069,8 @@ function TwoBedContent() {
                   <img
                     src="/2-bedroom-apartments-for-rent-doha-qatar.webp"
                     alt="Verified 2 bedroom apartments for rent in Doha Qatar managed by Dania Real Estate."
+                    width={2000}
+                    height={1333}
                     className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center"
                     loading="eager"
                   />
@@ -1511,6 +1517,8 @@ function ThreeBedContent() {
                   <img
                     src="/3-bedroom-apartments-for-rent-doha-qatar.webp"
                     alt="Verified 3 bedroom apartments for rent in Doha Qatar managed by Dania Real Estate."
+                    width={2000}
+                    height={1502}
                     className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center"
                     loading="eager"
                   />

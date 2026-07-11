@@ -53,6 +53,8 @@ export function Footer() {
             <img
               src="/Dania_Real_Estate_logo.png"
               alt="Dania Real Estate Logo"
+              width={480}
+              height={320}
               className="h-11 w-auto object-contain"
             />
             <div>

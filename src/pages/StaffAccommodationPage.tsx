@@ -272,7 +272,7 @@ function StaffAccommodationMain() {
             <Reveal direction="right" delay={200}>
               <div className="relative pb-6 lg:pb-0">
                 <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-                  <img src="/staff-accommodation-doha-qatar-dania-real-estate.webp" alt="Verified corporate staff accommodation buildings for rent in Doha Qatar by Dania Real Estate." className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
+                  <img src="/staff-accommodation-doha-qatar-dania-real-estate.webp" alt="Verified corporate staff accommodation buildings for rent in Doha Qatar by Dania Real Estate." width={2000} height={1341} className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent" />
                 </div>
                 <div className="absolute -bottom-4 left-3 lg:-bottom-5 lg:-left-5 bg-lime text-forest font-extrabold text-sm px-5 py-3 rounded-2xl shadow-xl">{isAr ? 'سكن العمال · قطر' : 'Staff Accommodation · Qatar'}</div>
@@ -944,7 +944,7 @@ function StaffVillasPage() {
             <Reveal direction="right" delay={200}>
               <div className="relative pb-6 lg:pb-0">
                 <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-                  <img src="/staff-villas-for-rent-doha-qatar.webp" alt="Verified independent staff villas for rent in Doha Qatar managed by Dania Real Estate." className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
+                  <img src="/staff-villas-for-rent-doha-qatar.webp" alt="Verified independent staff villas for rent in Doha Qatar managed by Dania Real Estate." width={2000} height={1346} className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent" />
                 </div>
                 <div className="absolute -bottom-4 left-3 lg:-bottom-5 lg:-left-5 bg-lime text-forest font-extrabold text-sm px-5 py-3 rounded-2xl shadow-xl">{isAr ? 'فلل الموظفين · قطر' : 'Staff Villas · Qatar'}</div>

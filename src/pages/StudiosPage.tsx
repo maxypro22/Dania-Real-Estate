@@ -1025,6 +1025,8 @@ export function StudiosPage({ filter }: Readonly<Props>) {
                       filter === 'partition' ? 'Orderly affordable private partition room rental setup for single executives in Doha Qatar.' :
                       'Verified one bedroom apartments for rent in Doha Qatar managed by Dania Real Estate.'
                     }
+                    width={2000}
+                    height={1335}
                     className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center"
                     loading="eager"
                   />
@@ -1080,6 +1082,8 @@ export function StudiosPage({ filter }: Readonly<Props>) {
                   <img
                     src={overviewImg}
                     alt={overviewAlt}
+                    width={2000}
+                    height={1335}
                     className="w-full h-64 sm:h-80 lg:h-[420px] object-cover object-center"
                     loading="lazy"
                   />

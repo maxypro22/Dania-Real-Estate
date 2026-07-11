@@ -491,7 +491,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
               <Reveal direction="right" delay={200}>
                 <div className="relative pb-6 lg:pb-0">
                   <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-                    <img src="/villas-for-rent-doha-qatar-dania-real-estate.webp" alt="Verified villas for rent in Doha Qatar managed by Dania Real Estate." className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
+                    <img src="/villas-for-rent-doha-qatar-dania-real-estate.webp" alt="Verified villas for rent in Doha Qatar managed by Dania Real Estate." width={2000} height={2000} className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent" />
                   </div>
                   <div className="absolute -bottom-4 left-3 lg:-bottom-5 lg:-left-5 bg-lime text-forest font-extrabold text-sm px-5 py-3 rounded-2xl shadow-xl">{isAr ? 'فلل · قوائم موثقة' : 'Villas · Verified Listings'}</div>
@@ -504,7 +504,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
               <Reveal direction="right" delay={200}>
                 <div className="relative pb-6 lg:pb-0">
                   <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-                    <img src="/standard-villas-for-rent-doha-qatar.webp" alt="Verified standard villas for rent in Doha Qatar managed by Dania Real Estate." className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
+                    <img src="/standard-villas-for-rent-doha-qatar.webp" alt="Verified standard villas for rent in Doha Qatar managed by Dania Real Estate." width={1600} height={2000} className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent" />
                   </div>
                   <div className="absolute -bottom-4 left-3 lg:-bottom-5 lg:-left-5 bg-lime text-forest font-extrabold text-sm px-5 py-3 rounded-2xl shadow-xl">{isAr ? 'فلل عادية · قطر' : 'Standard Villas · Qatar'}</div>
@@ -517,7 +517,7 @@ export function VillasPage({ filter }: Readonly<Props>) {
               <Reveal direction="right" delay={200}>
                 <div className="relative pb-6 lg:pb-0">
                   <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-                    <img src="/compound-villas-for-rent-doha-qatar.webp" alt="Verified compound villas for rent in Doha Qatar managed by Dania Real Estate." className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
+                    <img src="/compound-villas-for-rent-doha-qatar.webp" alt="Verified compound villas for rent in Doha Qatar managed by Dania Real Estate." width={2000} height={1500} className="w-full h-56 sm:h-80 lg:h-[500px] object-cover object-center" loading="eager" />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-transparent" />
                   </div>
                   <div className="absolute -bottom-4 left-3 lg:-bottom-5 lg:-left-5 bg-lime text-forest font-extrabold text-sm px-5 py-3 rounded-2xl shadow-xl">{isAr ? 'فلل المجمعات · قطر' : 'Compound Villas · Qatar'}</div>

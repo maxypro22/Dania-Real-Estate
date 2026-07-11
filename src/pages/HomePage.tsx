@@ -233,7 +233,7 @@ export function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Reveal delay={0}>
             <div className="relative rounded-2xl overflow-hidden min-h-52 bg-ink h-full">
-              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" alt="Shops for Rent in Doha" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" alt="Shops for Rent in Doha" width={800} height={600} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-40" />
               <div className="relative p-7 h-full flex flex-col justify-between">
                 <div>
                   <Store size={28} className="text-white mb-4" />
@@ -496,6 +496,8 @@ export function HomePage() {
                 <img
                   src={sc.img}
                   alt={showcaseItems[i]?.h3 ?? sc.h3}
+                  width={600}
+                  height={400}
                   loading="lazy"
                   decoding="async"
                   className="absolute inset-0 w-full h-full object-cover group-active:scale-105 transition-transform duration-500"
@@ -528,6 +530,8 @@ export function HomePage() {
                   <img
                     src={sc.img}
                     alt={showcaseItems[i]?.h3 ?? sc.h3}
+                    width={600}
+                    height={400}
                     loading="lazy"
                     decoding="async"
                     className="absolute inset-0 w-full h-full object-cover scale-105"

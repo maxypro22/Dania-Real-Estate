@@ -139,4 +139,28 @@ Safety point: branch `audit/remediation`, baseline commit `3c9d806` (no VCS exis
 **Deliberate compromises:** the automated test stubs the 2D canvas context because jsdom has no canvas (the real effect would otherwise bail); it verifies the *scheduling* (1 eager + idle-deferred), not pixel output. Real-browser LCP/network confirmation is a manual step noted for Stage 3.
 **Noticed, left alone:** frames load sequentially 0→119 (aligns with top-down scroll); a scroll-position-prioritised loader would be marginally better but adds complexity beyond this batch.
 
-**Commit:** `perf: defer hero frame preloading instead of loading 120 on mount`
+**Commit:** `perf: defer hero frame preloading instead of loading 120 on mount` (`01ce5c9`)
+
+---
+
+## Batch 6 — Add image dimensions (CLS)  [perf/a11y]  ✅
+
+**Goal:** Reserve layout space for all 31 images. (Fixes F-003)
+
+**Files changed (one-line reason each):**
+- Added `width`/`height` to **all 31 `<img>`** across 13 files (`AboutPage`, `ApartmentsPage`×4, `ContactPage`, `AreaDetailPage`, `GalleryPage`×7, `FaqPage`, `ShopsPage`, `StaffAccommodationPage`×2, `StudiosPage`×2, `HomePage`×3, `VillasPage`×3, `WhyChooseUsPage`, `Header`, `Footer`, `ListingCard`, `PropertyCard`).
+- For `/public` images and the logo, used the **real intrinsic dimensions** (measured with `sharp`: e.g. logo 480×320, hero webps 2000×~1335). For dynamic-src cards (gallery/listing/property/showcase, whose URL varies), used a representative ratio — those already reserve space via their fixed-height/aspect containers, so the attributes are ratio hints.
+- `src/__tests__/img-dimensions.test.ts` (new) — regression guard that scans every `<img>` in `src/**` and fails if any lacks `width`/`height`.
+
+**Checks (real output):**
+- Custom scan: **31 `<img>` tags, 0 missing dimensions.**
+- `npx tsc -b` → 0 · `npx eslint .` → 0 · `npx vitest run` → **8 passed** (was 6; +CLS guard which itself asserts 0 offenders) · `npm run build` → exit 0.
+
+**Acceptance:** ✅ All 31 `<img>` declare dimensions (verified by scan + the new test). ✅ Objects with fixed-height/aspect containers already reserved space; attributes add the intrinsic ratio.
+
+**Definition of Done:** Correct ✅ · Accessible/Responsive ✅ (space reserved → no CLS) · Typed ✅ · Tested ✅ (regression guard prevents recurrence) · Consistent ✅ (attribute order matches existing tags) · No new lint ✅.
+
+**Deliberate compromises:** dynamic-src cards (gallery/listing/property/showcase) use a representative 4:3/3:2 ratio rather than the true per-image dimensions (unknowable at build time for remote/variable sources); CLS is still controlled by their sized containers and `object-cover` ignores the intrinsic ratio there.
+**Noticed, left alone:** the `/public` hero webps are ~2000px (appropriate for full-width retina heroes) — not oversized for their render box, so no resize needed here.
+
+**Commit:** `perf: add width/height to all images to prevent layout shift`

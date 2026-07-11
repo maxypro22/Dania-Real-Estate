@@ -468,6 +468,8 @@ export function FaqPage() {
                 <img
                   src="/why-choose-dania-real-estate-qatar.webp"
                   alt="Expert answers to rental property questions in Qatar — Dania Real Estate leasing guide."
+                  width={2000}
+                  height={1333}
                   className="w-full h-full object-cover"
                   loading="eager"
                 />

@@ -294,6 +294,8 @@ export function GalleryPage() {
                     <img
                       src={GALLERY_IMAGES[0].src}
                       alt={GALLERY_IMAGES[0].alt}
+                      width={800}
+                      height={600}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -303,6 +305,8 @@ export function GalleryPage() {
                     <img
                       src={GALLERY_IMAGES[4].src}
                       alt={GALLERY_IMAGES[4].alt}
+                      width={800}
+                      height={600}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -315,6 +319,8 @@ export function GalleryPage() {
                     <img
                       src={GALLERY_IMAGES[7].src}
                       alt={GALLERY_IMAGES[7].alt}
+                      width={800}
+                      height={600}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -328,6 +334,8 @@ export function GalleryPage() {
                     <img
                       src={GALLERY_IMAGES[1].src}
                       alt={GALLERY_IMAGES[1].alt}
+                      width={800}
+                      height={600}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -337,6 +345,8 @@ export function GalleryPage() {
                     <img
                       src={GALLERY_IMAGES[5].src}
                       alt={GALLERY_IMAGES[5].alt}
+                      width={800}
+                      height={600}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -349,6 +359,8 @@ export function GalleryPage() {
                     <img
                       src={GALLERY_IMAGES[10].src}
                       alt={GALLERY_IMAGES[10].alt}
+                      width={800}
+                      height={600}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -480,6 +492,8 @@ export function GalleryPage() {
                 <img
                   src={img.src}
                   alt={img.alt}
+                  width={800}
+                  height={600}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />

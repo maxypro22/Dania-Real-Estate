@@ -2115,6 +2115,8 @@ export function AreaDetailPage() {
                   <img
                     src={heroVisual.img}
                     alt={heroVisual.alt}
+                    width={2000}
+                    height={1333}
                     className="w-full h-72 sm:h-96 lg:h-[460px] object-cover object-center"
                     loading="eager"
                   />

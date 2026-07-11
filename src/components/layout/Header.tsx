@@ -267,6 +267,8 @@ export function Header() {
           <img
             src="/Dania_Real_Estate_logo.png"
             alt="Dania Real Estate Logo"
+            width={480}
+            height={320}
             className="h-10 sm:h-11 w-auto object-contain"
           />
           <div className="block leading-tight">

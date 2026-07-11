@@ -48,6 +48,8 @@ export const ListingCard = memo(function ListingCard({ property }: { property: P
           <img
             src={image}
             alt={title}
+            width={800}
+            height={600}
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

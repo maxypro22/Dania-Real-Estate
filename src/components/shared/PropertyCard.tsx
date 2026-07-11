@@ -23,7 +23,7 @@ export function PropertyCard({ property }: Readonly<PropertyCardProps>) {
     <div className="bg-white rounded-2xl border border-border hover:shadow-lg transition-shadow duration-200 overflow-hidden flex flex-row">
       {/* Image */}
       <div className="relative w-44 shrink-0">
-        <img src={image} alt={title} className="w-full h-full object-cover" />
+        <img src={image} alt={title} width={800} height={600} className="w-full h-full object-cover" />
         {verified && (
           <span className="absolute top-3 left-3 bg-lime text-forest text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
             Featured

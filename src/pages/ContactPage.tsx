@@ -123,6 +123,8 @@ export function ContactPage() {
                 <img
                   src="/about-dania-real-estate-qatar.webp"
                   alt="Dania Real Estate leasing team ready to assist with verified property rentals in Doha Qatar."
+                  width={1334}
+                  height={2000}
                   className="w-full h-full object-cover"
                   loading="eager"
                 />

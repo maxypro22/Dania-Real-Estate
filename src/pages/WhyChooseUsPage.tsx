@@ -229,6 +229,8 @@ export function WhyChooseUsPage() {
                   <img
                     src="/why-choose-dania-real-estate-qatar.webp"
                     alt="Verified residential and commercial rental property search support in Doha Qatar by Dania Real Estate."
+                    width={2000}
+                    height={1333}
                     className="w-full h-52 sm:h-72 lg:h-[420px] object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/60 via-transparent to-transparent rounded-3xl" />
