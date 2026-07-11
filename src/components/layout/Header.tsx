@@ -185,7 +185,12 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close everything whenever the route changes.
+  // Close every menu whenever the route changes. This deliberately sets state
+  // from an effect keyed on `pathname`: it synchronises transient UI (open
+  // dropdown / mobile menu) with an external system (the router). There is no
+  // render-derived equivalent because the menus must also close when the user
+  // re-navigates to a path they are already on.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setOpenKey(null); setMobileOpen(false); setExpandedMobile(null) }, [pathname])
 
   // Outside-click / Escape close the desktop dropdown.

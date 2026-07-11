@@ -18,7 +18,7 @@ import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
-import { usePageSchema } from '@/components/shared/Seo'
+import { usePageSchema } from '@/components/shared/seo-context'
 import { faqPageSchema } from '@/lib/seo'
 
 // ---------------------------------------------------------------------------

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { CheckCircle2, ChevronDown, Store, Briefcase, Wrench, TrendingUp, Users, Eye, Truck, LayoutGrid, FileText, ShieldCheck, Wifi, Zap, Star, Building2, ArrowRight } from 'lucide-react'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
-import { usePageSchema } from '@/components/shared/Seo'
+import { usePageSchema } from '@/components/shared/seo-context'
 import { faqPageSchema } from '@/lib/seo'
 
 

@@ -6,7 +6,7 @@ import { Reveal } from '@/components/shared/Reveal'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { company } from '@/data/mockData'
-import { usePageSchema } from '@/components/shared/Seo'
+import { usePageSchema } from '@/components/shared/seo-context'
 import { contactPageSchema } from '@/lib/seo'
 
 // ─── Component ───────────────────────────────────────────────────────────────

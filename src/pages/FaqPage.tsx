@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { company } from '@/data/mockData'
 import { Reveal } from '@/components/shared/Reveal'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
-import { usePageSchema } from '@/components/shared/Seo'
+import { usePageSchema } from '@/components/shared/seo-context'
 import { faqPageSchema } from '@/lib/seo'
 
 // ─── Types ────────────────────────────────────────────────────────────────────

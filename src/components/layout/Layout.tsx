@@ -3,7 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { WhatsAppButton } from '@/components/shared/WhatsAppButton'
-import { Seo, SeoExtraProvider } from '@/components/shared/Seo'
+import { Seo } from '@/components/shared/Seo'
+import { SeoExtraProvider } from '@/components/shared/seo-context'
 import { resolveSeo } from '@/lib/seo'
 
 export function Layout() {

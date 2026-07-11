@@ -1,7 +1,7 @@
 ﻿import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, Link } from 'react-router-dom'
-import { usePageSchema } from '@/components/shared/Seo'
+import { usePageSchema } from '@/components/shared/seo-context'
 import { faqPageSchema } from '@/lib/seo'
 import {
   CheckCircle2,
@@ -22,36 +22,6 @@ import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
-
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
-// STAFF ACCOMMODATION (main) data
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
-const staffMainFaqs = [
-  {
-    q: 'What legally defines standard corporate staff accommodation in Qatar?',
-    a: 'Corporate staff accommodation refers to dedicated residential properties leased directly by companies to house their employees, supervisors, or operations teams. These properties must comply with Qatar Ministry of Labor standards and hold valid municipality registration and safety certificates.',
-  },
-  {
-    q: "How does Dania Real Estate ensure a property complies with Qatar's labor housing laws?",
-    a: 'Our commercial division explicitly pre-screens properties to verify their active Civil Defense safety approvals, proper municipal zone classifications, and suitability for company lease attestation before presenting them to clients.',
-  },
-  {
-    q: 'Can your team manage high-volume corporate housing requests for large operational projects?',
-    a: 'Yes, completely. Dania Real Estate works directly with enterprise procurement teams, providing scalable multi-unit housing portfolios and corporate blocks tailored to support large-scale infrastructure and service mobilizations.',
-  },
-  {
-    q: 'Is a standard corporate lease structure different from a family residential agreement?',
-    a: "Yes. Corporate leases are executed directly under your company's commercial registration (CR), require specific occupancy declarations, use customized corporate payment terms, and require direct Baladiya registration to support corporate auditing.",
-  },
-  {
-    q: 'What specific areas are best suited for employee housing requiring daily access to Salwa Road?',
-    a: 'Neighborhoods like Al Aziziya, Abu Hamour, and adjacent southern sectors offer ideal logistics setups, granting your corporate transport fleets rapid, direct access to Salwa Road and central industrial zones.',
-  },
-  {
-    q: 'What primary documentation must a company provide to secure a corporate housing contract?',
-    a: "Securing a corporate lease requires a valid copy of your Company Commercial Registration (CR), the Signatory Authorization Certificate, a copy of the manager's QID, post-dated corporate cheques for the contract term, and a single-month refundable security deposit.",
-  },
-]
 
 // â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 // STAFF VILLAS data
@@ -113,7 +83,7 @@ const staffVillasFaqsAr = [
 // â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 // Shared FAQ accordion
 // â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
-function FaqAccordion({ faqs }: { faqs: typeof staffMainFaqs }) {
+function FaqAccordion({ faqs }: { faqs: Array<{ q: string; a: string }> }) {
   const [open, setOpen] = useState<number | null>(null)
   return (
     <div className="space-y-3">

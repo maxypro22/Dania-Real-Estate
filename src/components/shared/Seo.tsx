@@ -1,22 +1,9 @@
-import { createContext, useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { company } from '@/data/mockData'
 import { SITE_ORIGIN, organizationSchema } from '@/lib/seo'
 
-// Lets a child page push page-specific JSON-LD up to the single <Seo> head
-// manager rendered in Layout, so there is never more than one head writer.
-const SeoExtraContext = createContext<(schemas: object[]) => void>(() => {})
-export const SeoExtraProvider = SeoExtraContext.Provider
-
-/** Register page-specific JSON-LD (e.g. FAQPage, ContactPage) for this route. */
-export function usePageSchema(schemas: object[]) {
-  const setExtra = useContext(SeoExtraContext)
-  const key = JSON.stringify(schemas)
-  useEffect(() => {
-    setExtra(schemas)
-    return () => setExtra([])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key])
-}
+// The SEO context/provider and the usePageSchema hook live in ./seo-context so
+// this module stays component-only (React Fast Refresh / lint requirement).
 
 interface SeoProps {
   title: string
@@ -93,6 +80,9 @@ export function Seo({ title, description, path, image, jsonLd = [] }: SeoProps) 
       s.textContent = JSON.stringify(obj)
       document.head.appendChild(s)
     }
+    // `ldKey` is JSON.stringify(jsonLd), so it already tracks jsonLd changes;
+    // depending on the array itself would re-run on every render (new identity).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, description, url, imageUrl, ldKey])
 
   return null
