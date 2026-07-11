@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-forest:      #2C100A;
+  --color-forest-deep: #180806;
+  --color-forest-mid:  #3D1510;
+  --color-lime:        #C4622D;
+  --color-lime-dark:   #A85226;
+  --color-lime-light:  #F5E8DC;
+
+  /* Surfaces */
+  --color-surface:         #FDFAF7;
+  --color-surface-low:     #F5F0EC;
+  --color-surface-green:   #F0E8E0;
+
+  /* Text */
+  --color-ink:         #1A0808;
+  --color-ink-muted:   #5C3D3A;
+  --color-ink-faint:   #A08880;
+
+  /* UI */
+  --color-border:      #E8DDD5;
+  --color-whatsapp:    #25D366;
+
+  --font-sans: 'Inter', sans-serif;
+
+  --radius-sm:   0.375rem;
+  --radius-md:   0.75rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+  --radius-2xl:  2rem;
+  --radius-full: 9999px;
+}
+
+@keyframes border-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Pitch-style stacked deck: front card pops up + fades in on each advance */
+@keyframes stacked-pop {
+  0%   { opacity: 0; transform: translateY(22px) scale(0.94); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.stacked-pop { animation: stacked-pop 560ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Segmented progress fill for the active deck card */
+@keyframes stacked-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.stacked-progress { animation: stacked-progress linear both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stacked-pop { animation: none; }
+  .stacked-progress { animation: none; transform: scaleX(1); }
+}
+
+/* Linear-style card: soft lime glow + gentle lift on hover, applied site-wide
+   by adding `linear-card` to a card shell. The glow is an ::before layer that
+   sits between the card background and its content (isolation + z-index:-1),
+   so no markup change or overflow clipping is needed. Hover effects only on
+   hover-capable devices; motion is dropped for reduced-motion users. */
+.linear-card {
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.linear-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(60% 45% at 50% 0%, rgba(196, 98, 45, 0.22), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .linear-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px -12px rgba(44, 16, 10, 0.28);
+  }
+  .linear-card:hover::before { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .linear-card { transition: none; }
+  .linear-card:hover { transform: none; }
+}
+
+/* ── Luxury brand wordmark: polished gold/copper letters ─────────────── */
+/* Slow gradient drift (the metallic "sheen" that travels across the fill) */
+@keyframes brand-shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: -200% 50%; }
+}
+/* Cinematic per-letter entrance: rises + un-blurs + flips upright */
+@keyframes brand-letter-in {
+  0%   { opacity: 0; transform: translateY(0.5em) rotateX(-90deg); filter: blur(8px); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0)     rotateX(0);     filter: blur(0); }
+}
+/* Warm lime -> brown brand fill. A soft light-lime lead keeps the letters
+   legible on the dark hero; the darker brown tail only ever drifts through
+   transiently (the ramp loops back to lime) so no letter sits dark-on-dark. */
+.brand-wordmark,
+.brand-letter {
+  background-image: linear-gradient(
+    100deg,
+    #F3D9BE 0%, #E89A52 20%, #C4622D 42%,
+    #A85226 60%, #7A3A1B 78%, #C4622D 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 30px rgba(196, 98, 45, 0.35);
+}
+
+/* Arabic: keep the word intact (glyphs must stay joined), just sheen + reveal */
+.brand-wordmark {
+  animation:
+    brand-letter-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both,
+    brand-shimmer 6s linear 0.9s infinite;
+}
+
+/* Latin: each letter flips up in sequence, and the highlight rolls across the
+   word letter-by-letter (both staggered by the --i index set in the markup). */
+.brand-letter {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation:
+    brand-letter-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    brand-shimmer 5.5s linear infinite;
+  animation-delay:
+    calc(var(--i, 0) * 55ms),
+    calc(700ms + var(--i, 0) * 110ms);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  /* Smooth scroll only for users who haven't requested reduced motion */
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #1A0808;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Remove 300ms tap delay on touch devices */
+    touch-action: manipulation;
+    /* Kill default tap highlight flash on iOS/Android */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Long words (e.g. "Accommodations") must wrap inside narrow 2-up phone
+   * cards instead of overflowing past the card edge. */
+  h1, h2, h3, h4, h5, h6, p, a, span, li, button {
+    overflow-wrap: break-word;
+  }
+
+  #root { min-height: 100vh; }
+
+  /* Respect reduced-motion: cut all transitions + animations to near-zero */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* GPU-layer hint for elements that will animate */
+  .will-animate {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
