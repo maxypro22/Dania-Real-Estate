@@ -201,4 +201,25 @@ Safety point: branch `audit/remediation`, baseline commit `3c9d806` (no VCS exis
 
 **Deliberate compromises:** none. (Blind spot from the plan — "is the mp4 staged for a future feature?" — resolved by deletion; it is recoverable from git history if that intent surfaces.)
 
-**Commit:** `chore: remove unused 37.5 MB 4K video from assets`
+**Commit:** `chore: remove unused 37.5 MB 4K video from assets` (`787847a`)
+
+---
+
+## Batch 9 — Self-host the hotlinked stock images  [perf/chore]  ⏸ DEFERRED
+
+**Status:** **NOT executed — precondition unmet.** The batch's stated precondition is "HUMAN CONFIRMS these are replaceable placeholders, not licensed inventory." That confirmation has not been given (it is an open ASSUMPTION in the audit's Blind Spots). Self-hosting also entails fetching ~30 third-party images and committing them — a content/licensing decision that is not mine to make unilaterally.
+
+**Why deferred, not guessed:** Executing blind risks (a) shipping images the company isn't licensed to self-host, or (b) replacing intended real imagery. The CSP (Batch 7) already keeps `images.unsplash.com`/`images.pexels.com` in `img-src`, so the site functions as-is. F-007 stays **open**; it is carried to the final report and the follow-up list, to be run on a one-word confirmation.
+
+---
+
+## Stage 2 close-out
+
+Executed **8 of 9** planned batches (Batches 1–8). Batch 9 deferred (precondition unmet). Final consolidated checks on `audit/remediation`:
+- `npx eslint .` → **0 problems** (was 4 errors + 1 warning)
+- `npx tsc -b` → **exit 0**
+- `npx vitest run` → **11 passed** across 5 files (was: no runner)
+- `npm run build` → **exit 0** (gate now runs lint)
+- `dist/assets` shipped: **~16 MB → 5.97 MB**; `src/assets` on disk **51.46 MB → 4.57 MB**
+
+Full report → `FINAL_REPORT.md`.
