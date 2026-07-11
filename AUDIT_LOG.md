@@ -89,4 +89,29 @@ Safety point: branch `audit/remediation`, baseline commit `3c9d806` (no VCS exis
 **Deliberate compromises:** none.
 **Noticed, left alone:** the form does no field-format validation beyond `required`/`type=email`/`type=tel` (browser-native) — acceptable for a WhatsApp handoff; out of scope.
 
-**Commit:** `fix: show a direct WhatsApp link when the contact popup is blocked`
+**Commit:** `fix: show a direct WhatsApp link when the contact popup is blocked` (`a3670bd`)
+
+---
+
+## Batch 4 — Cut the oversized homepage image weight  [perf]  ✅
+
+**Goal:** Cut the ~9.4 MiB homepage image payload. (Fixes F-001)
+
+**⚠ Plan-premise correction (surfaced, not silently changed):** the audit assumed these four `src/assets` Pexels images render "in area cards ≤400px wide." On inspection the AREAS card render (`HomePage.tsx:375-403`) shows only a badge + name + description — **it never reads `area.img`.** The four images (9.36 MiB) were imported, stored in the data array, bundled into `dist/`, and displayed to **no one**. So the correct remediation is *removal*, not resize+srcset — a strictly smaller, lower-risk change than planned (interrupt condition (b) covers larger/riskier; this is neither), with a better result (9.36 MiB → 0, zero visual change).
+
+**Files changed (one-line reason each):**
+- `src/pages/HomePage.tsx` — deleted the 4 dead `@/assets/pexels-*.webp` imports; stripped the unused `img` field from all 16 area entries (both `AREAS_AR` and `AREAS`). `SHOWCASES` imgs (which *are* rendered) untouched.
+- `src/assets/pexels-stephen-leonardi-*.webp`, `pexels-mr-location-scout-*.webp`, `pexels-juan-nino-*.webp`, `pexels-athena-*.webp` — deleted (now unreferenced; grep-confirmed only HomePage used them).
+
+**Checks (real output):**
+- `npx tsc -b` → exit 0 · `npx eslint .` → exit 0 · `npx vitest run` → 5 passed.
+- `npm run build` → exit 0. **dist webp payload:** was ~13.9 MiB (9.36 MiB Pexels + 4.54 MiB hero frames) → now **4.54 MiB** (hero frames only). **Homepage-imported image weight: 9.36 MiB → 0 (−100%),** vs the plan's `< 0.7 MiB` target (exceeded).
+
+**Acceptance:** ✅ Homepage bundled image payload 9.36 MiB → 0 (number pair shown). ✅ Each of the 4 images ≤ ~150 KB (trivially — removed).
+
+**Definition of Done:** Correct ✅ · Performant ✅ (dead weight removed from hot path) · Readable ✅ (dead imports + dead data field gone) · Typed ✅ · No new lint ✅ · Consistent ✅. No regression test — pure removal of never-rendered assets; the build byte-count is the verification.
+
+**Deliberate compromises:** none.
+**Noticed, left alone:** if area *thumbnails* are actually wanted in those cards, they should be added deliberately as ~800px optimized images with `width`/`height` — flagged as a follow-up, not invented here. The 120 hero frames (4.54 MiB) are the next target (F-002 / Batch 5).
+
+**Commit:** `perf: drop 9.4 MiB of never-rendered homepage images`

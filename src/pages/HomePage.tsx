@@ -12,32 +12,28 @@ import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { company, whyChooseUs } from '@/data/mockData'
-import imgDoha       from '@/assets/pexels-stephen-leonardi-587681991-34276136.webp'
-import imgAlSadd     from '@/assets/pexels-mr-location-scout-22994825-25525976.webp'
-import imgBinMahmoud from '@/assets/pexels-juan-nino-3824481-9556696.webp'
-import imgAlWakra    from '@/assets/pexels-athena-2962124.webp'
 
 /* ── Section 5: areas data ────────────────────────────────────────────── */
 const AREAS_AR = [
-  { slug: 'doha',           name: 'وسط الدوحة',               img: imgDoha,        desc: 'تغطية شاملة في وسط الدوحة والدفنة والهلال والمعمورة. مثالي للتنقل اليومي.' },
-  { slug: 'al-sadd',        name: 'السد',                      img: imgAlSadd,      desc: 'شقق سكنية راقية ومحلات تجارية قرب محطات المترو ومراكز الترفيه.' },
-  { slug: 'bin-mahmoud',    name: 'بن محمود',                  img: imgBinMahmoud,  desc: 'خيارات سكنية مريحة قريبة من العيادات والمراكز التجارية الكبرى.' },
-  { slug: 'al-wakra',       name: 'الوكرة',                    img: imgAlWakra,     desc: 'إسكان مجتمعي عائلي وشقق للإيجار خارج نطاق مدينة الدوحة.' },
-  { slug: 'al-aziziya',     name: 'العزيزية وأبو هامور',       img: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=80', desc: 'عقارات نشطة قرب الطرق التجارية الرئيسية والمجمعات العائلية والمدارس.' },
-  { slug: 'old-airport',    name: 'المطار القديم وروضة المطار', img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80', desc: 'عقارات تاريخية راسخة وشقق مشتركة وعقارات تجارية على طرق المطار القديم.' },
-  { slug: 'umm-salal',      name: 'أم صلال',                   img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80', desc: 'إسكان اقتصادي يشمل أم صلال محمد وأم صلال علي وأم قرن.' },
-  { slug: 'al-kharaitiyat', name: 'الخريطيات',                 img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80', desc: 'أحياء سكنية هادئة في الشمال مثالية للمجمعات العائلية.' },
+  { slug: 'doha',           name: 'وسط الدوحة',               desc: 'تغطية شاملة في وسط الدوحة والدفنة والهلال والمعمورة. مثالي للتنقل اليومي.' },
+  { slug: 'al-sadd',        name: 'السد',                      desc: 'شقق سكنية راقية ومحلات تجارية قرب محطات المترو ومراكز الترفيه.' },
+  { slug: 'bin-mahmoud',    name: 'بن محمود',                  desc: 'خيارات سكنية مريحة قريبة من العيادات والمراكز التجارية الكبرى.' },
+  { slug: 'al-wakra',       name: 'الوكرة',                    desc: 'إسكان مجتمعي عائلي وشقق للإيجار خارج نطاق مدينة الدوحة.' },
+  { slug: 'al-aziziya',     name: 'العزيزية وأبو هامور',       desc: 'عقارات نشطة قرب الطرق التجارية الرئيسية والمجمعات العائلية والمدارس.' },
+  { slug: 'old-airport',    name: 'المطار القديم وروضة المطار', desc: 'عقارات تاريخية راسخة وشقق مشتركة وعقارات تجارية على طرق المطار القديم.' },
+  { slug: 'umm-salal',      name: 'أم صلال',                   desc: 'إسكان اقتصادي يشمل أم صلال محمد وأم صلال علي وأم قرن.' },
+  { slug: 'al-kharaitiyat', name: 'الخريطيات',                 desc: 'أحياء سكنية هادئة في الشمال مثالية للمجمعات العائلية.' },
 ]
 
 const AREAS = [
-  { slug: 'doha',           name: 'Central Doha',                  img: imgDoha,        desc: 'Strategic coverage across Central Doha, Al Dafna, Al Hilal, and Al Mamoura. Perfect for city commuting.' },
-  { slug: 'al-sadd',        name: 'Al Sadd',                       img: imgAlSadd,      desc: 'Premium residential flats and commercial spots near main metro routes and lifestyle hubs.' },
-  { slug: 'bin-mahmoud',    name: 'Bin Mahmoud',                   img: imgBinMahmoud,  desc: 'Convenient urban living options close to clinics, major hypermarkets, and office centers.' },
-  { slug: 'al-wakra',       name: 'Al Wakra',                      img: imgAlWakra,     desc: 'Family-friendly community housing and rental flats outside the dense Doha city perimeter.' },
-  { slug: 'al-aziziya',     name: 'Al Aziziya & Abu Hamour',       img: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=80', desc: 'Active properties near popular commercial avenues, family compounds, and schools.' },
-  { slug: 'old-airport',    name: 'Old Airport & Rawdat Al Matar', img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80', desc: 'Established historic properties, flat shares, and business rentals along Al Matar Al Qadeem routes.' },
-  { slug: 'umm-salal',      name: 'Umm Salal',                     img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80', desc: 'Budget accommodations covering Umm Salal Mohammed, Umm Salal Ali, and Umm Qarn zones.' },
-  { slug: 'al-kharaitiyat', name: 'Al Kharaitiyat',                img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80', desc: 'Quieter northern suburban residential quarters perfect for dedicated family compound spaces.' },
+  { slug: 'doha',           name: 'Central Doha',                  desc: 'Strategic coverage across Central Doha, Al Dafna, Al Hilal, and Al Mamoura. Perfect for city commuting.' },
+  { slug: 'al-sadd',        name: 'Al Sadd',                       desc: 'Premium residential flats and commercial spots near main metro routes and lifestyle hubs.' },
+  { slug: 'bin-mahmoud',    name: 'Bin Mahmoud',                   desc: 'Convenient urban living options close to clinics, major hypermarkets, and office centers.' },
+  { slug: 'al-wakra',       name: 'Al Wakra',                      desc: 'Family-friendly community housing and rental flats outside the dense Doha city perimeter.' },
+  { slug: 'al-aziziya',     name: 'Al Aziziya & Abu Hamour',       desc: 'Active properties near popular commercial avenues, family compounds, and schools.' },
+  { slug: 'old-airport',    name: 'Old Airport & Rawdat Al Matar', desc: 'Established historic properties, flat shares, and business rentals along Al Matar Al Qadeem routes.' },
+  { slug: 'umm-salal',      name: 'Umm Salal',                     desc: 'Budget accommodations covering Umm Salal Mohammed, Umm Salal Ali, and Umm Qarn zones.' },
+  { slug: 'al-kharaitiyat', name: 'Al Kharaitiyat',                desc: 'Quieter northern suburban residential quarters perfect for dedicated family compound spaces.' },
 ]
 
 /* ── Section 9: showcase listing blocks ──────────────────────────────── */
