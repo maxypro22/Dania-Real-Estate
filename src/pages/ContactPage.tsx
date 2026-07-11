@@ -39,6 +39,9 @@ export function ContactPage() {
     message: '',
   })
   const [sent, setSent] = useState(false)
+  // When a browser blocks the WhatsApp popup, window.open returns null. We keep
+  // the URL here and surface a direct link instead of a false "success" state.
+  const [blockedUrl, setBlockedUrl] = useState<string | null>(null)
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -56,8 +59,14 @@ export function ContactPage() {
       `Message: ${form.message}`,
     ]
     const waUrl = `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(lines.join('\n'))}`
-    window.open(waUrl, '_blank', 'noopener,noreferrer')
-    setSent(true)
+    const win = window.open(waUrl, '_blank', 'noopener,noreferrer')
+    if (win) {
+      setBlockedUrl(null)
+      setSent(true)
+    } else {
+      // Popup blocked — do not claim success; show a link the user can tap.
+      setBlockedUrl(waUrl)
+    }
   }
 
   return (
@@ -195,6 +204,36 @@ export function ContactPage() {
                     >
                       {isAr ? 'إرسال استفسار آخر' : 'Send Another Inquiry'}
                     </button>
+                  </div>
+                ) : blockedUrl ? (
+                  <div className="text-center py-10">
+                    <div className="w-14 h-14 bg-lime rounded-full flex items-center justify-center mx-auto mb-4">
+                      <MessageCircle size={24} className="text-forest" />
+                    </div>
+                    <h3 className="text-xl font-bold text-ink mb-2">{isAr ? 'خطوة أخيرة' : 'One last step'}</h3>
+                    <p className="text-ink-muted mb-5 text-sm max-w-sm mx-auto">
+                      {isAr
+                        ? 'حظر متصفحك النافذة المنبثقة لواتساب. اضغط الزر أدناه لإرسال استفسارك مباشرةً — لم يُرسل بعد.'
+                        : "Your browser blocked the WhatsApp popup, so your inquiry hasn't been sent yet. Tap the button below to send it directly."}
+                    </p>
+                    <a
+                      href={blockedUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => { setBlockedUrl(null); setSent(true) }}
+                      className="inline-flex items-center justify-center gap-2 bg-whatsapp text-white font-bold px-6 py-3 rounded-full text-sm hover:opacity-90 transition-opacity"
+                    >
+                      <MessageCircle size={16} />
+                      {isAr ? 'إرسال عبر واتساب' : 'Send via WhatsApp'}
+                    </a>
+                    <div>
+                      <button
+                        onClick={() => setBlockedUrl(null)}
+                        className="mt-6 border border-border text-ink px-6 py-2 rounded-full text-sm font-medium hover:bg-surface-low transition-colors"
+                      >
+                        {isAr ? 'العودة إلى النموذج' : 'Back to form'}
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">

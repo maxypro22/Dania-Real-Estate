@@ -64,4 +64,29 @@ Safety point: branch `audit/remediation`, baseline commit `3c9d806` (no VCS exis
 **Deliberate compromises:** the two `eslint-disable` lines (Header effect, Seo deps) are justified in-code rather than refactored away — both are correct-as-written patterns the rule flags conservatively; a full refactor would be behaviour-risk outside this batch's scope.
 **Noticed, left alone:** the 2.5k-LOC page files and duplicated `_AR`/`EN` arrays (out of scope per plan).
 
-**Commit:** `refactor: make lint pass and gate it in the build`
+**Commit:** `refactor: make lint pass and gate it in the build` (`bc542ec`)
+
+---
+
+## Batch 3 — Contact popup fallback  [bugfix]  ✅
+
+**Goal:** Never show "success" when the WhatsApp handoff didn't actually open. (Fixes F-009)
+
+**Files changed (one-line reason each):**
+- `src/pages/ContactPage.tsx` — capture `window.open`'s return; on `null` (blocked popup) set `blockedUrl` and render a fallback panel with a direct `href={blockedUrl}` "Send via WhatsApp" link + "Back to form", instead of the false success state.
+- `src/pages/__tests__/ContactPage.wa.test.tsx` — add the F-009 regression test.
+
+**Fail-before / pass-after (real output):**
+- Stashed the source fix, ran the suite against pre-fix code → **regression test FAILED** (`expected null not to be null` — no fallback link rendered), original characterization test still passed.
+- Restored the fix, re-ran → **5/5 passed**.
+
+**Checks (real output):** `npx vitest run` → **5 passed** (was 4). `npx tsc -b` → exit 0. `npx eslint .` → exit 0.
+
+**Acceptance:** ✅ Regression test: `window.open` → null ⇒ fallback link shown, success NOT shown; fails before, passes after.
+
+**Definition of Done:** Correct ✅ (null path handled) · Resilient ✅ (user-visible fallback for the silent-failure case) · Typed ✅ · Tested ✅ (regression) · A11y ✅ (real `<a href>`, keyboard-reachable) · Consistent ✅ (matches the success-panel markup + bilingual ternary style) · No new lint ✅.
+
+**Deliberate compromises:** none.
+**Noticed, left alone:** the form does no field-format validation beyond `required`/`type=email`/`type=tel` (browser-native) — acceptable for a WhatsApp handoff; out of scope.
+
+**Commit:** `fix: show a direct WhatsApp link when the contact popup is blocked`

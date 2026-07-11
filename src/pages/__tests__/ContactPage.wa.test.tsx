@@ -49,4 +49,25 @@ describe('ContactPage — WhatsApp lead handoff', () => {
     expect(decoded).toContain('Email: sara@example.com')
     expect(decoded).toContain('Message: Need a 2BHK in Al Sadd')
   })
+
+  // Regression for F-009: a blocked popup (window.open → null) must NOT show a
+  // false success; it must surface a direct link to the same prefilled URL.
+  it('shows a direct WhatsApp link instead of "success" when the popup is blocked', () => {
+    const openSpy = vi.spyOn(window, 'open').mockReturnValue(null)
+    const { container } = renderContact()
+
+    fillForm(container)
+    fireEvent.submit(container.querySelector('form')!)
+
+    expect(openSpy).toHaveBeenCalledTimes(1)
+    const attempted = openSpy.mock.calls[0][0] as string
+
+    // The prefilled fallback link is the only wa.me link carrying ?text=.
+    const fallback = container.querySelector<HTMLAnchorElement>('a[href*="wa.me"][href*="text="]')
+    expect(fallback).not.toBeNull()
+    expect(fallback!.getAttribute('href')).toBe(attempted)
+
+    // And we did not falsely claim the inquiry was submitted.
+    expect(container.textContent).not.toContain('Inquiry Submitted')
+  })
 })
