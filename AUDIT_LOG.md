@@ -183,4 +183,22 @@ Safety point: branch `audit/remediation`, baseline commit `3c9d806` (no VCS exis
 
 **Deliberate compromises (declared):** shipped as **`Report-Only`, not enforcing**. Enforcing requires observing real violation reports on the deployed site (Vercel applies `vercel.json` headers; `vite preview` does not, so it can't be verified locally). Report-Only cannot break rendering, so this is safe to ship now; **promotion to an enforcing `Content-Security-Policy` is the pending live step** (watch the browser console / a report endpoint on the deployed site, then flip the header name). No `report-uri`/`report-to` endpoint exists (no backend), so violations surface in the console only.
 
-**Commit:** `security: add Content-Security-Policy (report-only) header`
+**Commit:** `security: add Content-Security-Policy (report-only) header` (`e56ecb8`)
+
+---
+
+## Batch 8 — Remove the dead 37.5 MB video  [chore]  ✅
+
+**Goal:** Drop the unused 4K mp4 from the repo. (Fixes F-008)
+
+**Files changed:** deleted `src/assets/13761467-uhd_3840_2160_30fps.mp4` (39,349,916 bytes ≈ 37.5 MiB).
+
+**Checks (real output):** grep for `13761467`/`.mp4`/`uhd_3840` across `src`, `index.html`, `public`, `vite.config.ts` → **0 references** (re-confirmed before delete). `npm run build` → exit 0. `src/assets` on disk **51.46 MB → 4.57 MB** (this batch + Batch 4).
+
+**Acceptance:** ✅ File gone; build still green.
+
+**Definition of Done:** Correct ✅ · Readable/hygiene ✅ (foot-gun removed) · Consistent ✅. Recoverable from baseline commit `3c9d806` if ever needed.
+
+**Deliberate compromises:** none. (Blind spot from the plan — "is the mp4 staged for a future feature?" — resolved by deletion; it is recoverable from git history if that intent surfaces.)
+
+**Commit:** `chore: remove unused 37.5 MB 4K video from assets`
