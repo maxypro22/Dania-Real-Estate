@@ -114,4 +114,29 @@ Safety point: branch `audit/remediation`, baseline commit `3c9d806` (no VCS exis
 **Deliberate compromises:** none.
 **Noticed, left alone:** if area *thumbnails* are actually wanted in those cards, they should be added deliberately as ~800px optimized images with `width`/`height` — flagged as a follow-up, not invented here. The 120 hero frames (4.54 MiB) are the next target (F-002 / Batch 5).
 
-**Commit:** `perf: drop 9.4 MiB of never-rendered homepage images`
+**Commit:** `perf: drop 9.4 MiB of never-rendered homepage images` (`d007f16`)
+
+---
+
+## Batch 5 — Defer the hero frame sequence  [perf]  ✅
+
+**Goal:** Stop 120 image requests firing on homepage mount. (Fixes F-002)
+
+**Files changed (one-line reason each):**
+- `src/components/shared/HeroSequence.tsx` — replaced the eager `FRAMES.forEach(new Image())` (120 immediate requests) with a progressive loader: frame 0 loads immediately (LCP paint), the other 119 load in idle-time batches of 8 via `requestIdleCallback` (setTimeout fallback); under `prefers-reduced-motion` only frame 0 loads. Existing `nearestLoaded()` already draws the closest available frame, so scrubbing is unaffected. Added idle-handle cleanup on unmount.
+- `src/components/shared/__tests__/HeroSequence.defer.test.tsx` (new) — regression test.
+
+**Fail-before / pass-after (real output):**
+- Stashed the fix, ran the test against the eager source → **FAILED: `expected 120 to be 1`** (120 Images constructed on mount).
+- Restored the fix → **passed** (1 Image on mount; the rest scheduled via `requestIdleCallback`).
+
+**Checks (real output):** `npx vitest run` → **6 passed** (was 5). `npx tsc -b` → 0. `npx eslint .` → 0. `npm run build` → exit 0.
+
+**Acceptance:** ✅ On mount with no scroll, only 1 frame request is made (not 120) — asserted by the regression test (via a stubbed 2D canvas context + Image counter).
+
+**Definition of Done:** Correct ✅ (bounds + idempotent `loadFrame`; cleanup cancels the idle handle) · Performant ✅ (first paint no longer contends with 119 requests) · Resilient ✅ (`requestIdleCallback` feature-detected with a `setTimeout` fallback) · Typed ✅ · Tested ✅ (regression) · Consistent ✅.
+
+**Deliberate compromises:** the automated test stubs the 2D canvas context because jsdom has no canvas (the real effect would otherwise bail); it verifies the *scheduling* (1 eager + idle-deferred), not pixel output. Real-browser LCP/network confirmation is a manual step noted for Stage 3.
+**Noticed, left alone:** frames load sequentially 0→119 (aligns with top-down scroll); a scroll-position-prioritised loader would be marginally better but adds complexity beyond this batch.
+
+**Commit:** `perf: defer hero frame preloading instead of loading 120 on mount`

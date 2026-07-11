@@ -48,16 +48,39 @@ export function HeroSequence() {
     const ctx = canvas.getContext('2d', { alpha: false })
     if (!ctx) return
 
-    // ── preload every frame; track which have decoded ──
-    const imgs: HTMLImageElement[] = []
+    // ── preload frames progressively; nearestLoaded() covers gaps ──
+    // Frame 0 loads immediately (it is the hero's LCP paint). The other 119
+    // frames are deferred to idle time in small batches so we don't fire 120
+    // parallel image requests that contend with first paint. Under
+    // reduced-motion the hero is static and only frame 0 is ever shown, so
+    // nothing else is fetched.
+    const imgs: HTMLImageElement[] = new Array(FRAMES.length)
     const loaded: boolean[] = new Array(FRAMES.length).fill(false)
-    FRAMES.forEach((src, i) => {
+
+    const loadFrame = (i: number) => {
+      if (i < 0 || i >= FRAMES.length || imgs[i]) return
       const img = new Image()
       img.decoding = 'async'
       img.onload = () => { loaded[i] = true; if (i <= currentTarget()) draw(true) }
-      img.src = src
+      img.src = FRAMES[i]
       imgs[i] = img
-    })
+    }
+
+    const requestIdle: (cb: () => void) => number =
+      window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 1))
+    const cancelIdle: (h: number) => void =
+      window.cancelIdleCallback ?? window.clearTimeout
+    let idleHandle = 0
+    let nextFrame = 1
+    const loadRemaining = () => {
+      if (prefersReduced) return
+      const BATCH = 8
+      for (let n = 0; n < BATCH && nextFrame < FRAMES.length; n++) loadFrame(nextFrame++)
+      if (nextFrame < FRAMES.length) idleHandle = requestIdle(loadRemaining)
+    }
+
+    loadFrame(0)
+    idleHandle = requestIdle(loadRemaining)
 
     let cw = 0
     let ch = 0
@@ -151,6 +174,7 @@ export function HeroSequence() {
     window.addEventListener('resize', resize)
     return () => {
       cancelAnimationFrame(rafRef.current)
+      cancelIdle(idleHandle)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', resize)
     }
