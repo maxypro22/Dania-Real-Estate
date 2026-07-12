@@ -30,6 +30,7 @@ function FaqAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
             <button
               className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-surface-low transition-colors"
               onClick={() => setOpen(open === i ? null : i)}
+              aria-expanded={open === i}
             >
               <span className="font-semibold text-ink text-sm leading-snug">{faq.q}</span>
               <ChevronDown
@@ -582,9 +583,9 @@ function OneBedContent() {
                 </h1>
               </Reveal>
               <Reveal direction="up" delay={80}>
-                <h3 className="text-lime/90 text-lg mb-4 font-semibold leading-snug">
+                <p className="text-lime/90 text-lg mb-4 font-semibold leading-snug">
                   {t('apartments.oneBed.subtitle')}
-                </h3>
+                </p>
               </Reveal>
               <Reveal direction="up" delay={160}>
                 <ScrollRevealText className="text-white/70 text-base mb-8 leading-relaxed" text={isAr

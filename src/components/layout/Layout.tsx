@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
 import { Footer } from './Footer'
@@ -10,6 +11,8 @@ import { resolveSeo } from '@/lib/seo'
 
 export function Layout() {
   const { pathname } = useLocation()
+  const { i18n } = useTranslation()
+  const isAr = i18n.language === 'ar'
   const [extraSchema, setExtraSchema] = useState<object[]>([])
   const seo = resolveSeo(pathname)
 
@@ -23,8 +26,15 @@ export function Layout() {
         jsonLd={extraSchema}
       />
       <div className="min-h-screen flex flex-col">
+        {/* Skip link — first focusable element; visible only on keyboard focus (F-002/WCAG 2.4.1) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:z-[100] focus:rounded-full focus:bg-forest focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg focus:start-3"
+        >
+          {isAr ? 'تخطَّ إلى المحتوى' : 'Skip to content'}
+        </a>
         <Header />
-        <main className="flex-1">
+        <main id="main-content" className="flex-1">
           <ErrorBoundary key={pathname}>
             <Outlet />
           </ErrorBoundary>

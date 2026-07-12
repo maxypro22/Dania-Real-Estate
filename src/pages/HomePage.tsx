@@ -525,6 +525,9 @@ export function HomePage() {
                   onMouseEnter={() => setActiveShowcase(i)}
                   onTouchStart={() => setActiveShowcase(i)}
                   onClick={() => setActiveShowcase(i)}
+                  // Expand on focus too, so a keyboard user tabbing to this panel's
+                  // link makes the panel visible and its CTA reachable (F-006).
+                  onFocus={() => setActiveShowcase(i)}
                   style={{ flex: isActive ? '4 1 0%' : '1 1 0%' }}
                   className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out min-w-0"
                 >

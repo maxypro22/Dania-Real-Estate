@@ -27,6 +27,7 @@ function FaqAccordion() {
             <button
               className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-surface-low transition-colors"
               onClick={() => setOpen(open === i ? null : i)}
+              aria-expanded={open === i}
             >
               <span className="font-semibold text-ink text-sm leading-snug">{faq.q}</span>
               <ChevronDown
@@ -71,9 +72,9 @@ export function ShopsPage() {
               </h1>
             </Reveal>
             <Reveal direction="up" delay={100}>
-              <h3 className="text-lime text-lg font-semibold max-w-2xl mb-5 leading-snug">
+              <p className="text-lime text-lg font-semibold max-w-2xl mb-5 leading-snug">
                 {t('shops.subtitle')}
-              </h3>
+              </p>
             </Reveal>
             <Reveal direction="up" delay={200}>
               <ScrollRevealText className="text-white/70 text-base max-w-3xl mb-8 leading-relaxed" text={t('shops.p')} />

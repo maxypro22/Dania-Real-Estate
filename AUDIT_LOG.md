@@ -70,4 +70,31 @@ Fixes **F-003** (no error boundary + unguarded `returnObjects` maps → whole-ap
 - **asArray adoption is targeted, not exhaustive.** The boundary is the blanket protection for all ~50 `returnObjects` reads; `asArray` was applied to the specific sites the audit flagged as crash risks (HomePage, StudiosPage, ShopsPage, StaffAccommodationPage, ApartmentsPage trust arrays). Wrapping the remaining reads (AboutPage, WhyChooseUsPage, VillasPage, GalleryPage, ContactPage) is a mechanical follow-up; they are boundary-protected in the meantime.
 - **F-015 (index-coupled parallel arrays) mitigated, not fully guarded.** A `to={undefined}`/`<Icon/>` throw is now caught by the boundary (fallback, not white-screen). Per-site guards remain a follow-up; safe today since lengths match.
 
-**Commit:** `resilience` below.
+**Commit:** `c4e518d`
+
+---
+
+## Batch 4 — Accessibility pass  [bugfix]
+
+Fixes **F-002** (skip-link), **F-006** (accordion state + keyboard operability), **F-007** (heading hierarchy), **F-011** (mobile menu).
+
+**Files changed**
+- `src/components/layout/Layout.tsx` — bilingual skip link (`sr-only` → visible on focus) as first focusable element; `<main id="main-content">`; `useTranslation` for the label.
+- `src/components/layout/Header.tsx` — mobile menu is now `<nav id="mobile-menu" aria-label>`; toggle has `aria-controls="mobile-menu"`; **Escape** closes it; submenu chevron labels i18n'd (`Collapse`/`Expand` → AR/EN).
+- `src/pages/{Apartments,Shops,Villas,StaffAccommodation}Page.tsx` — FAQ accordion buttons gain `aria-expanded` (StudiosPage already had it).
+- `src/pages/{Areas,Apartments,Shops,AreaDetail,StaffAccommodation}Page.tsx` — 6 hero subtitles `<h3>`→`<p>` (no more h1→h3 skip; Staff has two).
+- `src/pages/HomePage.tsx` — desktop showcase panel expands `onFocus` so a keyboard user reaching its inner link makes it visible/usable.
+- `src/pages/AreasPage.tsx` — Qatar-map pins are `role="button" tabIndex=0` with `aria-label`, `onFocus`, and Enter/Space `onKeyDown`.
+- `src/components/layout/__tests__/a11y-landmarks.test.tsx` (new) — asserts the skip link targets `main#main-content`.
+
+**Checks:** `npm run build` → clean. `npx vitest run` → **19 passed** (was 18).
+
+**Acceptance:** ✅ first Tab reaches "Skip to content" → jumps to `#main-content`. ✅ all FAQ accordions announce expanded/collapsed. ✅ no h1→h3 skips on the fixed pages. ✅ mobile menu is a nav landmark, closes on Escape, labels localized. ✅ map pins keyboard-operable.
+
+**Definition of Done:** Correct ✅ · Accessible ✅ (2.4.1, 4.1.2, 1.3.1, 2.1.1 addressed) · Tested (skip-link) ✅ · Typed/Linted ✅ · Consistent ✅.
+
+**Deliberate compromises:**
+- **Accordion a11y added in-place, not via a shared component.** Adding `aria-expanded` to each existing accordion is a zero-visual-risk fix; extracting one shared `<Accordion>` (and adding `aria-controls`/`role="region"`) stays with the F-012 refactor (Batch 9) to avoid mixing an a11y fix with a structural change.
+- **Mobile menu: no full focus-trap.** Landmark + Escape + `aria-controls` shipped; trapping/returning focus is a further enhancement, logged as residual.
+
+**Commit:** `a11y` below.

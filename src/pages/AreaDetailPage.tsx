@@ -2067,9 +2067,9 @@ export function AreaDetailPage() {
               </Reveal>
 
               <Reveal direction="up" delay={100}>
-                <h3 className="text-lg md:text-xl text-white/75 mb-5 leading-relaxed">
+                <p className="text-lg md:text-xl text-white/75 mb-5 leading-relaxed">
                   {detail.hero.h3}
-                </h3>
+                </p>
               </Reveal>
 
               <Reveal direction="up" delay={180}>

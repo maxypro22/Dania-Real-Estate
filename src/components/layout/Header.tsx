@@ -193,6 +193,14 @@ export function Header() {
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setOpenKey(null); setMobileOpen(false); setExpandedMobile(null) }, [pathname])
 
+  // Escape closes the mobile menu.
+  useEffect(() => {
+    if (!mobileOpen) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [mobileOpen])
+
   // Outside-click / Escape close the desktop dropdown.
   useEffect(() => {
     if (!openKey) return
@@ -314,6 +322,7 @@ export function Header() {
             onClick={() => setMobileOpen(o => !o)}
             aria-label={mobileOpen ? t('header.closeMenu') : t('header.openMenu')}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
             className="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-ink hover:bg-surface-low active:bg-surface-low transition-colors"
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -322,7 +331,7 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="xl:hidden bg-white border-t border-border px-5 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+        <nav id="mobile-menu" aria-label={isAr ? 'التنقل عبر الجوال' : 'Mobile navigation'} className="xl:hidden bg-white border-t border-border px-5 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
           {navItems.map(item => {
             const isExpanded = expandedMobile === item.to
             return (
@@ -336,7 +345,7 @@ export function Header() {
                       </NavLink>
                       <button
                         onClick={() => setExpandedMobile(isExpanded ? null : item.to)}
-                        aria-label={isExpanded ? 'Collapse' : 'Expand'}
+                        aria-label={isExpanded ? (isAr ? 'طيّ' : 'Collapse') : (isAr ? 'توسيع' : 'Expand')}
                         aria-expanded={isExpanded}
                         className="w-11 h-11 flex items-center justify-center text-ink-muted hover:text-ink transition-colors"
                       >
@@ -376,7 +385,7 @@ export function Header() {
               <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('header.contactUs')}</span>
             </Link>
           </div>
-        </div>
+        </nav>
       )}
       </div>
     </header>

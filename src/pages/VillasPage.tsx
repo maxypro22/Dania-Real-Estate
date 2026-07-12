@@ -113,6 +113,7 @@ function FaqAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
             <button
               className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-surface-low transition-colors"
               onClick={() => setOpen(open === i ? null : i)}
+              aria-expanded={open === i}
             >
               <span className="font-semibold text-ink text-sm leading-snug">{faq.q}</span>
               <ChevronDown

@@ -507,9 +507,14 @@ function QatarMapWidget({ isAr }: { isAr: boolean }) {
           return (
             <g
               key={pin.slug}
+              role="button"
+              tabIndex={0}
+              aria-label={area?.name ?? pin.slug}
               onMouseEnter={() => setActive(pin.slug)}
               onTouchStart={() => setActive(pin.slug)}
               onClick={() => setActive(pin.slug)}
+              onFocus={() => setActive(pin.slug)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(pin.slug) } }}
               style={{ cursor: 'pointer' }}
             >
               {/* outer glow */}
@@ -674,9 +679,9 @@ export function AreasPage() {
               </Reveal>
 
               <Reveal direction="up" delay={80}>
-                <h3 className="text-xl font-semibold text-white/90 max-w-2xl mb-5">
+                <p className="text-xl font-semibold text-white/90 max-w-2xl mb-5">
                   {L(HERO.h3)}
-                </h3>
+                </p>
               </Reveal>
 
               <Reveal direction="up" delay={160}>
