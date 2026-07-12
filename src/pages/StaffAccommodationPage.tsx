@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, Link } from 'react-router-dom'
+import { asArray } from '@/lib/asArray'
 import { usePageSchema } from '@/components/shared/seo-context'
 import { faqPageSchema } from '@/lib/seo'
 import {
@@ -116,7 +117,7 @@ function FaqAccordion({ faqs }: { faqs: Array<{ q: string; a: string }> }) {
 function StaffAccommodationMain() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
-  const mainFaqs = t('staff.mainFaqs', { returnObjects: true }) as Array<{q: string, a: string}>
+  const mainFaqs = asArray<{q: string, a: string}>(t('staff.mainFaqs', { returnObjects: true }))
   usePageSchema([faqPageSchema(mainFaqs)])
 
   const priorityCards = [
@@ -260,7 +261,7 @@ function StaffAccommodationMain() {
               </Reveal>
               <Reveal direction="up" delay={320}>
                 <div className="flex flex-col sm:flex-row gap-x-6 gap-y-2">
-                  {(t('staff.trust', { returnObjects: true }) as string[]).map(tp => (
+                  {asArray<string>(t('staff.trust', { returnObjects: true })).map(tp => (
                     <span key={tp} className="flex items-start gap-2 text-white/60 text-sm max-w-xs">
                       <CheckCircle2 size={14} className="text-lime shrink-0 mt-0.5" />
                       {tp}
@@ -743,7 +744,7 @@ function StaffAccommodationMain() {
             </h2>
           </Reveal>
           <Reveal direction="up" delay={80}>
-            <FaqAccordion faqs={t('staff.mainFaqs', { returnObjects: true }) as Array<{q: string, a: string}>} />
+            <FaqAccordion faqs={asArray<{q: string, a: string}>(t('staff.mainFaqs', { returnObjects: true }))} />
           </Reveal>
         </div>
       </section>

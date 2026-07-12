@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
+import { asArray } from '@/lib/asArray'
 import { Reveal } from '@/components/shared/Reveal'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { Link } from 'react-router-dom'
@@ -95,7 +96,7 @@ function AllApartmentsContent() {
   const { t } = useTranslation()
 
   /* Hero */
-  const trust = t('apartments.all.trust', { returnObjects: true }) as string[]
+  const trust = asArray<string>(t('apartments.all.trust', { returnObjects: true }))
 
   /* Section data */
   const support = t('apartments.all.support', { returnObjects: true }) as string[]
@@ -484,7 +485,7 @@ function OneBedContent() {
   const isAr = i18n.language === 'ar'
 
 
-  const trust = t('apartments.oneBed.trust', { returnObjects: true }) as string[]
+  const trust = asArray<string>(t('apartments.oneBed.trust', { returnObjects: true }))
 
   const faqs = isAr ? [
     {
@@ -932,7 +933,7 @@ function TwoBedContent() {
   const isAr = i18n.language === 'ar'
 
 
-  const trust = t('apartments.twoBed.trust', { returnObjects: true }) as string[]
+  const trust = asArray<string>(t('apartments.twoBed.trust', { returnObjects: true }))
 
   const faqs = isAr ? [
     {
@@ -1380,7 +1381,7 @@ function ThreeBedContent() {
   const isAr = i18n.language === 'ar'
 
 
-  const trust = t('apartments.threeBed.trust', { returnObjects: true }) as string[]
+  const trust = asArray<string>(t('apartments.threeBed.trust', { returnObjects: true }))
 
   const faqs = isAr ? [
     {

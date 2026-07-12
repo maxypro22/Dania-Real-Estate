@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
+import { asArray } from '@/lib/asArray'
 import { Reveal } from '@/components/shared/Reveal'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
@@ -16,7 +17,7 @@ import { faqPageSchema } from '@/lib/seo'
 /* â"€â"€â"€ FAQ Accordion â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */
 function FaqAccordion() {
   const { t } = useTranslation()
-  const shopFaqs = t('shops.faqs', { returnObjects: true }) as Array<{q: string, a: string}>
+  const shopFaqs = asArray<{q: string, a: string}>(t('shops.faqs', { returnObjects: true }))
   const [open, setOpen] = useState<number | null>(null)
   return (
     <div className="space-y-3">
@@ -49,7 +50,7 @@ function FaqAccordion() {
 export function ShopsPage() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
-  const shopFaqs = t('shops.faqs', { returnObjects: true }) as Array<{q: string, a: string}>
+  const shopFaqs = asArray<{q: string, a: string}>(t('shops.faqs', { returnObjects: true }))
   usePageSchema([faqPageSchema(shopFaqs)])
 
   return (
@@ -97,7 +98,7 @@ export function ShopsPage() {
             </Reveal>
             <Reveal direction="up" delay={400}>
               <div className="flex flex-col gap-2">
-                {(t('shops.trust', { returnObjects: true }) as string[]).map(tp => (
+                {asArray<string>(t('shops.trust', { returnObjects: true })).map(tp => (
                   <span key={tp} className="flex items-start gap-2 text-white/70 text-sm">
                     <CheckCircle2 size={15} className="text-lime shrink-0 mt-0.5" />
                     {tp}

@@ -5,6 +5,7 @@ import {
   ArrowRight, Building2, Home, Store, Users, LayoutGrid,
   CheckCircle2, ChevronDown, Briefcase, ShoppingBag,
 } from 'lucide-react'
+import { asArray } from '@/lib/asArray'
 import { Reveal } from '@/components/shared/Reveal'
 import { LocationIcon } from '@/components/shared/LocationIcon'
 import { HeroSequence } from '@/components/shared/HeroSequence'
@@ -58,7 +59,7 @@ const WHY_CHOOSE_US_AR = [
 function JourneySection() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
-  const journeySteps = t('home.journey.steps', { returnObjects: true }) as Array<{num: string, title: string, desc: string}>
+  const journeySteps = asArray<{num: string, title: string, desc: string}>(t('home.journey.steps', { returnObjects: true }))
   const [hovered, setHovered] = useState<number | null>(null)
   const isActive = (i: number) => hovered !== null && i <= hovered
   const isLineOn  = (i: number) => hovered !== null && i < hovered
@@ -144,8 +145,8 @@ function JourneySection() {
 export function HomePage() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
-  const homeFaqs = t('home.faq.items', { returnObjects: true }) as Array<{q: string, a: string}>
-  const showcaseItems = t('home.showcases.items', { returnObjects: true }) as Array<{h3: string, text: string}>
+  const homeFaqs = asArray<{q: string, a: string}>(t('home.faq.items', { returnObjects: true }))
+  const showcaseItems = asArray<{h3: string, text: string}>(t('home.showcases.items', { returnObjects: true }))
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [activeShowcase, setActiveShowcase] = useState(0)
 
@@ -588,7 +589,7 @@ export function HomePage() {
                       className={`text-forest shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`}
                     />
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === i ? 'max-h-48' : 'max-h-0'}`}>
+                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === i ? 'max-h-[1000px]' : 'max-h-0'}`}>
                     <p className="px-6 pb-5 text-ink-muted text-sm leading-relaxed">{faq.a}</p>
                   </div>
                 </div>

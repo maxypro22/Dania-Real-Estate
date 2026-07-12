@@ -15,6 +15,7 @@ import {
   Star,
 } from 'lucide-react'
 import { company } from '@/data/mockData'
+import { asArray } from '@/lib/asArray'
 import { Reveal } from '@/components/shared/Reveal'
 import { ProcessSteps } from '@/components/shared/ProcessSteps'
 import { StackedCards } from '@/components/shared/StackedCards'
@@ -915,9 +916,11 @@ export function StudiosPage({ filter }: Readonly<Props>) {
   const tH1 = t(`studios.${i18nKey}.h1`)
   const tH3 = t(`studios.${i18nKey}.h3`)
   const tPrimaryCta = t(`studios.${i18nKey}.primaryCta`)
-  const tTrust = filter === 'all'
-    ? (t('studios.all.trust', { returnObjects: true }) as string[])
-    : c.trustPoints
+  const tTrust = asArray<string>(
+    filter === 'all'
+      ? t('studios.all.trust', { returnObjects: true })
+      : c.trustPoints,
+  )
   // Route-specific final-CTA keys (fall back to shared defaults)
   const ctaH2Key = filter === 'all' ? 'studios.ctaH2' : `studios.${i18nKey}.ctaH2`
   const ctaPrimaryKey = filter === 'all' ? 'studios.ctaPrimary' : `studios.${i18nKey}.ctaPrimary`

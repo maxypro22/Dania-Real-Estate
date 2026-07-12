@@ -45,4 +45,29 @@ Fixes **F-001** (header advertised `+974 4444 0085` vs `+974 3326 0393` everywhe
 
 **Things noticed, left alone:** hours copy still inconsistent (F-016) — deferred to Q5.
 
-**Commit:** `phone` below.
+**Commit:** `6d3f9d8`
+
+---
+
+## Batch 3 — Resilience: error boundary + safe returnObjects  [bugfix]
+
+Fixes **F-003** (no error boundary + unguarded `returnObjects` maps → whole-app white-screen), **F-018** (HomePage FAQ answers clipped to 192px). **F-015 mitigated** (see compromises).
+
+**Files changed**
+- `src/components/shared/ErrorBoundary.tsx` (new) — class boundary; `getDerivedStateFromError` → on-brand recovery panel (`role="alert"`, reload/home). `componentDidCatch` logs to console (F-019/Batch 10 will wire a reporter).
+- `src/components/layout/Layout.tsx` — wraps `<Outlet/>` in `<ErrorBoundary key={pathname}>` so a crash on one route clears on navigation.
+- `src/lib/asArray.ts` — now consumed by the flagged crash sites.
+- `HomePage.tsx` (:61,147,148 via asArray; :591 `max-h-48`→`max-h-[1000px]`), `StudiosPage.tsx` (tTrust now `asArray` over both branches — fixes the length-only guard that a string passes), `ShopsPage.tsx` (shopFaqs ×2, shops.trust inline map), `StaffAccommodationPage.tsx` (mainFaqs ×2, staff.trust inline map), `ApartmentsPage.tsx` (all/oneBed/twoBed/threeBed `trust` string[] maps).
+- `src/components/shared/__tests__/ErrorBoundary.test.tsx` (new) — throwing child → recovery panel; normal child → passthrough.
+
+**Checks:** `npm run build` → clean. `npx vitest run` → **18 passed** (was 16, +2 boundary).
+
+**Acceptance:** ✅ a child that throws renders the fallback, not a blank page (test proves it). ✅ the enumerated fragile `returnObjects` sites can no longer throw on a missing key. ✅ FAQ answers no longer clip at 192px.
+
+**Definition of Done:** Correct ✅ · Resilient ✅ (graceful degradation) · Tested ✅ · Typed/Linted ✅ · Observable (console for now) ✅.
+
+**Deliberate compromises:**
+- **asArray adoption is targeted, not exhaustive.** The boundary is the blanket protection for all ~50 `returnObjects` reads; `asArray` was applied to the specific sites the audit flagged as crash risks (HomePage, StudiosPage, ShopsPage, StaffAccommodationPage, ApartmentsPage trust arrays). Wrapping the remaining reads (AboutPage, WhyChooseUsPage, VillasPage, GalleryPage, ContactPage) is a mechanical follow-up; they are boundary-protected in the meantime.
+- **F-015 (index-coupled parallel arrays) mitigated, not fully guarded.** A `to={undefined}`/`<Icon/>` throw is now caught by the boundary (fallback, not white-screen). Per-site guards remain a follow-up; safe today since lengths match.
+
+**Commit:** `resilience` below.

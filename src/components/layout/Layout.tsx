@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { WhatsAppButton } from '@/components/shared/WhatsAppButton'
+import { ErrorBoundary } from '@/components/shared/ErrorBoundary'
 import { Seo } from '@/components/shared/Seo'
 import { SeoExtraProvider } from '@/components/shared/seo-context'
 import { resolveSeo } from '@/lib/seo'
@@ -24,7 +25,9 @@ export function Layout() {
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">
-          <Outlet />
+          <ErrorBoundary key={pathname}>
+            <Outlet />
+          </ErrorBoundary>
         </main>
         <Footer />
         <WhatsAppButton />
