@@ -1,3 +1,5 @@
+import settings from '@/content/settings.json'
+
 export interface Property {
   id: number
   title: string
@@ -75,23 +77,7 @@ export const steps = [
   { number: '04', title: 'Secure Your Lease', description: 'Complete straightforward contract formalities smoothly with zero hidden fees or unexpected commission layers.' },
 ]
 
-export const company = {
-  name: 'Dania Real Estate',
-  nameAr: 'شركة دانية للعقارات',
-  tagline: 'Trusted Property Management Company in Doha',
-  address: '3rd Floor, Al Muftah Plaza Building, Al Rayyan Road, Doha, Qatar',
-  phone: '+974 3326 0393',
-  whatsapp: '97433260393',
-  whatsappDisplay: '+974 3326 0393',
-  // Secondary office landline (shown in the header utility bar).
-  officePhone: '+974 4444 0085',
-  email: 'info@dania-realestate.com',
-  hours: 'Sat–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)',
-  footerHours: '24/7 Professional Rental Assistance',
-  facebook: 'https://www.facebook.com/DaniaRealEstate.qa/',
-  instagram: 'https://www.instagram.com/daniarealestate',
-  founded: '2010',
-  properties: '500+',
-  clients: '2,000+',
-  experience: '15+',
-}
+// Company / site settings are managed via the CMS (/admin) as content — see
+// src/content/settings.json. Kept exported as `company` so every consumer is
+// unchanged and there is a single source of truth the CMS commits to.
+export const company = settings.company
