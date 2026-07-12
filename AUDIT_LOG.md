@@ -97,4 +97,26 @@ Fixes **F-002** (skip-link), **F-006** (accordion state + keyboard operability),
 - **Accordion a11y added in-place, not via a shared component.** Adding `aria-expanded` to each existing accordion is a zero-visual-risk fix; extracting one shared `<Accordion>` (and adding `aria-controls`/`role="region"`) stays with the F-012 refactor (Batch 9) to avoid mixing an a11y fix with a structural change.
 - **Mobile menu: no full focus-trap.** Landmark + Escape + `aria-controls` shipped; trapping/returning focus is a further enhancement, logged as residual.
 
-**Commit:** `a11y` below.
+**Commit:** `80eabdf`
+
+---
+
+## Batch 5 — Security: enforce CSP  [security]
+
+Fixes **F-005** (CSP was `-Report-Only` with no reporting endpoint — a no-op).
+
+**Static verification before promoting:** inspected `dist/index.html` — it contains **no inline `<script>`** (only one external `type="module" src="/assets/…"`), so `script-src 'self'` won't break boot. JSON-LD is `type="application/ld+json"` (data, not executed → unaffected by `script-src`). Inline `style={}`/Tailwind covered by `style-src 'unsafe-inline'`. The contact form uses `window.open`, not a form POST, so `form-action 'self'` is fine.
+
+**Files changed**
+- `vercel.json` — `Content-Security-Policy-Report-Only` → **`Content-Security-Policy`** (same policy, now enforced).
+- `src/__tests__/csp-header.test.ts` — now asserts the header is enforcing and the report-only key is absent.
+
+**Checks:** `npx vitest run` (csp) → **3 passed**. `npm run build` → clean (below).
+
+**Acceptance:** ✅ response will carry an enforcing CSP; policy matches the site's real resource usage (verified against the build output).
+
+**Definition of Done:** Secure ✅ (real enforcement) · Tested ✅ · Documented (this entry) ✅.
+
+**Deliberate compromises:** **No `report-uri`/`report-to` wired** — that needs a collector endpoint (ties to Q6/observability, Batch 10, deferred). Enforcement (the substance of F-005) shipped; reporting is a follow-up. **Needs live verification** — browser CSP enforcement can't be exercised in this env; added to the 48h watch list (load the deployed site, confirm no console CSP violations and the page renders/JSON-LD injects).
+
+**Commit:** `csp` below.

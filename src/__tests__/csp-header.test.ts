@@ -7,16 +7,16 @@ import { join } from 'node:path'
 // policy must keep those sources allowed until those dependencies are removed.
 const vercel = JSON.parse(readFileSync(join(process.cwd(), 'vercel.json'), 'utf8'))
 
-const csp: string | undefined = vercel.headers
-  ?.flatMap((h: { headers: { key: string; value: string }[] }) => h.headers)
-  .find((h: { key: string }) =>
-    h.key === 'Content-Security-Policy-Report-Only' ||
-    h.key === 'Content-Security-Policy',
-  )?.value
+const allHeaders: { key: string; value: string }[] = (vercel.headers ?? [])
+  .flatMap((h: { headers: { key: string; value: string }[] }) => h.headers)
+
+const csp = allHeaders.find((h) => h.key === 'Content-Security-Policy')?.value
 
 describe('Content-Security-Policy', () => {
-  it('is present in vercel.json', () => {
+  it('is present and ENFORCING (not report-only) in vercel.json (F-005)', () => {
     expect(csp).toBeTypeOf('string')
+    // The no-op report-only header must be gone; enforcement is the fix.
+    expect(allHeaders.some((h) => h.key === 'Content-Security-Policy-Report-Only')).toBe(false)
   })
 
   it('allows the image sources the app currently uses', () => {
