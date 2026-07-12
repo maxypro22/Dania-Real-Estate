@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Dania Real Estate — Content Dashboard</title>
+    <!-- Absolute config path so Decap finds it whether the panel is opened at
+         /dashboard or /dashboard/ (a relative path would resolve to /config.yml
+         at the site root when there's no trailing slash). -->
+    <link href="/dashboard/config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
     <!-- Decap CMS admin. On the deployed site this needs a CSP exception for
