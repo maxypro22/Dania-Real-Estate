@@ -34,10 +34,6 @@
   --radius-full: 9999px;
 }
 
-@keyframes border-spin {
-  to { transform: rotate(360deg); }
-}
-
 /* Pitch-style stacked deck: front card pops up + fades in on each advance */
 @keyframes stacked-pop {
   0%   { opacity: 0; transform: translateY(22px) scale(0.94); }

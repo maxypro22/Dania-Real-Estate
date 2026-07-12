@@ -25,7 +25,7 @@ import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { usePageSchema } from '@/components/shared/seo-context'
 import { faqPageSchema } from '@/lib/seo'
 
-// â"€â"€â"€ Types â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// --- Types --------------------------------------------------------------------
 
 interface Props { filter: 'all' | 'studio' | 'partition' | '1br' }
 
@@ -74,9 +74,9 @@ interface ContentSub {
 
 type PageContent = ContentAll | ContentSub
 
-// â"€â"€â"€ Sub-filter nav â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// --- Sub-filter nav ------------------------------------------------------------
 
-// â"€â"€â"€ Area links per filter â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// --- Area links per filter -----------------------------------------------------
 
 const areaLinks: Record<'all' | 'studio' | 'partition' | '1br', { h3: string; text: string; link: string }[]> = {
   all: [
@@ -164,7 +164,7 @@ const areaLinksAr: Record<'all' | 'studio' | 'partition' | '1br', { h3: string; 
   ],
 }
 
-// â"€â"€â"€ Page content â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// --- Page content -------------------------------------------------------------
 
 const content: Record<'all' | 'studio' | 'partition' | '1br', PageContent> = {
   all: {
@@ -849,7 +849,7 @@ const contentAr: Record<'all' | 'studio' | 'partition' | '1br', PageContent> = {
   },
 }
 
-// â"€â"€â"€ Benefit / trust card icon map â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// --- Benefit / trust card icon map --------------------------------------------
 
 const benefitIcons = [
   <Banknote className="w-6 h-6 text-forest" />,
@@ -876,7 +876,7 @@ const categoryIconComps = [Building2, Layers, Home]
 const benefitIconComps = [Banknote, Home, MapPin, Wifi]
 const whyIconComps = [Star, ShieldCheck, MapPin, MessageCircle]
 
-// â"€â"€â"€ FAQ Accordion â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// --- FAQ Accordion -------------------------------------------------------------
 
 function FAQAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(null)
@@ -901,7 +901,7 @@ function FAQAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
   )
 }
 
-// â"€â"€â"€ Main component â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// --- Main component ------------------------------------------------------------
 
 export function StudiosPage({ filter }: Readonly<Props>) {
   const { t, i18n } = useTranslation()
@@ -966,7 +966,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
     <>
       <title>{studiosSeo.title}</title>
       <meta name="description" content={studiosSeo.desc} />
-      {/* â"€â"€ Section 1: Hero â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Section 1: Hero --------------------------------------------------- */}
       <section className="bg-forest text-white py-16 overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
@@ -1123,7 +1123,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </div>
       </section>
 
-      {/* â"€â"€ Section 3 (all only): Categories â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Section 3 (all only): Categories ----------------------------------- */}
       {isAll && (
         <section className="py-14">
           <div className="max-w-[1280px] mx-auto px-6">
@@ -1274,7 +1274,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </section>
       )}
 
-      {/* â"€â"€ Audience / Who This Is For â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Audience / Who This Is For ------------------------------------------ */}
       <section className={`py-14 ${isSub ? 'bg-surface-low' : ''}`}>
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1293,7 +1293,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </div>
       </section>
 
-      {/* â"€â"€ Areas â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Areas -------------------------------------------------------------- */}
       <section className="bg-surface-low py-14">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1325,7 +1325,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </div>
       </section>
 
-      {/* â"€â"€ Why Choose Dania â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Why Choose Dania --------------------------------------------------- */}
       <section className="py-14">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1365,7 +1365,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </div>
       </section>
 
-      {/* â"€â"€ Process â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Process ------------------------------------------------------------ */}
       <section className="bg-surface-low py-14">
         <ProcessSteps
           title={c.processH2}
@@ -1377,7 +1377,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         />
       </section>
 
-      {/* â"€â"€ Suitability + Callout â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Suitability + Callout ----------------------------------------------- */}
       <section className="py-14">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1400,7 +1400,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </div>
       </section>
 
-      {/* â"€â"€ Bridge / Related Options â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Bridge / Related Options -------------------------------------------- */}
       <section className="bg-surface-low py-14">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1471,7 +1471,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </div>
       </section>
 
-      {/* â"€â"€ FAQ â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- FAQ ---------------------------------------------------------------- */}
       <section className="py-14">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1485,7 +1485,7 @@ export function StudiosPage({ filter }: Readonly<Props>) {
         </div>
       </section>
 
-      {/* â"€â"€ Final CTA â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€ */}
+      {/* -- Final CTA ----------------------------------------------------------- */}
       <section className="bg-lime-light border-t border-lime py-16">
         <div className="max-w-[1280px] mx-auto px-6 text-center">
           <Reveal direction="up">

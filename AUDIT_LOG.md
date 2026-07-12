@@ -139,4 +139,28 @@ Partially fixes **F-010** (hero shipped ~4.9 MB of frames to every visitor).
 
 **Deliberate compromises:** **Responsive `srcset`/`sizes` and recompression of the >300 KB public images (F-010 remainder) NOT done** — recompression needs visual sign-off (marketing imagery), and srcset needs generated width variants; deferred to a follow-up so this batch stays zero-visual-risk. Normal-connection visitors still download the full frame set (the intended cinematic hero); reducing frame count is a visual/product decision.
 
-**Commit:** `perf-hero` below.
+**Commit:** `6fb9e66`
+
+---
+
+## Batch 9 (partial) — Dead code + encoding  [refactor/chore]
+
+Fixes **F-013** (dead component subtree) and **F-014** (mojibake). **F-012 (large extraction) DEFERRED** — XL, needs its own focused pass with characterization tests; boundary/scope risk too high to bundle here.
+
+**Files changed**
+- Deleted (grep-verified unused — only referenced each other): `src/components/shared/ListingCard.tsx`, `PropertyCard.tsx`, `SearchBar.tsx`, `src/components/ui/button.tsx`, `src/components/ui/card.tsx` (the `ui/` dir is now gone).
+- `src/index.css` — removed the now-orphaned `@keyframes border-spin` (only ListingCard used it).
+- `CLAUDE.md` — component-layers + interaction-patterns updated to match reality (cards render inline per page; removed the deleted primitives and the border-spin note).
+- `src/pages/{Villas,StaffAccommodation,Studios}Page.tsx` — normalized 2,207 corrupted mojibake chars in comment separators back to clean ASCII `===`/`---` (comments only; no code/Arabic content touched — verified `â/گ/€` count = 0 after, build green).
+
+**Checks:** `npm run build` → clean. `npx vitest run` → **20 passed**. `cn()` (utils.ts) still used by LanguageSwitcher — kept.
+
+**Acceptance:** ✅ no dead ListingCard/PropertyCard/SearchBar/ui primitives; ✅ no mojibake remains; ✅ build/tests green.
+
+**Definition of Done:** Readable ✅ (no dead code, clean separators) · Documented ✅ (CLAUDE.md synced) · Consistent ✅.
+
+**Deliberate compromises / left alone:**
+- **F-012 extraction (FaqAccordion ×5, CTA ×5, area grid ×7, ~1,840-line AREA_DETAIL, inline bilingual copy) NOT done** — the dominant maintainability item, deferred as XL per the plan.
+- **`class-variance-authority` is now an unused dependency** — left in `package.json` to avoid lockfile churn in this batch; trivial follow-up to remove.
+
+**Commit:** `deadcode` below.

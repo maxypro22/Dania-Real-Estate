@@ -31,14 +31,12 @@ React 19 + TypeScript SPA, bundled with Vite 8. Deployed on Vercel; `vercel.json
 
 **Component layers:**
 - `src/components/layout/` — `Header`, `Footer`, `Layout` (wraps outlet + floating WhatsApp button)
-- `src/components/shared/` — reusable pieces: `ListingCard`, `ProcessSteps`, `SearchBar`, `Reveal`, `CountUp`, `WhatsAppButton`, `PropertyCard`
-- `src/components/ui/` — shadcn-style primitives (`button`, `card`) using CVA + `clsx`
-- `src/pages/` — one file per route; pages own their own section-level layout
+- `src/components/shared/` — reusable pieces: `ProcessSteps`, `Reveal`, `CountUp`, `WhatsAppButton`, `HeroSequence`, `ErrorBoundary`, `StackedCards`, `CardCarousel`, `ScrollRevealText`, `Seo`
+- `src/pages/` — one file per route; pages own their own section-level layout (listing/property cards are rendered inline per page, not via a shared card component)
 
 **Key interaction patterns:**
 - Hover effects use Tailwind `group` / `group-hover:` on a wrapper, never on the element itself
 - Touch feedback: `group-active:` mirrors `group-hover:` on interactive cards (sweep-fill, scale)
-- `ListingCard` spinning border: `@keyframes border-spin` (defined in `index.css`) rotates a conic-gradient overlay; animation plays only when `.group:hover` is active
 - `ProcessSteps` connecting line: animates via `scaleX(0 → 1)` transform (not `width`) from `origin-left` for GPU acceleration
 - Accordion in HomePage Featured Trending section: `flex: 4 1 0%` (active) vs `flex: 1 1 0%` (inactive) with `writing-mode: vertical-rl` for collapsed titles — desktop only (`hidden lg:flex`); a separate grid is shown on mobile (`lg:hidden`)
 - Qatar map widget in `AreasPage.tsx` is a self-contained SVG component (`QatarMapWidget`) with hex-dot background pattern, bezier arc connections, and interactive pins

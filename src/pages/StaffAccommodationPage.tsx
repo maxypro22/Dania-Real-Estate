@@ -24,9 +24,9 @@ import { CardCarousel } from '@/components/shared/CardCarousel'
 import { LocationIcon } from '@/components/shared/LocationIcon'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 // STAFF VILLAS data
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 const staffVillasFaqs = [
   {
     q: 'What legally defines a staff villa for rent in Qatar?',
@@ -81,9 +81,9 @@ const staffVillasFaqsAr = [
   },
 ]
 
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 // Shared FAQ accordion
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 function FaqAccordion({ faqs }: { faqs: Array<{ q: string; a: string }> }) {
   const [open, setOpen] = useState<number | null>(null)
   return (
@@ -112,9 +112,9 @@ function FaqAccordion({ faqs }: { faqs: Array<{ q: string; a: string }> }) {
   )
 }
 
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 // STAFF ACCOMMODATION MAIN PAGE
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 function StaffAccommodationMain() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
@@ -224,7 +224,7 @@ function StaffAccommodationMain() {
 
   return (
     <>
-      {/* â"€â"€ SECTION 1: HERO â"€â"€ */}
+      {/* -- SECTION 1: HERO -- */}
       <section className="bg-forest text-white py-16 md:py-24 overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
@@ -285,7 +285,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 2: OVERVIEW â"€â"€ */}
+      {/* -- SECTION 2: OVERVIEW -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -327,7 +327,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 3: WHO IS THIS FOR â"€â"€ */}
+      {/* -- SECTION 3: WHO IS THIS FOR -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -391,7 +391,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 4: KEY PRIORITIES â"€â"€ */}
+      {/* -- SECTION 4: KEY PRIORITIES -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -439,7 +439,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 5: STAFF HOUSING OPTIONS â"€â"€ */}
+      {/* -- SECTION 5: STAFF HOUSING OPTIONS -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -494,7 +494,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 6: AREAS â"€â"€ */}
+      {/* -- SECTION 6: AREAS -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -588,7 +588,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 7: WHY CHOOSE DANIA â"€â"€ */}
+      {/* -- SECTION 7: WHY CHOOSE DANIA -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -633,7 +633,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 8: PROCESS â"€â"€ */}
+      {/* -- SECTION 8: PROCESS -- */}
       <section className="bg-surface-low py-20">
         <ProcessSteps
           title={isAr ? 'كيف تعمل عملية سكن العمال لدينا' : 'How Our Staff Accommodation Process Works'}
@@ -670,7 +670,7 @@ function StaffAccommodationMain() {
         />
       </section>
 
-      {/* â"€â"€ SECTION 9: BUSINESS SUITABILITY â"€â"€ */}
+      {/* -- SECTION 9: BUSINESS SUITABILITY -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -710,7 +710,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 10: RELATED HOUSING â"€â"€ */}
+      {/* -- SECTION 10: RELATED HOUSING -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -736,7 +736,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 11: FAQ â"€â"€ */}
+      {/* -- SECTION 11: FAQ -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -750,7 +750,7 @@ function StaffAccommodationMain() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 12: FINAL CTA â"€â"€ */}
+      {/* -- SECTION 12: FINAL CTA -- */}
       <section className="max-w-[1280px] mx-auto px-6 py-16">
         <Reveal direction="up">
           <div className="relative bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-16 text-center overflow-hidden">
@@ -789,9 +789,9 @@ function StaffAccommodationMain() {
   )
 }
 
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 // STAFF VILLAS SUB-PAGE
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 
 const villaComparisonRows = [
   { metric: 'Primary Lease Intent', metricAr: 'الغرض الأساسي من الإيجار', staff: 'Corporate employee housing & project logistics', staffAr: 'إسكان موظفي الشركة ولوجستيات المشروع', family: 'Private residential family living', familyAr: 'المعيشة الأسرية السكنية الخاصة' },
@@ -878,7 +878,7 @@ function StaffVillasPage() {
 
   return (
     <>
-      {/* â"€â"€ SECTION 1: HERO â"€â"€ */}
+      {/* -- SECTION 1: HERO -- */}
       <section className="bg-forest text-white py-16 md:py-24 overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
@@ -957,7 +957,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 2: OVERVIEW â"€â"€ */}
+      {/* -- SECTION 2: OVERVIEW -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1000,7 +1000,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 3: WHY STAFF VILLAS â"€â"€ */}
+      {/* -- SECTION 3: WHY STAFF VILLAS -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1049,7 +1049,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 4: COMPARISON TABLE â"€â"€ */}
+      {/* -- SECTION 4: COMPARISON TABLE -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1089,7 +1089,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 5: WHO IS THIS FOR â"€â"€ */}
+      {/* -- SECTION 5: WHO IS THIS FOR -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1125,7 +1125,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 6: AREAS â"€â"€ */}
+      {/* -- SECTION 6: AREAS -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1219,7 +1219,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 7: WHY CHOOSE DANIA â"€â"€ */}
+      {/* -- SECTION 7: WHY CHOOSE DANIA -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1265,7 +1265,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 8: PROCESS â"€â"€ */}
+      {/* -- SECTION 8: PROCESS -- */}
       <section className="bg-surface-low py-20">
         <ProcessSteps
           title={isAr ? 'كيف تعمل عملية تأجير فلل الموظفين لدينا' : 'How Our Staff Villa Rental Process Works'}
@@ -1302,7 +1302,7 @@ function StaffVillasPage() {
         />
       </section>
 
-      {/* â"€â"€ SECTION 9: OCCUPANCY & BUSINESS SUITABILITY â"€â"€ */}
+      {/* -- SECTION 9: OCCUPANCY & BUSINESS SUITABILITY -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1342,7 +1342,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 10: RELATED STAFF HOUSING â"€â"€ */}
+      {/* -- SECTION 10: RELATED STAFF HOUSING -- */}
       <section className="bg-surface-low py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1368,7 +1368,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 11: FAQ â"€â"€ */}
+      {/* -- SECTION 11: FAQ -- */}
       <section className="py-16">
         <div className="max-w-[1280px] mx-auto px-6">
           <Reveal direction="up">
@@ -1382,7 +1382,7 @@ function StaffVillasPage() {
         </div>
       </section>
 
-      {/* â"€â"€ SECTION 12: FINAL CTA â"€â"€ */}
+      {/* -- SECTION 12: FINAL CTA -- */}
       <section className="max-w-[1280px] mx-auto px-6 py-16">
         <Reveal direction="up">
           <div className="relative bg-lime rounded-3xl px-5 py-10 sm:px-8 sm:py-16 text-center overflow-hidden">
@@ -1421,9 +1421,9 @@ function StaffVillasPage() {
   )
 }
 
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 // ROOT EXPORT — route switcher
-// â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ---------------------------------------------
 export function StaffAccommodationPage() {
   const { pathname } = useLocation()
   const isVillas = pathname.includes('/staff-villas')
