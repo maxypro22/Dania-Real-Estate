@@ -119,4 +119,24 @@ Fixes **F-005** (CSP was `-Report-Only` with no reporting endpoint — a no-op).
 
 **Deliberate compromises:** **No `report-uri`/`report-to` wired** — that needs a collector endpoint (ties to Q6/observability, Batch 10, deferred). Enforcement (the substance of F-005) shipped; reporting is a follow-up. **Needs live verification** — browser CSP enforcement can't be exercised in this env; added to the 48h watch list (load the deployed site, confirm no console CSP violations and the page renders/JSON-LD injects).
 
-**Commit:** `csp` below.
+**Commit:** `568dab4`
+
+---
+
+## Batch 6 — Performance: gate the hero frame preload  [perf]
+
+Partially fixes **F-010** (hero shipped ~4.9 MB of frames to every visitor).
+
+**Files changed**
+- `src/components/shared/HeroSequence.tsx` — new `shouldSkipHeavyPreload()` (reads `navigator.connection.saveData`/`effectiveType` at mount). When Save-Data is on or the link is 2G-class, the 119-frame sequence is not preloaded; the hero stays on frame 0 (static), same graceful path as reduced-motion.
+- `src/components/shared/__tests__/HeroSequence.defer.test.tsx` — added a Save-Data regression: with idle running synchronously, only frame 0 (1 `Image`) is created.
+
+**Checks:** `npm run build` → clean. `npx vitest run` → **20 passed** (was 19).
+
+**Acceptance:** ✅ on Save-Data/2G, only frame 0 is fetched (test-proven); on normal links the animation is unchanged.
+
+**Definition of Done:** Performant ✅ (metered users spared ~4.9 MB) · Correct ✅ (frame 0 LCP intact) · Tested ✅ · Resilient ✅ (degrades like reduced-motion).
+
+**Deliberate compromises:** **Responsive `srcset`/`sizes` and recompression of the >300 KB public images (F-010 remainder) NOT done** — recompression needs visual sign-off (marketing imagery), and srcset needs generated width variants; deferred to a follow-up so this batch stays zero-visual-risk. Normal-connection visitors still download the full frame set (the intended cinematic hero); reducing frame count is a visual/product decision.
+
+**Commit:** `perf-hero` below.

@@ -18,6 +18,17 @@ const prefersReduced =
   typeof window !== 'undefined' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+// Don't pull ~4.9 MB of walkthrough frames on metered/slow links. On Save-Data
+// or a 2G-class connection the hero stays on frame 0 (static), like reduced
+// motion — the page is fully usable, just without the scroll-scrub animation.
+function shouldSkipHeavyPreload(): boolean {
+  if (typeof navigator === 'undefined') return false
+  const conn = (navigator as unknown as {
+    connection?: { saveData?: boolean; effectiveType?: string }
+  }).connection
+  return conn?.saveData === true || /2g/.test(conn?.effectiveType ?? '')
+}
+
 export function HeroSequence() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
@@ -72,8 +83,9 @@ export function HeroSequence() {
       window.cancelIdleCallback ?? window.clearTimeout
     let idleHandle = 0
     let nextFrame = 1
+    const skipHeavyPreload = shouldSkipHeavyPreload()
     const loadRemaining = () => {
-      if (prefersReduced) return
+      if (prefersReduced || skipHeavyPreload) return
       const BATCH = 8
       for (let n = 0; n < BATCH && nextFrame < FRAMES.length; n++) loadFrame(nextFrame++)
       if (nextFrame < FRAMES.length) idleHandle = requestIdle(loadRemaining)

@@ -12,7 +12,30 @@ describe('HeroSequence frame loading', () => {
   afterEach(() => {
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
+    delete (navigator as unknown as { connection?: unknown }).connection
   })
+
+  function stubCanvas() {
+    const ctx = { setTransform() {}, drawImage() {} }
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(
+      ctx as unknown as CanvasRenderingContext2D,
+    )
+  }
+
+  function countImages() {
+    const counter = { n: 0 }
+    const RealImage = globalThis.Image
+    vi.stubGlobal(
+      'Image',
+      class extends RealImage {
+        constructor() {
+          super()
+          counter.n++
+        }
+      },
+    )
+    return counter
+  }
 
   it('loads only the first frame on mount and defers the rest to idle', () => {
     const ctx = { setTransform() {}, drawImage() {} }
@@ -48,5 +71,32 @@ describe('HeroSequence frame loading', () => {
     // Only frame 0 is fetched eagerly; the remaining frames are scheduled.
     expect(created).toBe(1)
     expect(idleSpy).toHaveBeenCalled()
+  })
+
+  // Regression for F-010: on a Save-Data connection the ~4.9 MB frame sequence
+  // must NOT preload — even when idle time is available — leaving only frame 0.
+  it('skips the frame-sequence preload on Save-Data connections', () => {
+    stubCanvas()
+    // Run idle callbacks synchronously so the batch loader would fire if allowed.
+    vi.stubGlobal('requestIdleCallback', (cb: () => void) => {
+      cb()
+      return 1
+    })
+    Object.defineProperty(navigator, 'connection', {
+      configurable: true,
+      value: { saveData: true },
+    })
+    const counter = countImages()
+
+    render(
+      <I18nextProvider i18n={i18n}>
+        <MemoryRouter>
+          <HeroSequence />
+        </MemoryRouter>
+      </I18nextProvider>,
+    )
+
+    // Frame 0 only (LCP); the 119-frame sequence is gated off.
+    expect(counter.n).toBe(1)
   })
 })
