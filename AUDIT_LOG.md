@@ -163,4 +163,37 @@ Fixes **F-013** (dead component subtree) and **F-014** (mojibake). **F-012 (larg
 - **F-012 extraction (FaqAccordion ×5, CTA ×5, area grid ×7, ~1,840-line AREA_DETAIL, inline bilingual copy) NOT done** — the dominant maintainability item, deferred as XL per the plan.
 - **`class-variance-authority` is now an unused dependency** — left in `package.json` to avoid lockfile churn in this batch; trivial follow-up to remove.
 
-**Commit:** `deadcode` below.
+**Commit:** `a450784` (+ `2e05abb` ShopsPage mojibake, found in Stage-3 re-verification)
+
+---
+
+## Batch 2 tail + F-009 — office line + dead privacy link  [bugfix]  (operator answers)
+
+- **Q1:** `+974 4444 0085` confirmed as the company **office landline** → added `company.officePhone`; header utility bar shows it (dial-safe `tel:`), `company.phone` (`3326 0393`) stays primary call + WhatsApp. No hardcoded numbers remain.
+- **F-009:** operator declined a privacy page → removed the dead footer `Privacy` `<span>` (no broken affordance left). **F-008:** operator confirmed images are demo/placeholder and acceptable → copy left as-is.
+- `src/components/layout/__tests__/phone-consistency.test.tsx` updated: header shows `officePhone`, footer shows `phone`, both dial-safe, two distinct lines, no literals.
+- **Checks:** build clean · **21 passed**. **Commit:** `5795f63`.
+
+---
+
+## Batch 8 — Prerender: per-route social cards + metadata  [seo]  (Q2 = yes)
+
+Fixes **F-004** (client-only SPA → blank social cards for every URL).
+
+**Approach:** build-time meta injection (no headless browser). A post-build Node script writes a per-route `dist/<path>/index.html` whose `<head>` carries that route's title, description, canonical, Open Graph + Twitter cards, and Organization JSON-LD. Route copy is pulled from the **real `src/lib/seo.ts`** (single source of truth) via an in-memory `esbuild` bundle — no duplication. Vercel checks the filesystem before the catch-all rewrite, so each prerendered file is served directly; unknown paths still fall back to the SPA shell.
+
+**Files changed**
+- `scripts/prerender.mjs` (new) — pure, exported `injectMeta(template, meta)` + a `main()` that bundles `seo.ts` (lazy esbuild import) and writes 30 route files.
+- `package.json` — `build` now ends with `&& node scripts/prerender.mjs`.
+- `vercel.json` — explicit `buildCommand: "npm run build"` + `outputDirectory: "dist"` so the prerender runs on deploy.
+- `src/__tests__/prerender.test.ts` (new) — unit tests for `injectMeta` (title/desc/canonical replaced, OG/Twitter/JSON-LD added, single `<title>`, HTML-escaped, well-formed head).
+
+**Checks:** `npm run build` → clean; `prerender: wrote 30 route HTML files`. Verified deep routes: `/villas-for-rent/` has correct `<title>` + `og:title`; `/areas/al-wakra/` has correct canonical + og:image; home unchanged; JSON-LD present. `npx vitest run` → **25 passed** (was 21).
+
+**Acceptance:** ✅ `curl` of a deep-link URL now returns baked `og:title`/`og:image`/canonical in raw HTML (no JS needed) — see post-deploy script.
+
+**Definition of Done:** Correct ✅ · SEO-correct ✅ (per-route title/desc/canonical/OG/JSON-LD) · Tested ✅ · Documented ✅ · single source of truth (no meta duplication) ✅.
+
+**Deliberate compromises:** Area routes fall back to the **logo** as og:image (AREA_SEO has no per-area image — matches the client `Seo` default). Page-specific JSON-LD (ContactPage/FAQ) still injects client-side (Googlebot renders JS); the static bake covers Organization + the social-card essentials.
+
+**Commit:** `prerender` below.
