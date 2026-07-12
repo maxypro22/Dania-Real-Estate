@@ -21,4 +21,28 @@ Plan: `AUDIT_AND_PLAN.md`. Baseline this session: `npx vitest run` → **11 pass
 
 **Deliberate compromises:** none.
 
-**Commit:** see `chore/test: asArray helper + tests` below.
+**Commit:** `83508b7`
+
+---
+
+## Batch 2 — Single source of truth: phone + tel:  [bugfix]
+
+Fixes **F-001** (header advertised `+974 4444 0085` vs `+974 3326 0393` everywhere else) and **F-017** (footer `tel:` contained spaces). **F-016 (hours) DEFERRED** — no answer to Q5 (real hours unknown).
+
+**Files changed**
+- `src/components/layout/Header.tsx:233-237` — top-bar number now `company.phone`; `tel:` href space-stripped (matches ContactPage). Retired the hardcoded `+974 4444 0085`.
+- `src/components/layout/Footer.tsx:109` — `tel:` href space-stripped.
+- `src/test/setup.ts` — added a `ResizeObserver` stub (jsdom lacks it; Header mounts one).
+- `src/components/layout/__tests__/phone-consistency.test.tsx` (new) — regression: Header shows `company.phone`, the old number is gone, every `tel:` equals `tel:+97433260393` (no whitespace); Footer likewise.
+
+**Checks:** `npx vitest run` → **16 passed** (was 14). `npm run build` → clean. `grep 4444 0085 src/` → none.
+
+**Acceptance:** ✅ one phone number sitewide; regression test was red before the Header edit (wrong number present), green after.
+
+**Definition of Done:** Correct ✅ · Tested (regression) ✅ · Typed/Linted ✅ (build green) · Readable ✅ · Consistent ✅.
+
+**Deliberate compromises:** **Q1 assumption** — `+974 3326 0393` taken as correct (used in 6 places) and `+974 4444 0085` retired. If `4444 0085` is a real office landline, it must be re-added (in `company`, labeled) — flagged in the final report.
+
+**Things noticed, left alone:** hours copy still inconsistent (F-016) — deferred to Q5.
+
+**Commit:** `phone` below.

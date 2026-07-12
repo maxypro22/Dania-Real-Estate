@@ -16,6 +16,15 @@ class IntersectionObserverStub {
 globalThis.IntersectionObserver =
   IntersectionObserverStub as unknown as typeof IntersectionObserver
 
+// The Header measures its top bar with a ResizeObserver on mount; jsdom lacks it.
+class ResizeObserverStub {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+globalThis.ResizeObserver =
+  ResizeObserverStub as unknown as typeof ResizeObserver
+
 if (!window.matchMedia) {
   window.matchMedia = (query: string): MediaQueryList =>
     ({

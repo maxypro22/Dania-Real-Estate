@@ -106,7 +106,7 @@ export function Footer() {
           <h4 className="font-bold text-sm mb-4 text-lime">{t('footer.contact')}</h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-2"><MapPin size={13} className="text-lime mt-0.5 shrink-0" /><span className="text-white/60 text-xs leading-relaxed">{company.address}</span></li>
-            <li className="flex items-center gap-2"><Phone size={13} className="text-lime shrink-0" /><a href={`tel:${company.phone}`} className="text-white/60 hover:text-white text-xs">{company.phone}</a></li>
+            <li className="flex items-center gap-2"><Phone size={13} className="text-lime shrink-0" /><a href={`tel:${company.phone.replace(/\s/g, '')}`} className="text-white/60 hover:text-white text-xs">{company.phone}</a></li>
             <li className="flex items-center gap-2"><Mail size={13} className="text-lime shrink-0" /><a href={`mailto:${company.email}`} className="text-white/60 hover:text-white text-xs">{company.email}</a></li>
             <li className="flex items-center gap-2"><Clock size={13} className="text-lime shrink-0" /><span className="text-white/60 text-xs">{company.footerHours}</span></li>
           </ul>
