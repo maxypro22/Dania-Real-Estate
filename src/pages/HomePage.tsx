@@ -6,6 +6,7 @@ import {
   CheckCircle2, ChevronDown, Briefcase, ShoppingBag,
 } from 'lucide-react'
 import { asArray } from '@/lib/asArray'
+import homeContent from '@/content/home.json'
 import { Reveal } from '@/components/shared/Reveal'
 import { LocationIcon } from '@/components/shared/LocationIcon'
 import { HeroSequence } from '@/components/shared/HeroSequence'
@@ -36,15 +37,6 @@ const AREAS = [
   { slug: 'umm-salal',      name: 'Umm Salal',                     desc: 'Budget accommodations covering Umm Salal Mohammed, Umm Salal Ali, and Umm Qarn zones.' },
   { slug: 'al-kharaitiyat', name: 'Al Kharaitiyat',                desc: 'Quieter northern suburban residential quarters perfect for dedicated family compound spaces.' },
 ]
-
-/* ── Section 9: showcase listing blocks ──────────────────────────────── */
-const SHOWCASES = [
-  { h3: 'Furnished Apartments for Rent in Doha',   text: 'Luxury 2BHK setups located in central zones.',    to: '/apartments-for-rent/',     img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80' },
-  { h3: 'Premium Family Compounds',                 text: 'Spacious standalone estates in Al Aziziya.',      to: '/villas-for-rent/',          img: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80' },
-  { h3: 'Budget-Friendly Studio Partition Rentals', text: 'All-inclusive single professional units.',        to: '/studio-partition-rentals/', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80' },
-  { h3: 'Approved Staff Accommodation Buildings',   text: 'Turnkey labor housing complexes.',                to: '/staff-accommodation/',      img: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80' },
-]
-
 
 /* ── Why Choose Us AR data ────────────────────────────────────────────── */
 const WHY_CHOOSE_US_AR = [
@@ -146,7 +138,16 @@ export function HomePage() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
   const homeFaqs = asArray<{q: string, a: string}>(t('home.faq.items', { returnObjects: true }))
-  const showcaseItems = asArray<{h3: string, text: string}>(t('home.showcases.items', { returnObjects: true }))
+  // Featured showcases are CMS-editable content (src/content/home.json): text,
+  // image, link, order, and per-item show/hide. Only visible items render.
+  const showcases = homeContent.showcases
+    .filter((s) => s.visible !== false)
+    .map((s) => ({
+      img: s.image,
+      to: s.link,
+      h3: isAr ? s.titleAr : s.titleEn,
+      text: isAr ? s.textAr : s.textEn,
+    }))
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [activeShowcase, setActiveShowcase] = useState(0)
 
@@ -488,7 +489,7 @@ export function HomePage() {
 
           {/* ── Mobile / Tablet: 2×2 simple cards ── */}
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 lg:hidden">
-            {SHOWCASES.map((sc, i) => (
+            {showcases.map((sc, i) => (
               <Link
                 key={i}
                 to={sc.to}
@@ -496,7 +497,7 @@ export function HomePage() {
               >
                 <img
                   src={sc.img}
-                  alt={showcaseItems[i]?.h3 ?? sc.h3}
+                  alt={sc.h3}
                   width={600}
                   height={400}
                   loading="lazy"
@@ -505,8 +506,8 @@ export function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest/55 to-forest/10" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
-                  <h3 className="font-bold text-white text-sm leading-snug mb-1.5">{showcaseItems[i]?.h3 ?? sc.h3}</h3>
-                  <p className="text-white/65 text-xs mb-3">{showcaseItems[i]?.text ?? sc.text}</p>
+                  <h3 className="font-bold text-white text-sm leading-snug mb-1.5">{sc.h3}</h3>
+                  <p className="text-white/65 text-xs mb-3">{sc.text}</p>
                   <span className="inline-flex items-center gap-1.5 bg-lime text-forest font-bold text-xs px-4 py-2.5 rounded-full">
                     {t('home.showcases.checkLiveStatus')} <ArrowRight size={12} />
                   </span>
@@ -517,7 +518,7 @@ export function HomePage() {
 
           {/* ── Desktop: horizontal accordion ── */}
           <div className="hidden lg:flex gap-3 h-[420px]">
-            {SHOWCASES.map((sc, i) => {
+            {showcases.map((sc, i) => {
               const isActive = activeShowcase === i
               return (
                 <div
@@ -533,7 +534,7 @@ export function HomePage() {
                 >
                   <img
                     src={sc.img}
-                    alt={showcaseItems[i]?.h3 ?? sc.h3}
+                    alt={sc.h3}
                     width={600}
                     height={400}
                     loading="lazy"
@@ -549,14 +550,14 @@ export function HomePage() {
                       className="text-white font-bold text-sm whitespace-nowrap leading-none"
                       style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
                     >
-                      {showcaseItems[i]?.h3 ?? sc.h3}
+                      {sc.h3}
                     </span>
                   </div>
 
                   {/* ACTIVE: full content */}
                   <div className={`absolute inset-0 flex flex-col justify-end p-8 transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 pointer-events-none'}`}>
-                    <h3 className="font-extrabold text-white text-xl leading-snug mb-3">{showcaseItems[i]?.h3 ?? sc.h3}</h3>
-                    <p className="text-white/75 text-sm leading-relaxed mb-6">{showcaseItems[i]?.text ?? sc.text}</p>
+                    <h3 className="font-extrabold text-white text-xl leading-snug mb-3">{sc.h3}</h3>
+                    <p className="text-white/75 text-sm leading-relaxed mb-6">{sc.text}</p>
                     <Link
                       to={sc.to}
                       className="inline-flex items-center gap-2 bg-lime text-forest font-bold text-sm px-5 py-2.5 rounded-full w-fit hover:bg-white transition-colors duration-200"

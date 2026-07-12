@@ -20,14 +20,22 @@ baked into the static build.
   socials, hours, stats).
 - Media library folder: `public/uploads/`.
 
-### Try it locally now (no login, no GitHub needed)
+### Edit locally now (no login, no GitHub) — one command
 ```bash
-npx decap-server            # terminal 1 — local git backend on :8081
-npm run dev                 # terminal 2 — Vite on :5173
-# open http://localhost:5173/dashboard/  → edit "Site Settings" → Publish
+npm run cms                 # runs Vite + decap-server together
+# open http://localhost:5173/dashboard/
 ```
-`local_backend: true` in `config.yml` routes saves through `decap-server`, which
-writes straight to your working tree so you can see the effect immediately.
+You'll see two collections:
+- **Pages → Home Page → Featured sections** — edit each card's text (EN/AR),
+  swap/upload its image, change its link, **drag to reorder**, **add/delete**
+  sections, and toggle **Show this section** on/off. Renders from
+  `src/content/home.json`.
+- **Site Settings → Company & Contact** — contact, phones, socials, hours,
+  logo alt, stats. Renders from `src/content/settings.json`.
+
+Edit → **Publish** and `decap-server` writes straight to those files, so the
+running site updates immediately. (Two-terminal alternative: `npx decap-server`
++ `npm run dev`.)
 
 ---
 

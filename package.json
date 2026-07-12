@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "cms": "node scripts/cms.mjs",
     "build": "tsc -b && eslint . && vite build && node scripts/prerender.mjs",
     "lint": "eslint .",
     "test": "vitest run",

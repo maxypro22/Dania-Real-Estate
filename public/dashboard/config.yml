@@ -27,6 +27,30 @@ media_folder: 'public/uploads'
 public_folder: '/uploads'
 
 collections:
+  - name: 'pages'
+    label: 'Pages'
+    description: 'Editable page content — text, images, and sections.'
+    editor:
+      preview: false
+    files:
+      - name: 'home'
+        label: 'Home Page'
+        file: 'src/content/home.json'
+        fields:
+          - label: 'Featured sections'
+            name: 'showcases'
+            label_singular: 'Section'
+            widget: 'list' # drag to reorder · add · delete
+            summary: '{{fields.titleEn}}'
+            fields:
+              - { label: 'Image (upload or paste a URL)', name: 'image', widget: 'image', choose_url: true }
+              - { label: 'Link (URL path, e.g. /villas-for-rent/)', name: 'link', widget: 'string' }
+              - { label: 'Title (English)', name: 'titleEn', widget: 'string' }
+              - { label: 'Title (Arabic)', name: 'titleAr', widget: 'string' }
+              - { label: 'Text (English)', name: 'textEn', widget: 'string' }
+              - { label: 'Text (Arabic)', name: 'textAr', widget: 'string' }
+              - { label: 'Show this section', name: 'visible', widget: 'boolean', default: true }
+
   - name: 'settings'
     label: 'Site Settings'
     description: 'Logo, contact details, phone numbers, social links, hours.'

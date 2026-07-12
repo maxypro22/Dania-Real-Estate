@@ -1,0 +1,40 @@
+{
+  "showcases": [
+    {
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80",
+      "link": "/apartments-for-rent/",
+      "titleEn": "Furnished Apartments for Rent in Doha",
+      "titleAr": "شقق مفروشة للإيجار في الدوحة",
+      "textEn": "Luxury 2BHK setups located in central zones.",
+      "textAr": "ترتيبات فاخرة بغرفتي نوم في المناطق المركزية.",
+      "visible": true
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80",
+      "link": "/villas-for-rent/",
+      "titleEn": "Premium Family Compounds",
+      "titleAr": "مجمعات عائلية متميزة",
+      "textEn": "Spacious standalone estates in Al Aziziya.",
+      "textAr": "عقارات مستقلة واسعة في العزيزية.",
+      "visible": true
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80",
+      "link": "/studio-partition-rentals/",
+      "titleEn": "Budget-Friendly Studio Partition Rentals",
+      "titleAr": "إيجار استوديوهات وغرف مقسّمة بأسعار مناسبة",
+      "textEn": "All-inclusive single professional units.",
+      "textAr": "وحدات فردية للمهنيين شاملة جميع المرافق.",
+      "visible": true
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80",
+      "link": "/staff-accommodation/",
+      "titleEn": "Approved Staff Accommodation Buildings",
+      "titleAr": "مبانٍ سكن موظفين معتمدة",
+      "textEn": "Turnkey labor housing complexes.",
+      "textAr": "مجمعات سكن عمالي جاهزة للاستخدام.",
+      "visible": true
+    }
+  ]
+}
