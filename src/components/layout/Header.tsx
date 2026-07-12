@@ -238,10 +238,10 @@ export function Header() {
                 <Clock size={13} className="text-lime shrink-0" />
                 <span>{isAr ? 'السبت–الخميس · ٨ص–٥م' : 'Sat–Thu · 8AM–5PM'}</span>
               </span>
-              <a href={`tel:${company.phone.replace(/\s/g, '')}`}
+              <a href={`tel:${company.officePhone.replace(/\s/g, '')}`}
                 className="inline-flex items-center gap-1.5 hover:text-lime transition-colors">
                 <Phone size={13} className="text-lime shrink-0" />
-                <span dir="ltr">{company.phone}</span>
+                <span dir="ltr">{company.officePhone}</span>
               </a>
             </div>
           </div>

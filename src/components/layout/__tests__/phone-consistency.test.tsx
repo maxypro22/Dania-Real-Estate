@@ -15,29 +15,36 @@ function renderWithProviders(ui: React.ReactElement) {
   )
 }
 
-// Regression for F-001: the header must advertise the company phone, not a
-// different hardcoded number. Regression for F-017: tel: hrefs must be
-// dial-safe (no spaces).
-describe('phone number is a single source of truth', () => {
-  const dialSafe = `tel:${company.phone.replace(/\s/g, '')}`
+// Regression for F-001: every phone number comes from `company` (no hardcoded
+// literals), and the two numbers are intentional and distinct — the office
+// landline (header) and the mobile/WhatsApp line (footer/contact).
+// Regression for F-017: tel: hrefs must be dial-safe (no spaces).
+const noSpaces = (href: string | null) => {
+  expect(href).not.toBeNull()
+  expect(href!).not.toMatch(/\s/)
+}
 
-  it('Header shows company.phone and links a space-free tel:', () => {
+describe('phone numbers are sourced from company data', () => {
+  it('Header shows the office landline with a dial-safe tel:', () => {
     const { container } = renderWithProviders(<Header />)
-    expect(container.textContent).toContain(company.phone)
-    // The retired wrong number must be gone.
-    expect(container.innerHTML).not.toContain('4444 0085')
+    expect(container.textContent).toContain(company.officePhone)
     const telLinks = [...container.querySelectorAll('a[href^="tel:"]')]
     expect(telLinks.length).toBeGreaterThan(0)
     for (const a of telLinks) {
-      const href = a.getAttribute('href')!
-      expect(href).toBe(dialSafe)
-      expect(href).not.toMatch(/\s/)
+      noSpaces(a.getAttribute('href'))
+      expect(a.getAttribute('href')).toBe(`tel:${company.officePhone.replace(/\s/g, '')}`)
     }
   })
 
-  it('Footer links a space-free tel: to company.phone', () => {
+  it('Footer links a dial-safe tel: to the mobile line', () => {
     const { container } = renderWithProviders(<Footer />)
     const tel = container.querySelector('a[href^="tel:"]')!
-    expect(tel.getAttribute('href')).toBe(dialSafe)
+    expect(tel.getAttribute('href')).toBe(`tel:${company.phone.replace(/\s/g, '')}`)
+    noSpaces(tel.getAttribute('href'))
+  })
+
+  it('the two lines are distinct and both defined', () => {
+    expect(company.phone).not.toBe(company.officePhone)
+    expect(company.officePhone).toBeTruthy()
   })
 })

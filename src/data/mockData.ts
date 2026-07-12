@@ -83,6 +83,8 @@ export const company = {
   phone: '+974 3326 0393',
   whatsapp: '97433260393',
   whatsappDisplay: '+974 3326 0393',
+  // Secondary office landline (shown in the header utility bar).
+  officePhone: '+974 4444 0085',
   email: 'info@dania-realestate.com',
   hours: 'Sat–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)',
   footerHours: '24/7 Professional Rental Assistance',

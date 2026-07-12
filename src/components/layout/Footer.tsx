@@ -117,7 +117,6 @@ export function Footer() {
         <p>{t('footer.copyright')}</p>
         <div className="flex gap-5">
           <Link to="/about-company/" className="hover:text-white transition-colors">{t('footer.about2')}</Link>
-          <span className="hover:text-white cursor-pointer transition-colors">{t('footer.privacy')}</span>
           <Link to="/contact-us/" className="hover:text-white transition-colors">{t('footer.contactUs2')}</Link>
         </div>
       </div>
