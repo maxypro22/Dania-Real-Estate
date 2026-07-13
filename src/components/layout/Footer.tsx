@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
+import { Ltr } from '@/components/shared/Ltr'
 
 export function Footer() {
   const { t, i18n } = useTranslation()
@@ -105,10 +106,10 @@ export function Footer() {
         <div>
           <h4 className="font-bold text-sm mb-4 text-lime">{t('footer.contact')}</h4>
           <ul className="space-y-3">
-            <li className="flex items-start gap-2"><MapPin size={13} className="text-lime mt-0.5 shrink-0" /><span className="text-white/60 text-xs leading-relaxed">{company.address}</span></li>
-            <li className="flex items-center gap-2"><Phone size={13} className="text-lime shrink-0" /><a href={`tel:${company.phone.replace(/\s/g, '')}`} className="text-white/60 hover:text-white text-xs">{company.phone}</a></li>
-            <li className="flex items-center gap-2"><Mail size={13} className="text-lime shrink-0" /><a href={`mailto:${company.email}`} className="text-white/60 hover:text-white text-xs">{company.email}</a></li>
-            <li className="flex items-center gap-2"><Clock size={13} className="text-lime shrink-0" /><span className="text-white/60 text-xs">{company.footerHours}</span></li>
+            <li className="flex items-start gap-2"><MapPin size={13} className="text-lime mt-0.5 shrink-0" /><span className="text-white/60 text-xs leading-relaxed">{isAr ? company.addressAr : company.address}</span></li>
+            <li className="flex items-center gap-2"><Phone size={13} className="text-lime shrink-0" /><a href={`tel:${company.phone.replace(/\s/g, '')}`} className="text-white/60 hover:text-white text-xs"><Ltr>{company.phone}</Ltr></a></li>
+            <li className="flex items-center gap-2"><Mail size={13} className="text-lime shrink-0" /><a href={`mailto:${company.email}`} className="text-white/60 hover:text-white text-xs"><Ltr>{company.email}</Ltr></a></li>
+            <li className="flex items-center gap-2"><Clock size={13} className="text-lime shrink-0" /><span className="text-white/60 text-xs">{isAr ? company.footerHoursAr : company.footerHours}</span></li>
           </ul>
         </div>
       </div>
@@ -117,6 +118,7 @@ export function Footer() {
         <p>{t('footer.copyright')}</p>
         <div className="flex gap-5">
           <Link to="/about-company/" className="hover:text-white transition-colors">{t('footer.about2')}</Link>
+          <Link to="/privacy-policy/" className="hover:text-white transition-colors">{t('footer.privacy')}</Link>
           <Link to="/contact-us/" className="hover:text-white transition-colors">{t('footer.contactUs2')}</Link>
         </div>
       </div>

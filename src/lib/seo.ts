@@ -1,4 +1,5 @@
 import { company } from '@/data/mockData'
+import { getSeoOverride } from '@/cms/state'
 
 // Canonical production origin (no trailing slash). Update if the domain changes.
 export const SITE_ORIGIN = 'https://www.dania-realestate.com'
@@ -141,6 +142,11 @@ export const SEO: Record<string, SeoEntry> = {
       'Contact Dania Real Estate Doha for verified properties for rent in Qatar. Connect with our leasing desk via Call or WhatsApp for apartments, family villas, storefront shops, and staff housing.',
     image: '/about-dania-real-estate-qatar.webp',
   },
+  '/privacy-policy/': {
+    title: 'Privacy Policy | Dania Real Estate Qatar',
+    description:
+      'Read the Dania Real Estate privacy policy. Learn how we collect, use, and protect your personal information when you enquire about properties for rent in Doha, Qatar.',
+  },
 }
 
 // Area-detail SEO (per spec). The full per-area body lives in AreaDetailPage;
@@ -196,11 +202,23 @@ export const AREA_SEO: Record<string, SeoEntry> = {
 
 /** Resolve the SEO entry for a given pathname (handles /areas/<slug>/). */
 export function resolveSeo(pathname: string): SeoEntry {
-  if (SEO[pathname]) return SEO[pathname]
+  let base: SeoEntry
   const areaMatch = pathname.match(/^\/areas\/([^/]+)\/$/)
-  if (areaMatch && AREA_SEO[areaMatch[1]]) return AREA_SEO[areaMatch[1]]
+  if (SEO[pathname]) base = SEO[pathname]
+  else if (areaMatch && AREA_SEO[areaMatch[1]]) base = AREA_SEO[areaMatch[1]]
   // Fallback to the home entry so the head is never the build placeholder.
-  return SEO['/']
+  else base = SEO['/']
+
+  // Layer any CMS override (dashboard) on top of the built-in copy.
+  const ov = getSeoOverride(pathname)
+  if (ov && (ov.title || ov.description)) {
+    return {
+      ...base,
+      ...(ov.title ? { title: ov.title } : {}),
+      ...(ov.description ? { description: ov.description } : {}),
+    }
+  }
+  return base
 }
 
 // -----------------------------------------------------------------------------

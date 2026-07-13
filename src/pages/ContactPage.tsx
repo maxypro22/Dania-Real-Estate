@@ -8,6 +8,8 @@ import { StackedCards } from '@/components/shared/StackedCards'
 import { company } from '@/data/mockData'
 import { usePageSchema } from '@/components/shared/seo-context'
 import { contactPageSchema } from '@/lib/seo'
+import { Ltr } from '@/components/shared/Ltr'
+import { store } from '@/cms/store'
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
@@ -23,11 +25,11 @@ export function ContactPage() {
   const segments = t('contact.segments.items', { returnObjects: true }) as Array<{ title: string; desc: string; href?: string; action?: string }>
   const cardMeta = t('contact.cards.items', { returnObjects: true }) as Array<{ label: string; desc: string }>
   const contactCards = [
-    { icon: <Phone size={20} />, label: cardMeta[0]?.label ?? '', desc: cardMeta[0]?.desc ?? '', value: company.phone, href: `tel:${company.phone.replace(/\s/g, '')}` },
-    { icon: <MessageCircle size={20} />, label: cardMeta[1]?.label ?? '', desc: cardMeta[1]?.desc ?? '', value: company.whatsappDisplay, href: `https://wa.me/${company.whatsapp}` },
-    { icon: <Mail size={20} />, label: cardMeta[2]?.label ?? '', desc: cardMeta[2]?.desc ?? '', value: company.email, href: `mailto:${company.email}` },
-    { icon: <MapPin size={20} />, label: cardMeta[3]?.label ?? '', desc: cardMeta[3]?.desc ?? '', value: company.address, href: 'https://maps.google.com/?q=Al+Muftah+Plaza+Building,+Al+Rayyan+Road,+Doha,+Qatar' },
-    { icon: <Clock size={20} />, label: cardMeta[4]?.label ?? '', desc: cardMeta[4]?.desc ?? '', value: isAr ? 'السبت–الخميس: 8:00 ص – 5:00 م (توقيت قطر)\nالجمعة: مغلق — مراقبة واتساب لمتطلبات الشركات العاجلة' : 'Sat–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)\nFri: Closed — Active WhatsApp Monitoring for urgent corporate requirements', href: undefined as string | undefined },
+    { icon: <Phone size={20} />, label: cardMeta[0]?.label ?? '', desc: cardMeta[0]?.desc ?? '', value: company.phone, href: `tel:${company.phone.replace(/\s/g, '')}`, ltr: true },
+    { icon: <MessageCircle size={20} />, label: cardMeta[1]?.label ?? '', desc: cardMeta[1]?.desc ?? '', value: company.whatsappDisplay, href: `https://wa.me/${company.whatsapp}`, ltr: true },
+    { icon: <Mail size={20} />, label: cardMeta[2]?.label ?? '', desc: cardMeta[2]?.desc ?? '', value: company.email, href: `mailto:${company.email}`, ltr: true },
+    { icon: <MapPin size={20} />, label: cardMeta[3]?.label ?? '', desc: cardMeta[3]?.desc ?? '', value: isAr ? company.addressAr : company.address, href: 'https://maps.google.com/?q=Al+Muftah+Plaza+Building,+Al+Rayyan+Road,+Doha,+Qatar', ltr: false },
+    { icon: <Clock size={20} />, label: cardMeta[4]?.label ?? '', desc: cardMeta[4]?.desc ?? '', value: isAr ? 'السبت–الخميس: 8:00 ص – 5:00 م (توقيت قطر)\nالجمعة: مغلق — مراقبة واتساب لمتطلبات الشركات العاجلة' : 'Sat–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)\nFri: Closed — Active WhatsApp Monitoring for urgent corporate requirements', href: undefined as string | undefined, ltr: false },
   ]
 
   const [form, setForm] = useState({
@@ -45,6 +47,19 @@ export function ContactPage() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    // Capture the enquiry into the CMS inbox (local DB today, Supabase later) so
+    // it is visible in the dashboard Messages panel.
+    void store.addMessage({
+      id: (crypto.randomUUID?.() ?? `${Date.now()}-${Math.round(Math.random() * 1e9)}`),
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      type: form.type,
+      area: form.area,
+      message: form.message,
+      createdAt: Date.now(),
+      read: false,
+    })
     // This is a static site with no backend, so the form cannot POST anywhere.
     // Hand the lead off to the company WhatsApp with every field prefilled — that
     // way the inquiry is actually delivered instead of being silently discarded.
@@ -102,7 +117,7 @@ export function ContactPage() {
                     className="inline-flex items-center justify-center gap-2 bg-lime text-forest font-bold px-6 py-3 rounded-full text-sm hover:bg-white transition-colors"
                   >
                     <Phone size={15} />
-                    {isAr ? `اتصل بمكتب الإيجار: ${company.phone}` : `Call Leasing Desk: ${company.phone}`}
+                    {isAr ? 'اتصل بمكتب الإيجار: ' : 'Call Leasing Desk: '}<Ltr>{company.phone}</Ltr>
                   </a>
                   <a
                     href={`https://wa.me/${company.whatsapp}`}
@@ -165,10 +180,10 @@ export function ContactPage() {
                         rel="noopener noreferrer"
                         className="text-forest text-sm font-medium hover:underline leading-relaxed"
                       >
-                        {card.value}
+                        {card.ltr ? <Ltr>{card.value}</Ltr> : card.value}
                       </a>
                     ) : (
-                      <p className="text-ink text-sm leading-relaxed whitespace-pre-line">{card.value}</p>
+                      <p className="text-ink text-sm leading-relaxed whitespace-pre-line">{card.ltr ? <Ltr>{card.value}</Ltr> : card.value}</p>
                     )}
                   </div>
                 </div>
@@ -197,7 +212,7 @@ export function ContactPage() {
                     <p className="text-sm text-ink-muted mt-3">
                       {isAr ? 'للحصول على قوائم فورية ومعاينات فيديو مباشرة:' : 'For immediate listings and live video previews:'}{' '}
                       <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-forest font-medium hover:underline">
-                        {company.whatsappDisplay}
+                        <Ltr>{company.whatsappDisplay}</Ltr>
                       </a>
                     </p>
                     <button
@@ -432,7 +447,7 @@ export function ContactPage() {
               <Reveal direction="up" delay={160}>
                 <div className="bg-surface-low rounded-xl p-5 mb-6 space-y-2">
                   <p className="text-sm font-bold text-ink">{isAr ? 'دانية للعقارات قطر' : 'Dania Real Estate Qatar'}</p>
-                  <p className="text-sm text-ink-muted">{company.address}</p>
+                  <p className="text-sm text-ink-muted">{isAr ? company.addressAr : company.address}</p>
                   <p className="text-xs text-ink-muted pt-1">
                     {isAr
                       ? 'يقع بشكل استراتيجي على امتداد الممر التجاري البارز في الريان، مما يوفر وصولاً مباشراً للعملاء القادمين من وسط الدوحة والأحياء الغربية.'

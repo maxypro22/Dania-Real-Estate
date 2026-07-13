@@ -1,0 +1,103 @@
+// ============================================================================
+//  Supabase store adapter — the live database backend for the CMS.
+//
+//  ▶ TO ACTIVATE (do this only when you're ready to go live on the DB):
+//    1. npm install @supabase/supabase-js
+//    2. Rename this file:  store.supabase.ts.template  →  store.supabase.ts
+//    3. In src/cms/store.ts change the last line to:
+//         export { supabaseStore as store } from './store.supabase'
+//    4. Set the env vars (locally in .env.local and in Vercel) — see .env.example.
+//    5. Run supabase/schema.sql in your Supabase project. Redeploy.
+//
+//  Until renamed to `.ts`, this file is NOT compiled or bundled — so the current
+//  Vercel deploy is unaffected and needs no Supabase package installed.
+// ============================================================================
+
+import { createClient } from '@supabase/supabase-js'
+import { emptyOverrides, type CmsOverrides, type CmsMessage } from './types'
+import type { CmsStore } from './store'
+
+const url = import.meta.env.VITE_SUPABASE_URL as string
+const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string
+
+if (!url || !anonKey) {
+  // Fail loud in dev; the anon key is safe to expose (RLS protects the data).
+  console.warn('[CMS] VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY are not set — the Supabase store cannot connect.')
+}
+
+const supabase = createClient(url, anonKey)
+
+interface MessageRow {
+  id: string
+  name: string
+  phone: string
+  email: string
+  type: string
+  area: string
+  message: string
+  read: boolean
+  created_at: string
+}
+
+function rowToMessage(r: MessageRow): CmsMessage {
+  return {
+    id: r.id,
+    name: r.name,
+    phone: r.phone,
+    email: r.email,
+    type: r.type,
+    area: r.area,
+    message: r.message,
+    read: r.read,
+    createdAt: new Date(r.created_at).getTime(),
+  }
+}
+
+export const supabaseStore: CmsStore = {
+  async loadOverrides() {
+    const { data, error } = await supabase.from('site_content').select('data').eq('id', 1).maybeSingle()
+    if (error) {
+      console.error('[CMS] loadOverrides:', error.message)
+      return emptyOverrides()
+    }
+    return (data?.data as CmsOverrides | undefined) ?? emptyOverrides()
+  },
+
+  async saveOverrides(overrides: CmsOverrides) {
+    const { error } = await supabase.from('site_content').upsert({ id: 1, data: overrides })
+    if (error) throw new Error(error.message, { cause: error })
+  },
+
+  async listMessages() {
+    const { data, error } = await supabase.from('messages').select('*').order('created_at', { ascending: false })
+    if (error) {
+      console.error('[CMS] listMessages:', error.message)
+      return []
+    }
+    return (data as MessageRow[]).map(rowToMessage)
+  },
+
+  async addMessage(m: CmsMessage) {
+    // Let the DB assign id / created_at / read defaults; only send the content.
+    const { error } = await supabase.from('messages').insert({
+      name: m.name,
+      phone: m.phone,
+      email: m.email,
+      type: m.type,
+      area: m.area,
+      message: m.message,
+    })
+    if (error) throw new Error(error.message, { cause: error })
+  },
+
+  async deleteMessage(id: string) {
+    const { error } = await supabase.from('messages').delete().eq('id', id)
+    if (error) throw new Error(error.message, { cause: error })
+  },
+}
+
+// Optional: also mark a message read (the app currently rewrites messages via
+// delete+add on the local store; on Supabase prefer a targeted update instead).
+export async function markMessageRead(id: string): Promise<void> {
+  await supabase.from('messages').update({ read: true }).eq('id', id)
+}

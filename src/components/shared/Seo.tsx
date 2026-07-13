@@ -53,6 +53,11 @@ export function Seo({ title, description, path, image, jsonLd = [] }: SeoProps) 
     // The resolveSeo map is the single source of truth for per-route copy and
     // matches each page's own <title>/<meta description>, so use it directly
     // (reading document.title is unreliable under lazy/Suspense route loads).
+    // Authoring title + description here (not only the social cards) lets CMS
+    // SEO overrides take effect live: this effect runs after the page's own
+    // hoisted <title> commits, so the resolved (possibly overridden) copy wins.
+    document.title = title
+    upsertMeta('name', 'description', description)
     upsertLink('canonical', url)
 
     upsertMeta('property', 'og:type', 'website')

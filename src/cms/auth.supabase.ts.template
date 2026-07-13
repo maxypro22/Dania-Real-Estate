@@ -1,0 +1,82 @@
+// ============================================================================
+//  Supabase auth adapter — real, secure login backed by Supabase Auth.
+//
+//  ▶ TO ACTIVATE (when going live on the DB):
+//    1. npm install @supabase/supabase-js  (if not already)
+//    2. Rename:  auth.supabase.ts.template  →  auth.supabase.ts
+//    3. In src/pages/DashboardPage.tsx swap the auth import to './'-style:
+//         import { ... } from '@/cms/auth.supabase'
+//       and make the auth checks async (see the note at the bottom).
+//    4. Ensure the default admin exists (supabase/schema.sql seeds it, or create
+//       it in Dashboard → Authentication → Users).
+//
+//  Passwords are hashed + verified by Supabase (bcrypt) — never stored in the
+//  app. Sessions are JWTs managed by the Supabase client. This is real security,
+//  unlike the localStorage placeholder in auth.ts.
+// ============================================================================
+
+import { createClient, type Session } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL as string,
+  import.meta.env.VITE_SUPABASE_ANON_KEY as string,
+)
+
+export async function signIn(email: string, password: string): Promise<boolean> {
+  const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password })
+  return !error
+}
+
+export async function signOut(): Promise<void> {
+  await supabase.auth.signOut()
+}
+
+export async function getSession(): Promise<Session | null> {
+  const { data } = await supabase.auth.getSession()
+  return data.session
+}
+
+export async function currentEmail(): Promise<string> {
+  const session = await getSession()
+  return session?.user?.email ?? ''
+}
+
+/**
+ * Change the signed-in admin's password (Supabase verifies the JWT).
+ * Returns an error message, or null on success.
+ */
+export async function changePassword(newPassword: string): Promise<string | null> {
+  if (newPassword.length < 6) return 'New password must be at least 6 characters.'
+  const { error } = await supabase.auth.updateUser({ password: newPassword })
+  return error ? error.message : null
+}
+
+// ── Adding / removing admins ────────────────────────────────────────────────
+// Creating or deleting other Supabase Auth users requires the SERVICE ROLE key,
+// which must NEVER ship in the browser. Do it one of these secure ways:
+//   • Supabase Dashboard → Authentication → Users → Add/Delete user, OR
+//   • A Supabase Edge Function that uses the service role and checks the caller
+//     is an authenticated admin. Skeleton:
+//
+//     // supabase/functions/add-admin/index.ts
+//     import { createClient } from 'jsr:@supabase/supabase-js@2'
+//     Deno.serve(async (req) => {
+//       const admin = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!)
+//       // TODO: verify the caller's JWT (Authorization header) is a valid admin
+//       const { email, password } = await req.json()
+//       const { error } = await admin.auth.admin.createUser({ email, password, email_confirm: true })
+//       return new Response(JSON.stringify({ ok: !error, error: error?.message }), {
+//         headers: { 'Content-Type': 'application/json' },
+//       })
+//     })
+//
+// ── Note on the async switch ────────────────────────────────────────────────
+// The current DashboardPage reads auth synchronously (useState(isAuthed())).
+// With Supabase, gate on the session instead, e.g.:
+//   const [session, setSession] = useState<Session | null>(null)
+//   useEffect(() => {
+//     supabase.auth.getSession().then(({ data }) => setSession(data.session))
+//     const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSession(s))
+//     return () => sub.subscription.unsubscribe()
+//   }, [])
+//   if (!session) return <Login .../>   // Login calls the async signIn above

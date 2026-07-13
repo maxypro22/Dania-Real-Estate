@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from '@/components/layout/Layout'
+import { CmsProvider } from '@/cms/CmsProvider'
 
 // Code-split every page — only the current route's JS is loaded
 const HomePage               = lazy(() => import('@/pages/HomePage').then(m => ({ default: m.HomePage })))
@@ -16,7 +17,9 @@ const AreasPage              = lazy(() => import('@/pages/AreasPage').then(m => 
 const AreaDetailPage         = lazy(() => import('@/pages/AreaDetailPage').then(m => ({ default: m.AreaDetailPage })))
 const FaqPage                = lazy(() => import('@/pages/FaqPage').then(m => ({ default: m.FaqPage })))
 const ContactPage            = lazy(() => import('@/pages/ContactPage').then(m => ({ default: m.ContactPage })))
+const PrivacyPage            = lazy(() => import('@/pages/PrivacyPage').then(m => ({ default: m.PrivacyPage })))
 const NotFoundPage           = lazy(() => import('@/pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })))
+const DashboardPage          = lazy(() => import('@/pages/DashboardPage').then(m => ({ default: m.DashboardPage })))
 
 // Minimal blank shell shown while the route chunk loads
 function PageLoader() {
@@ -26,8 +29,11 @@ function PageLoader() {
 export default function App() {
   return (
     <BrowserRouter>
+      <CmsProvider>
       <Suspense fallback={<PageLoader />}>
         <Routes>
+          {/* Standalone CMS dashboard — no site chrome (its own layout) */}
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/about-company/" element={<AboutPage />} />
@@ -51,6 +57,7 @@ export default function App() {
             <Route path="/areas/:slug/" element={<AreaDetailPage />} />
             <Route path="/faq/" element={<FaqPage />} />
             <Route path="/contact-us/" element={<ContactPage />} />
+            <Route path="/privacy-policy/" element={<PrivacyPage />} />
             {/* Legacy path → canonical spec URL */}
             <Route path="/contact/" element={<Navigate to="/contact-us/" replace />} />
             {/* Catch-all: unknown URLs render a real 404 (noindex) instead of a blank page */}
@@ -58,6 +65,7 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
+      </CmsProvider>
     </BrowserRouter>
   )
 }

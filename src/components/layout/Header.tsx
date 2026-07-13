@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, ChevronRight, ArrowUpRight, Mail, Phone, Clock } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { company } from '@/data/mockData'
+import { Ltr } from '@/components/shared/Ltr'
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher'
 import { WhatsappIcon } from '@/components/shared/WhatsappIcon'
 import { InstagramIcon } from '@/components/shared/InstagramIcon'
@@ -230,7 +231,7 @@ export function Header() {
             <a href={`mailto:${company.email}`}
               className="inline-flex items-center gap-1.5 min-w-0 hover:text-lime transition-colors">
               <Mail size={13} className="text-lime shrink-0" />
-              <span className="truncate">{company.email}</span>
+              <Ltr className="truncate">{company.email}</Ltr>
             </a>
             {/* Row 2: working days & hours + phone */}
             <div className="flex items-center gap-4 lg:gap-5">
@@ -241,7 +242,7 @@ export function Header() {
               <a href={`tel:${company.officePhone.replace(/\s/g, '')}`}
                 className="inline-flex items-center gap-1.5 hover:text-lime transition-colors">
                 <Phone size={13} className="text-lime shrink-0" />
-                <span dir="ltr">{company.officePhone}</span>
+                <Ltr>{company.officePhone}</Ltr>
               </a>
             </div>
           </div>
