@@ -8,7 +8,7 @@ const TEMPLATE = `<!doctype html>
   <head>
     <title>Home Default</title>
     <meta name="description" content="home default desc" />
-    <link rel="canonical" href="https://www.dania-realestate.com/" />
+    <link rel="canonical" href="https://dania-realestate.com/" />
   </head>
   <body><div id="root"></div></body>
 </html>`
@@ -16,8 +16,8 @@ const TEMPLATE = `<!doctype html>
 const meta = {
   title: 'Villas for Rent | Luxury & Compound',
   description: 'Find villas in Doha & Qatar.',
-  canonical: 'https://www.dania-realestate.com/villas-for-rent/',
-  imageUrl: 'https://www.dania-realestate.com/villas.webp',
+  canonical: 'https://dania-realestate.com/villas-for-rent/',
+  imageUrl: 'https://dania-realestate.com/villas.webp',
   jsonLd: [{ '@type': 'RealEstateAgent', name: 'Dania' }],
 }
 
@@ -31,13 +31,13 @@ describe('prerender injectMeta (F-004)', () => {
 
   it('replaces description and canonical for the route', () => {
     expect(out).toContain('content="Find villas in Doha &amp; Qatar."')
-    expect(out).toContain('href="https://www.dania-realestate.com/villas-for-rent/"')
+    expect(out).toContain('href="https://dania-realestate.com/villas-for-rent/"')
     expect(out).not.toContain('home default desc')
   })
 
   it('adds Open Graph + Twitter cards and JSON-LD', () => {
     expect(out).toContain('<meta property="og:title" content="Villas for Rent | Luxury &amp; Compound"')
-    expect(out).toContain('<meta property="og:image" content="https://www.dania-realestate.com/villas.webp"')
+    expect(out).toContain('<meta property="og:image" content="https://dania-realestate.com/villas.webp"')
     expect(out).toContain('<meta name="twitter:card" content="summary_large_image"')
     expect(out).toContain('application/ld+json')
     expect(out).toContain('RealEstateAgent')

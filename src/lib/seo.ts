@@ -2,7 +2,7 @@ import { company } from '@/data/mockData'
 import { getSeoOverride } from '@/cms/state'
 
 // Canonical production origin (no trailing slash). Update if the domain changes.
-export const SITE_ORIGIN = 'https://www.dania-realestate.com'
+export const SITE_ORIGIN = 'https://dania-realestate.com'
 
 export interface SeoEntry {
   title: string
