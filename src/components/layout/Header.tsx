@@ -315,7 +315,10 @@ export function Header() {
 
         {/* Right cluster — always visible so the icons can never be clipped */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <LanguageSwitcher iconOnly />
+          {/* Nudged 12px away from the WhatsApp button on laptop and up so the
+              switcher isn't crowded against it. `me-*` (margin-inline-end) so it
+              mirrors correctly in RTL. */}
+          <LanguageSwitcher iconOnly className="lg:me-3" />
           {/* Hidden on phone — the floating WhatsApp button covers mobile */}
           <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
             aria-label="WhatsApp"
