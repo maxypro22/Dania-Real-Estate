@@ -81,3 +81,14 @@ export const steps = [
 // src/content/settings.json. Kept exported as `company` so every consumer is
 // unchanged and there is a single source of truth the CMS commits to.
 export const company = settings.company
+
+/**
+ * The three public lines, in the order the client specified, as a single list
+ * so the header, footer, contact page and JSON-LD can never drift apart.
+ * `tel` is the dial-safe href (digits only, no spaces).
+ */
+export function companyPhones(c: typeof company = company) {
+  return [c.phone, c.phone2, c.officePhone]
+    .filter(Boolean)
+    .map((display) => ({ display, tel: `tel:${display.replace(/\s/g, '')}` }))
+}

@@ -1,13 +1,14 @@
 import { memo, useState, useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown, ChevronRight, ArrowUpRight, Mail, Phone, Clock } from 'lucide-react'
+import { Menu, X, ChevronDown, ChevronRight, ArrowUpRight, Phone, Clock } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { company } from '@/data/mockData'
+import { company, companyPhones } from '@/data/mockData'
 import { Ltr } from '@/components/shared/Ltr'
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher'
 import { WhatsappIcon } from '@/components/shared/WhatsappIcon'
 import { InstagramIcon } from '@/components/shared/InstagramIcon'
 import { FacebookIcon } from '@/components/shared/FacebookIcon'
+import { LinkedInIcon } from '@/components/shared/LinkedInIcon'
 
 interface NavItem {
   to: string
@@ -222,28 +223,31 @@ export function Header() {
       {/* Top utility bar — contact details + socials, same dark colour as the site background.
           The header is sticky with top:-topBarH, so this bar scrolls off-screen while the
           navbar below settles at the top of the viewport (only the navbar follows on scroll).
-          Phone view stacks into 3 rows: email / (hours + phone) / socials. Desktop is one line. */}
+          Phone view stacks into 3 rows: hours / phone lines / socials. Desktop is one line.
+          The email was removed from this bar per the client's Developer Note — it still
+          lives in the footer and on the contact page. */}
       <div ref={topBarRef} className="bg-forest text-white/80 border-b border-white/10 text-xs">
         <div className="max-w-[1720px] mx-auto px-4 sm:px-6 py-2 lg:py-0 lg:h-9 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-1.5 lg:gap-3">
           {/* Contact details */}
           <div className="flex flex-col items-center lg:flex-row lg:items-center gap-1.5 lg:gap-5 min-w-0">
-            {/* Row 1: email */}
-            <a href={`mailto:${company.email}`}
-              className="inline-flex items-center gap-1.5 min-w-0 hover:text-lime transition-colors">
-              <Mail size={13} className="text-lime shrink-0" />
-              <Ltr className="truncate">{company.email}</Ltr>
-            </a>
-            {/* Row 2: working days & hours + phone */}
-            <div className="flex items-center gap-4 lg:gap-5">
-              <span className="inline-flex items-center gap-1.5">
-                <Clock size={13} className="text-lime shrink-0" />
-                <span>{isAr ? 'السبت–الخميس · ٨ص–٥م' : 'Sat–Thu · 8AM–5PM'}</span>
-              </span>
-              <a href={`tel:${company.officePhone.replace(/\s/g, '')}`}
-                className="inline-flex items-center gap-1.5 hover:text-lime transition-colors">
-                <Phone size={13} className="text-lime shrink-0" />
-                <Ltr>{company.officePhone}</Ltr>
-              </a>
+            {/* Row 1: working days & hours */}
+            <span className="inline-flex items-center gap-1.5">
+              <Clock size={13} className="text-lime shrink-0" />
+              <span>{isAr ? company.hoursShortAr : company.hoursShort}</span>
+            </span>
+            {/* Row 2: all three lines, each individually dialable */}
+            <div className="flex items-center gap-1.5 min-w-0">
+              <Phone size={13} className="text-lime shrink-0" />
+              <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                {companyPhones().map((p, i) => (
+                  <span key={p.tel} className="inline-flex items-center gap-1.5">
+                    {i > 0 && <span aria-hidden="true" className="text-white/30">|</span>}
+                    <a href={p.tel} className="hover:text-lime transition-colors whitespace-nowrap">
+                      <Ltr>{p.display}</Ltr>
+                    </a>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
           {/* Row 3: social links */}
@@ -259,6 +263,10 @@ export function Header() {
             <a href={company.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
               className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white/90 hover:bg-lime hover:text-forest transition-colors">
               <FacebookIcon size={13} />
+            </a>
+            <a href={company.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white/90 hover:bg-lime hover:text-forest transition-colors">
+              <LinkedInIcon size={13} />
             </a>
           </div>
         </div>

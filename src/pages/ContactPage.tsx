@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Reveal } from '@/components/shared/Reveal'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { StackedCards } from '@/components/shared/StackedCards'
-import { company } from '@/data/mockData'
+import { company, companyPhones } from '@/data/mockData'
 import { usePageSchema } from '@/components/shared/seo-context'
 import { contactPageSchema } from '@/lib/seo'
 import { Ltr } from '@/components/shared/Ltr'
@@ -25,11 +25,12 @@ export function ContactPage() {
   const segments = t('contact.segments.items', { returnObjects: true }) as Array<{ title: string; desc: string; href?: string; action?: string }>
   const cardMeta = t('contact.cards.items', { returnObjects: true }) as Array<{ label: string; desc: string }>
   const contactCards = [
-    { icon: <Phone size={20} />, label: cardMeta[0]?.label ?? '', desc: cardMeta[0]?.desc ?? '', value: company.phone, href: `tel:${company.phone.replace(/\s/g, '')}`, ltr: true },
+    // All three lines, each its own tel: link (`links` beats `value` in the card).
+    { icon: <Phone size={20} />, label: cardMeta[0]?.label ?? '', desc: cardMeta[0]?.desc ?? '', value: '', href: undefined as string | undefined, ltr: true, links: companyPhones() },
     { icon: <MessageCircle size={20} />, label: cardMeta[1]?.label ?? '', desc: cardMeta[1]?.desc ?? '', value: company.whatsappDisplay, href: `https://wa.me/${company.whatsapp}`, ltr: true },
     { icon: <Mail size={20} />, label: cardMeta[2]?.label ?? '', desc: cardMeta[2]?.desc ?? '', value: company.email, href: `mailto:${company.email}`, ltr: true },
     { icon: <MapPin size={20} />, label: cardMeta[3]?.label ?? '', desc: cardMeta[3]?.desc ?? '', value: isAr ? company.addressAr : company.address, href: 'https://maps.google.com/?q=Al+Muftah+Plaza+Building,+Al+Rayyan+Road,+Doha,+Qatar', ltr: false },
-    { icon: <Clock size={20} />, label: cardMeta[4]?.label ?? '', desc: cardMeta[4]?.desc ?? '', value: isAr ? 'السبت–الخميس: 8:00 ص – 5:00 م (توقيت قطر)\nالجمعة: مغلق — مراقبة واتساب لمتطلبات الشركات العاجلة' : 'Sat–Thu: 8:00 AM – 5:00 PM (Qatar Standard Time)\nFri: Closed — Active WhatsApp Monitoring for urgent corporate requirements', href: undefined as string | undefined, ltr: false },
+    { icon: <Clock size={20} />, label: cardMeta[4]?.label ?? '', desc: cardMeta[4]?.desc ?? '', value: isAr ? `${company.hoursAr}\n${company.hoursSatAr}\nالجمعة: مغلق — مراقبة واتساب لمتطلبات الشركات العاجلة` : `${company.hours}\n${company.hoursSat}\nFri: Closed — Active WhatsApp Monitoring for urgent corporate requirements`, href: undefined as string | undefined, ltr: false },
   ]
 
   const [form, setForm] = useState({
@@ -173,7 +174,15 @@ export function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1">{card.label}</p>
-                    {card.href ? (
+                    {'links' in card && card.links ? (
+                      <span className="flex flex-col gap-0.5">
+                        {card.links.map((l) => (
+                          <a key={l.tel} href={l.tel} className="text-forest text-sm font-medium hover:underline leading-relaxed">
+                            <Ltr>{l.display}</Ltr>
+                          </a>
+                        ))}
+                      </span>
+                    ) : card.href ? (
                       <a
                         href={card.href}
                         target={card.href.startsWith('http') ? '_blank' : undefined}

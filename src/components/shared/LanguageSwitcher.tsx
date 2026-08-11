@@ -14,19 +14,31 @@ export function LanguageSwitcher({ className, iconOnly }: { className?: string; 
     document.documentElement.lang = next
   }
 
+  // The compact header variant pairs the globe with the *target* language code
+  // ("AR" while browsing English) so the control reads as a language switch at a
+  // glance instead of an unlabelled icon. Fixed height + shrink-0 keep it aligned
+  // with the WhatsApp/menu buttons beside it at every breakpoint.
+  const targetCode = isAr ? 'EN' : 'AR'
+
   return (
     <button
       onClick={toggle}
+      type="button"
+      lang={isAr ? 'en' : 'ar'}
       aria-label={isAr ? 'Switch to English' : 'Switch to Arabic'}
       title={isAr ? t('header.switchToEn') : t('header.switchToAr')}
       className={cn(
-        'flex items-center rounded-full border border-border text-sm font-medium text-ink hover:bg-surface-low transition-colors',
-        iconOnly ? 'justify-center w-9 h-9 shrink-0' : 'gap-1.5 px-3 py-1.5',
+        'inline-flex items-center justify-center rounded-full border border-border text-sm font-medium text-ink hover:bg-surface-low active:bg-surface-low transition-colors',
+        iconOnly ? 'h-9 gap-1 px-2.5 shrink-0' : 'gap-1.5 px-3 py-1.5',
         className
       )}
     >
-      <Globe size={iconOnly ? 16 : 14} />
-      {!iconOnly && <span>{isAr ? t('header.switchToEn') : t('header.switchToAr')}</span>}
+      <Globe size={iconOnly ? 16 : 14} className="shrink-0" />
+      {iconOnly ? (
+        <span className="text-xs font-bold leading-none tracking-wide">{targetCode}</span>
+      ) : (
+        <span>{isAr ? t('header.switchToEn') : t('header.switchToAr')}</span>
+      )}
     </button>
   )
 }

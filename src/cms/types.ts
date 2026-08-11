@@ -29,15 +29,22 @@ export interface CompanyOverride {
   address?: string
   addressAr?: string
   phone?: string
+  phone2?: string
   whatsapp?: string
   whatsappDisplay?: string
   officePhone?: string
   email?: string
   hours?: string
+  hoursAr?: string
+  hoursSat?: string
+  hoursSatAr?: string
+  hoursShort?: string
+  hoursShortAr?: string
   footerHours?: string
   footerHoursAr?: string
   facebook?: string
   instagram?: string
+  linkedin?: string
   founded?: string
   properties?: string
   clients?: string

@@ -42,14 +42,17 @@ export function injectMeta(template, meta) {
   let html = template
 
   // Replace the existing title / description / canonical (home defaults in the shell).
-  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeAttr(title)}</title>`)
+  // Every replacement is passed as a FUNCTION, never a string: in String.replace a
+  // replacement string treats `$$`, `$&`, `` $` `` and `$'` as escapes, which would
+  // silently corrupt content containing them (e.g. priceRange "$$" in the JSON-LD).
+  html = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${escapeAttr(title)}</title>`)
   html = html.replace(
     /<meta\s+name="description"[\s\S]*?\/>/,
-    `<meta name="description" content="${escapeAttr(description)}" />`,
+    () => `<meta name="description" content="${escapeAttr(description)}" />`,
   )
   html = html.replace(
     /<link\s+rel="canonical"[^>]*>/,
-    `<link rel="canonical" href="${escapeAttr(canonical)}" />`,
+    () => `<link rel="canonical" href="${escapeAttr(canonical)}" />`,
   )
 
   const tags = [
@@ -66,7 +69,7 @@ export function injectMeta(template, meta) {
     ...jsonLd.map(jsonLdScript),
   ].join('\n    ')
 
-  return html.replace('</head>', `    ${tags}\n  </head>`)
+  return html.replace('</head>', () => `    ${tags}\n  </head>`)
 }
 
 async function loadSeoModule() {

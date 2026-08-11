@@ -1,4 +1,4 @@
-import { company } from '@/data/mockData'
+import { company, companyPhones } from '@/data/mockData'
 import { getSeoOverride } from '@/cms/state'
 
 // Canonical production origin (no trailing slash). Update if the domain changes.
@@ -232,30 +232,38 @@ export function organizationSchema(): object[] {
       '@context': 'https://schema.org',
       '@type': 'RealEstateAgent',
       '@id': `${SITE_ORIGIN}/#organization`,
-      name: company.name,
+      name: 'Dania Real Estate Qatar | Apartments for Rent Doha - شركة دانية للعقارات',
       legalName: company.name,
       url: `${SITE_ORIGIN}/`,
       logo: `${SITE_ORIGIN}/Dania_Real_Estate_logo.png`,
       image: `${SITE_ORIGIN}/about-dania-real-estate-qatar.webp`,
-      telephone: company.phone,
+      // All public lines, in the order the client specified.
+      telephone: companyPhones(company).map((p) => p.display),
       email: company.email,
       priceRange: '$$',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '3rd Floor, Al Muftah Plaza Building, Al Rayyan Road',
+        streetAddress: '3rd Flr, Al Muftah Plaza Building, Al Rayyan Rd',
         addressLocality: 'Doha',
         addressCountry: 'QA',
       },
+      containedInPlace: { '@type': 'Place', name: 'Al wajba Motors' },
       areaServed: { '@type': 'Country', name: 'Qatar' },
       openingHoursSpecification: [
         {
           '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+          dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
           opens: '08:00',
-          closes: '17:00',
+          closes: '17:30',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Saturday',
+          opens: '09:00',
+          closes: '14:00',
         },
       ],
-      sameAs: [company.facebook, company.instagram],
+      sameAs: [company.facebook, company.instagram, company.linkedin],
     },
     {
       '@context': 'https://schema.org',

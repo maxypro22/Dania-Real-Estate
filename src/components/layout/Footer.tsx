@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { company } from '@/data/mockData'
+import { company, companyPhones } from '@/data/mockData'
 import { Ltr } from '@/components/shared/Ltr'
+import { InstagramIcon } from '@/components/shared/InstagramIcon'
+import { FacebookIcon } from '@/components/shared/FacebookIcon'
+import { LinkedInIcon } from '@/components/shared/LinkedInIcon'
 
 export function Footer() {
   const { t, i18n } = useTranslation()
@@ -70,9 +73,19 @@ export function Footer() {
             <MessageCircle size={13} className="relative z-10 transition-colors duration-300 group-hover:text-forest" />
             <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('footer.chatWhatsapp')}</span>
           </a>
-          <div className="flex gap-4 mt-4">
-            <a href={company.facebook} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-lime text-xs transition-colors">Facebook</a>
-            <a href={company.instagram} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-lime text-xs transition-colors">Instagram</a>
+          <div className="flex items-center gap-2.5 mt-4">
+            <a href={company.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white/80 hover:bg-lime hover:text-forest transition-colors">
+              <FacebookIcon size={14} />
+            </a>
+            <a href={company.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white/80 hover:bg-lime hover:text-forest transition-colors">
+              <InstagramIcon size={14} />
+            </a>
+            <a href={company.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white/80 hover:bg-lime hover:text-forest transition-colors">
+              <LinkedInIcon size={14} />
+            </a>
           </div>
         </div>
 
@@ -107,9 +120,23 @@ export function Footer() {
           <h4 className="font-bold text-sm mb-4 text-lime">{t('footer.contact')}</h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-2"><MapPin size={13} className="text-lime mt-0.5 shrink-0" /><span className="text-white/60 text-xs leading-relaxed">{isAr ? company.addressAr : company.address}</span></li>
-            <li className="flex items-center gap-2"><Phone size={13} className="text-lime shrink-0" /><a href={`tel:${company.phone.replace(/\s/g, '')}`} className="text-white/60 hover:text-white text-xs"><Ltr>{company.phone}</Ltr></a></li>
+            <li className="flex items-start gap-2">
+              <Phone size={13} className="text-lime mt-0.5 shrink-0" />
+              <span className="flex flex-col gap-1">
+                {companyPhones().map((p) => (
+                  <a key={p.tel} href={p.tel} className="text-white/60 hover:text-white text-xs"><Ltr>{p.display}</Ltr></a>
+                ))}
+              </span>
+            </li>
             <li className="flex items-center gap-2"><Mail size={13} className="text-lime shrink-0" /><a href={`mailto:${company.email}`} className="text-white/60 hover:text-white text-xs"><Ltr>{company.email}</Ltr></a></li>
-            <li className="flex items-center gap-2"><Clock size={13} className="text-lime shrink-0" /><span className="text-white/60 text-xs">{isAr ? company.footerHoursAr : company.footerHours}</span></li>
+            <li className="flex items-start gap-2">
+              <Clock size={13} className="text-lime mt-0.5 shrink-0" />
+              <span className="flex flex-col gap-1 text-white/60 text-xs">
+                <span>{isAr ? company.hoursAr : company.hours}</span>
+                <span>{isAr ? company.hoursSatAr : company.hoursSat}</span>
+                <span className="text-white/40">{isAr ? company.footerHoursAr : company.footerHours}</span>
+              </span>
+            </li>
           </ul>
         </div>
       </div>

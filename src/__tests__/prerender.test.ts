@@ -35,6 +35,16 @@ describe('prerender injectMeta (F-004)', () => {
     expect(out).not.toContain('home default desc')
   })
 
+  it('does not eat $-escapes in injected content (priceRange "$$")', () => {
+    const out2 = injectMeta(TEMPLATE, {
+      ...meta,
+      title: 'Rent from $$ to $$$',
+      jsonLd: [{ '@type': 'RealEstateAgent', priceRange: '$$' }],
+    })
+    expect(out2).toContain('<title>Rent from $$ to $$$</title>')
+    expect(out2).toContain('"priceRange":"$$"')
+  })
+
   it('adds Open Graph + Twitter cards and JSON-LD', () => {
     expect(out).toContain('<meta property="og:title" content="Villas for Rent | Luxury &amp; Compound"')
     expect(out).toContain('<meta property="og:image" content="https://dania-realestate.com/villas.webp"')
