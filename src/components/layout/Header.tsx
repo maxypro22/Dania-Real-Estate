@@ -315,11 +315,11 @@ export function Header() {
 
         {/* Right cluster — always visible so the icons can never be clipped */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          {/* Nudged 10px toward the nav (the FAQ link) on laptop and up.
-              EN is LTR so that means left; AR is RTL so it means right. Physical
-              translate-x, scoped per direction, so each language moves the way the
-              client asked. `translate` (not margin) keeps the layout width intact. */}
-          <LanguageSwitcher iconOnly className="lg:ltr:-translate-x-2.5 lg:rtl:translate-x-2.5" />
+          {/* Nudged toward the nav (the FAQ link) on laptop and up: 17px left in
+              EN (LTR), 10px right in AR (RTL). Physical translate-x, scoped per
+              direction, so each language moves the way the client asked.
+              `translate` (not margin) keeps the layout width intact. */}
+          <LanguageSwitcher iconOnly className="lg:ltr:-translate-x-[17px] lg:rtl:translate-x-2.5" />
           {/* Hidden on phone — the floating WhatsApp button covers mobile */}
           <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
             aria-label="WhatsApp"
