@@ -315,13 +315,15 @@ export function Header() {
 
         {/* Right cluster — always visible so the icons can never be clipped */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          {/* Shifted 10px left on laptop and up, English only — `ltr:` keeps the
-              Arabic layout untouched (physical `mr` so it never mirrors). */}
-          <LanguageSwitcher iconOnly className="lg:ltr:mr-2.5" />
+          {/* Nudged 10px toward the nav (the FAQ link) on laptop and up.
+              EN is LTR so that means left; AR is RTL so it means right. Physical
+              translate-x, scoped per direction, so each language moves the way the
+              client asked. `translate` (not margin) keeps the layout width intact. */}
+          <LanguageSwitcher iconOnly className="lg:ltr:-translate-x-2.5 lg:rtl:translate-x-2.5" />
           {/* Hidden on phone — the floating WhatsApp button covers mobile */}
           <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
             aria-label="WhatsApp"
-            className="group hidden md:inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 text-white bg-gradient-to-br from-[#25D366] to-[#0F8A52] ring-1 ring-white/30 shadow-md shadow-emerald-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-700/40 hover:brightness-105">
+            className="group hidden md:inline-flex items-center justify-center w-9 h-9 rounded-full shrink-0 text-white bg-gradient-to-br from-[#25D366] to-[#0F8A52] ring-1 ring-white/30 shadow-md shadow-emerald-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-700/40 hover:brightness-105 lg:rtl:translate-x-2.5">
             <WhatsappIcon size={17} className="transition-transform duration-300 group-hover:scale-110" />
           </a>
           <Link to="/contact-us/"
