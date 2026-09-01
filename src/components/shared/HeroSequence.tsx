@@ -1,8 +1,7 @@
-import { useEffect, useRef, Fragment, type CSSProperties } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { CheckCircle2, ChevronDown } from 'lucide-react'
-import { company } from '@/data/mockData'
+import { HeroSearch } from '@/components/search/HeroSearch'
 
 /* Cinematic luxury-villa walkthrough, exported as a frame sequence and scrubbed
  * by scroll position (Apple-style). Scroll down → walkthrough plays forward;
@@ -33,21 +32,9 @@ export function HeroSequence() {
   const { t, i18n } = useTranslation()
   const isAr = i18n.language === 'ar'
 
-  // H1 carries the brand after a "|" — render it as the animated wordmark.
-  const [h1Lead, h1Brand] = t('home.hero.h1').split('|').map(s => s.trim())
-  let _li = 0
-  const brandWords = (h1Brand ?? '').split(' ').map(word => ({
-    word,
-    letters: [...word].map(ch => ({ ch, i: _li++ })),
-  }))
-
-  // Subtitle split into words for the scroll-scrubbed "written on scroll" reveal
-  const subtitleWords = t('home.hero.subtitle').split(' ')
-
   const sectionRef = useRef<HTMLElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const subtitleRef = useRef<HTMLParagraphElement>(null)
   const cueRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef(0)
   const currentRef = useRef(-1)
@@ -137,21 +124,9 @@ export function HeroSequence() {
         const fade = p < 0.55 ? 1 : Math.max(0, 1 - (p - 0.55) / 0.33)
         content.style.opacity = String(fade)
         content.style.transform = `translate3d(0, ${(-p * 64).toFixed(1)}px, 0)`
-      }
-      // Pitch-style: subtitle words brighten one after another as you scroll,
-      // and dim back when you scroll up — the same text, "written" on scroll.
-      const sub = subtitleRef.current
-      if (sub) {
-        const words = sub.querySelectorAll<HTMLElement>('[data-w]')
-        if (prefersReduced) {
-          words.forEach(el => { el.style.opacity = '1' })
-        } else {
-          const reveal = Math.min(Math.max(p / 0.42, 0), 1) * words.length
-          words.forEach((el, i) => {
-            const wp = Math.min(Math.max(reveal - i, 0), 1)
-            el.style.opacity = String(0.32 + 0.68 * wp)
-          })
-        }
+        // Once the copy has faded out it must stop swallowing clicks — the
+        // search bar lives inside this block and the sticky bar takes over.
+        content.style.pointerEvents = fade < 0.15 ? 'none' : 'auto'
       }
       const cue = cueRef.current
       if (cue) cue.style.opacity = String(Math.max(0, 1 - p / 0.12))
@@ -216,47 +191,16 @@ export function HeroSequence() {
             className="max-w-[1280px] mx-auto px-6 w-full text-white will-change-transform"
           >
             <p className="text-lime text-sm font-semibold tracking-widest uppercase mb-4">{t('home.hero.eyebrow')}</p>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 sm:mb-6 max-w-3xl">
-              {h1Lead}{' '}
-              {h1Brand && (
-                isAr ? (
-                  <span className="brand-wordmark inline-block pb-1 tracking-tight">{h1Brand}</span>
-                ) : (
-                  <span className="inline tracking-tight" aria-label={h1Brand}>
-                    {brandWords.map(({ letters }, wi) => (
-                      <Fragment key={wi}>
-                        {wi > 0 ? ' ' : null}
-                        <span className="inline-block whitespace-nowrap pb-1" aria-hidden="true">
-                          {letters.map(({ ch, i }) => (
-                            <span key={i} className="brand-letter" style={{ '--i': i } as CSSProperties}>
-                              {ch}
-                            </span>
-                          ))}
-                        </span>
-                      </Fragment>
-                    ))}
-                  </span>
-                )
-              )}
-            </h1>
-            <p ref={subtitleRef} className="text-white text-base sm:text-lg max-w-2xl mb-6 sm:mb-8 leading-relaxed">
-              {subtitleWords.map((w, i) => (
-                <span key={i} data-w className="transition-opacity duration-150 ease-out" style={{ opacity: 0.32 }}>
-                  {w}{i < subtitleWords.length - 1 ? ' ' : ''}
-                </span>
-              ))}
-            </p>
-            <div className="flex flex-row flex-wrap gap-2 sm:gap-3 mb-8">
-              <Link to="/apartments-for-rent/"
-                className="group relative overflow-hidden inline-flex items-center justify-center gap-2 bg-lime text-forest font-bold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-xs sm:text-sm">
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.exploreBtn')}</span>
-              </Link>
-              <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                className="group relative overflow-hidden hidden md:inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-xs sm:text-sm backdrop-blur-sm">
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220%] aspect-square rounded-full bg-lime scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" />
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-forest">{t('home.hero.whatsappBtn')}</span>
-              </a>
+            {/* The headline was removed from the hero at the client's request —
+                the search block is the first thing a visitor should meet. The
+                H1 stays in the document (screen-reader only) because a page
+                with no H1 is an accessibility and SEO regression; the copy is
+                still the single source in home.hero.h1. */}
+            <h1 className="sr-only">{t('home.hero.h1').replace('|', '—')}</h1>
+            {/* The visitor's first move is a search, not a paragraph — the
+                intro copy that used to sit here is now the search block. */}
+            <div className="mb-6 sm:mb-8">
+              <HeroSearch />
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               {[t('home.hero.trust0'), t('home.hero.trust1'), t('home.hero.trust2'), t('home.hero.trust3')].map(v => (

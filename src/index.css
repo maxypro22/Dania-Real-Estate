@@ -182,3 +182,44 @@
     -webkit-backface-visibility: hidden;
   }
 }
+
+/* ── Dual-handle range slider (property price / size filters) ──────────────
+   Two native range inputs are stacked on one track. The inputs themselves are
+   transparent to the pointer so they don't block each other; only the thumbs
+   take pointer events, which is what makes "grab the handle nearest my cursor"
+   work with plain <input type="range"> and keeps full keyboard support. */
+.range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  height: 1.5rem;
+  margin: 0;
+}
+.range-thumb::-webkit-slider-runnable-track { background: transparent; height: 1.5rem; }
+.range-thumb::-moz-range-track { background: transparent; height: 1.5rem; }
+.range-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--color-lime);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(44, 16, 10, 0.35);
+  cursor: grab;
+}
+.range-thumb::-moz-range-thumb {
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--color-lime);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(44, 16, 10, 0.35);
+  cursor: grab;
+}
+.range-thumb:active::-webkit-slider-thumb { cursor: grabbing; }
+.range-thumb:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--color-forest); outline-offset: 2px; }
+.range-thumb:focus-visible::-moz-range-thumb { outline: 2px solid var(--color-forest); outline-offset: 2px; }

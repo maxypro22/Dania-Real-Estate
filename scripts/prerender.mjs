@@ -92,18 +92,24 @@ async function main() {
   const dist = join(ROOT, 'dist')
   const template = readFileSync(join(dist, 'index.html'), 'utf8')
   const seo = await loadSeoModule()
-  const { SEO, AREA_SEO, SITE_ORIGIN, organizationSchema } = seo
+  const { SEO, AREA_SEO, PROPERTY_SEO, SITE_ORIGIN, organizationSchema } = seo
 
   const routes = [
     ...Object.keys(SEO),
     ...Object.keys(AREA_SEO).map((slug) => `/areas/${slug}/`),
+    ...Object.keys(PROPERTY_SEO).map((slug) => `/properties/${slug}/`),
   ]
 
   let count = 0
   for (const path of routes) {
-    const entry = SEO[path] ?? AREA_SEO[path.replace(/^\/areas\/([^/]+)\/$/, '$1')]
+    const entry =
+      SEO[path] ??
+      AREA_SEO[path.replace(/^\/areas\/([^/]+)\/$/, '$1')] ??
+      PROPERTY_SEO[path.replace(/^\/properties\/([^/]+)\/$/, '$1')]
     if (!entry) continue
-    const imageUrl = SITE_ORIGIN + (entry.image ?? '/Dania_Real_Estate_logo.png')
+    // Listing photos are absolute CDN URLs; site imagery is a /public path.
+    const image = entry.image ?? '/Dania_Real_Estate_logo.png'
+    const imageUrl = /^https?:\/\//.test(image) ? image : SITE_ORIGIN + image
     const html = injectMeta(template, {
       title: entry.title,
       description: entry.description,
@@ -117,6 +123,39 @@ async function main() {
     count++
   }
   console.log(`prerender: wrote ${count} route HTML files with baked metadata`)
+  syncSitemap(dist, SITE_ORIGIN, Object.keys(PROPERTY_SEO))
+}
+
+/**
+ * The curated sitemap lives in public/sitemap.xml. Listing URLs are generated
+ * from the data, so they are merged in here at build time instead of being
+ * hand-maintained — add a property to mockData.ts and it lands in the sitemap.
+ */
+function syncSitemap(dist, origin, slugs) {
+  const file = join(dist, 'sitemap.xml')
+  let xml
+  try {
+    xml = readFileSync(file, 'utf8')
+  } catch {
+    console.warn('prerender: no dist/sitemap.xml — skipped listing URLs')
+    return
+  }
+
+  const urls = [
+    { loc: `${origin}/properties/`, changefreq: 'daily', priority: '0.9' },
+    ...slugs.map((slug) => ({
+      loc: `${origin}/properties/${slug}/`,
+      changefreq: 'weekly',
+      priority: '0.7',
+    })),
+  ].filter((u) => !xml.includes(`<loc>${u.loc}</loc>`))
+
+  if (!urls.length) return
+  const block = urls
+    .map((u) => `<url>\n<loc>${u.loc}</loc>\n<changefreq>${u.changefreq}</changefreq>\n<priority>${u.priority}</priority>\n</url>`)
+    .join('\n')
+  writeFileSync(file, xml.replace('</urlset>', () => `${block}\n</urlset>`))
+  console.log(`prerender: added ${urls.length} listing URLs to sitemap.xml`)
 }
 
 // Run only when invoked directly (not when imported by tests).

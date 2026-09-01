@@ -1,4 +1,4 @@
-import { company, companyPhones } from '@/data/mockData'
+import { company, companyPhones, properties, type Property } from '@/data/mockData'
 import { getSeoOverride } from '@/cms/state'
 
 // Canonical production origin (no trailing slash). Update if the domain changes.
@@ -130,6 +130,12 @@ export const SEO: Record<string, SeoEntry> = {
       'Explore the major residential and commercial rental locations served by Dania Real Estate across Qatar. Find apartments, villas, and staff spaces by area.',
     image: '/modern-residential-developments-qatar.webp',
   },
+  '/properties/': {
+    title: 'Property Search Qatar | Apartments, Villas & Shops for Rent in Doha',
+    description:
+      'Search every verified Dania Real Estate rental in Qatar. Filter apartments, villas, compound villas, studios, shops, and staff accommodation by area, bedrooms, price, and amenities — zero hidden commission.',
+    image: '/apartments-for-rent-doha-qatar-dania-real-estate.webp',
+  },
   '/faq/': {
     title: 'Rental Property FAQ Qatar | Tenancy Guide & Rules | Dania Real Estate',
     description:
@@ -200,11 +206,41 @@ export const AREA_SEO: Record<string, SeoEntry> = {
   },
 }
 
-/** Resolve the SEO entry for a given pathname (handles /areas/<slug>/). */
+// -----------------------------------------------------------------------------
+// Per-listing SEO for /properties/<slug>/, derived from the listing itself so a
+// new unit in mockData.ts is fully indexable without a second edit here.
+// -----------------------------------------------------------------------------
+
+/** Build the head copy for one listing. */
+export function propertySeoEntry(p: Property): SeoEntry {
+  const rooms =
+    p.bedrooms === null ? '' : p.bedrooms === 0 ? 'Studio ' : `${p.bedrooms} Bedroom `
+  const price = `${p.price.toLocaleString('en-US')} QAR`
+  return {
+    title: `${rooms}${p.type === 'shop' ? 'Shop' : 'Property'} for Rent in ${p.district} | ${price}${p.period} | Dania Real Estate`,
+    description:
+      `${p.title} — ${p.area} m² in ${p.location} at ${price}${p.period}. ` +
+      `${p.furnished ? 'Furnished' : 'Unfurnished'}, verified by Dania Real Estate with zero hidden commission. ` +
+      `View photos, amenities, and full details, then WhatsApp our leasing desk (Ref ${p.reference}).`,
+    image: p.image,
+  }
+}
+
+/** Slug → SEO entry for every live listing (used by the build-time prerender). */
+export const PROPERTY_SEO: Record<string, SeoEntry> = Object.fromEntries(
+  properties.map((p) => [p.slug, propertySeoEntry(p)]),
+)
+
+/** Resolve the SEO entry for a given pathname (handles /areas/ + /properties/). */
 export function resolveSeo(pathname: string): SeoEntry {
   let base: SeoEntry
   const areaMatch = pathname.match(/^\/areas\/([^/]+)\/$/)
+  const propMatch = pathname.match(/^\/properties\/([^/]+)\/$/)
+  // Read `properties` live (not the prebuilt map) so a CMS listing edit is
+  // reflected in the head immediately.
+  const listing = propMatch ? properties.find((p) => p.slug === propMatch[1]) : undefined
   if (SEO[pathname]) base = SEO[pathname]
+  else if (listing) base = propertySeoEntry(listing)
   else if (areaMatch && AREA_SEO[areaMatch[1]]) base = AREA_SEO[areaMatch[1]]
   // Fallback to the home entry so the head is never the build placeholder.
   else base = SEO['/']

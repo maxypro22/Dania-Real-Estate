@@ -13,7 +13,9 @@ import { HeroSequence } from '@/components/shared/HeroSequence'
 import { StackedCards } from '@/components/shared/StackedCards'
 import { CardCarousel } from '@/components/shared/CardCarousel'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
-import { company, whyChooseUs } from '@/data/mockData'
+import { company, properties, whyChooseUs } from '@/data/mockData'
+import { PropertyCard } from '@/components/search/PropertyCard'
+import { sortProperties } from '@/lib/search'
 
 /* ── Section 5: areas data ────────────────────────────────────────────── */
 const AREAS_AR = [
@@ -148,6 +150,8 @@ export function HomePage() {
       h3: isAr ? s.titleAr : s.titleEn,
       text: isAr ? s.textAr : s.textEn,
     }))
+  // Newest six listings, straight from the same data the search page uses.
+  const latestListings = sortProperties(properties, 'newest').slice(0, 6)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [activeShowcase, setActiveShowcase] = useState(0)
 
@@ -260,6 +264,39 @@ export function HomePage() {
             </div>
           </Reveal>
         </div>
+        </div>
+      </section>
+
+      {/* ── 3b. LIVE LISTINGS ── */}
+      <section className="bg-surface py-16">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <Reveal>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-2">
+                  {isAr ? 'أحدث العقارات المتاحة' : 'Latest available properties'}
+                </h2>
+              </Reveal>
+              <Reveal delay={100}>
+                <p className="text-ink-muted max-w-xl">
+                  {isAr
+                    ? `${properties.length} عقارًا موثقًا للإيجار في الدوحة وقطر — بأسعار واضحة وصور حقيقية.`
+                    : `${properties.length} verified rentals across Doha and Qatar — real photos, transparent prices, zero hidden commission.`}
+                </p>
+              </Reveal>
+            </div>
+            <Link
+              to="/properties/"
+              className="inline-flex items-center gap-1.5 rounded-full border border-forest px-6 py-3 text-sm font-bold text-forest transition-colors hover:bg-forest hover:text-white"
+            >
+              {isAr ? 'تصفح كل العقارات' : 'Browse all properties'}
+              <ArrowRight size={15} className="rtl:-scale-x-100" />
+            </Link>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {latestListings.map((p) => <PropertyCard key={p.id} p={p} />)}
+          </div>
         </div>
       </section>
 

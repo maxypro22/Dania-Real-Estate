@@ -19,7 +19,14 @@ React 19 + TypeScript SPA, bundled with Vite 8. Deployed on Vercel; `vercel.json
 
 **Routing** — React Router DOM v7. All routes live in `src/App.tsx` under a shared `<Layout>` outlet. Every page is `lazy()`-loaded for code splitting.
 
-**Data** — No backend. All property listings, area data, FAQ entries, and company info live in `src/data/mockData.ts`. Editing content means editing that file.
+**Data** — No backend. All property listings, area data, FAQ entries, and company info live in `src/data/mockData.ts`. Editing content means editing that file. Listings are built through the `mk()` helper there, which fills in the photo gallery, agent, reference, and generated description from the unit's own attributes — add a seed object and the listing, its detail page, its SEO head, and its sitemap entry all follow automatically.
+
+**Property search** — `src/lib/search.ts` owns the whole model: the `Filters` shape, URL (de)serialisation (`filtersToParams` / `paramsToFilters`), the pure filter/sort pipeline, and the label maps. It imports no React, so the same logic drives the hero bar, the sticky bar, and the results page. Search UI lives in `src/components/search/`:
+- `SearchFilterBar` — the controlled bar (location field + type / beds & baths / price / filters chips). `layout="stacked"` for hero and results header, `layout="inline"` for the pinned bar.
+- `StickySearchBar` — rendered once in `Layout`, pinned under the navbar on every page. On `/properties/` it binds to the URL (same state as the page's own bar); elsewhere it holds a draft and navigates on submit.
+- `PropertyCard` / `PropertyRowCard`, `PropertyPhotoStrip`, `CategoryChips`, `HeroSearch`.
+
+Routes: `/properties/` (results, filter state lives entirely in the query string) and `/properties/:slug/` (detail). Per-listing `<head>` copy is generated in `src/lib/seo.ts` (`propertySeoEntry` / `PROPERTY_SEO`), and `scripts/prerender.mjs` bakes an HTML file plus a sitemap entry for every slug.
 
 **Styling** — Tailwind CSS v4 via `@tailwindcss/vite`. There is **no `tailwind.config.js`**. Brand tokens are declared in the `@theme {}` block in `src/index.css`. The color naming is intentionally non-semantic:
 - `forest` = dark brown (`#2C100A`) — backgrounds, nav, footer

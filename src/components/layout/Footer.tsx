@@ -13,6 +13,7 @@ export function Footer() {
 
   const quickLinks: [string, string][] = [
     [t('footer.home'), '/'],
+    [t('footer.searchProperties'), '/properties/'],
     [t('footer.about'), '/about-company/'],
     [t('footer.whyChooseUs'), '/about-company/why-choose-us/'],
     [t('footer.gallery'), '/about-company/gallery/'],
