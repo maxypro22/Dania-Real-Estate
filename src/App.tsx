@@ -13,6 +13,8 @@ const VillasPage             = lazy(() => import('@/pages/VillasPage').then(m =>
 const StaffAccommodationPage = lazy(() => import('@/pages/StaffAccommodationPage').then(m => ({ default: m.StaffAccommodationPage })))
 const ShopsPage              = lazy(() => import('@/pages/ShopsPage').then(m => ({ default: m.ShopsPage })))
 const StudiosPage            = lazy(() => import('@/pages/StudiosPage').then(m => ({ default: m.StudiosPage })))
+const PropertiesPage         = lazy(() => import('@/pages/PropertiesPage').then(m => ({ default: m.PropertiesPage })))
+const PropertyDetailPage     = lazy(() => import('@/pages/PropertyDetailPage').then(m => ({ default: m.PropertyDetailPage })))
 const AreasPage              = lazy(() => import('@/pages/AreasPage').then(m => ({ default: m.AreasPage })))
 const AreaDetailPage         = lazy(() => import('@/pages/AreaDetailPage').then(m => ({ default: m.AreaDetailPage })))
 const FaqPage                = lazy(() => import('@/pages/FaqPage').then(m => ({ default: m.FaqPage })))
@@ -53,6 +55,8 @@ export default function App() {
             <Route path="/studio-partition-rentals/studio-for-rent/" element={<StudiosPage filter="studio" />} />
             <Route path="/studio-partition-rentals/partition-room-for-rent/" element={<StudiosPage filter="partition" />} />
             <Route path="/studio-partition-rentals/one-bedroom-for-rent/" element={<StudiosPage filter="1br" />} />
+            <Route path="/properties/" element={<PropertiesPage />} />
+            <Route path="/properties/:slug/" element={<PropertyDetailPage />} />
             <Route path="/areas/" element={<AreasPage />} />
             <Route path="/areas/:slug/" element={<AreaDetailPage />} />
             <Route path="/faq/" element={<FaqPage />} />

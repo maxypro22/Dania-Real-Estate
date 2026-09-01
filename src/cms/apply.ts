@@ -58,7 +58,12 @@ function applyCompany(o: CmsOverrides): void {
 
 function applyProperties(o: CmsOverrides): void {
   const next = o.properties ?? defaultProperties
-  properties.splice(0, properties.length, ...next.map((p) => ({ ...p })))
+  // Layer each override over its built-in listing (matched by id) rather than
+  // replacing it outright: an override saved before the listing model grew its
+  // search fields (slug, gallery, amenities, agent) would otherwise strip them
+  // and break the listing pages.
+  const base = new Map(defaultProperties.map((p) => [p.id, p]))
+  properties.splice(0, properties.length, ...next.map((p) => ({ ...base.get(p.id), ...p })))
 }
 
 function applyWhyChooseUs(o: CmsOverrides): void {

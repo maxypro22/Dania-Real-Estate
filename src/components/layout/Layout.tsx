@@ -4,6 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { WhatsAppButton } from '@/components/shared/WhatsAppButton'
+import { StickySearchBar } from '@/components/search/StickySearchBar'
 import { ErrorBoundary } from '@/components/shared/ErrorBoundary'
 import { Seo } from '@/components/shared/Seo'
 import { SeoExtraProvider } from '@/components/shared/seo-context'
@@ -15,6 +16,11 @@ export function Layout() {
   const isAr = i18n.language === 'ar'
   const [extraSchema, setExtraSchema] = useState<object[]>([])
   const seo = resolveSeo(pathname)
+
+  // The listing detail page carries its own Call/WhatsApp actions (a sticky
+  // agent panel on desktop, a fixed action bar on mobile) — a second floating
+  // button would sit right on top of them.
+  const isListingDetail = /^\/properties\/[^/]+\/?$/.test(pathname)
 
   return (
     <SeoExtraProvider value={setExtraSchema}>
@@ -34,13 +40,15 @@ export function Layout() {
           {isAr ? 'تخطَّ إلى المحتوى' : 'Skip to content'}
         </a>
         <Header />
+        {/* Site-wide property search, pinned under the navbar on every page */}
+        <StickySearchBar />
         <main id="main-content" className="flex-1">
           <ErrorBoundary key={pathname}>
             <Outlet />
           </ErrorBoundary>
         </main>
         <Footer />
-        <WhatsAppButton />
+        {!isListingDetail && <WhatsAppButton />}
       </div>
     </SeoExtraProvider>
   )

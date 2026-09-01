@@ -46,7 +46,9 @@ function upsertLink(rel: string, href: string) {
  */
 export function Seo({ title, description, path, image, jsonLd = [] }: SeoProps) {
   const url = SITE_ORIGIN + path
-  const imageUrl = SITE_ORIGIN + (image ?? '/Dania_Real_Estate_logo.png')
+  // Listing photos are absolute (CDN) URLs; site imagery is a /public path.
+  const imageSrc = image ?? '/Dania_Real_Estate_logo.png'
+  const imageUrl = /^https?:\/\//.test(imageSrc) ? imageSrc : SITE_ORIGIN + imageSrc
   const ldKey = JSON.stringify(jsonLd)
 
   useEffect(() => {
