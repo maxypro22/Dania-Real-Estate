@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
 import { Footer } from './Footer'
-import { WhatsAppButton } from '@/components/shared/WhatsAppButton'
+import { FloatingContact } from '@/components/shared/FloatingContact'
 import { StickySearchBar } from '@/components/search/StickySearchBar'
 import { ErrorBoundary } from '@/components/shared/ErrorBoundary'
 import { Seo } from '@/components/shared/Seo'
@@ -18,8 +18,8 @@ export function Layout() {
   const seo = resolveSeo(pathname)
 
   // The listing detail page carries its own Call/WhatsApp actions (a sticky
-  // agent panel on desktop, a fixed action bar on mobile) — a second floating
-  // button would sit right on top of them.
+  // agent panel on desktop, a fixed action bar on mobile) — the floating
+  // widgets would sit right on top of them.
   const isListingDetail = /^\/properties\/[^/]+\/?$/.test(pathname)
 
   return (
@@ -48,7 +48,7 @@ export function Layout() {
           </ErrorBoundary>
         </main>
         <Footer />
-        {!isListingDetail && <WhatsAppButton />}
+        {!isListingDetail && <FloatingContact />}
       </div>
     </SeoExtraProvider>
   )

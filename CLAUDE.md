@@ -36,8 +36,12 @@ Routes: `/properties/` (results, filter state lives entirely in the query string
 
 **`@` path alias** — `@/` maps to `src/`. Use it for all imports.
 
+**Navigation** — `navItems` in `Header.tsx` is the single source: Home · Properties for Rent · Areas · About Company · Contact Us. "Properties for Rent" is a **heading with no `to`** — it renders as a `<button>` that only opens its panel, and the panel omits the "Browse the section" row. Sub-items may carry their own `children` (Apartments → 1/2/3 BHK), rendered as an indented second level in both the desktop panel and the mobile accordion.
+
+**Contact surfaces** — the business runs two mobile lines plus an office line, all from `settings.json`. The navbar action area shows the **two mobile lines** (the office line lives in the footer and on `/contact-us/` only); `FloatingContact` renders the Call + WhatsApp FABs, each opening a Line 1 / Line 2 picker. `company.mapUrl` (directions) and `company.mapEmbedUrl` (contact-page iframe) are the single source for every map link — the iframe needs `https://www.google.com` in the `frame-src` CSP directive in `vercel.json`.
+
 **Component layers:**
-- `src/components/layout/` — `Header`, `Footer`, `Layout` (wraps outlet + floating WhatsApp button)
+- `src/components/layout/` — `Header`, `Footer`, `Layout` (wraps outlet + site-wide search bar + floating contact widgets)
 - `src/components/shared/` — reusable pieces: `ProcessSteps`, `Reveal`, `CountUp`, `WhatsAppButton`, `HeroSequence`, `ErrorBoundary`, `StackedCards`, `CardCarousel`, `ScrollRevealText`, `Seo`
 - `src/pages/` — one file per route; pages own their own section-level layout (listing/property cards are rendered inline per page, not via a shared card component)
 

@@ -16,36 +16,47 @@ function renderWithProviders(ui: React.ReactElement) {
 }
 
 // Regression for F-001: every phone number comes from `company` (no hardcoded
-// literals). The client's Developer Note requires all THREE lines to be shown
-// and individually clickable in both the header and the footer.
+// literals). The footer still carries all THREE lines, individually clickable.
+// The header carries only the two MOBILE lines: the client's structure plan
+// moved them into the navbar action area and dropped the office line from the
+// header entirely (it remains in the footer and on the contact page).
 // Regression for F-017: tel: hrefs must be dial-safe (no spaces).
 const noSpaces = (href: string | null) => {
   expect(href).not.toBeNull()
   expect(href!).not.toMatch(/\s/)
 }
 
-const expectAllThreeLines = (container: HTMLElement) => {
-  const phones = companyPhones()
-  expect(phones).toHaveLength(3)
-  const hrefs = [...container.querySelectorAll('a[href^="tel:"]')].map((a) => {
+const telHrefs = (container: HTMLElement) =>
+  [...container.querySelectorAll('a[href^="tel:"]')].map((a) => {
     noSpaces(a.getAttribute('href'))
     return a.getAttribute('href')
   })
-  for (const p of phones) {
-    expect(container.textContent).toContain(p.display)
-    expect(hrefs).toContain(p.tel)
-  }
-}
 
 describe('phone numbers are sourced from company data', () => {
-  it('Header shows all three lines, each with a dial-safe tel:', () => {
+  it('Header shows both mobile lines, each with a dial-safe tel:', () => {
     const { container } = renderWithProviders(<Header />)
-    expectAllThreeLines(container)
+    const hrefs = telHrefs(container)
+    for (const display of [company.phone, company.phone2]) {
+      expect(container.textContent).toContain(display)
+      expect(hrefs).toContain(`tel:${display.replace(/\s/g, '')}`)
+    }
+  })
+
+  it('Header no longer carries the office line (moved out per the structure plan)', () => {
+    const { container } = renderWithProviders(<Header />)
+    expect(container.textContent).not.toContain(company.officePhone)
+    expect(telHrefs(container)).not.toContain(`tel:${company.officePhone.replace(/\s/g, '')}`)
   })
 
   it('Footer shows all three lines, each with a dial-safe tel:', () => {
     const { container } = renderWithProviders(<Footer />)
-    expectAllThreeLines(container)
+    const phones = companyPhones()
+    expect(phones).toHaveLength(3)
+    const hrefs = telHrefs(container)
+    for (const p of phones) {
+      expect(container.textContent).toContain(p.display)
+      expect(hrefs).toContain(p.tel)
+    }
   })
 
   it('the three lines are distinct and all defined', () => {

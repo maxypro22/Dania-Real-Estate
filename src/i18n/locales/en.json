@@ -19,7 +19,16 @@
     "partitionRoom": "Partition Room for Rent",
     "oneBedroomRental": "One Bedroom for Rent",
     "areas": "Areas",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "propertiesForRent": "Properties for Rent",
+    "studiosPartitions": "Studios & Partition Rooms",
+    "shopsForRent": "Shops for Rent",
+    "aboutUs": "About Us",
+    "contact": "Contact Us",
+    "alSadd": "Al Sadd",
+    "binMahmoud": "Bin Mahmoud",
+    "alWakra": "Al Wakra",
+    "otherLocations": "Other Qatar Locations"
   },
   "header": {
     "whatsapp": "WhatsApp",
@@ -27,7 +36,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "switchToAr": "AR",
-    "switchToEn": "EN"
+    "switchToEn": "EN",
+    "findUsOnMap": "Find Us On Map"
   },
   "footer": {
     "tagline": "Dania Real Estate (شركة دانية للعقارات) is a premier property management company based in Doha, Qatar. We specialize in connecting tenants, corporate organizations, and business owners with verified, high-quality residential and commercial rental solutions.",
@@ -111,7 +121,9 @@
       "trust1": "All-inclusive listings",
       "trust2": "Verified properties",
       "trust3": "Instant response",
-      "trustLine": "Direct rental assistance for residential homes, corporate staff housing, commercial retail shops, and practical studio partition spaces across Qatar."
+      "trustLine": "Direct rental assistance for residential homes, corporate staff housing, commercial retail shops, and practical studio partition spaces across Qatar.",
+      "h2": "Dania Real Estate Helps You Find Your Perfect Rental Property in Qatar",
+      "h4": "Easily find 1-3 BHK apartments, Villas, Studios & Partitions, Staff Accommodation, and commercial Shops."
     },
     "stats": {
       "properties": "Active Properties",
@@ -165,31 +177,77 @@
     "journey": {
       "h2": "How Our Rental Process Works",
       "steps": [
-        { "num": "01", "title": "Submit Your Requirements", "desc": "Define your target location, room count, budget limits, and expected lease start dates." },
-        { "num": "02", "title": "Review Verified Matches", "desc": "Our localized leasing desk maps out live, matching properties available on the market right now." },
-        { "num": "03", "title": "Schedule Guided Site Viewings", "desc": "Coordinate convenient physical property inspections with our transparent on-ground agents." },
-        { "num": "04", "title": "Secure Your Lease", "desc": "Complete straightforward contract formalities smoothly with zero hidden fees or unexpected commission layers." }
+        {
+          "num": "01",
+          "title": "Submit Your Requirements",
+          "desc": "Define your target location, room count, budget limits, and expected lease start dates."
+        },
+        {
+          "num": "02",
+          "title": "Review Verified Matches",
+          "desc": "Our localized leasing desk maps out live, matching properties available on the market right now."
+        },
+        {
+          "num": "03",
+          "title": "Schedule Guided Site Viewings",
+          "desc": "Coordinate convenient physical property inspections with our transparent on-ground agents."
+        },
+        {
+          "num": "04",
+          "title": "Secure Your Lease",
+          "desc": "Complete straightforward contract formalities smoothly with zero hidden fees or unexpected commission layers."
+        }
       ]
     },
     "showcases": {
       "h2": "Featured Trending Rental Properties",
       "checkLiveStatus": "Check Live Status",
       "items": [
-        { "h3": "Furnished Apartments for Rent in Doha", "text": "Luxury 2BHK setups located in central zones." },
-        { "h3": "Premium Family Compounds", "text": "Spacious standalone estates in Al Aziziya." },
-        { "h3": "Budget-Friendly Studio Partition Rentals", "text": "All-inclusive single professional units." },
-        { "h3": "Approved Staff Accommodation Buildings", "text": "Turnkey labor housing complexes." }
+        {
+          "h3": "Furnished Apartments for Rent in Doha",
+          "text": "Luxury 2BHK setups located in central zones."
+        },
+        {
+          "h3": "Premium Family Compounds",
+          "text": "Spacious standalone estates in Al Aziziya."
+        },
+        {
+          "h3": "Budget-Friendly Studio Partition Rentals",
+          "text": "All-inclusive single professional units."
+        },
+        {
+          "h3": "Approved Staff Accommodation Buildings",
+          "text": "Turnkey labor housing complexes."
+        }
       ]
     },
     "faq": {
       "h2": "Dania Real Estate Rental FAQ",
       "items": [
-        { "q": "Why should I choose a professional property management company in Doha?", "a": "Working with an established property management company like Dania Real Estate (شركة دانية للعقارات) guarantees verified property advertisements, legal leasing procedures, timely property maintenance, and zero hidden rental fees." },
-        { "q": "Are utility costs included across your apartments for rent in Doha?", "a": "Yes, a large number of our residential properties feature all-inclusive rental plans that cover monthly water, electricity, and basic facility maintenance charges." },
-        { "q": "Do you offer commission-free property rentals in Qatar?", "a": "We prioritize open, transparent contract arrangements and feature direct rental opportunities with 0% middleman commission markups across selected portfolio lines." },
-        { "q": "How can companies arrange for corporate staff accommodation listings?", "a": "Enterprises can contact our dedicated management desk at info@dania-realestate.com or call +97433260393 to quickly secure staff housing options that meet regulatory guidelines." },
-        { "q": "Do you manage retail commercial shops for rent in Doha?", "a": "Yes, we actively support local business owners by sourcing premium retail spaces, storefronts, and commercial shops in active trading zones." },
-        { "q": "What is the fastest way to check property availability at Dania Real Estate?", "a": "The fastest way to get real-time availability details or to request property viewings is by connecting with our team directly through our active WhatsApp support line." }
+        {
+          "q": "Why should I choose a professional property management company in Doha?",
+          "a": "Working with an established property management company like Dania Real Estate (شركة دانية للعقارات) guarantees verified property advertisements, legal leasing procedures, timely property maintenance, and zero hidden rental fees."
+        },
+        {
+          "q": "Are utility costs included across your apartments for rent in Doha?",
+          "a": "Yes, a large number of our residential properties feature all-inclusive rental plans that cover monthly water, electricity, and basic facility maintenance charges."
+        },
+        {
+          "q": "Do you offer commission-free property rentals in Qatar?",
+          "a": "We prioritize open, transparent contract arrangements and feature direct rental opportunities with 0% middleman commission markups across selected portfolio lines."
+        },
+        {
+          "q": "How can companies arrange for corporate staff accommodation listings?",
+          "a": "Enterprises can contact our dedicated management desk at info@dania-realestate.com or call +97433260393 to quickly secure staff housing options that meet regulatory guidelines."
+        },
+        {
+          "q": "Do you manage retail commercial shops for rent in Doha?",
+          "a": "Yes, we actively support local business owners by sourcing premium retail spaces, storefronts, and commercial shops in active trading zones."
+        },
+        {
+          "q": "What is the fastest way to check property availability at Dania Real Estate?",
+          "a": "The fastest way to get real-time availability details or to request property viewings is by connecting with our team directly through our active WhatsApp support line."
+        }
       ]
     },
     "cta": {
@@ -212,53 +270,135 @@
       "h2": "What We Help Clients Find",
       "subtitle": "To support navigation transparency, Dania Real Estate categorizes its localized rental network into distinct operational property management vectors. Explore our core focus areas below.",
       "cards": [
-        { "title": "Apartments for Rent", "text": "From compact single-executive flats to expansive multi-room living arrangements across central Doha sectors." },
-        { "title": "Villas for Rent", "text": "Premium independent layouts and highly secure compound villas structured around secure, community-style amenities." },
-        { "title": "Staff Accommodation", "text": "Enterprise-grade operational labor housing complexes and dedicated staff villas built to strict corporate safety guidelines." },
-        { "title": "Shops for Rent", "text": "Highly strategic retail storefronts and active commercial properties tailored to drive retail operations successfully." },
-        { "title": "Studio & Partition Rentals", "text": "Budget-friendly private studio spaces and partitioned single rooms mapped close to major rapid transit systems." }
+        {
+          "title": "Apartments for Rent",
+          "text": "From compact single-executive flats to expansive multi-room living arrangements across central Doha sectors."
+        },
+        {
+          "title": "Villas for Rent",
+          "text": "Premium independent layouts and highly secure compound villas structured around secure, community-style amenities."
+        },
+        {
+          "title": "Staff Accommodation",
+          "text": "Enterprise-grade operational labor housing complexes and dedicated staff villas built to strict corporate safety guidelines."
+        },
+        {
+          "title": "Shops for Rent",
+          "text": "Highly strategic retail storefronts and active commercial properties tailored to drive retail operations successfully."
+        },
+        {
+          "title": "Studio & Partition Rentals",
+          "text": "Budget-friendly private studio spaces and partitioned single rooms mapped close to major rapid transit systems."
+        }
       ]
     },
     "trust": {
       "h2": "Why Clients Choose Dania Real Estate",
       "cards": [
-        { "title": "Local Market Intelligence", "text": "Our dedicated agents possess an intuitive grasp of localized zoning legalities, real-time rental value shifts, and optimal neighborhood conveniences." },
-        { "title": "Verifiable Asset Catalogs", "text": "We protect our users from marketplace disinformation by running strict multi-point physical inspections before any property goes live on our network." },
-        { "title": "Versatile Portfolio Layouts", "text": "Our capability spans fluidly across low-cost micro-housing setups, luxury family estates, and scalable commercial installations." },
-        { "title": "Rapid Communication Architecture", "text": "We eliminate delayed corporate ticketing models, opting for instant, direct phone consults and active WhatsApp support pipelines." },
-        { "title": "Client-Centric Operational Care", "text": "Whether handling a brief single-tenant studio search or managing bulk corporate relocation contracts, our delivery standard remains pristine." }
+        {
+          "title": "Local Market Intelligence",
+          "text": "Our dedicated agents possess an intuitive grasp of localized zoning legalities, real-time rental value shifts, and optimal neighborhood conveniences."
+        },
+        {
+          "title": "Verifiable Asset Catalogs",
+          "text": "We protect our users from marketplace disinformation by running strict multi-point physical inspections before any property goes live on our network."
+        },
+        {
+          "title": "Versatile Portfolio Layouts",
+          "text": "Our capability spans fluidly across low-cost micro-housing setups, luxury family estates, and scalable commercial installations."
+        },
+        {
+          "title": "Rapid Communication Architecture",
+          "text": "We eliminate delayed corporate ticketing models, opting for instant, direct phone consults and active WhatsApp support pipelines."
+        },
+        {
+          "title": "Client-Centric Operational Care",
+          "text": "Whether handling a brief single-tenant studio search or managing bulk corporate relocation contracts, our delivery standard remains pristine."
+        }
       ]
     },
     "audience": {
       "h2": "Who We Support",
       "cards": [
-        { "title": "Growing Families", "text": "Sourcing safe residential solutions positioned directly within premium school zones, local medical clinics, and grocery centers." },
-        { "title": "Working Professionals", "text": "Aligning single executives and corporate professionals with low-maintenance studios or partition rooms near commercial business hubs." },
-        { "title": "Enterprise Corporate Entities", "text": "Assisting human resource departments and enterprise managers in securing scalable, regulatory-compliant workforce accommodations safely." },
-        { "title": "Local Business Owners", "text": "Placing ambitious local retail owners and commercial operators into spaces engineered for optimum market visibility and consumer traffic." }
+        {
+          "title": "Growing Families",
+          "text": "Sourcing safe residential solutions positioned directly within premium school zones, local medical clinics, and grocery centers."
+        },
+        {
+          "title": "Working Professionals",
+          "text": "Aligning single executives and corporate professionals with low-maintenance studios or partition rooms near commercial business hubs."
+        },
+        {
+          "title": "Enterprise Corporate Entities",
+          "text": "Assisting human resource departments and enterprise managers in securing scalable, regulatory-compliant workforce accommodations safely."
+        },
+        {
+          "title": "Local Business Owners",
+          "text": "Placing ambitious local retail owners and commercial operators into spaces engineered for optimum market visibility and consumer traffic."
+        }
       ]
     },
     "areas": {
       "h2": "Rental Support Across Doha & Key Qatar Localities",
       "subtitle": "Dania Real Estate actively operates within Qatar's core growth zones. Each municipal link below pathways directly to verified localized neighborhood rental directories.",
       "cards": [
-        { "name": "Doha", "href": "/areas/doha/" },
-        { "name": "Al Sadd", "href": "/areas/al-sadd/" },
-        { "name": "Bin Mahmoud", "href": "/areas/bin-mahmoud/" },
-        { "name": "Al Wakra", "href": "/areas/al-wakra/" },
-        { "name": "Al Aziziya", "href": "/areas/al-aziziya/" },
-        { "name": "Old Airport", "href": "/areas/old-airport/" },
-        { "name": "Umm Salal", "href": "/areas/umm-salal/" },
-        { "name": "Al Kharaitiyat", "href": "/areas/al-kharaitiyat/" }
+        {
+          "name": "Doha",
+          "href": "/areas/doha/"
+        },
+        {
+          "name": "Al Sadd",
+          "href": "/areas/al-sadd/"
+        },
+        {
+          "name": "Bin Mahmoud",
+          "href": "/areas/bin-mahmoud/"
+        },
+        {
+          "name": "Al Wakra",
+          "href": "/areas/al-wakra/"
+        },
+        {
+          "name": "Al Aziziya",
+          "href": "/areas/al-aziziya/"
+        },
+        {
+          "name": "Old Airport",
+          "href": "/areas/old-airport/"
+        },
+        {
+          "name": "Umm Salal",
+          "href": "/areas/umm-salal/"
+        },
+        {
+          "name": "Al Kharaitiyat",
+          "href": "/areas/al-kharaitiyat/"
+        }
       ]
     },
     "process": {
       "h2": "How We Support Your Rental Search",
       "steps": [
-        { "num": "01", "h3": "Comprehensive Requirement Audit", "desc": "We unpack your distinct target area preferences, layout size needs, target budget thresholds, and intended move-in timelines." },
-        { "num": "02", "h3": "Selective Portfolio Cross-Mapping", "desc": "Our localized database desk cross-checks active listings, curating an uninflated list of candidate properties." },
-        { "num": "03", "h3": "Controlled Property Walk-Throughs", "desc": "We organize direct physical site tours alongside transparent agents who break down property utility factors clearly." },
-        { "num": "04", "h3": "Seamless Contract Settlement", "desc": "Our compliance experts handle lease drafting and verification loops smoothly, removing hidden agent fees completely." }
+        {
+          "num": "01",
+          "h3": "Comprehensive Requirement Audit",
+          "desc": "We unpack your distinct target area preferences, layout size needs, target budget thresholds, and intended move-in timelines."
+        },
+        {
+          "num": "02",
+          "h3": "Selective Portfolio Cross-Mapping",
+          "desc": "Our localized database desk cross-checks active listings, curating an uninflated list of candidate properties."
+        },
+        {
+          "num": "03",
+          "h3": "Controlled Property Walk-Throughs",
+          "desc": "We organize direct physical site tours alongside transparent agents who break down property utility factors clearly."
+        },
+        {
+          "num": "04",
+          "h3": "Seamless Contract Settlement",
+          "desc": "Our compliance experts handle lease drafting and verification loops smoothly, removing hidden agent fees completely."
+        }
       ]
     },
     "approach": {
@@ -273,21 +413,51 @@
     "values": {
       "h2": "Our Institutional Values",
       "cards": [
-        { "title": "Uncompromising Clarity", "text": "Eliminating vague property descriptions and hidden fees by keeping all leasing interactions fundamentally honest and direct." },
-        { "title": "Operational Reliability", "text": "Serving as a dependable point of support for our clients, providing verified real-time property metadata and reliable assistance." },
-        { "title": "Hyper-Localized Mastery", "text": "Deploying deep neighborhood knowledge to protect consumers from choosing poorly connected or mispriced rental spaces." },
-        { "title": "Continuous Client Alignment", "text": "Adapting our portfolio deployment strategy dynamically to fit the evolving personal and operational business budgets of our users." }
+        {
+          "title": "Uncompromising Clarity",
+          "text": "Eliminating vague property descriptions and hidden fees by keeping all leasing interactions fundamentally honest and direct."
+        },
+        {
+          "title": "Operational Reliability",
+          "text": "Serving as a dependable point of support for our clients, providing verified real-time property metadata and reliable assistance."
+        },
+        {
+          "title": "Hyper-Localized Mastery",
+          "text": "Deploying deep neighborhood knowledge to protect consumers from choosing poorly connected or mispriced rental spaces."
+        },
+        {
+          "title": "Continuous Client Alignment",
+          "text": "Adapting our portfolio deployment strategy dynamically to fit the evolving personal and operational business budgets of our users."
+        }
       ]
     },
     "faq": {
       "h2": "About Dania Real Estate FAQ",
       "items": [
-        { "q": "Is Dania Real Estate a licensed property management company in Doha?", "a": "Yes, Dania Real Estate (شركة دانية للعقارات) is a fully recognized real estate company in Qatar, managing operations from our corporate premises on Al Rayyan Road, Al Muftah Plaza Building." },
-        { "q": "Where is the physical corporate office of Dania Real Estate located?", "a": "Our central property management office is located on the 3rd Floor, Al Muftah Plaza Building, Al Rayyan Road, Doha, Qatar. Clients are welcome to visit for strategic rental consultations." },
-        { "q": "How does Dania Real Estate counter fake property advertisements?", "a": "We mandate a mandatory pre-listing physical inspection policy. Our property management specialists verify the structural state, utility conditions, and pricing of every apartment or shop before it goes live." },
-        { "q": "Does your property management portfolio support commercial enterprise operations?", "a": "Absolutely. We maintain specialized teams to assist business owners in sourcing retail commercial shops for rent in Doha and corporate procurement teams in secure workforce staff accommodations." },
-        { "q": "Does Dania Real Estate cover property listings outside the central Doha perimeter?", "a": "Yes, our active leasing coverage expands outward into important surrounding municipal zones, including comprehensive rental listings within Al Wakra, Al Aziziya, Umm Salal, and Al Kharaitiyat." },
-        { "q": "How can I get a real-time list of available properties today?", "a": "The most efficient method to receive real-time property listings is to connect directly with our Al Rayyan Road leasing desk via our active WhatsApp support line (+97433260393)." }
+        {
+          "q": "Is Dania Real Estate a licensed property management company in Doha?",
+          "a": "Yes, Dania Real Estate (شركة دانية للعقارات) is a fully recognized real estate company in Qatar, managing operations from our corporate premises on Al Rayyan Road, Al Muftah Plaza Building."
+        },
+        {
+          "q": "Where is the physical corporate office of Dania Real Estate located?",
+          "a": "Our central property management office is located on the 3rd Floor, Al Muftah Plaza Building, Al Rayyan Road, Doha, Qatar. Clients are welcome to visit for strategic rental consultations."
+        },
+        {
+          "q": "How does Dania Real Estate counter fake property advertisements?",
+          "a": "We mandate a mandatory pre-listing physical inspection policy. Our property management specialists verify the structural state, utility conditions, and pricing of every apartment or shop before it goes live."
+        },
+        {
+          "q": "Does your property management portfolio support commercial enterprise operations?",
+          "a": "Absolutely. We maintain specialized teams to assist business owners in sourcing retail commercial shops for rent in Doha and corporate procurement teams in secure workforce staff accommodations."
+        },
+        {
+          "q": "Does Dania Real Estate cover property listings outside the central Doha perimeter?",
+          "a": "Yes, our active leasing coverage expands outward into important surrounding municipal zones, including comprehensive rental listings within Al Wakra, Al Aziziya, Umm Salal, and Al Kharaitiyat."
+        },
+        {
+          "q": "How can I get a real-time list of available properties today?",
+          "a": "The most efficient method to receive real-time property listings is to connect directly with our Al Rayyan Road leasing desk via our active WhatsApp support line (+97433260393)."
+        }
       ]
     },
     "cta": {
@@ -309,59 +479,153 @@
     "trust": {
       "h2": "Why Tenants and Businesses Trust Dania Real Estate",
       "cards": [
-        { "title": "Absolute Pricing Honesty", "text": "We break down rental terms with complete openness, ensuring no unexpected agency fees, concealed maintenance markups, or administrative surprises." },
-        { "title": "Direct WhatsApp Speed", "text": "Qatar's rental market shifts hourly. Our active messaging infrastructure connects you to physical leasing desk officers within minutes for instant status checks." },
-        { "title": "Deep Municipal Awareness", "text": "We provide specialized consulting on neighborhood rental trends, local Doha community access routes, and nearby essential public utilities." },
-        { "title": "Multi-Sector Portfolio Balance", "text": "Our management experience encompasses low-cost executive bachelor studios, large multi-family compound villas, and expansive commercial shops." },
-        { "title": "Target-Matched Curations", "text": "We do not push generic properties. Our property specialists filter choices entirely based on your exact location targets, room size specs, and budget tiers." },
-        { "title": "Frictionless Lease Transitions", "text": "From initial digital listing evaluation to physical property walkthroughs and final contract sign-offs, we supervise every legal checkpoint smoothly." }
+        {
+          "title": "Absolute Pricing Honesty",
+          "text": "We break down rental terms with complete openness, ensuring no unexpected agency fees, concealed maintenance markups, or administrative surprises."
+        },
+        {
+          "title": "Direct WhatsApp Speed",
+          "text": "Qatar's rental market shifts hourly. Our active messaging infrastructure connects you to physical leasing desk officers within minutes for instant status checks."
+        },
+        {
+          "title": "Deep Municipal Awareness",
+          "text": "We provide specialized consulting on neighborhood rental trends, local Doha community access routes, and nearby essential public utilities."
+        },
+        {
+          "title": "Multi-Sector Portfolio Balance",
+          "text": "Our management experience encompasses low-cost executive bachelor studios, large multi-family compound villas, and expansive commercial shops."
+        },
+        {
+          "title": "Target-Matched Curations",
+          "text": "We do not push generic properties. Our property specialists filter choices entirely based on your exact location targets, room size specs, and budget tiers."
+        },
+        {
+          "title": "Frictionless Lease Transitions",
+          "text": "From initial digital listing evaluation to physical property walkthroughs and final contract sign-offs, we supervise every legal checkpoint smoothly."
+        }
       ]
     },
     "clients": {
       "h2": "Rental Support for Different Client Needs",
       "cards": [
-        { "title": "Modern Families", "text": "Matching domestic households with quiet residential apartments or private villas located close to primary schools, markets, and clinical medical networks." },
-        { "title": "Single Professionals", "text": "Connecting single executives with practical city studio apartments, affordable partition rooms, and low-maintenance flat options near transit networks." },
-        { "title": "Enterprise Corporate Entities", "text": "Supporting HR personnel and company directors in locating bulk staff villas and compliant labor accommodation blocks meeting industrial standards." },
-        { "title": "Ambitious Business Operators", "text": "Placing local retail entrepreneurs and commercial brands into high-footfall shops and retail spaces for rent in Doha designed for consistent trade." }
+        {
+          "title": "Modern Families",
+          "text": "Matching domestic households with quiet residential apartments or private villas located close to primary schools, markets, and clinical medical networks."
+        },
+        {
+          "title": "Single Professionals",
+          "text": "Connecting single executives with practical city studio apartments, affordable partition rooms, and low-maintenance flat options near transit networks."
+        },
+        {
+          "title": "Enterprise Corporate Entities",
+          "text": "Supporting HR personnel and company directors in locating bulk staff villas and compliant labor accommodation blocks meeting industrial standards."
+        },
+        {
+          "title": "Ambitious Business Operators",
+          "text": "Placing local retail entrepreneurs and commercial brands into high-footfall shops and retail spaces for rent in Doha designed for consistent trade."
+        }
       ]
     },
     "process": {
       "h2": "How We Support Your Rental Search",
       "steps": [
-        { "num": "01", "h3": "Submit Your Exact Target Parameters", "desc": "Define your preferred municipal sectors, target budget caps, requested layout sizes, and specific contract start dates." },
-        { "num": "02", "h3": "Real-Time Inventory Screening", "desc": "Our backend leasing team filters out inactive listings, providing a focused roster of matching, fully available properties." },
-        { "num": "03", "h3": "Comprehensive Asset Review", "desc": "Receive crystal-clear property specifications, up-to-date visual assets, accurate utility rules, and coordinated viewing timelines." },
-        { "num": "04", "h3": "Secure and Confident Move-In", "desc": "Move forward with physical site inspections led by transparent agents, securing your lease with absolute legal peace of mind." }
+        {
+          "num": "01",
+          "h3": "Submit Your Exact Target Parameters",
+          "desc": "Define your preferred municipal sectors, target budget caps, requested layout sizes, and specific contract start dates."
+        },
+        {
+          "num": "02",
+          "h3": "Real-Time Inventory Screening",
+          "desc": "Our backend leasing team filters out inactive listings, providing a focused roster of matching, fully available properties."
+        },
+        {
+          "num": "03",
+          "h3": "Comprehensive Asset Review",
+          "desc": "Receive crystal-clear property specifications, up-to-date visual assets, accurate utility rules, and coordinated viewing timelines."
+        },
+        {
+          "num": "04",
+          "h3": "Secure and Confident Move-In",
+          "desc": "Move forward with physical site inspections led by transparent agents, securing your lease with absolute legal peace of mind."
+        }
       ]
     },
     "areas": {
       "h2": "Rental Support Across Doha and Key Qatar Areas",
       "subtitle": "Our property management experts maintain continuous local oversight across Qatar's major growth sectors. Select your preferred area below to explore localized property listings.",
       "items": [
-        { "name": "Doha", "href": "/areas/doha/" },
-        { "name": "Al Sadd", "href": "/areas/al-sadd/" },
-        { "name": "Bin Mahmoud", "href": "/areas/bin-mahmoud/" },
-        { "name": "Al Wakra", "href": "/areas/al-wakra/" },
-        { "name": "Al Aziziya", "href": "/areas/al-aziziya/" },
-        { "name": "Old Airport", "href": "/areas/old-airport/" },
-        { "name": "Umm Salal", "href": "/areas/umm-salal/" },
-        { "name": "Al Kharaitiyat", "href": "/areas/al-kharaitiyat/" }
+        {
+          "name": "Doha",
+          "href": "/areas/doha/"
+        },
+        {
+          "name": "Al Sadd",
+          "href": "/areas/al-sadd/"
+        },
+        {
+          "name": "Bin Mahmoud",
+          "href": "/areas/bin-mahmoud/"
+        },
+        {
+          "name": "Al Wakra",
+          "href": "/areas/al-wakra/"
+        },
+        {
+          "name": "Al Aziziya",
+          "href": "/areas/al-aziziya/"
+        },
+        {
+          "name": "Old Airport",
+          "href": "/areas/old-airport/"
+        },
+        {
+          "name": "Umm Salal",
+          "href": "/areas/umm-salal/"
+        },
+        {
+          "name": "Al Kharaitiyat",
+          "href": "/areas/al-kharaitiyat/"
+        }
       ]
     },
     "highlights": [
-      { "title": "Zero-compromise localized property verification frameworks.", "text": "Zero-compromise localized property verification frameworks." },
-      { "title": "Transparent direct-to-agent channels avoiding long response delays.", "text": "Transparent direct-to-agent channels avoiding long response delays." },
-      { "title": "Highly adaptable portfolio coverage servicing residential, commercial, and labor sectors.", "text": "Highly adaptable portfolio coverage servicing residential, commercial, and labor sectors." }
+      {
+        "title": "Zero-compromise localized property verification frameworks.",
+        "text": "Zero-compromise localized property verification frameworks."
+      },
+      {
+        "title": "Transparent direct-to-agent channels avoiding long response delays.",
+        "text": "Transparent direct-to-agent channels avoiding long response delays."
+      },
+      {
+        "title": "Highly adaptable portfolio coverage servicing residential, commercial, and labor sectors.",
+        "text": "Highly adaptable portfolio coverage servicing residential, commercial, and labor sectors."
+      }
     ],
     "faq": {
       "h2": "Why Choose Dania Real Estate FAQ",
       "items": [
-        { "q": "What makes Dania Real Estate different from other real estate companies in Qatar?", "a": "Unlike traditional brokerages that push generic, outdated listings, Dania Real Estate provides manually verified property data, zero hidden commission markups, and direct access to on-ground leasing professionals in Doha." },
-        { "q": "Why do you prioritize WhatsApp for rental inquiries and property availability?", "a": "High-quality apartments and commercial shops for rent in Doha exit the market very quickly. WhatsApp allows our leasing desk to instantly share live availability maps, unedited property media, and coordinate physical site tours without delay." },
-        { "q": "Can corporate procurement teams rely on your staff accommodation services?", "a": "Yes, absolutely. We maintain dedicated enterprise corporate desks that specialize in sourcing, vetting, and managing compliant workforce staff accommodation installations and large staff villas across Qatar." },
-        { "q": "Do your listings include all-inclusive utility programs for residential apartments?", "a": "Yes. A significant portion of our managed residential apartments, studios, and partition rooms feature verified utility configurations that cover monthly Kahramaa (water and electricity) bills directly." },
-        { "q": "Does your property search service expand into outer Qatar municipalities?", "a": "Yes. While we maintain a deep footprint in central Doha, Al Sadd, and Bin Mahmoud, our property network provides comprehensive leasing coverage across Al Wakra, Al Aziziya, Umm Salal, and Al Kharaitiyat." }
+        {
+          "q": "What makes Dania Real Estate different from other real estate companies in Qatar?",
+          "a": "Unlike traditional brokerages that push generic, outdated listings, Dania Real Estate provides manually verified property data, zero hidden commission markups, and direct access to on-ground leasing professionals in Doha."
+        },
+        {
+          "q": "Why do you prioritize WhatsApp for rental inquiries and property availability?",
+          "a": "High-quality apartments and commercial shops for rent in Doha exit the market very quickly. WhatsApp allows our leasing desk to instantly share live availability maps, unedited property media, and coordinate physical site tours without delay."
+        },
+        {
+          "q": "Can corporate procurement teams rely on your staff accommodation services?",
+          "a": "Yes, absolutely. We maintain dedicated enterprise corporate desks that specialize in sourcing, vetting, and managing compliant workforce staff accommodation installations and large staff villas across Qatar."
+        },
+        {
+          "q": "Do your listings include all-inclusive utility programs for residential apartments?",
+          "a": "Yes. A significant portion of our managed residential apartments, studios, and partition rooms feature verified utility configurations that cover monthly Kahramaa (water and electricity) bills directly."
+        },
+        {
+          "q": "Does your property search service expand into outer Qatar municipalities?",
+          "a": "Yes. While we maintain a deep footprint in central Doha, Al Sadd, and Bin Mahmoud, our property network provides comprehensive leasing coverage across Al Wakra, Al Aziziya, Umm Salal, and Al Kharaitiyat."
+        }
       ]
     },
     "cta": {
@@ -392,11 +656,26 @@
       "h2": "Browse Property Photos by Category",
       "subtitle": "Select a dedicated operational vector below to observe specific architectural layouts. Each display portal paths seamlessly into comprehensive service hubs for advanced booking operations.",
       "items": [
-        { "title": "Apartment Visuals", "description": "Review modern flats, open-plan kitchen setups, and executive interior designs across central Doha zones." },
-        { "title": "Villa & Compound Styles", "description": "Examine spacious multi-bedroom floor plans, standalone backyard setups, and secure community compound estates." },
-        { "title": "Staff Accommodation Standards", "description": "Inspect corporate-approved workforce lodging facilities, sanitary dining installations, and compliant labor blocks." },
-        { "title": "Commercial & Shop Spaces", "description": "Browse high-visibility storefront architecture, prime display window properties, and adaptable commercial shop shells." },
-        { "title": "Studio & Compact Living", "description": "View low-maintenance single professional layout structures, efficient partition rooms, and micro-apartment spaces." }
+        {
+          "title": "Apartment Visuals",
+          "description": "Review modern flats, open-plan kitchen setups, and executive interior designs across central Doha zones."
+        },
+        {
+          "title": "Villa & Compound Styles",
+          "description": "Examine spacious multi-bedroom floor plans, standalone backyard setups, and secure community compound estates."
+        },
+        {
+          "title": "Staff Accommodation Standards",
+          "description": "Inspect corporate-approved workforce lodging facilities, sanitary dining installations, and compliant labor blocks."
+        },
+        {
+          "title": "Commercial & Shop Spaces",
+          "description": "Browse high-visibility storefront architecture, prime display window properties, and adaptable commercial shop shells."
+        },
+        {
+          "title": "Studio & Compact Living",
+          "description": "View low-maintenance single professional layout structures, efficient partition rooms, and micro-apartment spaces."
+        }
       ]
     },
     "showcase": {
@@ -417,10 +696,22 @@
     "howItHelps": {
       "h2": "How This Visual Guide Helps You",
       "items": [
-        { "title": "Understand Property Styles", "description": "Visually cross-check layout designs, window orientations, and material finishes across different Qatar real estate categories instantly." },
-        { "title": "Request Updated Unit Photos", "description": "Inventory statuses fluctuate rapidly. Contact our active Al Rayyan Road desks to pull live, fresh media of unoccupied flats." },
-        { "title": "Compare Before You Ask", "description": "Narrow down your preferred structural options and sizing scales to expedite final agent processing times." },
-        { "title": "Move to the Right Service Page", "description": "Pivot easily from image inspiration to transactional data by jumping directly into targeted operational property silos." }
+        {
+          "title": "Understand Property Styles",
+          "description": "Visually cross-check layout designs, window orientations, and material finishes across different Qatar real estate categories instantly."
+        },
+        {
+          "title": "Request Updated Unit Photos",
+          "description": "Inventory statuses fluctuate rapidly. Contact our active Al Rayyan Road desks to pull live, fresh media of unoccupied flats."
+        },
+        {
+          "title": "Compare Before You Ask",
+          "description": "Narrow down your preferred structural options and sizing scales to expedite final agent processing times."
+        },
+        {
+          "title": "Move to the Right Service Page",
+          "description": "Pivot easily from image inspiration to transactional data by jumping directly into targeted operational property silos."
+        }
       ]
     },
     "services": {
@@ -446,11 +737,26 @@
     "faq": {
       "h2": "Gallery Frequently Asked Questions",
       "items": [
-        { "q": "Are these gallery images showing the exact properties available for lease today?", "a": "These portfolio photos demonstrate general architectural layout configurations, structural standards, and property styles within our management index. For a direct stream of unedited photos and videos of available properties today, message our on-ground team." },
-        { "q": "Can clients request interior photos of a specific neighborhood apartment?", "a": "Yes, completely. Send your requested neighborhood targets, budget ranges, and spacing needs to our active WhatsApp help desk, and we will extract active media files matching that exact property segment." },
-        { "q": "Do you provide certified interior photos for corporate staff accommodation complexes?", "a": "Yes. We understand enterprise compliance demands. Procurement managers can request granular structural layout media, bedroom spacing visuals, and utility plant photos by sending an inquiry to info@dania-realestate.com." },
-        { "q": "How can I verify the spatial sizing of commercial shops for rent in Doha?", "a": "Our commercial gallery sub-filters provide structural references for retail shells. Additionally, our specialized commercial property management team can supply detailed floor plans and entrance visuals upon direct request." },
-        { "q": "Why do some rental properties in Qatar look different from old online listings?", "a": "Real estate portfolios change rapidly due to interior renovations, paint alterations, and modernizations. Dania Real Estate protects users from outdated imagery by providing on-demand media assets via direct WhatsApp assistance channels." }
+        {
+          "q": "Are these gallery images showing the exact properties available for lease today?",
+          "a": "These portfolio photos demonstrate general architectural layout configurations, structural standards, and property styles within our management index. For a direct stream of unedited photos and videos of available properties today, message our on-ground team."
+        },
+        {
+          "q": "Can clients request interior photos of a specific neighborhood apartment?",
+          "a": "Yes, completely. Send your requested neighborhood targets, budget ranges, and spacing needs to our active WhatsApp help desk, and we will extract active media files matching that exact property segment."
+        },
+        {
+          "q": "Do you provide certified interior photos for corporate staff accommodation complexes?",
+          "a": "Yes. We understand enterprise compliance demands. Procurement managers can request granular structural layout media, bedroom spacing visuals, and utility plant photos by sending an inquiry to info@dania-realestate.com."
+        },
+        {
+          "q": "How can I verify the spatial sizing of commercial shops for rent in Doha?",
+          "a": "Our commercial gallery sub-filters provide structural references for retail shells. Additionally, our specialized commercial property management team can supply detailed floor plans and entrance visuals upon direct request."
+        },
+        {
+          "q": "Why do some rental properties in Qatar look different from old online listings?",
+          "a": "Real estate portfolios change rapidly due to interior renovations, paint alterations, and modernizations. Dania Real Estate protects users from outdated imagery by providing on-demand media assets via direct WhatsApp assistance channels."
+        }
       ]
     },
     "cta": {
@@ -461,7 +767,12 @@
     }
   },
   "apartments": {
-    "subFilters": ["All Apartments", "1 Bedroom", "2 Bedroom", "3 Bedroom"],
+    "subFilters": [
+      "All Apartments",
+      "1 Bedroom",
+      "2 Bedroom",
+      "3 Bedroom"
+    ],
     "all": {
       "eyebrow": "Apartments · Doha & Qatar",
       "h1": "Apartments for Rent in Doha and Qatar",
@@ -481,65 +792,176 @@
         "Our holistic tenant advisory framework is engineered specifically to accommodate individual lifestyle metrics. We carefully map your daily work commute routes, corporate housing policies, and specific neighborhood infrastructure needs against functional residential complexes.",
         "This master database functions as your central navigational gateway for rental properties. To review distinct layout specs, structural floor plans, and localized pricing tiers, visitors can seamlessly route into our dedicated 1-bedroom, 2-bedroom, and 3-bedroom micro-silos."
       ],
-      "amenities": ["Furnished Options", "Kahramaa Utilities", "Covered Parking", "24/7 Security", "Built-in Kitchen", "High-Speed Internet"],
+      "amenities": [
+        "Furnished Options",
+        "Kahramaa Utilities",
+        "Covered Parking",
+        "24/7 Security",
+        "Built-in Kitchen",
+        "High-Speed Internet"
+      ],
       "categoriesH2": "Browse Apartment Rental Categories",
       "categoriesSubtitle": "Align your space requirements with our verified bedroom configurations. Select a specialized layout tier below to explore focused neighborhood listings and active lease options.",
       "categories": [
-        { "h3": "1 Bedroom Apartments for Rent", "desc": "Compact, highly efficient urban layouts engineered for single business executives, couples, and professionals seeking low-maintenance living modules near central transit lanes.", "btn": "View 1 Bedroom Apartments" },
-        { "h3": "2 Bedroom Apartments for Rent", "desc": "The ideal structural balance for growing nuclear families or corporate flat-sharing arrangements, providing separate bedroom privacy alongside spacious central living zones.", "btn": "View 2 Bedroom Apartments" },
-        { "h3": "3 Bedroom Apartments for Rent", "desc": "Expansive, multi-bathroom residential options designed for extended families prioritizing long-term comfort, proximity to school networks, and independent domestic quarters.", "btn": "View 3 Bedroom Apartments" }
+        {
+          "h3": "1 Bedroom Apartments for Rent",
+          "desc": "Compact, highly efficient urban layouts engineered for single business executives, couples, and professionals seeking low-maintenance living modules near central transit lanes.",
+          "btn": "View 1 Bedroom Apartments"
+        },
+        {
+          "h3": "2 Bedroom Apartments for Rent",
+          "desc": "The ideal structural balance for growing nuclear families or corporate flat-sharing arrangements, providing separate bedroom privacy alongside spacious central living zones.",
+          "btn": "View 2 Bedroom Apartments"
+        },
+        {
+          "h3": "3 Bedroom Apartments for Rent",
+          "desc": "Expansive, multi-bathroom residential options designed for extended families prioritizing long-term comfort, proximity to school networks, and independent domestic quarters.",
+          "btn": "View 3 Bedroom Apartments"
+        }
       ],
       "considerH2": "What to Consider When Renting an Apartment in Qatar",
       "considerSubtitle": "Securing a long-term apartment lease involves calculating operational variables that impact your daily living experience and monthly financial outlays.",
       "consider": [
-        { "h3": "Spatial Scale & Layout Math", "desc": "Evaluate your daily space requirements across our 1, 2, and 3-bedroom index lines to optimize your household's personal space and privacy." },
-        { "h3": "District Integration & Mobility", "desc": "We prioritize properties situated with rapid access to metropolitan work centers, international schools, medical clinics, and major arterial expressways." },
-        { "h3": "Operational Budget Benchmarks", "desc": "Our leasing agents ensure your monthly rental commitments sit securely within healthy financial boundaries across target municipal sectors." },
-        { "h3": "Furnishing Matrix Specifications", "desc": "Understand the structural benefits of selecting zero-maintenance fully furnished units versus highly customizable unfurnished apartment shells before signing contracts." }
+        {
+          "h3": "Spatial Scale & Layout Math",
+          "desc": "Evaluate your daily space requirements across our 1, 2, and 3-bedroom index lines to optimize your household's personal space and privacy."
+        },
+        {
+          "h3": "District Integration & Mobility",
+          "desc": "We prioritize properties situated with rapid access to metropolitan work centers, international schools, medical clinics, and major arterial expressways."
+        },
+        {
+          "h3": "Operational Budget Benchmarks",
+          "desc": "Our leasing agents ensure your monthly rental commitments sit securely within healthy financial boundaries across target municipal sectors."
+        },
+        {
+          "h3": "Furnishing Matrix Specifications",
+          "desc": "Understand the structural benefits of selecting zero-maintenance fully furnished units versus highly customizable unfurnished apartment shells before signing contracts."
+        }
       ],
       "areasH2": "Apartments for Rent in Doha and Key Qatar Areas",
       "areasSubtitle": "Apartment structural finishes, building rules, and monthly lease averages vary naturally across different municipal districts. Dania Real Estate maintains active property management networks within these essential local corridors:",
       "areas": [
-        { "h3": "Doha Apartments", "desc": "Comprehensive property choices across Central Doha, Al Dafna business hubs, Al Hilal, and Al Mamoura residential communities." },
-        { "h3": "Al Sadd Apartments", "desc": "Urban flat options nestled inside one of Doha's most connected, high-density residential and retail epicenters." },
-        { "h3": "Bin Mahmoud Rentals", "desc": "Centrally positioned high-rise flat selections tailored for professionals demanding rapid highway and office tower access." },
-        { "h3": "Al Wakra Apartments", "desc": "Highly peaceful, cost-effective residential configurations perfect for families seeking coastal layouts outside urban cores." },
-        { "h3": "Al Aziziya Apartments", "desc": "Well-established residential flat spaces positioned directly adjacent to major recreational and family-focused community hubs." },
-        { "h3": "Old Airport Apartments", "desc": "Culturally rich, highly accessible apartment blocks offering excellent affordability metrics near city entry points." },
-        { "h3": "Umm Salal Rentals", "desc": "Outward residential flat alternatives covering the expanding corridors of Umm Salal Mohammed, Umm Salal Ali, and Umm Qarn." },
-        { "h3": "Al Kharaitiyat Rentals", "desc": "Quiet northern suburban flat complexes catering to tenants prioritizing peaceful community living." }
+        {
+          "h3": "Doha Apartments",
+          "desc": "Comprehensive property choices across Central Doha, Al Dafna business hubs, Al Hilal, and Al Mamoura residential communities."
+        },
+        {
+          "h3": "Al Sadd Apartments",
+          "desc": "Urban flat options nestled inside one of Doha's most connected, high-density residential and retail epicenters."
+        },
+        {
+          "h3": "Bin Mahmoud Rentals",
+          "desc": "Centrally positioned high-rise flat selections tailored for professionals demanding rapid highway and office tower access."
+        },
+        {
+          "h3": "Al Wakra Apartments",
+          "desc": "Highly peaceful, cost-effective residential configurations perfect for families seeking coastal layouts outside urban cores."
+        },
+        {
+          "h3": "Al Aziziya Apartments",
+          "desc": "Well-established residential flat spaces positioned directly adjacent to major recreational and family-focused community hubs."
+        },
+        {
+          "h3": "Old Airport Apartments",
+          "desc": "Culturally rich, highly accessible apartment blocks offering excellent affordability metrics near city entry points."
+        },
+        {
+          "h3": "Umm Salal Rentals",
+          "desc": "Outward residential flat alternatives covering the expanding corridors of Umm Salal Mohammed, Umm Salal Ali, and Umm Qarn."
+        },
+        {
+          "h3": "Al Kharaitiyat Rentals",
+          "desc": "Quiet northern suburban flat complexes catering to tenants prioritizing peaceful community living."
+        }
       ],
       "whyH2": "Why Choose Dania Real Estate for Apartment Rentals",
       "whySubtitle": "We eliminate typical marketplace inaccuracies by providing verified listing information and personal agent care.",
       "why": [
-        { "h3": "Vetted Asset Inventory", "desc": "Say goodbye to bait-and-switch listings. Every apartment layout shown across our platform undergoes continuous occupancy verification." },
-        { "h3": "Absolute Regulatory Honesty", "desc": "We walk tenants transparently through Doha municipality contract procedures, security deposit terms, and Kahramaa bill setups." },
-        { "h3": "Adaptive Demographic Coverage", "desc": "Our property management experts possess deep experience handling individual executive bachelor accounts as well as corporate family transfers." },
-        { "h3": "Direct WhatsApp Communication Speed", "desc": "Bypass slow email loops. Connect straight to an active neighborhood leasing agent for fast photo sharing and live site tour coordination." }
+        {
+          "h3": "Vetted Asset Inventory",
+          "desc": "Say goodbye to bait-and-switch listings. Every apartment layout shown across our platform undergoes continuous occupancy verification."
+        },
+        {
+          "h3": "Absolute Regulatory Honesty",
+          "desc": "We walk tenants transparently through Doha municipality contract procedures, security deposit terms, and Kahramaa bill setups."
+        },
+        {
+          "h3": "Adaptive Demographic Coverage",
+          "desc": "Our property management experts possess deep experience handling individual executive bachelor accounts as well as corporate family transfers."
+        },
+        {
+          "h3": "Direct WhatsApp Communication Speed",
+          "desc": "Bypass slow email loops. Connect straight to an active neighborhood leasing agent for fast photo sharing and live site tour coordination."
+        }
       ],
       "processH2": "How Our Apartment Rental Process Works",
       "processSteps": [
-        { "num": "01", "h3": "Submit Your Target Space Profile", "desc": "Inform our desk of your required bedroom volume, target municipal neighborhood, monthly budget limit, and preferred moving dates." },
-        { "num": "02", "h3": "Real-Time Portfolio Isolation", "desc": "Our property specialists cross-reference your specific parameters against actively vacant apartment structures to pull matching inventory." },
-        { "num": "03", "h3": "Live Media and Layout Review", "desc": "Review clean layout specifications, unedited internal imagery, building amenity charts, and transparent lease terms through our direct channels." },
-        { "num": "04", "h3": "Accompanied Walkthrough & Sign-off", "desc": "Inspect the physical unit alongside an expert leasing agent, ensuring total alignment before completing legal contract signatures." }
+        {
+          "num": "01",
+          "h3": "Submit Your Target Space Profile",
+          "desc": "Inform our desk of your required bedroom volume, target municipal neighborhood, monthly budget limit, and preferred moving dates."
+        },
+        {
+          "num": "02",
+          "h3": "Real-Time Portfolio Isolation",
+          "desc": "Our property specialists cross-reference your specific parameters against actively vacant apartment structures to pull matching inventory."
+        },
+        {
+          "num": "03",
+          "h3": "Live Media and Layout Review",
+          "desc": "Review clean layout specifications, unedited internal imagery, building amenity charts, and transparent lease terms through our direct channels."
+        },
+        {
+          "num": "04",
+          "h3": "Accompanied Walkthrough & Sign-off",
+          "desc": "Inspect the physical unit alongside an expert leasing agent, ensuring total alignment before completing legal contract signatures."
+        }
       ],
       "needsH2": "Common Apartment Rental Needs We Support",
       "needs": [
-        { "h3": "Functional Urban Options for Professionals", "desc": "Streamlined studio conversions and one-bedroom flats positioned close to commercial office clusters and major transit lines." },
-        { "h3": "Community-Centric Family Residences", "desc": "Secure multi-bedroom apartments featuring close proximity to green spaces, child-friendly amenities, and educational centers." },
-        { "h3": "Budget-Optimized Flat Allocations", "desc": "Cost-efficient residential flat configurations mapping perfectly against set corporate spending limits or strict domestic budgets." }
+        {
+          "h3": "Functional Urban Options for Professionals",
+          "desc": "Streamlined studio conversions and one-bedroom flats positioned close to commercial office clusters and major transit lines."
+        },
+        {
+          "h3": "Community-Centric Family Residences",
+          "desc": "Secure multi-bedroom apartments featuring close proximity to green spaces, child-friendly amenities, and educational centers."
+        },
+        {
+          "h3": "Budget-Optimized Flat Allocations",
+          "desc": "Cost-efficient residential flat configurations mapping perfectly against set corporate spending limits or strict domestic budgets."
+        }
       ],
       "exploreH2": "Explore Apartment Options by Bedroom",
       "exploreSubtitle": "Jump directly into targeted space configurations to examine current pricing matrixes and specific community availability.",
-      "exploreLinks": ["1 Bedroom Apartments", "2 Bedroom Apartments", "3 Bedroom Apartments"],
+      "exploreLinks": [
+        "1 Bedroom Apartments",
+        "2 Bedroom Apartments",
+        "3 Bedroom Apartments"
+      ],
       "faqH2": "Apartment Rental FAQs",
       "faqs": [
-        { "q": "What specific layout variations are available across your apartments for rent in Doha?", "a": "Dania Real Estate maintains a thoroughly vetted portfolio of residential flats encompassing highly efficient 1-bedroom executive units, adaptable 2-bedroom configurations, and large 3-bedroom family spaces across prominent Qatar sectors." },
-        { "q": "Can I request unedited interior photos of an apartment before booking a site walkthrough?", "a": "Yes, absolutely. To maintain transparent property management standards, tenants can request current, unedited property photos and floor layouts directly through our active WhatsApp support line." },
-        { "q": "Are Kahramaa electricity and water utilities typically included in the monthly apartment rent?", "a": "Utility structures depend on individual landlord agreements. Our team explicitly highlights whether a residential apartment features an all-inclusive utility structure or follows standard separate Kahramaa billing practices before you sign your lease." },
-        { "q": "How does Dania Real Estate verify that apartment listings are legitimate and available?", "a": "We operate a strict on-ground verification framework. Our property management specialists perform mandatory physical inspections and pricing audits on all listed residential units before introducing them to clients." },
-        { "q": "What documents are required to complete an apartment lease agreement in Qatar?", "a": "To process a standard Doha municipality attested residential contract, individual tenants must supply a valid Qatar ID (QID), a passport copy, and post-dated cheques corresponding to the agreed lease timeline." }
+        {
+          "q": "What specific layout variations are available across your apartments for rent in Doha?",
+          "a": "Dania Real Estate maintains a thoroughly vetted portfolio of residential flats encompassing highly efficient 1-bedroom executive units, adaptable 2-bedroom configurations, and large 3-bedroom family spaces across prominent Qatar sectors."
+        },
+        {
+          "q": "Can I request unedited interior photos of an apartment before booking a site walkthrough?",
+          "a": "Yes, absolutely. To maintain transparent property management standards, tenants can request current, unedited property photos and floor layouts directly through our active WhatsApp support line."
+        },
+        {
+          "q": "Are Kahramaa electricity and water utilities typically included in the monthly apartment rent?",
+          "a": "Utility structures depend on individual landlord agreements. Our team explicitly highlights whether a residential apartment features an all-inclusive utility structure or follows standard separate Kahramaa billing practices before you sign your lease."
+        },
+        {
+          "q": "How does Dania Real Estate verify that apartment listings are legitimate and available?",
+          "a": "We operate a strict on-ground verification framework. Our property management specialists perform mandatory physical inspections and pricing audits on all listed residential units before introducing them to clients."
+        },
+        {
+          "q": "What documents are required to complete an apartment lease agreement in Qatar?",
+          "a": "To process a standard Doha municipality attested residential contract, individual tenants must supply a valid Qatar ID (QID), a passport copy, and post-dated cheques corresponding to the agreed lease timeline."
+        }
       ],
       "ctaH2": "Ready to Find Your Ideal Apartment for Rent in Qatar?",
       "ctaPara": "Avoid navigating misleading online classifieds. Connect with the property management professionals at Dania Real Estate today. Share your preferred neighborhood, required bedroom scale, and budget limits to receive a curated list of active apartments.",
@@ -596,7 +1018,11 @@
     }
   },
   "villas": {
-    "subFilters": ["All Villas", "Standard Villas", "Compound Villas"],
+    "subFilters": [
+      "All Villas",
+      "Standard Villas",
+      "Compound Villas"
+    ],
     "all": {
       "h1": "Villas for Rent in Doha and Qatar",
       "subtitle": "Comprehensive residential guidance for premium standalone villas and fully managed compound communities.",
@@ -612,11 +1038,26 @@
       "ctaPrimary": "Chat on WhatsApp Now",
       "ctaSecondary": "Contact Us Today",
       "faqs": [
-        { "q": "What specific architectural properties are covered under your villa rental portfolio in Qatar?", "a": "Our comprehensive real estate portfolio spans two major residential categories: independent standalone villas offering complete perimeter privacy, and managed compound villas situated inside secure, multi-property neighborhood complexes with shared amenities." },
-        { "q": "Who is a large residential villa layout best suited for in the Qatari market?", "a": "Villa rentals are ideally configured for expanding families, multi-generational households, long-term expatriate residents requiring stable school access, and corporate accounts needing high-capacity executive or staff housing solutions." },
-        { "q": "What are the primary lifestyle differences between standalone villas and compound villas?", "a": "Standalone villas offer absolute privacy with private yards and no shared community boundaries. Compound villas feature managed community-style living, granting your family shared access to amenities like swimming pools, gyms, tennis courts, integrated playgrounds, and 24/7 security gates." },
-        { "q": "Can corporate procurement teams secure multiple villa assets for corporate staff housing?", "a": "Yes, completely. Dania Real Estate specializes in managing corporate accounts, providing compliant bulk villa allocations and standalone multi-property options tailored to match specific company logistical and budgetary goals." },
-        { "q": "How do I quickly confirm current villa vacancies in my target Doha neighborhood?", "a": "Simply connect with our leasing helpdesk via WhatsApp. Provide your preferred neighborhood sector, desired villa style, bedroom target count, and budget parameters to receive a curated list of active options instantly." }
+        {
+          "q": "What specific architectural properties are covered under your villa rental portfolio in Qatar?",
+          "a": "Our comprehensive real estate portfolio spans two major residential categories: independent standalone villas offering complete perimeter privacy, and managed compound villas situated inside secure, multi-property neighborhood complexes with shared amenities."
+        },
+        {
+          "q": "Who is a large residential villa layout best suited for in the Qatari market?",
+          "a": "Villa rentals are ideally configured for expanding families, multi-generational households, long-term expatriate residents requiring stable school access, and corporate accounts needing high-capacity executive or staff housing solutions."
+        },
+        {
+          "q": "What are the primary lifestyle differences between standalone villas and compound villas?",
+          "a": "Standalone villas offer absolute privacy with private yards and no shared community boundaries. Compound villas feature managed community-style living, granting your family shared access to amenities like swimming pools, gyms, tennis courts, integrated playgrounds, and 24/7 security gates."
+        },
+        {
+          "q": "Can corporate procurement teams secure multiple villa assets for corporate staff housing?",
+          "a": "Yes, completely. Dania Real Estate specializes in managing corporate accounts, providing compliant bulk villa allocations and standalone multi-property options tailored to match specific company logistical and budgetary goals."
+        },
+        {
+          "q": "How do I quickly confirm current villa vacancies in my target Doha neighborhood?",
+          "a": "Simply connect with our leasing helpdesk via WhatsApp. Provide your preferred neighborhood sector, desired villa style, bedroom target count, and budget parameters to receive a curated list of active options instantly."
+        }
       ]
     },
     "standard": {
@@ -633,11 +1074,26 @@
       "ctaPrimary": "Chat on WhatsApp Now",
       "ctaSecondary": "Contact Us Today",
       "faqs": [
-        { "q": "What exactly defines a standard villa in the Qatari real estate market?", "a": "A standard villa refers to a completely independent, standalone residential property built on its own plot with private boundary walls. Unlike compound units, a standard villa features its own entrance gate, private yard spaces, and individual parking layouts with no shared community management." },
-        { "q": "Are standard villas suitable for large multi-generational households?", "a": "Yes, perfectly. Standalone villas are highly sought after by large families due to their expansive interior layouts, separate formal guest majlis wings, and detached external quarters for driver or domestic support staff." },
-        { "q": "How are property maintenance demands handled for standalone rentals?", "a": "In a standard villa arrangement, major structural maintenance is traditionally the legal responsibility of the property landlord, while daily cosmetic upkeep is managed by the tenant. Our team clearly defines these operational boundaries within your attested contract before move-in." },
-        { "q": "Can I request unedited interior video walk-throughs of available standalone villas?", "a": "Yes, completely. To protect you from outdated marketplace listings and save you time, our property consultants can share live, unedited interior video tours and current photos directly via WhatsApp." },
-        { "q": "What documents are required to secure an independent villa lease contract in Qatar?", "a": "Standard residential leases require a valid Qatari ID (QID), a copy of your passport, a corporate salary certificate or employment proof, post-dated cheques matching the 12-month lease timeline, and a single-month refundable security deposit." }
+        {
+          "q": "What exactly defines a standard villa in the Qatari real estate market?",
+          "a": "A standard villa refers to a completely independent, standalone residential property built on its own plot with private boundary walls. Unlike compound units, a standard villa features its own entrance gate, private yard spaces, and individual parking layouts with no shared community management."
+        },
+        {
+          "q": "Are standard villas suitable for large multi-generational households?",
+          "a": "Yes, perfectly. Standalone villas are highly sought after by large families due to their expansive interior layouts, separate formal guest majlis wings, and detached external quarters for driver or domestic support staff."
+        },
+        {
+          "q": "How are property maintenance demands handled for standalone rentals?",
+          "a": "In a standard villa arrangement, major structural maintenance is traditionally the legal responsibility of the property landlord, while daily cosmetic upkeep is managed by the tenant. Our team clearly defines these operational boundaries within your attested contract before move-in."
+        },
+        {
+          "q": "Can I request unedited interior video walk-throughs of available standalone villas?",
+          "a": "Yes, completely. To protect you from outdated marketplace listings and save you time, our property consultants can share live, unedited interior video tours and current photos directly via WhatsApp."
+        },
+        {
+          "q": "What documents are required to secure an independent villa lease contract in Qatar?",
+          "a": "Standard residential leases require a valid Qatari ID (QID), a copy of your passport, a corporate salary certificate or employment proof, post-dated cheques matching the 12-month lease timeline, and a single-month refundable security deposit."
+        }
       ]
     },
     "compound": {
@@ -654,12 +1110,30 @@
       "ctaPrimary": "Chat on WhatsApp Now",
       "ctaSecondary": "Contact Us Today",
       "faqs": [
-        { "q": "What exactly defines a compound villa in the Qatari real estate market?", "a": "A compound villa refers to a private house situated within a secure, managed residential complex. These developments feature shared perimeter walls, staffed security gates, and communal access to recreational amenities like pools, fitness clubhouses, and playgrounds." },
-        { "q": "Do all compound villa rentals include access to shared swimming pools and fitness centers?", "a": "While most modern family compounds offer fully equipped clubhouses, swimming pools, and fitness rooms, exact facilities vary by property. Dania Real Estate explicitly outlines the available amenities for each compound option before you schedule a physical viewing." },
-        { "q": "Are compound maintenance fees billed separately from my monthly rent?", "a": "No, standard compound facility maintenance and Common Area Maintenance (CAM) costs are typically fully covered within your monthly rent. Our property consultants ensure these operational terms are clearly verified before contract execution." },
-        { "q": "Are pet ownership policies strictly enforced inside gated family compounds?", "a": "Pet guidelines depend entirely on the individual compound's management rules. Many developments welcome family pets, and our team will match you with pet-friendly compound options if you inform us of your pets during your initial inquiry." },
-        { "q": "Can I request unedited video tours of a compound villa before setting up a physical walkthrough?", "a": "Yes, completely. To protect you from misleading online listings and save you time, our team can send live, unedited interior videos and current photos of vacant units directly to your WhatsApp." },
-        { "q": "What is the typical lease duration required for compound rentals in Qatar?", "a": "Standard residential leases within managed compounds require a mandatory 12-month contract commitment, backed by 12 post-dated cheques and a single-month refundable security deposit." }
+        {
+          "q": "What exactly defines a compound villa in the Qatari real estate market?",
+          "a": "A compound villa refers to a private house situated within a secure, managed residential complex. These developments feature shared perimeter walls, staffed security gates, and communal access to recreational amenities like pools, fitness clubhouses, and playgrounds."
+        },
+        {
+          "q": "Do all compound villa rentals include access to shared swimming pools and fitness centers?",
+          "a": "While most modern family compounds offer fully equipped clubhouses, swimming pools, and fitness rooms, exact facilities vary by property. Dania Real Estate explicitly outlines the available amenities for each compound option before you schedule a physical viewing."
+        },
+        {
+          "q": "Are compound maintenance fees billed separately from my monthly rent?",
+          "a": "No, standard compound facility maintenance and Common Area Maintenance (CAM) costs are typically fully covered within your monthly rent. Our property consultants ensure these operational terms are clearly verified before contract execution."
+        },
+        {
+          "q": "Are pet ownership policies strictly enforced inside gated family compounds?",
+          "a": "Pet guidelines depend entirely on the individual compound's management rules. Many developments welcome family pets, and our team will match you with pet-friendly compound options if you inform us of your pets during your initial inquiry."
+        },
+        {
+          "q": "Can I request unedited video tours of a compound villa before setting up a physical walkthrough?",
+          "a": "Yes, completely. To protect you from misleading online listings and save you time, our team can send live, unedited interior videos and current photos of vacant units directly to your WhatsApp."
+        },
+        {
+          "q": "What is the typical lease duration required for compound rentals in Qatar?",
+          "a": "Standard residential leases within managed compounds require a mandatory 12-month contract commitment, backed by 12 post-dated cheques and a single-month refundable security deposit."
+        }
       ]
     }
   },
@@ -678,12 +1152,30 @@
     "ctaPrimary": "Chat with Our B2B Desk Now",
     "ctaSecondary": "Contact Us Today",
     "mainFaqs": [
-      { "q": "What legally defines standard corporate staff accommodation in Qatar?", "a": "Corporate staff accommodation refers to dedicated residential properties leased directly by companies to house their employees, supervisors, or operations teams. These properties must comply with Qatar Ministry of Labor standards and hold valid municipality registration and safety certificates." },
-      { "q": "How does Dania Real Estate ensure a property complies with Qatar's labor housing laws?", "a": "Our commercial division explicitly pre-screens properties to verify their active Civil Defense safety approvals, proper municipal zone classifications, and suitability for company lease attestation before presenting them to clients." },
-      { "q": "Can your team manage high-volume corporate housing requests for large operational projects?", "a": "Yes, completely. Dania Real Estate works directly with enterprise procurement teams, providing scalable multi-unit housing portfolios and corporate blocks tailored to support large-scale infrastructure and service mobilizations." },
-      { "q": "Is a standard corporate lease structure different from a family residential agreement?", "a": "Yes. Corporate leases are executed directly under your company's commercial registration (CR), require specific occupancy declarations, use customized corporate payment terms, and require direct Baladiya registration to support corporate auditing." },
-      { "q": "What specific areas are best suited for employee housing requiring daily access to Salwa Road?", "a": "Neighborhoods like Al Aziziya, Abu Hamour, and adjacent southern sectors offer ideal logistics setups, granting your corporate transport fleets rapid, direct access to Salwa Road and central industrial zones." },
-      { "q": "What primary documentation must a company provide to secure a corporate housing contract?", "a": "Securing a corporate lease requires a valid copy of your Company Commercial Registration (CR), the Signatory Authorization Certificate, a copy of the manager's QID, post-dated corporate cheques for the contract term, and a single-month refundable security deposit." }
+      {
+        "q": "What legally defines standard corporate staff accommodation in Qatar?",
+        "a": "Corporate staff accommodation refers to dedicated residential properties leased directly by companies to house their employees, supervisors, or operations teams. These properties must comply with Qatar Ministry of Labor standards and hold valid municipality registration and safety certificates."
+      },
+      {
+        "q": "How does Dania Real Estate ensure a property complies with Qatar's labor housing laws?",
+        "a": "Our commercial division explicitly pre-screens properties to verify their active Civil Defense safety approvals, proper municipal zone classifications, and suitability for company lease attestation before presenting them to clients."
+      },
+      {
+        "q": "Can your team manage high-volume corporate housing requests for large operational projects?",
+        "a": "Yes, completely. Dania Real Estate works directly with enterprise procurement teams, providing scalable multi-unit housing portfolios and corporate blocks tailored to support large-scale infrastructure and service mobilizations."
+      },
+      {
+        "q": "Is a standard corporate lease structure different from a family residential agreement?",
+        "a": "Yes. Corporate leases are executed directly under your company's commercial registration (CR), require specific occupancy declarations, use customized corporate payment terms, and require direct Baladiya registration to support corporate auditing."
+      },
+      {
+        "q": "What specific areas are best suited for employee housing requiring daily access to Salwa Road?",
+        "a": "Neighborhoods like Al Aziziya, Abu Hamour, and adjacent southern sectors offer ideal logistics setups, granting your corporate transport fleets rapid, direct access to Salwa Road and central industrial zones."
+      },
+      {
+        "q": "What primary documentation must a company provide to secure a corporate housing contract?",
+        "a": "Securing a corporate lease requires a valid copy of your Company Commercial Registration (CR), the Signatory Authorization Certificate, a copy of the manager's QID, post-dated corporate cheques for the contract term, and a single-month refundable security deposit."
+      }
     ]
   },
   "shops": {
@@ -703,16 +1195,39 @@
     "ctaPrimary": "Chat with Our Commercial Desk Now",
     "ctaSecondary": "Contact Us Today",
     "faqs": [
-      { "q": "Can Dania Real Estate assist in verifying if a shop is approved for food and beverage (F&B) use?", "a": "Yes, completely. Restaurants, cafes, and food concepts require specific municipal zoning, high electrical loads, and integrated drainage pathways. Our commercial team filters listings to match your concept with properties that satisfy these technical requirements." },
-      { "q": "What does a 'shell-and-core' shop rental option mean for a commercial tenant?", "a": "A shell-and-core shop unit provides you with the raw structural concrete slab, bare walls, and utility connection endpoints. This format gives your brand complete freedom to design and install a custom interior layout and unique branding concept from the ground up." },
-      { "q": "Is a fit-out grace period typically included within shop rental contracts in Doha?", "a": "Yes. Landlords in Qatar commonly provide commercial tenants with a rent-free fit-out grace period — ranging from 1 to 3 months depending on the lease length — to complete interior design, setup fit-outs, and secure municipal approvals before commercial operations begin." },
-      { "q": "How does Dania Real Estate verify that a retail space can secure a Baladiya commercial license?", "a": "Our commercial division reviews the property's building completion certificates, landlord ownership deeds, and current municipal zoning records beforehand to ensure your business registration can be processed without legal delays." },
-      { "q": "Are there compact, budget-conscious shop options available for small startups and entrepreneurs?", "a": "Yes. We maintain an active inventory of compact retail units and boutique spaces within highly populated commercial streets, designed specifically to help new startups secure high exposure while maintaining low overhead." },
-      { "q": "What core commercial documentation is required to sign a shop lease in Qatar?", "a": "Finalizing a commercial shop lease requires a copy of your company's Commercial Registration (CR), the Trade License copy, the Authorized Signatory Certificate, the manager's QID copy, post-dated corporate cheques for the entire contract term, and a refundable security deposit." }
+      {
+        "q": "Can Dania Real Estate assist in verifying if a shop is approved for food and beverage (F&B) use?",
+        "a": "Yes, completely. Restaurants, cafes, and food concepts require specific municipal zoning, high electrical loads, and integrated drainage pathways. Our commercial team filters listings to match your concept with properties that satisfy these technical requirements."
+      },
+      {
+        "q": "What does a 'shell-and-core' shop rental option mean for a commercial tenant?",
+        "a": "A shell-and-core shop unit provides you with the raw structural concrete slab, bare walls, and utility connection endpoints. This format gives your brand complete freedom to design and install a custom interior layout and unique branding concept from the ground up."
+      },
+      {
+        "q": "Is a fit-out grace period typically included within shop rental contracts in Doha?",
+        "a": "Yes. Landlords in Qatar commonly provide commercial tenants with a rent-free fit-out grace period — ranging from 1 to 3 months depending on the lease length — to complete interior design, setup fit-outs, and secure municipal approvals before commercial operations begin."
+      },
+      {
+        "q": "How does Dania Real Estate verify that a retail space can secure a Baladiya commercial license?",
+        "a": "Our commercial division reviews the property's building completion certificates, landlord ownership deeds, and current municipal zoning records beforehand to ensure your business registration can be processed without legal delays."
+      },
+      {
+        "q": "Are there compact, budget-conscious shop options available for small startups and entrepreneurs?",
+        "a": "Yes. We maintain an active inventory of compact retail units and boutique spaces within highly populated commercial streets, designed specifically to help new startups secure high exposure while maintaining low overhead."
+      },
+      {
+        "q": "What core commercial documentation is required to sign a shop lease in Qatar?",
+        "a": "Finalizing a commercial shop lease requires a copy of your company's Commercial Registration (CR), the Trade License copy, the Authorized Signatory Certificate, the manager's QID copy, post-dated corporate cheques for the entire contract term, and a refundable security deposit."
+      }
     ]
   },
   "studios": {
-    "subFilters": ["All", "Studio for Rent", "Partition Room", "1 Bedroom"],
+    "subFilters": [
+      "All",
+      "Studio for Rent",
+      "Partition Room",
+      "1 Bedroom"
+    ],
     "all": {
       "h1": "Studio and Partition Rentals in Doha and Qatar",
       "h3": "Compact, budget-friendly rental options for single professionals, expats, and small households.",
@@ -756,7 +1271,11 @@
       "p": "Dania Real Estate supports tenants and businesses searching for apartments, villas, staff accommodation, commercial shops, and studio or partition rentals across Doha and key Qatar localities. Each area features unique rental market dynamics — use this guide to narrow your search effectively.",
       "primaryBtn": "Browse All Areas",
       "whatsappBtn": "Chat on WhatsApp",
-      "trust": ["8 Key Qatar Areas Covered", "All Property Categories Available", "Zero Commission on All Rentals"]
+      "trust": [
+        "8 Key Qatar Areas Covered",
+        "All Property Categories Available",
+        "Zero Commission on All Rentals"
+      ]
     },
     "overview": {
       "h2": "Discover Qatar's Key Rental Locations",
@@ -775,23 +1294,53 @@
     "whyLocation": {
       "h2": "Why Location Matters in Qatar's Rental Market",
       "cards": [
-        { "title": "Pricing Varies by District", "body": "Rental prices can differ by 30–50% between Doha's urban centre and suburban areas like Al Wakra or Umm Salal Mohammed." },
-        { "title": "Commute & Connectivity", "body": "Distance to business hubs, metro stations, and major road networks directly affects daily convenience and quality of life." },
-        { "title": "Community Fit", "body": "Family-oriented areas differ significantly from professional singles zones. Matching your lifestyle to the neighborhood saves long-term dissatisfaction." },
-        { "title": "Commercial Footfall", "body": "For business owners, shop location determines customer access, brand visibility, and long-term commercial viability." }
+        {
+          "title": "Pricing Varies by District",
+          "body": "Rental prices can differ by 30–50% between Doha's urban centre and suburban areas like Al Wakra or Umm Salal Mohammed."
+        },
+        {
+          "title": "Commute & Connectivity",
+          "body": "Distance to business hubs, metro stations, and major road networks directly affects daily convenience and quality of life."
+        },
+        {
+          "title": "Community Fit",
+          "body": "Family-oriented areas differ significantly from professional singles zones. Matching your lifestyle to the neighborhood saves long-term dissatisfaction."
+        },
+        {
+          "title": "Commercial Footfall",
+          "body": "For business owners, shop location determines customer access, brand visibility, and long-term commercial viability."
+        }
       ]
     },
     "propertyTypes": {
       "h2": "Find Properties by Type Across All Areas",
-      "types": ["Apartments for Rent", "Villas for Rent", "Staff Accommodation", "Shops for Rent", "Studios & Partition Rentals"]
+      "types": [
+        "Apartments for Rent",
+        "Villas for Rent",
+        "Staff Accommodation",
+        "Shops for Rent",
+        "Studios & Partition Rentals"
+      ]
     },
     "faq": {
       "h2": "Qatar Rental Areas — Frequently Asked Questions",
       "items": [
-        { "q": "Which areas in Qatar have the most rental options?", "a": "Doha, Al Sadd, and Old Airport consistently carry the highest volume of verified rental listings across all property types." },
-        { "q": "Are properties available outside central Doha?", "a": "Yes. Dania Real Estate covers Al Wakra, Umm Salal Mohammed, Al Kharaitiyat, and Al Aziziya in addition to all central Doha districts." },
-        { "q": "Can I filter properties by area and type?", "a": "Yes. Use our area pages to explore properties by district, then use category links to narrow by apartment, villa, shop, or studio type." },
-        { "q": "Do you charge commission for area-based inquiries?", "a": "No. All inquiries through Dania Real Estate carry zero commission for tenants, regardless of the area or property type." }
+        {
+          "q": "Which areas in Qatar have the most rental options?",
+          "a": "Doha, Al Sadd, and Old Airport consistently carry the highest volume of verified rental listings across all property types."
+        },
+        {
+          "q": "Are properties available outside central Doha?",
+          "a": "Yes. Dania Real Estate covers Al Wakra, Umm Salal Mohammed, Al Kharaitiyat, and Al Aziziya in addition to all central Doha districts."
+        },
+        {
+          "q": "Can I filter properties by area and type?",
+          "a": "Yes. Use our area pages to explore properties by district, then use category links to narrow by apartment, villa, shop, or studio type."
+        },
+        {
+          "q": "Do you charge commission for area-based inquiries?",
+          "a": "No. All inquiries through Dania Real Estate carry zero commission for tenants, regardless of the area or property type."
+        }
       ]
     },
     "cta": {
@@ -806,7 +1355,11 @@
     "heroP": "Dania Real Estate provides verified, zero-commission rental support across {{area}}. Browse active listings, compare options, and connect directly with our leasing team via WhatsApp.",
     "primaryBtn": "View Available Listings",
     "whatsappBtn": "Chat on WhatsApp",
-    "trustPoints": ["{{count}} Active Listings", "Zero Commission", "Verified Properties Only"],
+    "trustPoints": [
+      "{{count}} Active Listings",
+      "Zero Commission",
+      "Verified Properties Only"
+    ],
     "overviewH2": "Renting in {{area}}, Qatar",
     "propertyTypesH2": "What You Can Rent in {{area}}",
     "highlightsH2": "Why Rent in {{area}}?",
@@ -819,11 +1372,26 @@
     "ctaPrimary": "Chat on WhatsApp Now",
     "ctaSecondary": "Contact Us Today",
     "propertyTypes": [
-      { "label": "Apartments", "description": "Studio, 1BR, 2BR, and 3BR apartments for rent — furnished and unfurnished options available." },
-      { "label": "Villas", "description": "Standalone and compound villas — ideal for families seeking space and privacy." },
-      { "label": "Staff Accommodation", "description": "Corporate and labour staff housing blocks — fully managed, verified, and scalable." },
-      { "label": "Shops", "description": "Commercial ground-floor shops and retail units for rent — zero commission leasing." },
-      { "label": "Studios & Partition Rentals", "description": "Affordable studio flats and partition room rentals for singles and working professionals." }
+      {
+        "label": "Apartments",
+        "description": "Studio, 1BR, 2BR, and 3BR apartments for rent — furnished and unfurnished options available."
+      },
+      {
+        "label": "Villas",
+        "description": "Standalone and compound villas — ideal for families seeking space and privacy."
+      },
+      {
+        "label": "Staff Accommodation",
+        "description": "Corporate and labour staff housing blocks — fully managed, verified, and scalable."
+      },
+      {
+        "label": "Shops",
+        "description": "Commercial ground-floor shops and retail units for rent — zero commission leasing."
+      },
+      {
+        "label": "Studios & Partition Rentals",
+        "description": "Affordable studio flats and partition room rentals for singles and working professionals."
+      }
     ]
   },
   "faq": {
@@ -847,7 +1415,11 @@
       "eyebrow": "Get In Touch",
       "h1": "Contact Dania Real Estate",
       "subtitle": "Real-time property leasing support and active vacancy verifications across Doha and premier Qatar communities.",
-      "trust": ["Zero Commission", "Fast WhatsApp Response", "Verified Listings Only"]
+      "trust": [
+        "Zero Commission",
+        "Fast WhatsApp Response",
+        "Verified Listings Only"
+      ]
     },
     "form": {
       "h2": "Send Your Rental Inquiry",
@@ -867,35 +1439,103 @@
       "submit": "Submit Verified Rental Inquiry",
       "sending": "Sending...",
       "success": "Thank you! We'll be in touch within 24 hours.",
-      "propertyTypes": ["Apartment (1BHK, 2BHK, 3BHK Family Flats)", "Standalone or Compound Family Villa", "Certified Corporate Staff Accommodation", "Commercial Shop / Retail Storefront Showroom", "Standalone Studio Apartment", "Managed Executive Partition Room", "One-Bedroom Compact Rental", "Other Specialized Commercial Space"],
-      "neighborhoods": ["Doha (Central Zones / Multi-Districts)", "Al Sadd", "Bin Mahmoud", "Al Wakra (Southern Hub)", "Al Aziziya & Abu Hamour (Western School Corridor)", "Old Airport & Rawdat Al Matar (Transit Hub)", "Umm Salal Mohammed (Northern Corridor)", "Al Kharaitiyat (Retail-Adjacent Hub)", "Not Sure / Require Location Consultation"]
+      "propertyTypes": [
+        "Apartment (1BHK, 2BHK, 3BHK Family Flats)",
+        "Standalone or Compound Family Villa",
+        "Certified Corporate Staff Accommodation",
+        "Commercial Shop / Retail Storefront Showroom",
+        "Standalone Studio Apartment",
+        "Managed Executive Partition Room",
+        "One-Bedroom Compact Rental",
+        "Other Specialized Commercial Space"
+      ],
+      "neighborhoods": [
+        "Doha (Central Zones / Multi-Districts)",
+        "Al Sadd",
+        "Bin Mahmoud",
+        "Al Wakra (Southern Hub)",
+        "Al Aziziya & Abu Hamour (Western School Corridor)",
+        "Old Airport & Rawdat Al Matar (Transit Hub)",
+        "Umm Salal Mohammed (Northern Corridor)",
+        "Al Kharaitiyat (Retail-Adjacent Hub)",
+        "Not Sure / Require Location Consultation"
+      ]
     },
     "cards": {
       "h2": "Direct Communication Channels",
       "items": [
-        { "label": "Active Phone Lines", "desc": "Call us during office hours" },
-        { "label": "Instant WhatsApp Desk", "desc": "Chat directly with our leasing team" },
-        { "label": "Corporate Email Gateway", "desc": "Send us an email inquiry" },
-        { "label": "HQ Office Address", "desc": "Al Rayyan Road, Doha, Qatar" },
-        { "label": "Operational Working Hours", "desc": "Sunday–Thursday: 8:00 AM – 5:30 PM (QST) | Saturday: 9:00 AM – 2:00 PM | Friday: WhatsApp Monitored" }
+        {
+          "label": "Active Phone Lines",
+          "desc": "Call us during office hours"
+        },
+        {
+          "label": "Instant WhatsApp Desk",
+          "desc": "Chat directly with our leasing team"
+        },
+        {
+          "label": "Corporate Email Gateway",
+          "desc": "Send us an email inquiry"
+        },
+        {
+          "label": "HQ Office Address",
+          "desc": "Al Rayyan Road, Doha, Qatar"
+        },
+        {
+          "label": "Operational Working Hours",
+          "desc": "Sunday–Thursday: 8:00 AM – 5:30 PM (QST) | Saturday: 9:00 AM – 2:00 PM | Friday: WhatsApp Monitored"
+        }
       ]
     },
     "segments": {
       "h2": "Specialized Leasing Segments We Support",
       "items": [
-        { "title": "Apartments for Rent", "desc": "Contact us to source modern, low-rise family apartments, 1-2-3 BHK flats, and centrally managed residential properties with dedicated parking bays.", "href": "/apartments-for-rent/", "action": "Explore Apartments" },
-        { "title": "Villas for Rent", "desc": "Query our active compound and standalone family villa directories featuring private yards, swimming pools, and top-tier security configurations.", "href": "/villas-for-rent/", "action": "Explore Villas" },
-        { "title": "Staff Accommodation", "desc": "Secure certified, scalable workforce housing blocks, supervisor rooms, and employee layouts fully compliant with Ministry of Labour guidelines.", "href": "/staff-accommodation/", "action": "Explore Staff Housing" },
-        { "title": "Shops for Rent", "desc": "Launch or scale your business footprint inside premium commercial storefronts, retail spaces, and corporate showrooms across busy thoroughfares.", "href": "/shops-for-rent/", "action": "Explore Retail Shops" },
-        { "title": "Studio & Partition Rentals", "desc": "Access budget-friendly standalone studio apartments, single executive rooms, and safely configured partition options with clear utility terms.", "href": "/studio-partition-rentals/", "action": "Explore Compact Rentals" }
+        {
+          "title": "Apartments for Rent",
+          "desc": "Contact us to source modern, low-rise family apartments, 1-2-3 BHK flats, and centrally managed residential properties with dedicated parking bays.",
+          "href": "/apartments-for-rent/",
+          "action": "Explore Apartments"
+        },
+        {
+          "title": "Villas for Rent",
+          "desc": "Query our active compound and standalone family villa directories featuring private yards, swimming pools, and top-tier security configurations.",
+          "href": "/villas-for-rent/",
+          "action": "Explore Villas"
+        },
+        {
+          "title": "Staff Accommodation",
+          "desc": "Secure certified, scalable workforce housing blocks, supervisor rooms, and employee layouts fully compliant with Ministry of Labour guidelines.",
+          "href": "/staff-accommodation/",
+          "action": "Explore Staff Housing"
+        },
+        {
+          "title": "Shops for Rent",
+          "desc": "Launch or scale your business footprint inside premium commercial storefronts, retail spaces, and corporate showrooms across busy thoroughfares.",
+          "href": "/shops-for-rent/",
+          "action": "Explore Retail Shops"
+        },
+        {
+          "title": "Studio & Partition Rentals",
+          "desc": "Access budget-friendly standalone studio apartments, single executive rooms, and safely configured partition options with clear utility terms.",
+          "href": "/studio-partition-rentals/",
+          "action": "Explore Compact Rentals"
+        }
       ]
     },
     "faq": {
       "h2": "Common Questions",
       "items": [
-        { "q": "How quickly will someone respond to my inquiry?", "a": "Our team typically responds within 1–2 hours via WhatsApp during business hours. For email inquiries, expect a response within 24 hours." },
-        { "q": "Can I call directly instead of filling out the form?", "a": "Yes. You can reach our team directly via the phone number or WhatsApp link listed above." },
-        { "q": "Do you charge any fees to contact you?", "a": "No. All inquiries are completely free. We charge zero commission to tenants on all property rentals." }
+        {
+          "q": "How quickly will someone respond to my inquiry?",
+          "a": "Our team typically responds within 1–2 hours via WhatsApp during business hours. For email inquiries, expect a response within 24 hours."
+        },
+        {
+          "q": "Can I call directly instead of filling out the form?",
+          "a": "Yes. You can reach our team directly via the phone number or WhatsApp link listed above."
+        },
+        {
+          "q": "Do you charge any fees to contact you?",
+          "a": "No. All inquiries are completely free. We charge zero commission to tenants on all property rentals."
+        }
       ]
     },
     "cta": {

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CheckCircle2, ChevronDown } from 'lucide-react'
-import { HeroSearch } from '@/components/search/HeroSearch'
+import { QuickSearchPanel } from '@/components/search/QuickSearchPanel'
 
 /* Cinematic luxury-villa walkthrough, exported as a frame sequence and scrubbed
  * by scroll position (Apple-style). Scroll down → walkthrough plays forward;
@@ -190,26 +190,31 @@ export function HeroSequence() {
             ref={contentRef}
             className="max-w-[1280px] mx-auto px-6 w-full text-white will-change-transform"
           >
-            <p className="text-lime text-sm font-semibold tracking-widest uppercase mb-4">{t('home.hero.eyebrow')}</p>
-            {/* The headline was removed from the hero at the client's request —
-                the search block is the first thing a visitor should meet. The
-                H1 stays in the document (screen-reader only) because a page
-                with no H1 is an accessibility and SEO regression; the copy is
-                still the single source in home.hero.h1. */}
+            <p className="text-lime text-sm font-semibold tracking-widest uppercase mb-3">{t('home.hero.eyebrow')}</p>
+            {/* The H1 is screen-reader only: the client specified an H2 for the
+                visible banner title, and a page with no H1 at all would be an
+                accessibility and SEO regression. */}
             <h1 className="sr-only">{t('home.hero.h1').replace('|', '—')}</h1>
-            {/* The visitor's first move is a search, not a paragraph — the
-                intro copy that used to sit here is now the search block. */}
-            <div className="mb-6 sm:mb-8">
-              <HeroSearch />
+            <h2 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+              {t('home.hero.h2')}
+            </h2>
+            <h4 className="mt-3 max-w-2xl text-base font-medium leading-relaxed text-white/80 sm:text-lg">
+              {t('home.hero.h4')}
+            </h4>
+            <div className="my-6 sm:my-8">
+              <QuickSearchPanel />
             </div>
-            <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {/* The banner now carries a headline, a sub-title and the search
+                panel, so the supporting copy steps aside on small screens
+                rather than pushing the search below the fold. */}
+            <div className="hidden flex-wrap gap-x-6 gap-y-2 sm:flex">
               {[t('home.hero.trust0'), t('home.hero.trust1'), t('home.hero.trust2'), t('home.hero.trust3')].map(v => (
                 <span key={v} className="flex items-center gap-2 text-white/60 text-sm">
                   <CheckCircle2 size={14} className="text-lime shrink-0" /> {v}
                 </span>
               ))}
             </div>
-            <p className="mt-5 max-w-2xl text-white/55 text-sm leading-relaxed">{t('home.hero.trustLine')}</p>
+            <p className="mt-5 hidden max-w-2xl text-white/55 text-sm leading-relaxed lg:block">{t('home.hero.trustLine')}</p>
           </div>
         </div>
 

@@ -202,6 +202,43 @@ export function ContactPage() {
         </div>
       </section>
 
+      {/* ── S2b: Office location map ─────────────────────────────────────── */}
+      <section className="bg-surface-low pb-14">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <Reveal direction="up">
+            <div className="overflow-hidden rounded-2xl border border-border bg-white">
+              <iframe
+                src={company.mapEmbedUrl}
+                title={isAr ? 'موقع مكتب دانية للعقارات على خرائط جوجل' : 'Dania Real Estate office location on Google Maps'}
+                width="600"
+                height="450"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="block h-[400px] w-full border-0 sm:h-[450px]"
+              />
+            </div>
+          </Reveal>
+          <Reveal direction="up" delay={80}>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <p className="inline-flex items-center gap-2 text-sm text-ink-muted">
+                <MapPin size={16} className="text-lime shrink-0" />
+                {isAr ? company.addressAr : company.address}
+              </p>
+              <a
+                href={company.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-forest px-5 py-2.5 text-sm font-bold text-forest transition-colors hover:bg-forest hover:text-white"
+              >
+                <MapPin size={15} />
+                {isAr ? 'الاتجاهات على خرائط جوجل' : 'Direction On Google Map'}
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── S3: Inquiry Form ─────────────────────────────────────────────── */}
       <section className="bg-surface-low py-14">
         <div className="max-w-[1280px] mx-auto px-6">

@@ -15,6 +15,7 @@ import { CardCarousel } from '@/components/shared/CardCarousel'
 import { ScrollRevealText } from '@/components/shared/ScrollRevealText'
 import { company, properties, whyChooseUs } from '@/data/mockData'
 import { PropertyCard } from '@/components/search/PropertyCard'
+import { QuickCategoryBoxes } from '@/components/search/QuickCategoryBoxes'
 import { sortProperties } from '@/lib/search'
 
 /* ── Section 5: areas data ────────────────────────────────────────────── */
@@ -162,6 +163,9 @@ export function HomePage() {
 
       {/* ── 1. HERO ── */}
       <HeroSequence />
+
+      {/* ── 2. QUICK CATEGORY BOXES (directly below the hero search bar) ── */}
+      <QuickCategoryBoxes />
 
       {/* ── 3. MAIN RENTAL SERVICES ── */}
       <section className="max-w-[1280px] mx-auto px-6 py-20">

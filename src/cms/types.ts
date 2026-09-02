@@ -42,6 +42,10 @@ export interface CompanyOverride {
   hoursShortAr?: string
   footerHours?: string
   footerHoursAr?: string
+  /** Google Maps directions link used by the header + area page buttons. */
+  mapUrl?: string
+  /** Google Maps embed URL for the iframe on /contact-us/. */
+  mapEmbedUrl?: string
   facebook?: string
   instagram?: string
   linkedin?: string

@@ -33,6 +33,7 @@ const HERO = {
   },
   primaryBtn: { en: 'Explore Rental Areas', ar: 'استكشف مناطق الإيجار' },
   secondaryBtn: { en: 'Contact Our Team', ar: 'تواصل مع فريقنا' },
+  mapBtn: { en: 'Direction On Google Map', ar: 'الاتجاهات على خرائط جوجل' },
   trust: [
     {
       en: 'Mapped directly along major Doha Metro corridors and primary expressway links.',
@@ -702,6 +703,15 @@ export function AreasPage() {
                   >
                     {L(HERO.secondaryBtn)}
                   </Link>
+                  <a
+                    href={company.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border-2 border-white text-white font-bold px-7 py-3 rounded-full hover:bg-white hover:text-forest transition-colors"
+                  >
+                    <MapPin size={17} className="shrink-0" />
+                    {L(HERO.mapBtn)}
+                  </a>
                 </div>
               </Reveal>
 

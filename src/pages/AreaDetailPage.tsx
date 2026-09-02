@@ -10,6 +10,7 @@ import {
   Store,
   BedSingle,
   ArrowRight,
+  MapPin,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { areas, company } from '@/data/mockData'
@@ -2017,7 +2018,8 @@ const AREA_HERO: Record<string, { img: string; alt: string }> = {
 }
 
 export function AreaDetailPage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isAr = i18n.language === 'ar'
   const { slug } = useParams<{ slug: string }>()
   const area = areas.find((a) => a.slug === slug)
   const detail = area ? AREA_DETAIL[area.slug] : undefined
@@ -2088,8 +2090,17 @@ export function AreaDetailPage() {
                     to="/contact-us/"
                     className="inline-flex items-center gap-2 border border-white/40 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/10 transition-colors"
                   >
-                    Contact Our Team
+                    {isAr ? 'تواصل مع فريقنا' : 'Contact Our Team'}
                   </Link>
+                  <a
+                    href={company.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border border-white/40 text-white font-semibold px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full text-sm hover:bg-white/10 transition-colors"
+                  >
+                    <MapPin size={16} className="shrink-0" />
+                    {isAr ? 'الاتجاهات على خرائط جوجل' : 'Direction On Google Map'}
+                  </a>
                 </div>
               </Reveal>
 

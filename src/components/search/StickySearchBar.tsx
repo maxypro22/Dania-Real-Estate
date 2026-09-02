@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { Search } from 'lucide-react'
 import { SearchFilterBar } from './SearchFilterBar'
+import { QuickSearchPanel } from './QuickSearchPanel'
 import { emptyFilters, filtersToParams, filtersToQuery, paramsToFilters, type Filters } from '@/lib/search'
 
 /** Scroll distance after which the bar reveals itself, per route. */
@@ -20,6 +23,8 @@ const REVEAL_AT: Record<'home' | 'results', (vh: number) => number> = {
  */
 export function StickySearchBar() {
   const { pathname } = useLocation()
+  const { i18n } = useTranslation()
+  const isAr = i18n.language === 'ar'
   const navigate = useNavigate()
   const [params, setParams] = useSearchParams()
   const [local, setLocal] = useState<Filters>(emptyFilters)
@@ -68,7 +73,26 @@ export function StickySearchBar() {
       className={`z-30 border-b border-border bg-white/95 backdrop-blur-sm ${position}`}
     >
       <div className="mx-auto max-w-[1720px] px-4 py-2.5 sm:px-6">
-        <SearchFilterBar value={f} onChange={apply} onSubmit={submit} layout="inline" showSort={onResults} />
+        {/* On the results page the visitor is actively filtering, so the chip
+            bar (type / beds / price / sort, all URL-bound) is what belongs
+            here. Everywhere else it is the same Looking-for → Location →
+            Property Type panel the homepage banner uses. */}
+        {onResults ? (
+          <SearchFilterBar value={f} onChange={apply} onSubmit={submit} layout="inline" showSort />
+        ) : (
+          <>
+            {/* The panel stacks its four cells below lg, which would make a
+                300px-tall bar on a phone — there it collapses to one tap. */}
+            <QuickSearchPanel variant="bar" className="hidden shadow-none ring-0 lg:block" />
+            <Link
+              to="/properties/"
+              className="flex items-center justify-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-bold text-white lg:hidden"
+            >
+              <Search size={16} />
+              {isAr ? 'ابحث عن عقار' : 'Search properties'}
+            </Link>
+          </>
+        )}
       </div>
     </div>
   )

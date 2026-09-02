@@ -25,6 +25,12 @@ describe('Content-Security-Policy', () => {
     expect(csp).toContain('images.pexels.com')
   })
 
+  it('allows the Google Maps iframe embedded on the contact page', () => {
+    const frameSrc = csp?.split(';').map((d) => d.trim()).find((d) => d.startsWith('frame-src'))
+    expect(frameSrc).toBeTypeOf('string')
+    expect(frameSrc).toContain('https://www.google.com')
+  })
+
   it('keeps inline styles working and locks down object/base', () => {
     expect(csp).toMatch(/style-src[^;]*'unsafe-inline'/)
     expect(csp).toContain("object-src 'none'")
